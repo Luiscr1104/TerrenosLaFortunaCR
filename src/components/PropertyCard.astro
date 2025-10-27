@@ -1,0 +1,194 @@
+---
+// src/components/ui/PropertyCard.astro
+interface Props {
+  id: string;
+  title: string;
+  slug: string;
+  price: number;
+  type: 'home' | 'land';
+  bedrooms?: number;
+  bathrooms?: number;
+  size: number;
+  sizeUnit: string;
+  landSize?: number;
+  landUnit?: string;
+  location: string;
+  featured?: boolean;
+  images: string[];
+  features: string[];
+  description: string;
+}
+
+const {
+  title,
+  slug,
+  price,
+  type,
+  bedrooms,
+  bathrooms,
+  size,
+  sizeUnit,
+  landSize,
+  landUnit,
+  location,
+  featured = false,
+  images,
+  features,
+  description
+} = Astro.props;
+
+const formattedPrice = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+}).format(price);
+---
+
+<article class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+  <!-- Featured Badge -->
+  {featured && (
+    <div class="absolute top-4 left-4 z-10 bg-accent-gold text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
+      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+      </svg>
+      Featured
+    </div>
+  )}
+
+  <!-- Type Badge -->
+  <div class="absolute top-4 right-4 z-10 bg-white/95 backdrop-blur-sm text-neutral-900 px-3 py-1.5 rounded-full text-xs font-semibold shadow-md">
+    {type === 'home' ? '🏠 Home' : '🌳 Land'}
+  </div>
+
+  <!-- Image Container with Gallery -->
+  <div class="relative aspect-[4/3] overflow-hidden bg-neutral-100">
+    <img 
+      src={images[0]} 
+      alt={title}
+      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+      loading="lazy"
+    />
+    
+    <!-- Image overlay gradient -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    
+    <!-- View Details overlay button -->
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <span class="bg-white text-neutral-900 px-6 py-3 rounded-lg font-bold shadow-xl transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+        View Details
+      </span>
+    </div>
+
+    <!-- Image counter -->
+    {images.length > 1 && (
+      <div class="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+        </svg>
+        {images.length} Photos
+      </div>
+    )}
+  </div>
+
+  <!-- Content -->
+  <div class="p-6">
+    <!-- Location -->
+    <div class="flex items-center gap-1 text-sm text-neutral-600 mb-2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+      <span>{location}</span>
+    </div>
+
+    <!-- Title -->
+    <h3 class="text-xl font-display font-bold text-neutral-900 mb-3 line-clamp-2 group-hover:text-primary-600 transition-colors">
+      {title}
+    </h3>
+
+    <!-- Price -->
+    <div class="mb-4">
+      <span class="text-3xl font-display font-bold text-primary-600">{formattedPrice}</span>
+    </div>
+
+    <!-- Property specs -->
+    <div class="flex flex-wrap gap-4 mb-4 pb-4 border-b border-neutral-200">
+      {type === 'home' && bedrooms && bathrooms && (
+        <>
+          <div class="flex items-center gap-1.5 text-sm text-neutral-700">
+            <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            <span class="font-semibold">{bedrooms}</span>
+            <span>Beds</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-sm text-neutral-700">
+            <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/>
+            </svg>
+            <span class="font-semibold">{bathrooms}</span>
+            <span>Baths</span>
+          </div>
+        </>
+      )}
+      <div class="flex items-center gap-1.5 text-sm text-neutral-700">
+        <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+        </svg>
+        <span class="font-semibold">{size}</span>
+        <span>{sizeUnit}</span>
+      </div>
+      {landSize && landUnit && (
+        <div class="flex items-center gap-1.5 text-sm text-neutral-700">
+          <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span class="font-semibold">{landSize}</span>
+          <span>{landUnit} lot</span>
+        </div>
+      )}
+    </div>
+
+    <!-- Features (max 3 visible) -->
+    <ul class="space-y-2 mb-5">
+      {features.slice(0, 3).map((feature) => (
+        <li class="flex items-start gap-2 text-sm text-neutral-700">
+          <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>{feature}</span>
+        </li>
+      ))}
+      {features.length > 3 && (
+        <li class="text-sm text-primary-600 font-medium">
+          + {features.length - 3} more features
+        </li>
+      )}
+    </ul>
+
+    <!-- CTA Buttons -->
+    <div class="flex gap-2">
+      <a 
+        href={`/properties/${slug}`}
+        class="flex-1 inline-flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-4 py-2.5 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg"
+      >
+        Full Details
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </a>
+      <a 
+        href={`https://wa.me/50612345678?text=Hi!%20I'm%20interested%20in:%20${encodeURIComponent(title)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white p-2.5 rounded-lg transition-colors duration-300"
+        aria-label="Contact via WhatsApp"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,204 @@
+---
+// src/components/sections/FeaturedProperties.astro
+import PropertyCard from './PropertyCard.astro';
+import propertiesData from '../data/properties.json';
+
+// Filter only featured properties
+const featuredProperties = propertiesData.filter(p => p.featured);
+---
+
+<section id="properties" class="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-white to-neutral-50 overflow-hidden">
+  <!-- Decorative elements -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary-400/5 rounded-full blur-3xl"></div>
+
+  <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <!-- Section Header -->
+    <div class="text-center mb-12 md:mb-16 lg:mb-20">
+      <div class="inline-flex items-center gap-2 bg-primary-500/10 text-primary-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+        </svg>
+        <span>Featured Properties</span>
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-neutral-900 mb-4 md:mb-6">
+        Your Dream Property 
+        <span class="block text-transparent bg-gradient-to-r from-primary-500 to-secondary-400 bg-clip-text">
+          Awaits in Paradise
+        </span>
+      </h2>
+
+      <p class="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto mb-8">
+        Handpicked luxury homes and pristine land in La Fortuna's most desirable locations. 
+        <span class="font-semibold text-primary-600">Every property personally inspected and verified.</span>
+      </p>
+
+      <!-- Filter Tabs -->
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        <button 
+          data-filter="all"
+          class="filter-btn active px-6 py-2.5 rounded-full font-bold transition-all duration-300 bg-neutral-900 text-white shadow-xl border-2 border-neutral-900"
+        >
+          All Properties
+        </button>
+        <button 
+          data-filter="home"
+          class="filter-btn px-6 py-2.5 rounded-full font-semibold transition-all duration-300 bg-white text-neutral-900 hover:bg-neutral-100 border-2 border-neutral-300 hover:border-neutral-900 hover:shadow-lg shadow-md"
+        >
+          🏠 Luxury Homes
+        </button>
+        <button 
+          data-filter="land"
+          class="filter-btn px-6 py-2.5 rounded-full font-semibold transition-all duration-300 bg-white text-neutral-900 hover:bg-neutral-100 border-2 border-neutral-300 hover:border-neutral-900 hover:shadow-lg shadow-md"
+        >
+          🌳 Premium Land
+        </button>
+      </div>
+    </div>
+
+    <!-- Properties Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
+      {featuredProperties.map((property) => (
+        <div class="property-item" data-type={property.type}>
+          <PropertyCard {...property} />
+        </div>
+      ))}
+    </div>
+
+    <!-- No properties message (hidden by default) -->
+    <div id="no-properties" class="hidden text-center py-12">
+      <div class="inline-flex items-center justify-center w-16 h-16 bg-neutral-100 rounded-full mb-4">
+        <svg class="w-8 h-8 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </div>
+      <p class="text-lg text-neutral-600">No properties found in this category</p>
+    </div>
+
+    <!-- View All CTA -->
+    <div class="text-center">
+      <a 
+        href="/properties"
+        class="inline-flex items-center gap-2 bg-white border-2 border-primary-500 text-primary-600 hover:bg-primary-500 hover:text-white px-8 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+      >
+        View All Properties
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+      <p class="mt-4 text-sm text-neutral-500">
+        50+ exclusive properties available • New listings every week
+      </p>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 p-8 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl shadow-xl">
+      <div class="text-center">
+        <div class="text-3xl md:text-4xl font-display font-bold text-black mb-2">
+          $2.5M+
+        </div>
+        <div class="text-sm md:text-base text-black/80">
+          Properties Sold
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl md:text-4xl font-display font-bold text-black mb-2">
+          98%
+        </div>
+        <div class="text-sm md:text-base text-black/80">
+          Client Satisfaction
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl md:text-4xl font-display font-bold text-black mb-2">
+          30 Days
+        </div>
+        <div class="text-sm md:text-base text-black/80">
+          Avg. Close Time
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl md:text-4xl font-display font-bold text-black mb-2">
+          24/7
+        </div>
+        <div class="text-sm md:text-base text-black/80">
+          Support Available
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Property filtering functionality
+  function setupPropertyFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const propertyItems = document.querySelectorAll('.property-item');
+    const noPropertiesMessage = document.getElementById('no-properties');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filterValue = button.getAttribute('data-filter');
+
+        // Update active button
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'bg-neutral-900', 'text-white', 'shadow-xl', 'font-bold', 'border-neutral-900');
+          btn.classList.add('bg-white', 'text-neutral-900', 'border-neutral-300', 'shadow-md', 'font-semibold');
+        });
+        button.classList.add('active', 'bg-neutral-900', 'text-white', 'shadow-xl', 'font-bold', 'border-neutral-900');
+        button.classList.remove('bg-white', 'text-neutral-900', 'border-neutral-300', 'shadow-md', 'font-semibold');
+
+        // Filter properties
+        let visibleCount = 0;
+        propertyItems.forEach(item => {
+          const itemType = item.getAttribute('data-type');
+          
+          if (filterValue === 'all' || itemType === filterValue) {
+            item.style.display = 'block';
+            // Fade in animation
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              item.style.transition = 'all 0.5s ease';
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+            }, 50);
+            visibleCount++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        // Show/hide no properties message
+        if (noPropertiesMessage) {
+          if (visibleCount === 0) {
+            noPropertiesMessage.classList.remove('hidden');
+          } else {
+            noPropertiesMessage.classList.add('hidden');
+          }
+        }
+      });
+    });
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', setupPropertyFilters);
+</script>
+
+<style>
+  .property-item {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
