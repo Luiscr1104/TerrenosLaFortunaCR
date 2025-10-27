@@ -1,0 +1,146 @@
+---
+// src/components/ButterfliesSubtle.astro
+// Mariposas Morpho azules sutiles (icónicas de Costa Rica)
+---
+
+<div id="butterflies-container" class="fixed inset-0 pointer-events-none z-30 overflow-hidden"></div>
+
+<script is:inline>
+  function createButterfly() {
+    const container = document.getElementById('butterflies-container');
+    if (!container) return;
+
+    const butterfly = document.createElement('div');
+    butterfly.className = 'butterfly';
+    
+    // Posición inicial
+    const startX = Math.random() * window.innerWidth;
+    const startY = Math.random() * (window.innerHeight * 0.8); // 80% de la altura
+    
+    butterfly.innerHTML = `
+      <svg width="40" height="40" viewBox="0 0 40 40" class="butterfly-svg">
+        <g class="butterfly-wings">
+          <!-- Ala izquierda -->
+          <ellipse cx="12" cy="20" rx="10" ry="15" fill="url(#blueGradient)" opacity="0.8" transform="rotate(-20 12 20)"/>
+          <!-- Ala derecha -->
+          <ellipse cx="28" cy="20" rx="10" ry="15" fill="url(#blueGradient)" opacity="0.8" transform="rotate(20 28 20)"/>
+          <!-- Cuerpo -->
+          <ellipse cx="20" cy="20" rx="2" ry="8" fill="#1a1a1a"/>
+        </g>
+        <defs>
+          <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#5B9FE3;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#2D5BA3;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+      </svg>
+    `;
+    
+    butterfly.style.position = 'absolute';
+    butterfly.style.left = startX + 'px';
+    butterfly.style.top = startY + 'px';
+    butterfly.style.opacity = '0';
+    butterfly.style.transition = 'opacity 0.5s ease-in';
+    
+    container.appendChild(butterfly);
+
+    // Fade in
+    setTimeout(() => {
+      butterfly.style.opacity = '1';
+    }, 50);
+
+    // Animación de vuelo
+    animateButterfly(butterfly, startX, startY);
+
+    // Remover después de 12 segundos
+    setTimeout(() => {
+      butterfly.style.opacity = '0';
+      setTimeout(() => butterfly.remove(), 500);
+    }, 12000);
+  }
+
+  function animateButterfly(element, startX, startY) {
+    const duration = 12000; // 12 segundos
+    const startTime = Date.now();
+    
+    // Dirección aleatoria
+    const endX = startX + (Math.random() - 0.5) * 400;
+    const endY = startY + (Math.random() - 0.5) * 300;
+
+    function animate() {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Movimiento con curva bezier (más natural)
+      const easeProgress = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      
+      // Posición con movimiento ondulante
+      const x = startX + (endX - startX) * easeProgress;
+      const y = startY + (endY - startY) * easeProgress + Math.sin(progress * Math.PI * 4) * 20;
+      
+      element.style.transform = `translate(${x - startX}px, ${y - startY}px)`;
+      
+      if (progress < 1 && element.parentNode) {
+        requestAnimationFrame(animate);
+      }
+    }
+    
+    animate();
+  }
+
+  // Crear mariposas al hacer scroll
+  let lastScrollY = window.scrollY;
+  let scrollCount = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    const scrollDiff = Math.abs(currentScrollY - lastScrollY);
+
+    if (scrollDiff > 200) {
+      scrollCount++;
+      lastScrollY = currentScrollY;
+      
+      if (scrollCount % 3 === 0) { // Cada 3 umbrales
+        createButterfly();
+      }
+    }
+  }, { passive: true });
+
+  // Crear mariposa inicial
+  setTimeout(createButterfly, 3000);
+  
+  // Mariposas aleatorias ocasionales
+  setInterval(() => {
+    if (Math.random() > 0.8) { // 20% chance
+      createButterfly();
+    }
+  }, 20000);
+</script>
+
+<style>
+  .butterfly {
+    will-change: transform, opacity;
+  }
+
+  .butterfly-svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+
+  /* Animación de aleteo */
+  .butterfly-wings {
+    animation: flutter 0.3s ease-in-out infinite alternate;
+    transform-origin: center;
+  }
+
+  @keyframes flutter {
+    from {
+      transform: scaleX(1);
+    }
+    to {
+      transform: scaleX(0.9);
+    }
+  }
+</style>

@@ -1,0 +1,223 @@
+---
+// src/components/CostaRicaFauna.astro
+// Fauna variada de Costa Rica con SVGs
+---
+
+<div id="fauna-container" class="fixed inset-0 pointer-events-none z-30 overflow-hidden"></div>
+
+<!-- SVG Definitions -->
+<svg width="0" height="0" class="hidden">
+  <defs>
+    <!-- Mariposa Morpho Azul -->
+    <g id="butterfly">
+      <ellipse cx="12" cy="20" rx="10" ry="15" fill="url(#blueGradient)" opacity="0.9" transform="rotate(-20 12 20)"/>
+      <ellipse cx="28" cy="20" rx="10" ry="15" fill="url(#blueGradient)" opacity="0.9" transform="rotate(20 28 20)"/>
+      <ellipse cx="20" cy="20" rx="2" ry="8" fill="#1a1a1a"/>
+      <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#2D5BA3;stop-opacity:1" />
+      </linearGradient>
+    </g>
+
+    <!-- Quetzal (pájaro verde) -->
+    <g id="quetzal">
+      <ellipse cx="20" cy="18" rx="8" ry="10" fill="#2D5016" opacity="0.9"/>
+      <circle cx="20" cy="15" r="6" fill="#3A5F0B"/>
+      <ellipse cx="18" cy="14" rx="1.5" ry="1.5" fill="white"/>
+      <ellipse cx="22" cy="14" rx="1.5" ry="1.5" fill="white"/>
+      <path d="M 20 18 Q 15 25, 12 30" stroke="#D4AF37" stroke-width="1.5" fill="none" opacity="0.8"/>
+      <path d="M 20 18 Q 25 25, 28 30" stroke="#D4AF37" stroke-width="1.5" fill="none" opacity="0.8"/>
+    </g>
+
+    <!-- Tucán -->
+    <g id="toucan">
+      <ellipse cx="22" cy="20" rx="10" ry="12" fill="#1a1a1a" opacity="0.9"/>
+      <ellipse cx="15" cy="15" rx="6" ry="7" fill="#FFA500"/>
+      <path d="M 10 15 L 5 15 Q 3 15, 3 13 Q 3 11, 5 11 L 10 11" fill="#FFD700"/>
+      <circle cx="12" cy="13" r="1.5" fill="white"/>
+    </g>
+
+    <!-- Mono (silueta) -->
+    <g id="monkey">
+      <ellipse cx="20" cy="22" rx="7" ry="9" fill="#8B4513" opacity="0.9"/>
+      <circle cx="20" cy="15" r="5" fill="#8B4513"/>
+      <ellipse cx="18" cy="14" rx="1" ry="1" fill="white"/>
+      <ellipse cx="22" cy="14" rx="1" ry="1" fill="white"/>
+      <path d="M 20 25 Q 15 30, 12 32" stroke="#8B4513" stroke-width="2" fill="none"/>
+      <path d="M 13 32 Q 11 35, 13 37" stroke="#8B4513" stroke-width="2" fill="none"/>
+    </g>
+
+    <!-- Perezoso -->
+    <g id="sloth">
+      <ellipse cx="20" cy="20" rx="8" ry="10" fill="#A0826D" opacity="0.9"/>
+      <circle cx="20" cy="16" r="4" fill="#8B7355"/>
+      <ellipse cx="18" cy="15" rx="1" ry="1.5" fill="#2C1810"/>
+      <ellipse cx="22" cy="15" rx="1" ry="1.5" fill="#2C1810"/>
+      <path d="M 20 17 Q 20 18, 19 18" stroke="#2C1810" stroke-width="0.5" fill="none"/>
+    </g>
+
+    <!-- Colibrí -->
+    <g id="hummingbird">
+      <ellipse cx="20" cy="18" rx="5" ry="7" fill="#7CB342" opacity="0.9"/>
+      <circle cx="20" cy="15" r="3" fill="#558B2F"/>
+      <path d="M 20 15 L 15 15" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <ellipse cx="14" cy="18" rx="8" ry="3" fill="#4A90E2" opacity="0.6" transform="rotate(-30 14 18)"/>
+      <ellipse cx="26" cy="18" rx="8" ry="3" fill="#4A90E2" opacity="0.6" transform="rotate(30 26 18)"/>
+    </g>
+
+    <!-- Rana de ojos rojos -->
+    <g id="frog">
+      <ellipse cx="20" cy="22" rx="10" ry="8" fill="#7CB342" opacity="0.9"/>
+      <circle cx="16" cy="18" r="3" fill="#7CB342"/>
+      <circle cx="24" cy="18" r="3" fill="#7CB342"/>
+      <circle cx="16" cy="18" r="2" fill="#FF0000"/>
+      <circle cx="24" cy="18" r="2" fill="#FF0000"/>
+      <circle cx="16" cy="18" r="1" fill="#1a1a1a"/>
+      <circle cx="24" cy="18" r="1" fill="#1a1a1a"/>
+    </g>
+  </defs>
+</svg>
+
+<script is:inline>
+  const fauna = [
+    { id: 'butterfly', size: 40, speed: 12000, flutter: true },
+    { id: 'quetzal', size: 45, speed: 10000, flutter: true },
+    { id: 'toucan', size: 50, speed: 11000, flutter: true },
+    { id: 'monkey', size: 55, speed: 15000, flutter: false },
+    { id: 'sloth', size: 50, speed: 20000, flutter: false }, // Muy lento
+    { id: 'hummingbird', size: 35, speed: 6000, flutter: true }, // Muy rápido
+    { id: 'frog', size: 40, speed: 14000, flutter: false },
+  ];
+
+  function createAnimal() {
+    const container = document.getElementById('fauna-container');
+    if (!container) return;
+
+    const animalData = fauna[Math.floor(Math.random() * fauna.length)];
+    const animal = document.createElement('div');
+    animal.className = 'fauna-creature';
+    
+    // Posición inicial
+    const startSide = Math.random() > 0.5 ? 'left' : 'right';
+    const startY = Math.random() * 70 + 15; // Entre 15% y 85%
+    
+    // Crear SVG
+    animal.innerHTML = `
+      <svg width="${animalData.size}" height="${animalData.size}" viewBox="0 0 40 40">
+        <use href="#${animalData.id}" ${animalData.flutter ? 'class="flutter-wings"' : ''}/>
+      </svg>
+    `;
+    
+    animal.style.position = 'absolute';
+    animal.style.top = startY + '%';
+    animal.style.opacity = '0';
+    
+    if (startSide === 'left') {
+      animal.style.left = '-80px';
+      animal.style.transform = 'scaleX(1)';
+    } else {
+      animal.style.right = '-80px';
+      animal.style.transform = 'scaleX(-1)';
+    }
+    
+    container.appendChild(animal);
+
+    // Fade in
+    setTimeout(() => {
+      animal.style.opacity = '0.85';
+    }, 50);
+
+    // Animar
+    animateAnimal(animal, startSide, startY, animalData);
+
+    // Remover
+    setTimeout(() => {
+      animal.style.opacity = '0';
+      setTimeout(() => animal.remove(), 500);
+    }, animalData.speed + 500);
+  }
+
+  function animateAnimal(element, startSide, startY, animalData) {
+    const startTime = Date.now();
+    const { speed } = animalData;
+    
+    const distance = window.innerWidth + 160; // Cruzar toda la pantalla
+    
+    function animate() {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / speed, 1);
+      
+      // Movimiento horizontal
+      let x = progress * distance;
+      if (startSide === 'right') x = -x;
+      
+      // Movimiento vertical ondulante (más pronunciado para pájaros)
+      const verticalWave = Math.sin(progress * Math.PI * 3) * 30;
+      const y = verticalWave;
+      
+      element.style.transform = `translate(${x}px, ${y}px) scaleX(${startSide === 'left' ? 1 : -1})`;
+      
+      if (progress < 1 && element.parentNode) {
+        requestAnimationFrame(animate);
+      }
+    }
+    
+    animate();
+  }
+
+  // Scroll trigger
+  let lastScrollY = window.scrollY;
+  let scrollCount = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    const scrollDiff = Math.abs(currentScrollY - lastScrollY);
+
+    if (scrollDiff > 250) {
+      scrollCount++;
+      lastScrollY = currentScrollY;
+      
+      if (scrollCount % 2 === 0) {
+        createAnimal();
+      }
+    }
+  }, { passive: true });
+
+  // Inicial
+  setTimeout(createAnimal, 3000);
+  setTimeout(createAnimal, 8000);
+
+  // Aleatorios
+  setInterval(() => {
+    if (Math.random() > 0.75) { // 25% chance
+      createAnimal();
+    }
+  }, 18000);
+</script>
+
+<style>
+  .fauna-creature {
+    will-change: transform, opacity;
+    transition: opacity 0.5s ease;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+  }
+
+  /* Animación de aleteo para pájaros y mariposas */
+  .flutter-wings {
+    animation: flutter 0.3s ease-in-out infinite alternate;
+    transform-origin: center;
+  }
+
+  @keyframes flutter {
+    from { transform: scaleY(1); }
+    to { transform: scaleY(0.9); }
+  }
+
+  /* Ocultar SVG definitions */
+  .hidden {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+</style>

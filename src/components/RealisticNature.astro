@@ -1,0 +1,245 @@
+---
+// src/components/RealisticNature.astro
+// Elementos de naturaleza con imágenes PNG reales
+---
+
+<div id="nature-parallax" class="fixed inset-0 pointer-events-none z-20 overflow-hidden"></div>
+
+<script is:inline>
+  // Configuración de elementos naturales con imágenes reales
+  const natureElements = [
+    // Mariposas Morpho
+    {
+      image: '/images/nature/morpho.png',
+      size: { min: 60, max: 100 },
+      opacity: { min: 0.4, max: 0.7 },
+      speed: { min: 10000, max: 15000 },
+      type: 'butterfly',
+      frequency: 0.25 // 25% de aparecer cuando se activa
+    },
+    // Hojas tropicales cayendo
+    {
+      image: '/images/nature/frog.png',
+      size: { min: 40, max: 80 },
+      opacity: { min: 0.3, max: 0.6 },
+      speed: { min: 15000, max: 25000 },
+      type: 'leaf',
+      frequency: 0.4
+    },
+    {
+      image: '/images/nature/tropical-leaf-2.png',
+      size: { min: 35, max: 70 },
+      opacity: { min: 0.3, max: 0.6 },
+      speed: { min: 16000, max: 24000 },
+      type: 'leaf',
+      frequency: 0.4
+    },
+    // Aves (siluetas o fotos)
+    {
+      image: '/images/nature/ketzal.png',
+      size: { min: 70, max: 120 },
+      opacity: { min: 0.5, max: 0.8 },
+      speed: { min: 8000, max: 12000 },
+      type: 'bird',
+      frequency: 0.15
+    },
+    {
+      image: '/images/nature/ketzal.png',
+      size: { min: 80, max: 130 },
+      opacity: { min: 0.5, max: 0.8 },
+      speed: { min: 9000, max: 13000 },
+      type: 'bird',
+      frequency: 0.15
+    },
+    // Colibrí
+    {
+      image: '/images/nature/ketzal.png',
+      size: { min: 40, max: 60 },
+      opacity: { min: 0.6, max: 0.85 },
+      speed: { min: 5000, max: 8000 },
+      type: 'hummingbird',
+      frequency: 0.2
+    }
+  ];
+
+  function getRandomInRange(min, max) {
+    return min + Math.random() * (max - min);
+  }
+
+  function createNatureElement() {
+    const container = document.getElementById('nature-parallax');
+    if (!container) return;
+
+    // Filtrar elementos por frecuencia
+    const availableElements = natureElements.filter(el => Math.random() < el.frequency);
+    if (availableElements.length === 0) return;
+
+    const elementData = availableElements[Math.floor(Math.random() * availableElements.length)];
+    
+    // Verificar si la imagen existe (fallback a placeholder)
+    const img = new Image();
+    const element = document.createElement('div');
+    element.className = 'nature-item';
+    
+    const size = getRandomInRange(elementData.size.min, elementData.size.max);
+    const opacity = getRandomInRange(elementData.opacity.min, elementData.opacity.max);
+    const speed = getRandomInRange(elementData.speed.min, elementData.speed.max);
+    
+    img.onload = function() {
+      element.innerHTML = `<img src="${elementData.image}" alt="" style="width: ${size}px; height: auto; opacity: ${opacity}; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));">`;
+      positionAndAnimate(element, elementData.type, speed);
+    };
+    
+    img.onerror = function() {
+      // Fallback si la imagen no existe
+      console.warn(`Image not found: ${elementData.image}`);
+      element.remove();
+    };
+    
+    img.src = elementData.image;
+    
+    element.style.position = 'absolute';
+    element.style.opacity = '0';
+    element.style.transition = 'opacity 1s ease-in-out';
+    
+    container.appendChild(element);
+  }
+
+  function positionAndAnimate(element, type, speed) {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    
+    let startX, startY, endX, endY;
+    
+    if (type === 'leaf') {
+      // Hojas caen desde arriba
+      startX = Math.random() * windowWidth;
+      startY = -100;
+      endX = startX + (Math.random() - 0.5) * 300;
+      endY = windowHeight + 100;
+    } else if (type === 'butterfly') {
+      // Mariposas cruzan de lado a lado
+      const fromLeft = Math.random() > 0.5;
+      startX = fromLeft ? -100 : windowWidth + 100;
+      startY = Math.random() * (windowHeight * 0.7) + windowHeight * 0.15;
+      endX = fromLeft ? windowWidth + 100 : -100;
+      endY = startY + (Math.random() - 0.5) * 200;
+    } else if (type === 'bird' || type === 'hummingbird') {
+      // Aves vuelan de lado a lado
+      const fromLeft = Math.random() > 0.5;
+      startX = fromLeft ? -150 : windowWidth + 150;
+      startY = Math.random() * (windowHeight * 0.5) + windowHeight * 0.1;
+      endX = fromLeft ? windowWidth + 150 : -150;
+      endY = startY + (Math.random() - 0.5) * 150;
+    } else {
+      startX = Math.random() * windowWidth;
+      startY = -100;
+      endX = startX;
+      endY = windowHeight + 100;
+    }
+    
+    element.style.left = startX + 'px';
+    element.style.top = startY + 'px';
+    
+    // Fade in
+    setTimeout(() => {
+      element.style.opacity = '1';
+    }, 100);
+    
+    // Animar
+    const startTime = Date.now();
+    
+    function animate() {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / speed, 1);
+      
+      // Easing suave
+      const ease = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      
+      // Calcular posición
+      const currentX = startX + (endX - startX) * ease;
+      const currentY = startY + (endY - startY) * ease;
+      
+      // Movimiento ondulante según tipo
+      let wobbleX = 0;
+      let wobbleY = 0;
+      
+      if (type === 'leaf') {
+        wobbleX = Math.sin(progress * Math.PI * 4) * 50;
+        wobbleY = Math.sin(progress * Math.PI * 6) * 20;
+      } else if (type === 'butterfly') {
+        wobbleY = Math.sin(progress * Math.PI * 8) * 30;
+      } else if (type === 'bird') {
+        wobbleY = Math.sin(progress * Math.PI * 4) * 20;
+      } else if (type === 'hummingbird') {
+        wobbleY = Math.sin(progress * Math.PI * 12) * 15;
+      }
+      
+      element.style.transform = `translate(${currentX - startX + wobbleX}px, ${currentY - startY + wobbleY}px)`;
+      
+      if (progress < 1 && element.parentNode) {
+        requestAnimationFrame(animate);
+      } else {
+        // Fade out al terminar
+        element.style.opacity = '0';
+        setTimeout(() => element.remove(), 1000);
+      }
+    }
+    
+    animate();
+  }
+
+  // Sistema de activación espaciada
+  let lastTrigger = Date.now();
+  const minInterval = 8000; // Mínimo 8 segundos entre elementos
+
+  function tryCreateElement() {
+    const now = Date.now();
+    if (now - lastTrigger > minInterval) {
+      createNatureElement();
+      lastTrigger = now;
+    }
+  }
+
+  // Scroll trigger muy espaciado
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      if (Math.random() > 0.92) { // 8% probabilidad
+        tryCreateElement();
+      }
+    }, 200);
+  }, { passive: true });
+
+  // Timer automático espaciado
+  function scheduleNext() {
+    const delay = 12000 + Math.random() * 18000; // 12-30 segundos
+    setTimeout(() => {
+      tryCreateElement();
+      scheduleNext();
+    }, delay);
+  }
+
+  // Iniciar
+  setTimeout(() => {
+    tryCreateElement();
+    scheduleNext();
+  }, 5000);
+</script>
+
+<style>
+  .nature-item {
+    will-change: transform, opacity;
+    pointer-events: none;
+    z-index: 20;
+  }
+
+  .nature-item img {
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+</style>

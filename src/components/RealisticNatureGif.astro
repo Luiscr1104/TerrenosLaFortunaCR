@@ -1,0 +1,247 @@
+---
+/**
+ * RealisticNatureGif.astro
+ * Elementos de naturaleza con imágenes animadas (GIF/WEBP) y PNG estáticos.
+ * Coloca en el Layout (alto z-index moderado) o en la página donde quieras el efecto.
+ */
+---
+<div id="nature-parallax" class="fixed inset-0 pointer-events-none z-20 overflow-hidden"></div>
+
+<script is:inline>
+  // ======= CONFIGURACIÓN =======
+  const natureElements = [
+    // Morpho azul (GIF/WEBP animado)
+    {
+      sources: [
+        '/images/nature/morpho.webp', // preferible si tenés animación en webp (pesa menos)
+        '/images/nature/morpho.gif'   // fallback GIF
+      ],
+      size: { min: 80, max: 120 },
+      opacity: { min: 0.7, max: 0.95 },
+      speed: { min: 10000, max: 16000 },
+      type: 'butterfly',
+      frequency: 0.35
+    },
+    // Hojas (pueden ser PNG estático o WEBP animado sutil)
+    {
+      sources: ['/images/nature/tropical-leaf-1.png'],
+      size: { min: 40, max: 80 },
+      opacity: { min: 0.35, max: 0.6 },
+      speed: { min: 15000, max: 26000 },
+      type: 'leaf',
+      frequency: 0.45
+    },
+    {
+      sources: ['/images/nature/tropical-leaf-2.png'],
+      size: { min: 45, max: 90 },
+      opacity: { min: 0.35, max: 0.6 },
+      speed: { min: 16000, max: 24000 },
+      type: 'leaf',
+      frequency: 0.45
+    },
+    // Ave (Quetzal / colibrí). Si tenés animado, poné primero el webp/gif
+    {
+      sources: [
+        '/images/nature/quetzal.webp',
+        '/images/nature/quetzal.gif',
+        '/images/nature/quetzal.png' // último fallback
+      ],
+      size: { min: 80, max: 140 },
+      opacity: { min: 0.5, max: 0.85 },
+      speed: { min: 9000, max: 13000 },
+      type: 'bird',
+      frequency: 0.18
+    },
+    // Colibrí rápido
+    {
+      sources: [
+        '/images/nature/hummingbird.webp',
+        '/images/nature/hummingbird.gif'
+      ],
+      size: { min: 50, max: 70 },
+      opacity: { min: 0.65, max: 0.9 },
+      speed: { min: 6000, max: 9000 },
+      type: 'hummingbird',
+      frequency: 0.22
+    }
+  ];
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function rand(min, max) { return min + Math.random() * (max - min); }
+
+  // Elige la primera fuente que cargue bien (webp/gif/png)
+  function chooseSource(sources = []) {
+    return new Promise(resolve => {
+      if (!sources || sources.length === 0) return resolve(null);
+      let i = 0;
+      const tryNext = () => {
+        if (i >= sources.length) return resolve(null);
+        const src = sources[i++];
+        const test = new Image();
+        test.onload = () => resolve(src);
+        test.onerror = tryNext;
+        test.src = src;
+      };
+      tryNext();
+    });
+  }
+
+  function createNatureElement() {
+    const container = document.getElementById('nature-parallax');
+    if (!container) return;
+
+    // Filtrar por probabilidad
+    const candidates = natureElements.filter(el => Math.random() < el.frequency);
+    if (candidates.length === 0) return;
+
+    const elementData = candidates[Math.floor(Math.random() * candidates.length)];
+
+    // Reduce motion: solo hojas suaves y menos frecuencia
+    if (prefersReduced && (elementData.type === 'butterfly' || elementData.type === 'bird' || elementData.type === 'hummingbird')) {
+      // 70% de chances de no renderizar elementos “nerviosos”
+      if (Math.random() < 0.7) return;
+    }
+
+    const element = document.createElement('div');
+    element.className = 'nature-item';
+    element.style.position = 'absolute';
+    element.style.opacity = '0';
+    element.style.transition = 'opacity 900ms ease';
+
+    chooseSource(elementData.sources).then(src => {
+      if (!src) return; // sin fuente válida
+
+      const size = rand(elementData.size.min, elementData.size.max);
+      const opacity = rand(elementData.opacity.min, elementData.opacity.max);
+      const speed = rand(elementData.speed.min, elementData.speed.max);
+
+      // Imagen animada o estática
+      element.innerHTML = `
+        <img src="${src}" alt="" draggable="false"
+             style="width:${size}px; height:auto; opacity:${opacity};
+                    filter: drop-shadow(0 6px 16px rgba(0,0,0,0.18));
+                    transform: translateZ(0); will-change: transform, opacity;" />
+      `;
+
+      container.appendChild(element);
+      positionAndAnimate(element, elementData.type, speed);
+    });
+  }
+
+  function positionAndAnimate(element, type, speed) {
+    const ww = window.innerWidth;
+    const wh = window.innerHeight;
+
+    let startX, startY, endX, endY, fromLeft;
+
+    if (type === 'leaf') {
+      // Caída desde arriba con serpenteo
+      startX = Math.random() * ww;
+      startY = -120;
+      endX = startX + (Math.random() - 0.5) * 320;
+      endY = wh + 140;
+    } else {
+      // Vuelo lateral
+      fromLeft = Math.random() > 0.5;
+      const margin = type === 'hummingbird' ? 140 : 120;
+      startX = fromLeft ? -margin : ww + margin;
+      // bandas verticales centrales para verse “ambiental, no estorboso”
+      const bandTop = wh * 0.15, bandHeight = wh * 0.6;
+      startY = bandTop + Math.random() * bandHeight;
+      endX = fromLeft ? ww + margin : -margin;
+      endY = startY + (Math.random() - 0.5) * (type === 'hummingbird' ? 160 : 220);
+
+      // Orientación del GIF: si tenés versiones invertidas, cambia la fuente;
+      // si no, podés espejar con CSS (ojo: espejar GIF invierte todo).
+      // Ejemplo: espejar:
+      if (!fromLeft) element.firstElementChild.style.transform = 'scaleX(-1)';
+    }
+
+    element.style.left = startX + 'px';
+    element.style.top = startY + 'px';
+
+    // Fade in
+    requestAnimationFrame(() => { element.style.opacity = '1'; });
+
+    const t0 = performance.now();
+    const dur = prefersReduced ? speed * 1.25 : speed;
+
+    function animate(now) {
+      const elapsed = now - t0;
+      const p = Math.min(elapsed / dur, 1);
+
+      // easing suave (easeInOutQuad)
+      const ease = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+
+      const x = startX + (endX - startX) * ease;
+      const y = startY + (endY - startY) * ease;
+
+      // Wobble según tipo (evita mareo en reduce motion)
+      let wobX = 0, wobY = 0;
+      if (!prefersReduced) {
+        if (type === 'leaf') {
+          wobX = Math.sin(p * Math.PI * 4) * 42;
+          wobY = Math.sin(p * Math.PI * 6) * 18;
+        } else if (type === 'butterfly') {
+          wobY = Math.sin(p * Math.PI * 8) * 26;
+        } else if (type === 'bird') {
+          wobY = Math.sin(p * Math.PI * 4) * 18;
+        } else if (type === 'hummingbird') {
+          wobY = Math.sin(p * Math.PI * 12) * 14;
+        }
+      }
+
+      element.style.transform = `translate(${x - startX + wobX}px, ${y - startY + wobY}px)`;
+
+      if (p < 1 && element.parentNode) {
+        requestAnimationFrame(animate);
+      } else {
+        element.style.opacity = '0';
+        setTimeout(() => element.remove(), 600);
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  // ======= DISPARADOR ESPACIADO =======
+  let lastTrigger = 0;
+  const minInterval = 7000; // 7s
+
+  function tryCreateElement() {
+    const now = performance.now();
+    if (now - lastTrigger > minInterval) {
+      createNatureElement();
+      lastTrigger = now;
+    }
+  }
+
+  // Scroll: disparo ocasional (suave)
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      if (Math.random() > 0.93) tryCreateElement(); // ~7%
+    }, 180);
+  }, { passive: true });
+
+  // Timer automático espaciado (12–28s)
+  function scheduleNext() {
+    const delay = 12000 + Math.random() * 16000;
+    setTimeout(() => { tryCreateElement(); scheduleNext(); }, delay);
+  }
+
+  // Arranque
+  setTimeout(() => {
+    tryCreateElement();
+    scheduleNext();
+  }, 3000);
+</script>
+
+<style>
+  .nature-item { will-change: transform, opacity; pointer-events: none; z-index: 20; }
+  .nature-item img { display: block; user-select: none; -webkit-user-drag: none; }
+  @media (prefers-reduced-motion: reduce) {
+    #nature-parallax { display: none; } /* si quieres desactivar del todo */
+  }
+</style>
