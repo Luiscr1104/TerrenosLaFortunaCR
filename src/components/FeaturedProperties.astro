@@ -2,6 +2,7 @@
 // src/components/sections/FeaturedProperties.astro
 import PropertyCard from './PropertyCard.astro';
 import propertiesData from '../data/properties.json';
+import HeroTitle  from './HeroTitle';
 
 // Filter only featured properties
 const featuredProperties = propertiesData.filter(p => p.featured);
@@ -21,13 +22,7 @@ const featuredProperties = propertiesData.filter(p => p.featured);
         </svg>
         <span>Featured Properties</span>
       </div>
-
-      <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-neutral-900 mb-4 md:mb-6">
-        Your Dream Property 
-        <span class="block text-transparent bg-gradient-to-r from-primary-500 to-secondary-400 bg-clip-text">
-          Awaits in Paradise
-        </span>
-      </h2>
+	  <HeroTitle client:load />
 
       <p class="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto mb-8">
         Handpicked luxury homes and pristine land in La Fortuna's most desirable locations. 
