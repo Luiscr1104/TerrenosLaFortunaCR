@@ -204,7 +204,7 @@ const cards = [
   {
     description: "La Fortuna, San Carlos",
     title: "Volcano View Paradise Lot",
-    src: "/images/CasaSofia/6.jpeg",
+    src: "/sun.webp",
     ctaText: "View Property",
     ctaLink: "/properties/volcano-view-paradise",
     content: () => {
@@ -262,7 +262,7 @@ const cards = [
   {
     description: "San Isidro, Peñas Blancas",
     title: "Riverfront Eco Sanctuary",
-    src: "/images/CasaSofia/9.jpeg",
+    src: "/sanrafael.webp",
     ctaText: "View Property",
     ctaLink: "/properties/riverfront-eco-sanctuary",
     content: () => {
