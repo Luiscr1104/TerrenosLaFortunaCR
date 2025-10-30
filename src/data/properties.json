@@ -1,59 +1,61 @@
 [
-  {
-    "id": "property-001",
-    "title": "Luxury Estate with Arenal Volcano Views",
-    "slug": "luxury-estate-arenal-views",
-    "price": 450000,
-    "type": "home",
-    "bedrooms": 4,
-    "bathrooms": 3.5,
-    "size": 3200,
-    "sizeUnit": "sqft",
-    "landSize": 1.5,
-    "landUnit": "acres",
-    "location": "La Fortuna",
-    "featured": true,
-    "images": [
-      "/castor.webp",
-      "/salto.webp",
-      "/images/properties/hotel-006-3.jpg"
-    ],
-    "features": [
-      "Panoramic Arenal Volcano views",
-      "Infinity pool & outdoor kitchen",
-      "Tropical hardwood construction",
-      "Fully furnished & turnkey",
-      "Rental income potential $4K+/month",
-      "Gated community with 24/7 security"
-    ],
-    "description": "Stunning luxury home with breathtaking Arenal Volcano views. Perfect for vacation rental business or private paradise retreat. High-end finishes throughout."
-  },
-  {
-    "id": "property-002",
-    "title": "Pristine 10-Acre Riverfront Estate",
-    "slug": "riverfront-estate-10-acres",
-    "price": 380000,
-    "type": "land",
-    "size": 10,
-    "sizeUnit": "acres",
-    "location": "El Tanque",
-    "featured": true,
-    "images": [
-      "/castor.webp",
-      "/salto.webp",
-      "/images/properties/hotel-006-3.jpg"
-    ],
-    "features": [
-      "Crystal-clear river frontage",
-      "60% pristine rainforest",
-      "Multiple building sites",
-      "Natural water springs",
-      "Wildlife sanctuary potential",
-      "Eco-tourism development ready",
-      "Power & road access available"
-    ],
-    "description": "Rare riverfront property with virgin rainforest, natural springs, and endless development potential. Perfect for eco-resort, private estate, or conservation project."
-  },
+{
+  "id": "property-001",
+  "title": "Expansive Volcano View Land in La Fortuna – 3.4 Acres of Pure Paradise",
+  "slug": "volcano-view-land-la-fortuna",
+  "price": 530000,
+  "type": "land",
+  "size": 13817,
+  "sizeUnit": "sqm",
+  "landSize": 3.41,
+  "landUnit": "acres",
+  "location": "La Fortuna, San Carlos",
+  "featured": true,
+  "images": [
+    "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/3362878b-7b09-437b-4d20-a76b26d00500/public"
+  ],
+  "features": [
+    "13,817 m² (3.41 acres) of titled land",
+    "Spectacular panoramic views of Arenal Volcano and surrounding rainforest",
+    "Perfect for eco-lodge, boutique villas, or a private tropical retreat",
+    "Public road access and all utilities available (water, electricity, internet)",
+    "Quiet and private area just 10 minutes from downtown La Fortuna",
+    "Ideal elevation with cool mountain breeze year-round",
+    "Great investment potential for tourism development"
+  ],
+  "description": "A rare opportunity to own 3.4 acres of prime land overlooking the iconic Arenal Volcano. This property offers stunning views, lush vegetation, and a peaceful natural setting. Located only 10 minutes from downtown La Fortuna, with easy access to hot springs, restaurants, and adventure parks. All basic services are available on-site. Whether you dream of building an eco-lodge, vacation villas, or a luxury home surrounded by nature, this property offers the perfect balance of privacy, accessibility, and breathtaking scenery."
+},
+ {
+  "id": "property-002",
+  "title": "Eco Retreat with Villas and Natural Spring Lake – La Fortuna, Costa Rica",
+  "slug": "eco-retreat-villas-lake-la-fortuna",
+  "price": 455000,
+  "type": "home",
+  "bedrooms": 4,
+  "bathrooms": 4,
+  "size": 11800,
+  "sizeUnit": "sqm",
+  "landSize": 2.91,
+  "landUnit": "acres",
+  "location": "La Fortuna, San Carlos",
+  "featured": true,
+  "images": [
+    "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/2b7da5d5-37ae-46bc-8914-0165eb80d400/public",
+    "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/8a2b8e89-1cc5-4df5-8b28-84a6b6f7f999/public",
+    "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/ed324c7f-d3aa-4577-91c3-91d30873bb92/public"
+  ],
+  "features": [
+    "11,800 m² (2.91 acres) of titled land",
+    "4 fully equipped villas currently generating Airbnb income",
+    "Private ranch area perfect for gatherings or outdoor dining",
+    "Beautiful natural lake fed by a mountain spring",
+    "Lush gardens and mature trees throughout the property",
+    "Public road access and all utilities (water, electricity, high-speed internet)",
+    "Prime location just minutes from La Fortuna and hot springs"
+  ],
+  "description": "An exceptional investment opportunity in the heart of La Fortuna — this 2.9-acre eco-retreat features four fully furnished villas, each currently rented through Airbnb with an established track record of income. The property also includes a charming ranch structure ideal for events or family gatherings, and a stunning natural spring lake that enhances the tranquil atmosphere. Surrounded by nature and just a short drive from La Fortuna town and Arenal Volcano, this is the perfect blend of comfort, sustainability, and profitability."
+}
+,
   {
     "id": "property-003",
     "title": "Modern Villa - Rental Income Paradise",
