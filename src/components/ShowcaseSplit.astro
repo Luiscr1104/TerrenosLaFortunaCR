@@ -1,0 +1,209 @@
+---
+interface Stat {
+  label: string;
+  value: string;
+}
+interface Props {
+  title?: string;
+  subtitle?: string;
+  promoTitle?: string;
+  promoHighlight?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  image?: string;
+  videoUrl?: string;
+  locationChip?: string;
+  stats?: Stat[];
+  reversed?: boolean;
+  accent?: string;
+}
+
+const {
+  promoTitle = "🔥 Hot Offer",
+  promoHighlight = "Limited-Time Opportunity",
+  title = "Invest in Arenal — Luxury Homes & Land",
+  subtitle = "Turnkey guidance for U.S. buyers. Clear titles, legal support, and high-yield rentals.",
+  ctaLabel = "See Featured",
+  ctaHref = "/properties",
+  image = "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/44060157-e87e-4492-8987-3dc51ccac900/public",
+  videoUrl = "",
+  locationChip = "La Fortuna, Costa Rica",
+  stats = [
+    { value: "$2.5M+", label: "Properties Sold" },
+    { value: "98%", label: "Client Satisfaction" },
+    { value: "30 Days", label: "Avg. Close Time" },
+  ],
+  reversed = false,
+  accent = "#25D366",
+} = Astro.props;
+---
+
+<section class="relative py-20">
+  <div class="mx-auto max-w-[120rem] px-4 sm:px-6 lg:px-8">
+    <!-- Promo heading -->
+    <div class="text-center mb-10 md:mb-14">
+      <div
+        class="inline-flex items-center gap-2 bg-[color:var(--accent,theme(colors.green.500))]/10 text-[color:${accent}] font-semibold text-sm px-4 py-2 rounded-full mb-3"
+        style={`--accent:${accent}`}
+      >
+        {promoTitle}
+      </div>
+      <h2 class="text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-2">
+        {promoHighlight}
+      </h2>
+      <p class="text-neutral-600 text-base md:text-lg max-w-2xl mx-auto">
+        Discover Costa Rica’s most sought-after real estate near Arenal Volcano — high ROI and paradise living.
+      </p>
+    </div>
+
+    <!-- Main grid -->
+    <div
+      class={`grid gap-4 grid-cols-1 ${
+        reversed
+          ? "lg:grid-cols-[minmax(0,1fr)_520px]"
+          : "lg:grid-cols-[520px_minmax(0,1fr)]"
+      }`}
+    >
+      <!-- Left: content -->
+      <div
+        class="rounded-[26px] bg-white border border-neutral-200 shadow-[0_14px_40px_-20px_rgba(0,0,0,0.18)] overflow-hidden"
+      >
+        <div class="px-6 pt-6">
+          <h3 class="text-2xl md:text-3xl font-bold text-neutral-900 mb-3 leading-snug">
+            {title}
+          </h3>
+          <p class="text-neutral-600 mb-5">{subtitle}</p>
+          <a
+            href={ctaHref}
+            class="inline-flex items-center gap-2 rounded-full bg-[color:${accent}] text-white px-5 py-2.5 text-sm font-semibold shadow hover:bg-[color:${accent}]/90 transition-all"
+          >
+            {ctaLabel} <span aria-hidden>↗</span>
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-2 px-6 py-6">
+          {stats.map(({ value, label }) => (
+            <div
+              class="rounded-2xl border border-neutral-200 p-4 text-center bg-white hover:border-[color:${accent}]/40 transition-all"
+            >
+              <div
+                class="text-2xl font-bold"
+                style={`color:${accent}`}
+              >
+                {value}
+              </div>
+              <div class="text-xs text-neutral-500">{label}</div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Mini-card -->
+        <div class="px-6 pb-6">
+          <div class="relative overflow-hidden rounded-2xl border border-neutral-200">
+            <slot name="mini-card">
+              <img
+                src="https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/44060157-e87e-4492-8987-3dc51ccac900/public"
+                alt="Featured"
+                class="h-40 w-full object-cover"
+              />
+              <div class="absolute inset-x-0 bottom-0 p-3">
+                <div
+                  class="flex items-center justify-between rounded-xl bg-white/90 px-3 py-2 backdrop-blur"
+                >
+                  <div>
+                    <p class="text-xs text-neutral-500">{locationChip}</p>
+                    <p class="text-sm font-semibold">Popular</p>
+                  </div>
+                  <span class="text-xs text-yellow-500">★★★★★</span>
+                </div>
+              </div>
+            </slot>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: media -->
+      <div
+        class="relative rounded-[26px] overflow-hidden border border-white/60 shadow-[0_18px_50px_-18px_rgba(0,0,0,.3)]"
+      >
+        <div class="absolute inset-0">
+          {videoUrl ? (
+            <iframe
+              class="h-full w-full object-cover pointer-events-none"
+              src={`${videoUrl}${videoUrl.includes("?") ? "&" : "?"}autoplay=1&mute=1&controls=0&loop=1&playlist=${videoUrl.split("/").pop()}`}
+              title="Showcase"
+              allow="autoplay; fullscreen; picture-in-picture"
+            />
+          ) : (
+            <img
+              src={image}
+              alt="Showcase"
+              class="h-full w-full object-cover"
+            />
+          )}
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-transparent"
+          ></div>
+        </div>
+
+        <!-- Chip -->
+        <div class="relative z-10 p-5 sm:p-6 flex items-start justify-between">
+          {locationChip && (
+            <div
+              class="rounded-full bg-white/90 backdrop-blur px-3 py-1.5 text-xs font-medium shadow"
+            >
+              {locationChip}
+            </div>
+          )}
+        </div>
+
+        <!-- Text and filters -->
+        <div
+          class="relative z-10 mt-auto flex h-full flex-col justify-end p-6 sm:p-10"
+        >
+          <slot name="media-copy">
+            <p class="max-w-2xl text-white/90 text-sm sm:text-base">
+              Enjoy panoramic volcano views and guaranteed legal security — direct from the #1 real estate company in Costa Rica.
+            </p>
+          </slot>
+
+          <slot name="filters">
+            <form class="mt-4 flex flex-wrap items-center gap-3">
+              <div
+                class="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm shadow"
+              >
+                <span class="text-neutral-500">Type</span>
+                <select
+                  class="bg-transparent text-neutral-900 focus:outline-none"
+                >
+                  <option>Villa</option>
+                  <option>Home</option>
+                  <option>Land</option>
+                </select>
+              </div>
+              <div
+                class="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm shadow"
+              >
+                <span class="text-neutral-500">Location</span>
+                <select
+                  class="bg-transparent text-neutral-900 focus:outline-none"
+                >
+                  <option>La Fortuna</option>
+                  <option>Guanacaste</option>
+                  <option>Monteverde</option>
+                </select>
+              </div>
+              <button
+                type="button"
+                class="rounded-full bg-black px-6 py-2 text-sm font-semibold text-white shadow hover:bg-neutral-800"
+              >
+                Search
+              </button>
+            </form>
+          </slot>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
