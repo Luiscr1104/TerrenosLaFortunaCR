@@ -1,0 +1,197 @@
+---
+// src/components/sections/FeaturedBlogs.astro
+interface Post {
+  title: string
+  slug: string
+  excerpt: string
+  image: string
+  date: string // ISO or human string
+  category?: string
+  readingTime?: string
+}
+
+interface Props {
+  heading?: string
+  subheading?: string
+  posts?: Post[]
+  moreHref?: string
+  accent?: string
+  dark?: string
+}
+
+const {
+  heading = "Featured Articles",
+  subheading = "Insightful market updates, buying guidance, and lifestyle perspectives from La Fortuna and Costa Rica.",
+  posts = [
+    {
+      title: "How to Buy Land in Costa Rica as a Foreign Investor",
+      slug: "/blog/how-to-buy-land-costa-rica",
+      excerpt:
+        "A clear, step-by-step overview of due diligence, title verification, corporations vs. personal purchase, and closing timelines.",
+      image:
+        "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/a836c327-13c8-46ae-76a6-8e956a408500/public",
+      date: "2025-09-20",
+      category: "Guides",
+      readingTime: "6 min",
+    },
+    {
+      title: "Volcano-View Lots: What Adds Real Value",
+      slug: "/blog/volcano-view-lots-value",
+      excerpt:
+        "Beyond the view: access, zoning, slope, utilities, and rental potential that materially impact appreciation.",
+      image:
+        "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/162d3767-da91-49f4-2940-a95a8b5d6000/public",
+      date: "2025-10-08",
+      category: "Market",
+      readingTime: "4 min",
+    },
+    {
+      title: "Remote Closings in Costa Rica: A Practical Checklist",
+      slug: "/blog/remote-closings-costa-rica",
+      excerpt:
+        "From power of attorney to bank compliance and escrow: what to prepare for a smooth remote transaction.",
+      image:
+        "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/d11783f5-4e36-4456-fb37-6a96f70a4100/public",
+      date: "2025-10-22",
+      category: "Legal",
+      readingTime: "5 min",
+    },
+  ],
+  moreHref = "/blog",
+  accent = "#F5D77C",
+  dark = "#0B0B0B",
+} = Astro.props;
+---
+
+<section
+  id="featured-blogs"
+  class="relative py-20 bg-white"
+  style={`--accent:${accent}; --dark:${dark}`}
+>
+  <!-- Header -->
+  <div class="text-center mb-12 md:mb-16">
+    <div
+      class="inline-flex items-center gap-2 bg-[color:var(--accent)]/15 text-[color:var(--dark)]
+             font-semibold text-sm md:text-base px-5 py-2 rounded-full border border-[color:var(--accent)]/40 mb-4 shadow-sm tracking-wide"
+    >
+      <span class="inline-block h-2.5 w-2.5 rounded-full bg-[color:var(--accent)]"></span>
+      Editorial Highlights
+    </div>
+
+    <h2
+      class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-[color:var(--dark)] mb-4 tracking-tight"
+    >
+      {heading}
+    </h2>
+    <p class="text-neutral-800/90 text-base md:text-lg max-w-3xl mx-auto font-medium leading-relaxed">
+      {subheading}
+    </p>
+  </div>
+
+  <!-- Grid -->
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map((post) => (
+        <article
+          class="group relative rounded-3xl border border-[color:var(--accent)]/45 bg-white
+                 shadow-[0_10px_35px_-18px_rgba(0,0,0,0.25)]
+                 hover:shadow-[0_18px_45px_-12px_rgba(245,215,124,0.35)]
+                 transition-all duration-500 overflow-hidden"
+        >
+          <!-- Media -->
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img
+              src={post.image}
+              alt={post.title}
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-black/0 to-transparent"></div>
+
+            <!-- Category badge -->
+            {post.category && (
+              <div
+                class="absolute top-3 left-3 rounded-full bg-white/95 text-[color:var(--dark)]
+                       text-xs font-semibold px-3 py-1 shadow"
+              >
+                {post.category}
+              </div>
+            )}
+          </div>
+
+          <!-- Content -->
+          <div class="p-6">
+            <div class="flex items-center gap-3 text-xs text-neutral-500 mb-2">
+              <time datetime={post.date}>
+                {new Date(post.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "2-digit",
+                })}
+              </time>
+              {post.readingTime && (
+                <>
+                  <span class="opacity-40">•</span>
+                  <span>{post.readingTime}</span>
+                </>
+              )}
+            </div>
+
+            <h3
+              class="text-xl md:text-[22px] font-display font-extrabold text-[color:var(--dark)]
+                     leading-snug mb-2 group-hover:text-[color:var(--accent)] transition-colors"
+            >
+              <a href={post.slug} class="focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)]/50 rounded">
+                {post.title}
+              </a>
+            </h3>
+
+            <p class="text-neutral-700 leading-relaxed line-clamp-3 mb-4">
+              {post.excerpt}
+            </p>
+
+            <div class="flex items-center justify-between">
+              <a
+                href={post.slug}
+                class="inline-flex items-center gap-2 text-[color:var(--dark)] font-semibold
+                       hover:text-[color:var(--accent)] transition-colors"
+                aria-label={`Read: ${post.title}`}
+              >
+                Read article
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z" />
+                </svg>
+              </a>
+
+              <div
+                class="h-2 w-2 rounded-full bg-[color:var(--accent)] shadow-[0_0_14px_rgba(245,215,124,0.7)]"
+                aria-hidden="true"
+              ></div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- View more -->
+    <div class="text-center mt-12">
+      <a
+        href={moreHref}
+        class="inline-flex items-center gap-2 bg-white text-[color:var(--dark)]
+               border-2 border-[color:var(--accent)] px-6 py-3 rounded-xl font-bold
+               shadow-[0_8px_24px_rgba(0,0,0,0.08)]
+               hover:bg-[color:var(--accent)] hover:text-[color:var(--dark)]
+               hover:shadow-[0_0_28px_rgba(245,215,124,0.45)]
+               transition-all"
+      >
+        View more articles
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Soft gold glow -->
+  <div class="pointer-events-none absolute inset-0 opacity-[0.06] bg-[radial-gradient(60%_40%_at_80%_0%,var(--accent),transparent)]"></div>
+</section>

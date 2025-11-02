@@ -1,0 +1,102 @@
+---
+// src/components/sections/OurTeam.astro
+const accentGold = "#F5D77C";
+const darkColor = "#0B0B0B";
+
+const team = [
+  {
+    name: "Luis Roberto Zúñiga Sánchez",
+    role: "Full-Stack Developer & Co-Owner",
+    bio:
+      "Founder and lead engineer at Terrenos La Fortuna CR. Luis combines full-stack development expertise with a clear understanding of real-estate operations to deliver secure, reliable, and elegant digital experiences for international buyers.",
+    image:
+      "/luis.webp",
+  },
+  {
+    name: "José Ignacio González Zúñiga",
+    role: "Drone Cinematography, Bilingual Sales & Co-Owner",
+    bio:
+      "FAA-style trained drone operator and client advisor. José produces high-fidelity aerial visuals that accurately represent each property and guides English- and Spanish-speaking clients throughout a transparent, compliant purchase process.",
+    image:
+      "/onell.webp",
+  },
+];
+---
+
+<section
+  id="team"
+  class="relative py-24 bg-white overflow-hidden"
+  style={`--accent:${accentGold}; --dark:${darkColor}`}
+>
+  <!-- Header -->
+  <div class="text-center mb-16 md:mb-20">
+    <div
+      class="inline-flex items-center gap-2 bg-[color:var(--accent)]/15 text-[color:var(--dark)]
+             font-semibold text-sm md:text-base px-5 py-2 rounded-full border border-[color:var(--accent)]/40 mb-4 shadow-sm tracking-wide"
+    >
+      <span class="inline-block h-2.5 w-2.5 rounded-full bg-[color:var(--accent)]"></span>
+      Our Team
+    </div>
+
+    <h2
+      class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-[color:var(--dark)] mb-5 tracking-tight leading-tight"
+    >
+      Leadership at
+      <span class="text-[color:var(--accent)] font-black"> Terrenos La Fortuna CR</span>
+    </h2>
+
+    <p class="text-neutral-800 text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed font-medium">
+      Two co-owners from La Fortuna combining technology, cinematography, and local market knowledge
+      to provide a meticulous, secure, and client-centric acquisition experience.
+    </p>
+  </div>
+
+  <!-- Team Grid -->
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
+    {team.map((member) => (
+      <article
+        class="group relative rounded-3xl border border-[color:var(--accent)]/55 bg-white
+               shadow-[0_10px_35px_-15px_rgba(0,0,0,0.25)]
+               hover:shadow-[0_18px_45px_-10px_rgba(245,215,124,0.35)]
+               transition-all duration-500"
+      >
+        <div class="aspect-[4/3] overflow-hidden rounded-t-3xl">
+          <img
+            src={member.image}
+            alt={`${member.name} — ${member.role}`}
+            class="h-full w-full object-cover group-hover:scale-[1.05] transition-transform duration-500"
+            loading="lazy"
+          />
+        </div>
+        <div class="p-8 text-center">
+          <h3 class="text-2xl md:text-3xl font-display font-extrabold text-[color:var(--dark)] mb-1">
+            {member.name}
+          </h3>
+          <p class="text-base font-bold text-[color:var(--accent)] uppercase tracking-wide mb-4">
+            {member.role}
+          </p>
+          <p class="text-neutral-800 text-[15px] md:text-base leading-relaxed font-semibold">
+            {member.bio}
+          </p>
+
+          <!-- Decorative line -->
+          <div
+            class="mt-6 w-24 h-[2.5px] mx-auto bg-gradient-to-r from-transparent via-[color:var(--accent)] to-transparent rounded-full"
+          ></div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- Closing note (optional) -->
+  <div class="mt-12 text-center px-6">
+    <p class="inline-flex items-center gap-2 text-sm md:text-base font-semibold text-[color:var(--dark)]/80 bg-[color:var(--accent)]/14 border border-[color:var(--accent)]/40 px-4 py-2 rounded-full">
+      Based in La Fortuna, Costa Rica · Bilingual client service · Documentation and due-diligence guidance
+    </p>
+  </div>
+
+  <!-- Soft gold glow -->
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.07] bg-[radial-gradient(60%_40%_at_80%_0%,var(--accent),transparent)]"
+  ></div>
+</section>
