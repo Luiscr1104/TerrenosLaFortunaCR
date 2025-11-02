@@ -1,9 +1,21 @@
 ---
-interface Stat { label: string; value: string }
+interface Stat {
+  label: string;
+  value: string;
+}
 interface Props {
-  title?: string; subtitle?: string; promoTitle?: string; promoHighlight?: string;
-  ctaLabel?: string; ctaHref?: string; image?: string; videoUrl?: string;
-  locationChip?: string; stats?: Stat[]; reversed?: boolean; accent?: string;
+  title?: string;
+  subtitle?: string;
+  promoTitle?: string;
+  promoHighlight?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  image?: string;
+  videoUrl?: string;
+  locationChip?: string;
+  stats?: Stat[];
+  reversed?: boolean;
+  accent?: string;
 }
 
 const {
@@ -29,18 +41,46 @@ const {
 <section class="relative py-20" style={`--accent:${accent}; --dark:#0a0a0a;`}>
   <div class="mx-auto max-w-[120rem] px-4 sm:px-6 lg:px-8">
     <!-- Promo heading -->
-    <div class="text-center mb-10 md:mb-14">
+    <!-- Encabezado Premium -->
+    <div
+      class="text-center mb-10 md:mb-14"
+      style="--accent:#F5D77C; --dark:#111111"
+    >
+      <!-- Chip superior -->
       <div
-        class="inline-flex items-center gap-2 bg-[color:var(--accent)]/12 text-[color:var(--dark)] font-semibold text-sm px-4 py-2 rounded-full border border-[color:var(--accent)]/50 mb-3"
+        class="inline-flex items-center gap-2 bg-[color:var(--accent)]/12 text-[color:var(--dark)]
+           font-semibold text-sm px-4 py-2 rounded-full border border-[color:var(--accent)]/50 mb-3 shadow-sm"
       >
-        <span class="inline-block h-2 w-2 rounded-full bg-[color:var(--accent)]"></span>
+        <span
+          class="inline-block h-2.5 w-2.5 rounded-full bg-[color:var(--accent)] shadow-[0_0_0_3px_rgba(245,215,124,0.25)]"
+        ></span>
         {promoTitle}
       </div>
-      <h2 class="text-3xl md:text-4xl font-display font-bold text-[color:var(--dark)] mb-2 tracking-tight">
-        <span class="bg-[color:var(--accent)]/20 px-2 rounded-md">{promoHighlight}</span>
+
+      <!-- Título con highlight elegante -->
+      <h2
+        class="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[color:var(--dark)]
+           mb-3 md:mb-4 tracking-tight leading-[1.15]"
+      >
+        <span
+          class="relative inline-block px-2 rounded-md"
+          style="background: color-mix(in oklab, var(--accent) 16%, transparent);"
+        >
+          {promoHighlight}
+          <!-- subrayado degradado sutil -->
+          <span
+            class="pointer-events-none absolute left-2 right-2 -bottom-1 h-[2px] rounded-full"
+            style="background: linear-gradient(90deg, transparent, var(--accent), transparent);"
+          ></span>
+        </span>
       </h2>
-      <p class="text-neutral-700 text-base md:text-lg max-w-2xl mx-auto">
-        Discover Costa Rica’s most sought-after real estate near Arenal Volcano — high ROI and paradise living.
+
+      <!-- Subtítulo -->
+      <p
+        class="text-neutral-700 text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
+      >
+        Discover Costa Rica’s most sought-after real estate near Arenal Volcano
+        — high ROI and paradise living.
       </p>
     </div>
 
@@ -57,7 +97,9 @@ const {
         class="rounded-[26px] bg-white border border-neutral-200/80 shadow-[0_14px_40px_-20px_rgba(0,0,0,0.18)] overflow-hidden"
       >
         <div class="px-6 pt-6">
-          <h3 class="text-2xl md:text-3xl font-bold text-[color:var(--dark)] mb-3 leading-snug">
+          <h3
+            class="text-2xl md:text-3xl font-bold text-[color:var(--dark)] mb-3 leading-snug"
+          >
             {title}
           </h3>
           <p class="text-neutral-700 mb-5">{subtitle}</p>
@@ -75,23 +117,29 @@ const {
 
         <!-- Stats -->
         <div class="grid grid-cols-3 gap-2 px-6 py-6">
-          {stats.map(({ value, label }) => (
-            <div
-              class="rounded-xl border border-neutral-200 bg-white p-4 text-center
+          {
+            stats.map(({ value, label }) => (
+              <div
+                class="rounded-xl border border-neutral-200 bg-white p-4 text-center
                      hover:border-[color:var(--accent)]/50 hover:shadow-[0_6px_20px_-10px_rgba(0,0,0,.25)] transition-all"
-            >
-              <div class="text-2xl font-extrabold tracking-tight"
-                   style={`color:var(--dark);`}>
-                <span class="text-[color:var(--accent)]">{value}</span>
+              >
+                <div
+                  class="text-2xl font-extrabold tracking-tight"
+                  style={`color:var(--dark);`}
+                >
+                  <span class="text-[color:var(--accent)]">{value}</span>
+                </div>
+                <div class="text-xs text-neutral-600 mt-0.5">{label}</div>
               </div>
-              <div class="text-xs text-neutral-600 mt-0.5">{label}</div>
-            </div>
-          ))}
+            ))
+          }
         </div>
 
         <!-- Mini-card -->
         <div class="px-6 pb-6">
-          <div class="relative overflow-hidden rounded-2xl border border-neutral-200">
+          <div
+            class="relative overflow-hidden rounded-2xl border border-neutral-200"
+          >
             <slot name="mini-card">
               <img
                 src="https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/44060157-e87e-4492-8987-3dc51ccac900/public"
@@ -104,7 +152,9 @@ const {
                 >
                   <div>
                     <p class="text-xs text-neutral-500">{locationChip}</p>
-                    <p class="text-sm font-semibold text-[color:var(--dark)]">Popular</p>
+                    <p class="text-sm font-semibold text-[color:var(--dark)]">
+                      Popular
+                    </p>
                   </div>
                   <span class="text-xs text-[color:var(--accent)]">★★★★★</span>
                 </div>
@@ -119,39 +169,47 @@ const {
         class="relative rounded-[26px] overflow-hidden border border-neutral-100 shadow-[0_18px_50px_-18px_rgba(0,0,0,.3)]"
       >
         <div class="absolute inset-0">
-          {videoUrl ? (
-            <iframe
-              class="h-full w-full object-cover pointer-events-none"
-              src={`${videoUrl}${videoUrl.includes("?") ? "&" : "?"}autoplay=1&mute=1&controls=0&loop=1&playlist=${videoUrl.split("/").pop()}`}
-              title="Showcase"
-              allow="autoplay; fullscreen; picture-in-picture"
-            />
-          ) : (
-            <img
-              src={image}
-              alt="Showcase"
-              class="h-full w-full object-cover"
-            />
-          )}
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent"></div>
+          {
+            videoUrl ? (
+              <iframe
+                class="h-full w-full object-cover pointer-events-none"
+                src={`${videoUrl}${videoUrl.includes("?") ? "&" : "?"}autoplay=1&mute=1&controls=0&loop=1&playlist=${videoUrl.split("/").pop()}`}
+                title="Showcase"
+                allow="autoplay; fullscreen; picture-in-picture"
+              />
+            ) : (
+              <img
+                src={image}
+                alt="Showcase"
+                class="h-full w-full object-cover"
+              />
+            )
+          }
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent"
+          >
+          </div>
         </div>
 
         <!-- Chip -->
         <div class="relative z-10 p-5 sm:p-6 flex items-start justify-between">
-          {locationChip && (
-            <div
-              class="rounded-full bg-black/80 text-white border border-[color:var(--accent)]/60 px-3 py-1.5 text-xs font-medium shadow"
-            >
-              {locationChip}
-            </div>
-          )}
+          {
+            locationChip && (
+              <div class="rounded-full bg-black/80 text-white border border-[color:var(--accent)]/60 px-3 py-1.5 text-xs font-medium shadow">
+                {locationChip}
+              </div>
+            )
+          }
         </div>
 
         <!-- Text and filters -->
-        <div class="relative z-10 mt-auto flex h-full flex-col justify-end p-6 sm:p-10">
+        <div
+          class="relative z-10 mt-auto flex h-full flex-col justify-end p-6 sm:p-10"
+        >
           <slot name="media-copy">
             <p class="max-w-2xl text-white/90 text-sm sm:text-base">
-              Enjoy panoramic volcano views and guaranteed legal security — direct from the #1 real estate company in Costa Rica.
+              Enjoy panoramic volcano views and guaranteed legal security —
+              direct from the #1 real estate company in Costa Rica.
             </p>
           </slot>
 
@@ -161,7 +219,9 @@ const {
                 class="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm shadow border border-[color:var(--accent)]/40"
               >
                 <span class="text-neutral-600">Type</span>
-                <select class="bg-transparent text-[color:var(--dark)] focus:outline-none">
+                <select
+                  class="bg-transparent text-[color:var(--dark)] focus:outline-none"
+                >
                   <option>Villa</option>
                   <option>Home</option>
                   <option>Land</option>
@@ -171,7 +231,9 @@ const {
                 class="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm shadow border border-[color:var(--accent)]/40"
               >
                 <span class="text-neutral-600">Location</span>
-                <select class="bg-transparent text-[color:var(--dark)] focus:outline-none">
+                <select
+                  class="bg-transparent text-[color:var(--dark)] focus:outline-none"
+                >
                   <option>La Fortuna</option>
                   <option>Guanacaste</option>
                   <option>Monteverde</option>
