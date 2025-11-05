@@ -9,9 +9,8 @@ import ShowcaseSplit from "../components/ShowcaseSplit.astro";
 import ContactForm from "../components/ContactForm.astro";
 import OurTeam from "../components/OurTeam.astro";
 import FeaturedBlogs from "../components/FeaturedBlogs.astro";
-import {HeroScrollDemo} from "../components/HeroArenalScroll.jsx";
-
-
+import { HeroScrollDemo } from "../components/HeroArenalScroll.jsx";
+import { ParallaxScrollSecondDemo } from "../components/Galery.tsx";
 
 const stats = [
 	{ value: "11,800 m²", label: "Private Land" },
@@ -38,8 +37,11 @@ const stats = [
 		stats={stats}
 		accent="#16a34a"
 	/>
-	<WhyBuyWithUs />
 	<HeroScrollDemo client:load />
+	<div class="mb-32">
+		<ParallaxScrollSecondDemo client:load />
+	</div>
+	<WhyBuyWithUs />
 	<OurTeam />
 	<FeaturedBlogs />
 	<ContactForm />
