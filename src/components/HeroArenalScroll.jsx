@@ -18,7 +18,7 @@ export function HeroScrollDemo() {
         }
       >
         <img
-          src={`/797.webp`}
+          src="https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/c86779d7-53ff-44a0-0241-3804e2bba900/public"
           alt="hero"
           height={720}
           width={1400}
