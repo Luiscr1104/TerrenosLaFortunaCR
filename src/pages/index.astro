@@ -9,6 +9,7 @@ import ShowcaseSplit from "../components/ShowcaseSplit.astro";
 import ContactForm from "../components/ContactForm.astro";
 import OurTeam from "../components/OurTeam.astro";
 import FeaturedBlogs from "../components/FeaturedBlogs.astro";
+import {HeroScrollDemo} from "../components/HeroArenalScroll.jsx";
 
 
 
@@ -35,9 +36,10 @@ const stats = [
 		image="https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/e6ef6c46-e7c9-4019-cbcb-9dd4984a9000/public"
 		locationChip="La Fortuna, Costa Rica"
 		stats={stats}
-		accent="#25D366"
+		accent="#16a34a"
 	/>
 	<WhyBuyWithUs />
+	<HeroScrollDemo client:load />
 	<OurTeam />
 	<FeaturedBlogs />
 	<ContactForm />
