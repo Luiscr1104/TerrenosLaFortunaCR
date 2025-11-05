@@ -26,17 +26,20 @@ const stats = [
 	<Hero />
 	<FeaturedProperties />
 	<ShowcaseSplit
-		title="Modern 4-Bedroom Villa with Pool & Jacuzzi"
-		,
-		subtitle="Enjoy exclusive tropical living in La Fortuna, Costa Rica — 4 bedrooms, 3 bathrooms, a covered garage, and a private pool with jacuzzi. Fully titled property, ready for investment or residence."
-		,
-		ctaLabel="See Featured"
-		ctaHref="/properties"
+		title="Luxury 4-Bedroom Villa with Pool, Jacuzzi & Volcano View"
+		subtitle="Experience the perfect blend of tropical luxury and tranquility just 16 minutes from downtown La Fortuna. This fully titled 3,000 m² property features 4 bedrooms, 3 bathrooms, a private pool with jacuzzi, a covered bar with pool table, and stunning views of the Arenal Volcano — ideal for residence or Airbnb investment."
+		ctaLabel="View Property"
+		ctaHref="/properties/villa-arenal-luxury-4br"
 		image="https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/e6ef6c46-e7c9-4019-cbcb-9dd4984a9000/public"
 		locationChip="La Fortuna, Costa Rica"
-		stats={stats}
+		stats={[
+			{ value: "4 / 3", label: "Beds / Baths" },
+			{ value: "3,000 m²", label: "Lot Size" },
+			{ value: "$715k", label: "Target Price" },
+		]}
 		accent="#16a34a"
 	/>
+
 	<HeroScrollDemo client:load />
 	<div class="mb-32">
 		<ParallaxScrollSecondDemo client:load />

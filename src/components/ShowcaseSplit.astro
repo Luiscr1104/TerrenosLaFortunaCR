@@ -20,21 +20,21 @@ interface Props {
 
 const {
   promoTitle = "🔥 Hot Offer",
-  promoHighlight = "Limited-Time Opportunity",
-  title = "Invest in Arenal — Luxury Homes & Land",
-  subtitle = "Turnkey guidance for U.S. buyers. Clear titles, legal support, and high-yield rentals.",
-  ctaLabel = "See Featured",
+  promoHighlight = "Arenal Volcano View",
+  title = "Luxury 4BR Villa with Pool & Jacuzzi",
+  subtitle = "3,000 m² lot • 4 beds, 3 baths • Social area with bar & pool table • 16 min from La Fortuna • Turn-key or Airbnb-ready. Target price: $715,000 (≈ CRC ₡375M).",
+  ctaLabel = "See details",
   ctaHref = "/properties",
   image = "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/44060157-e87e-4492-8987-3dc51ccac900/public",
   videoUrl = "",
-  locationChip = "La Fortuna, Costa Rica",
+  locationChip = "La Fortuna (16 min), Costa Rica",
   stats = [
-    { value: "$2.5M+", label: "Properties Sold" },
-    { value: "98%", label: "Client Satisfaction" },
-    { value: "30 Days", label: "Avg. Close Time" },
+    { value: "4 / 3", label: "Beds / Baths" },
+    { value: "3,000 m²", label: "Lot Size" },
+    { value: "$715k", label: "Target Price" },
   ],
   reversed = false,
-  accent = "#16a34a", // Amarillo premium
+  accent = "#16a34a",
 } = Astro.props;
 ---
 
@@ -44,7 +44,7 @@ const {
     <!-- Encabezado Premium -->
     <div
       class="text-center mb-10 md:mb-14"
-      style="--accent:#F5D77C; --dark:#111111"
+      style="--accent:#16a34a; --dark:#111111"
     >
       <!-- Chip superior -->
       <div
