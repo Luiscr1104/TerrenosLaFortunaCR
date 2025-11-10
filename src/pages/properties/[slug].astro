@@ -1,0 +1,219 @@
+---
+import Process from "@/components/Process.astro";
+import Layout from "@/layouts/Layout.astro";
+export const prerender = false;
+
+import {
+  getPropertyBySlug,
+  formatPriceUSD,
+  formatMeasure,
+  type Property,
+} from "@/lib/properties";
+
+const { slug } = Astro.params;
+if (!slug) throw new Error("Missing slug");
+
+const property = getPropertyBySlug(slug) as Property | null;
+if (!property) {
+  return Astro.redirect("/properties?notFound=1");
+}
+
+const {
+  title,
+  price,
+  type,
+  bedrooms,
+  bathrooms,
+  size,
+  sizeUnit,
+  landSize,
+  landUnit,
+  location,
+  images = [],
+  features = [],
+  description = "",
+} = property;
+
+const imageCover =
+  images[0] ?? "https://picsum.photos/1920/1080?blur=3";
+const priceLabel = formatPriceUSD(price);
+const pageTitle = `${title} — ${location}`;
+const pageDesc = description.slice(0, 160);
+const canonical = new URL(Astro.request.url).origin + `/properties/${slug}`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: title,
+  description: pageDesc,
+  image: images.slice(0, 6),
+  brand: { "@type": "Brand", name: "Terrenos La Fortuna CR" },
+  offers: price
+    ? { "@type": "Offer", priceCurrency: "USD", price, url: canonical }
+    : undefined,
+  areaServed: location,
+};
+const slugChip = `slug-${slug}`;
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <script type="application/ld+json">
+    {JSON.stringify(jsonLd)}
+  </script>
+
+  <style>
+    :root { --forest:#052E14; --gold:#D4AF37; --gold-soft:#F5D77C; }
+
+    /* Recorte suave (esquina superior-izquierda “notched”) */
+    .squircle-cut {
+      --r: 32px;
+      -webkit-clip-path: path("M 0 0 H calc(100% - var(--r)) Q 100% 0 100% var(--r) V 100% H 0 Z");
+              clip-path: path("M 0 0 H calc(100% - var(--r)) Q 100% 0 100% var(--r) V 100% H 0 Z");
+      border-radius: 24px;
+    }
+
+    /* Transición global (View Transitions nativas) */
+    :root::view-transition-old(root),
+    :root::view-transition-new(root){
+      animation-duration: 340ms;
+      animation-timing-function: ease-in-out;
+    }
+  </style>
+
+  <!-- CONTENIDO -->
+  <section class="max-w-6xl mx-auto px-6 py-8 md:py-12 my-20">
+    <!-- Top bar (breadcrumb/chips) -->
+    <div class="flex items-center justify-between gap-3 mb-6">
+      <div class="flex items-center gap-2 text-xs text-neutral-500">
+        <a href="/" class="hover:text-neutral-800">Home</a>
+        <span>/</span>
+        <a href="/properties" class="hover:text-neutral-800">Properties</a>
+        <span>/</span>
+        <span class="font-mono px-2 py-0.5 rounded-full bg-neutral-100"
+              style={`view-transition-name:${slugChip};`}>{slug}</span>
+      </div>
+
+      <!-- Acciones -->
+      <div class="hidden md:flex items-center gap-2">
+        <button class="inline-flex items-center gap-2 rounded-full bg-white border border-neutral-200 px-3 py-1.5 text-sm shadow-sm hover:shadow">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M4 12v6a2 2 0 0 0 2 2h12" stroke="currentColor" stroke-width="1.5"/><path d="M12 16l8-8" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="6" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+          Share
+        </button>
+        <button class="inline-flex items-center gap-2 rounded-full bg-white border border-neutral-200 px-3 py-1.5 text-sm shadow-sm hover:shadow">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12.1 21.35l-1.1-1.02C5.14 14.88 2 12.06 2 8.5 2 6 4 4 6.5 4A5.4 5.4 0 0 1 12 6.09 5.4 5.4 0 0 1 17.5 4C20 4 22 6 22 8.5c0 3.56-3.14 6.38-8.9 11.83l-1 1.02Z"/></svg>
+          Save
+        </button>
+      </div>
+    </div>
+
+    <!-- GRID PRINCIPAL -->
+    <div class="grid grid-cols-12 gap-6">
+      <!-- Columna izquierda (copys grandes) -->
+      <div class="col-span-12 md:col-span-5 lg:col-span-5">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-8 h-8 rounded-xl overflow-hidden ring-1 ring-neutral-200">
+            <img src={imageCover} alt="" class="w-full h-full object-cover" />
+          </div>
+          <span class="text-xs text-neutral-500">{location}</span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-[1.05] tracking-tight text-neutral-900"
+            style={`view-transition-name:title-${slug};`}>
+          {title}
+        </h1>
+
+        <p class="mt-4 text-neutral-500">
+          {type === 'home' ? 'Home' : 'Land'} • {bedrooms ? `${bedrooms} bd • ` : ''}{bathrooms ? `${bathrooms} ba • ` : ''}{size && sizeUnit ? formatMeasure(size, sizeUnit) : ''}{landSize && landUnit ? ` • Land ${formatMeasure(landSize, landUnit)}` : ''}
+        </p>
+
+        <div class="mt-6 border-t border-neutral-200 pt-4">
+          <ul class="grid grid-cols-2 gap-y-2 text-sm text-neutral-700">
+            {bedrooms && <li><span class="font-semibold">{bedrooms}</span> Bedrooms</li>}
+            {bathrooms && <li><span class="font-semibold">{bathrooms}</span> Bathrooms</li>}
+            {size && sizeUnit && <li><span class="font-semibold">{formatMeasure(size, sizeUnit)}</span> Built</li>}
+            {landSize && landUnit && <li><span class="font-semibold">{formatMeasure(landSize, landUnit)}</span> Lot</li>}
+            <li class="col-span-2">
+              <span class="inline-flex items-center gap-2 text-[13px] text-neutral-600">
+                <span class="w-2 h-2 rounded-full bg-[color:var(--forest)]/80"></span>
+                Titled property • Digital closing available
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-8 flex items-center justify-between">
+          <a
+            href={`https://wa.me/50671234567?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20${encodeURIComponent(title)}`}
+            class="inline-flex items-center gap-2 rounded-full bg-[color:var(--forest)] px-5 py-3 text-white hover:brightness-110"
+          >
+            Contact US
+          </a>
+
+          {price && (
+            <div class="text-right">
+              <div class="text-xs uppercase tracking-wide text-neutral-500">Price</div>
+              <div class="text-2xl md:text-3xl font-extrabold text-neutral-900">
+                {priceLabel}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {description && (
+          <article class="prose prose-neutral max-w-none mt-8">
+            <p>{description}</p>
+          </article>
+        )}
+
+        {features.length > 0 && (
+          <div class="mt-6">
+            <div class="text-sm font-semibold text-neutral-900 mb-2">Property Highlights</div>
+            <ul class="space-y-1 text-sm text-neutral-700">
+              {features.map((f) => <li>• {f}</li>)}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      <!-- Columna derecha (hero con recorte + thumbs) -->
+      <div class="col-span-12 md:col-span-7 lg:col-span-7">
+        <div class="relative bg-neutral-100 squircle-cut overflow-hidden shadow-sm">
+          <img
+            src={imageCover}
+            alt={title}
+            class="w-full h-[44vh] md:h-[62vh] object-cover"
+            style={`view-transition-name: prop-${slug};`}
+            loading="eager"
+          />
+
+          <!-- Botones flotantes -->
+          <div class="absolute top-4 right-4 flex flex-col gap-2">
+            <button class="rounded-full bg-white/95 border border-neutral-200 w-10 h-10 grid place-items-center shadow-sm hover:shadow">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M4 12v6a2 2 0 0 0 2 2h12" stroke="currentColor" stroke-width="1.5"/><path d="M12 16l8-8" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="6" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+            <button class="rounded-full bg-white/95 border border-neutral-200 w-10 h-10 grid place-items-center shadow-sm hover:shadow">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12.1 21.35l-1.1-1.02C5.14 14.88 2 12.06 2 8.5 2 6 4 4 6.5 4A5.4 5.4 0 0 1 12 6.09 5.4 5.4 0 0 1 17.5 4C20 4 22 6 22 8.5c0 3.56-3.14 6.38-8.9 11.83l-1 1.02Z"/></svg>
+            </button>
+          </div>
+
+          <!-- Thumbs estilo carrusel simple -->
+          {images.length > 1 && (
+            <div class="absolute bottom-4 right-4 left-auto flex items-center gap-3">
+              <div class="hidden sm:flex items-center gap-2 rounded-2xl bg-white/90 p-2 shadow">
+                {images.slice(0,4).map((src, i) => (
+                  <button class="relative w-24 h-16 rounded-xl overflow-hidden border border-neutral-200 hover:border-neutral-300">
+                    <img src={src} alt={`${title} ${i+1}`} class="w-full h-full object-cover" loading="lazy" />
+                  </button>
+                ))}
+              </div>
+              <a href="#gallery" class="text-xs text-neutral-700 hover:text-neutral-900">See all →</a>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+  <Process />
+  <!-- Banda CTA -->
+
+</Layout>

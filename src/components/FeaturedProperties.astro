@@ -3,9 +3,11 @@
 import PropertyCard from './PropertyCard.astro';
 import propertiesData from '../data/properties.json';
 import HeroTitle  from './HeroTitle';
+import { getAllProperties } from "@/lib/properties";
 
 // Filter only featured properties
-const featuredProperties = propertiesData.filter(p => p.featured);
+const allProperties = getAllProperties();
+const featuredProperties = allProperties.filter((p) => p.featured);
 ---
 
 <section id="properties" class="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-white to-neutral-50 overflow-hidden">
