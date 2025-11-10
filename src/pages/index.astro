@@ -11,6 +11,7 @@ import OurTeam from "../components/OurTeam.astro";
 import FeaturedBlogs from "../components/FeaturedBlogs.astro";
 import { HeroScrollDemo } from "../components/HeroArenalScroll.jsx";
 import { ParallaxScrollSecondDemo } from "../components/Galery.tsx";
+import Process from "../components/Process.astro";
 
 const stats = [
 	{ value: "11,800 m²", label: "Private Land" },
@@ -41,11 +42,16 @@ const stats = [
 	/>
 
 	<HeroScrollDemo client:load />
+	<div class="mb-20" >
+		<Process />
+	</div>
 	<div class="mb-32">
 		<ParallaxScrollSecondDemo client:load />
 	</div>
 	<WhyBuyWithUs />
 	<OurTeam />
 	<FeaturedBlogs />
-	<ContactForm />
+	<div class="mb-32" >
+		<ContactForm />
+	</div>
 </Layout>

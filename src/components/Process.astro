@@ -1,0 +1,76 @@
+<section class="relative w-full overflow-hidden py-16 md:py-20">
+  <!-- Fondo YouTube que siempre cubre -->
+  <div class="absolute inset-0 -z-10">
+    <div class="lux-video-cover">
+      <iframe
+        src="https://www.youtube.com/embed/kHQ4PgCurc8?autoplay=1&mute=1&loop=1&playlist=kHQ4PgCurc8&controls=0&modestbranding=1&showinfo=0&playsinline=1"
+        title="Background video"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        class="lux-video-iframe pointer-events-none"
+      ></iframe>
+    </div>
+
+    <!-- Overlay degradado para legibilidad -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[#052E14]/85 via-[#052E14]/65 to-[#0A4F28]/75"></div>
+  </div>
+
+  <!-- Contenido -->
+  <div class="relative z-10 mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-6">
+    <div class="text-white">
+      <h2 class="text-2xl md:text-3xl font-display font-bold mb-2 text-[#F5D77C]">
+        Own a Piece of Paradise
+      </h2>
+      <p class="text-base md:text-lg text-neutral-200 max-w-xl">
+        Luxury villas and titled land in La Fortuna, Costa Rica.
+      </p>
+    </div>
+
+    <a
+      href="/properties"
+      class="inline-flex items-center gap-2 bg-gradient-to-br from-[#F5D77C] to-[#D4AF37]
+             text-[#052E14] font-semibold px-6 py-3 rounded-lg
+             shadow-[0_0_25px_rgba(245,215,124,0.4)]
+             hover:shadow-[0_0_40px_rgba(245,215,124,0.7)]
+             transition-all duration-300 hover:-translate-y-0.5"
+    >
+      Explore Opportunities
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/>
+      </svg>
+    </a>
+  </div>
+
+  <style>
+    /* Wrapper que ocupa todo y centra el video */
+    .lux-video-cover {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #000; /* fallback */
+    }
+    .lux-video-iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      /* por defecto: que el ancho llene, alto ajusta */
+      width: 100vw;
+      height: 56.25vw; /* 9/16 * 100 */
+      transform: translate(-50%, -50%);
+    }
+    /* Si el viewport es más ANCHO que 16:9, ajusta por altura para cubrir */
+    @media (min-aspect-ratio: 16/9) {
+      .lux-video-iframe {
+        width: 177.78vh;  /* 16/9 * 100 */
+        height: 100vh;
+      }
+    }
+    /* Si el viewport es más ALTO que 16:9, ajusta por ancho para cubrir (ya por defecto) */
+    @media (max-aspect-ratio: 16/9) {
+      .lux-video-iframe {
+        width: 100vw;
+        height: 56.25vw;
+      }
+    }
+  </style>
+</section>
