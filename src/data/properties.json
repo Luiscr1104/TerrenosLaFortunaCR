@@ -72,7 +72,7 @@
     "featured": true,
     "pricePerSqm": 238.3,
     "images": [
-      "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/a836c327-13c8-46ae-76a6-8e956a408500/public",
+      "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/e6ef6c46-e7c9-4019-cbcb-9dd4984a9000/public",
       "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/a41ffac9-395a-4133-dae7-36edae3e3f00/public"
     ],
     "features": [
@@ -100,8 +100,8 @@
     "featured": false,
     "pricePerSqm": 21.5,
     "images": [
-      "/images/land-4500-1.webp",
-      "/images/land-4500-2.webp"
+      "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/a9fefc66-ebd7-4901-32ea-9605a0b6b600/public",
+      "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/a9fefc66-ebd7-4901-32ea-9605a0b6b600/public"
     ],
     "features": [
       "4,500 m² (1.11 acres) of gently sloped land",
@@ -115,57 +115,28 @@
   },
   {
     "id": "property-005",
-    "title": "Mountain View Estate - 25 Acres",
-    "slug": "mountain-view-estate-25-acres",
-    "price": 525000,
+    "title": "Private Land with Rainforest Views – San Rafael, near La Fortuna",
+    "slug": "private-land-la-tigra-5300sqm",
+    "price": 110000,
     "type": "land",
-    "size": 25,
-    "sizeUnit": "acres",
-    "location": "San Ramon",
-    "featured": false,
-    "images": [
-      "/castor.webp",
-      "/salto.webp",
-      "/images/properties/hotel-006-3.jpg"
-    ],
-    "features": [
-      "360° mountain & valley views",
-      "Private mountain retreat",
-      "Multiple home sites",
-      "Year-round springs",
-      "Agricultural exemption available",
-      "Organic farm potential"
-    ],
-    "description": "Spectacular mountain estate with panoramic views and complete privacy. Build your dream compound or develop an exclusive eco-community."
-  },
-  {
-    "id": "property-006",
-    "title": "Boutique Hotel Investment Opportunity",
-    "slug": "boutique-hotel-investment",
-    "price": 890000,
-    "type": "home",
-    "bedrooms": 8,
-    "bathrooms": 8,
-    "size": 6500,
-    "sizeUnit": "sqft",
-    "landSize": 2,
+    "size": 5300,
+    "sizeUnit": "sqm",
+    "landSize": 1.31,
     "landUnit": "acres",
-    "location": "La Fortuna",
-    "featured": true,
+    "location": "San Rafael, San Carlos",
+    "featured": false,
+    "pricePerSqm": 20.7,
     "images": [
-      "/castor.webp",
-      "/salto.webp",
-      "/images/properties/hotel-006-3.jpg"
+      "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/e9c06415-6dff-40ba-b476-c89977a02d00/public",
+      "/images/land-5300-2.webp"
     ],
     "features": [
-      "Operating boutique hotel",
-      "8 guest suites + owner quarters",
-      "Restaurant & bar with liquor license",
-      "Established clientele & 5-star reviews",
-      "Trained staff & systems in place",
-      "Strong ROI - financials available",
-      "Pool, spa, and tropical gardens"
+      "5,300 m² (1.31 acres) of titled land",
+      "Surrounded by forest and mountain scenery",
+      "Public road access and basic utilities available",
+      "Great potential for a cabin project or private residence",
+      "20 minutes from La Fortuna’s main attractions"
     ],
-    "description": "Profitable turn-key boutique hotel in prime La Fortuna location. Excellent reputation, steady bookings, and growth potential. Owner financing available."
+    "description": "A peaceful and private land parcel in the lush area of La Tigra. With 5,300 m² of usable terrain, it’s perfect for developing a personal retreat or a few vacation cabins. The area offers excellent biodiversity, cool weather, and easy access to La Fortuna."
   }
 ]

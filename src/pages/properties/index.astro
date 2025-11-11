@@ -1,0 +1,153 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PropertyCard from "../../components/PropertyCard.astro";
+import { getAllProperties } from "@/lib/properties";
+
+const properties = getAllProperties();
+
+const brand = { gold: "#D4AF37", goldSoft: "#F5D77C", forest: "#052E14" };
+---
+
+<Layout
+  title="Properties for Sale — La Fortuna, Costa Rica"
+  description="Browse curated homes and land opportunities around La Fortuna and Arenal Volcano, Costa Rica."
+>
+  <style>
+    :root {
+      --forest: #052E14;
+      --gold: #D4AF37;
+      --gold-soft: #F5D77C;
+    }
+
+    /* Animación global para View Transitions */
+    :root::view-transition-old(root),
+    :root::view-transition-new(root) {
+      animation-duration: 320ms;
+      animation-timing-function: ease-in-out;
+    }
+
+    .filter-active {
+      color: var(--forest);
+      border-color: var(--forest);
+      background-color: #fff;
+      font-weight: 600;
+    }
+  </style>
+
+  <!-- HERO -->
+  <section class="mt-20 relative w-full overflow-hidden bg-[color:var(--forest)] text-white">
+    <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/20"></div>
+    <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
+      <h1
+        class="text-4xl md:text-5xl font-extrabold leading-tight mb-4"
+        style="view-transition-name: title-properties;"
+      >
+        Properties in
+        <span class="text-[color:var(--gold-soft)]">La Fortuna</span>
+      </h1>
+      <p class="text-neutral-200 max-w-2xl">
+        Explore our exclusive listings — clear titles, legal support, and personalized investment guidance.
+      </p>
+      <a
+        href="https://wa.me/50689354697?text=Hello!%20I'm%20interested%20in%20investing%20in%20La%20Fortuna.%20Could%20you%20please%20share%20the%20available%20property%20options?"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 mt-6 bg-[color:var(--gold)] hover:brightness-110 text-[color:var(--forest)] font-semibold px-5 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+      >
+        Contact an Advisor
+      </a>
+    </div>
+  </section>
+
+  <!-- FILTER TABS -->
+  <div class="max-w-6xl mx-auto px-6 mt-10 mb-6 flex items-center justify-between flex-wrap gap-3">
+    <h2 class="text-2xl font-bold text-neutral-900">Available Properties</h2>
+
+    <div class="flex items-center gap-3 text-sm font-medium">
+      <button id="filter-all" class="filter-btn filter-active border border-neutral-300 px-4 py-1.5 rounded-full transition">
+        All
+      </button>
+      <button id="filter-home" class="filter-btn border border-neutral-300 px-4 py-1.5 rounded-full hover:border-[color:var(--forest)] transition">
+        Homes
+      </button>
+      <button id="filter-land" class="filter-btn border border-neutral-300 px-4 py-1.5 rounded-full hover:border-[color:var(--forest)] transition">
+        Land
+      </button>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <section class="max-w-6xl mx-auto px-6 pb-16">
+    <div id="property-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
+      {properties.map((property) => (
+        <div class="property-item" data-type={property.type}>
+          <PropertyCard {...property} />
+        </div>
+      ))}
+    </div>
+
+    <!-- Empty message -->
+    <div id="no-properties" class="hidden text-center py-12">
+      <div class="inline-flex items-center justify-center w-16 h-16 bg-neutral-100 rounded-full mb-4">
+        <svg class="w-8 h-8 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
+      </div>
+      <p class="text-lg text-neutral-600">No properties found in this category</p>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="w-full py-12 bg-[color:var(--forest)] text-center text-white">
+    <h3 class="text-2xl md:text-3xl font-bold mb-3">
+      Looking for something specific?
+    </h3>
+    <p class="text-neutral-300 mb-6">
+      We’ll find a property tailored to your budget and needs.
+    </p>
+    <a
+      href="https://wa.me/50689354697?text=Hi!%20I'm%20looking%20for%20a%20specific%20type%20of%20property%20in%20La%20Fortuna.%20Could%20you%20help%20me%20find%20it?"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 bg-[color:var(--gold)] text-[color:var(--forest)] px-6 py-3 rounded-lg font-semibold hover:brightness-110 transition-all shadow-lg hover:shadow-xl"
+    >
+      Contact Us on WhatsApp
+    </a>
+  </section>
+
+  <!-- SCRIPT: Filters -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll(".filter-btn");
+      const cards = document.querySelectorAll(".property-item");
+      const emptyMsg = document.getElementById("no-properties");
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          buttons.forEach((b) => b.classList.remove("filter-active"));
+          btn.classList.add("filter-active");
+
+          const filter = btn.id.replace("filter-", "");
+          let visibleCount = 0;
+
+          cards.forEach((card) => {
+            const type = card.dataset.type;
+            if (filter === "all" || filter === type) {
+              card.classList.remove("hidden");
+              visibleCount++;
+            } else {
+              card.classList.add("hidden");
+            }
+          });
+
+          emptyMsg.classList.toggle("hidden", visibleCount > 0);
+        });
+      });
+    });
+  </script>
+</Layout>
