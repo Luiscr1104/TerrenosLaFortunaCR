@@ -74,26 +74,26 @@ export async function sendContactEmail({
   });
 
   // 💌 Auto-respuesta al cliente (sin cambios)
-  const clientHtml = `
+const clientHtml = `
   <div style="font-family:'Segoe UI',Roboto,Arial,sans-serif;background-color:#f8fafb;padding:40px 0;">
     <div style="max-width:640px;margin:auto;background:white;border-radius:12px;box-shadow:0 8px 25px rgba(0,0,0,0.08);overflow:hidden;">
       <div style="background:linear-gradient(135deg,#16a34a,#047857);color:white;padding:24px 32px;text-align:center;">
-        <h2 style="margin:0;font-size:22px;font-weight:700;">¡Gracias, ${firstname}!</h2>
-        <p style="margin:6px 0 0;font-size:14px;opacity:.9;">Tu mensaje fue recibido correctamente 🌿</p>
+        <h2 style="margin:0;font-size:22px;font-weight:700;">Thank you, ${firstname}!</h2>
+        <p style="margin:6px 0 0;font-size:14px;opacity:.9;">Your message has been received successfully 🌿</p>
       </div>
 
       <div style="padding:32px;text-align:center;color:#333;">
         <p style="font-size:15px;margin-bottom:16px;">
-          Un asesor de <strong>Terrenos La Fortuna</strong> se pondrá en contacto contigo muy pronto para brindarte detalles sobre nuestras propiedades.
+          A <strong>Terrenos La Fortuna</strong> advisor will contact you very soon with more details about our available properties.
         </p>
 
         <p style="font-size:15px;margin-bottom:28px;">
-          Si deseas atención inmediata, escríbenos por WhatsApp:
+          If you need immediate assistance, feel free to message us on WhatsApp:
         </p>
 
-        <a href="https://wa.me/50689354697?text=Hola!%20Estoy%20interesado(a)%20en%20propiedades%20en%20La%20Fortuna"
+        <a href="https://wa.me/50689354697?text=Hi!%20I'm%20interested%20in%20properties%20in%20La%20Fortuna"
           style="display:inline-block;background-color:#16a34a;color:white;padding:12px 28px;border-radius:8px;font-weight:600;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.15);">
-          💬 Contactar por WhatsApp
+          💬 Contact via WhatsApp
         </a>
 
         <div style="margin-top:36px;border-top:1px solid #eee;padding-top:12px;">
