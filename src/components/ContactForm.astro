@@ -90,29 +90,41 @@ const {
       </p>
 
       <form id="contactForm" class="space-y-4">
+        <!-- 🕵️‍♂️ Honeypot (anti-bots simple) -->
+        <input
+          type="text"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+          style="display:none !important"
+        />
+
+        <!-- ⏱️ Time trap (tiempo de carga del form) -->
+        <input type="hidden" name="start_time" value={Date.now()} />
+
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-medium text-neutral-600 mb-1.5"
-              >First name</label
-            >
+            <label class="block text-xs font-medium text-neutral-600 mb-1.5">
+              First name
+            </label>
             <input
               name="firstname"
               required
               class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
-               focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
+         focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
               style={`--gold:${accentGold}`}
               placeholder="John"
             />
           </div>
           <div>
-            <label class="block text-xs font-medium text-neutral-600 mb-1.5"
-              >Last name</label
-            >
+            <label class="block text-xs font-medium text-neutral-600 mb-1.5">
+              Last name
+            </label>
             <input
               name="lastname"
               required
               class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
-               focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
+         focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
               style={`--gold:${accentGold}`}
               placeholder="Doe"
             />
@@ -121,27 +133,27 @@ const {
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-medium text-neutral-600 mb-1.5"
-              >Email</label
-            >
+            <label class="block text-xs font-medium text-neutral-600 mb-1.5">
+              Email
+            </label>
             <input
               type="email"
               name="email"
               required
               class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
-               focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
+         focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
               style={`--gold:${accentGold}`}
               placeholder="john@example.com"
             />
           </div>
           <div>
-            <label class="block text-xs font-medium text-neutral-600 mb-1.5"
-              >Phone / WhatsApp</label
-            >
+            <label class="block text-xs font-medium text-neutral-600 mb-1.5">
+              Phone / WhatsApp
+            </label>
             <input
               name="phone"
               class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
-               focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
+         focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
               style={`--gold:${accentGold}`}
               placeholder="+506 8935 4697"
             />
@@ -149,14 +161,14 @@ const {
         </div>
 
         <div>
-          <label class="block text-xs font-medium text-neutral-600 mb-1.5"
-            >Interest</label
-          >
+          <label class="block text-xs font-medium text-neutral-600 mb-1.5">
+            Interest
+          </label>
           <select
             name="interest"
             required
             class="w-full rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm outline-none
-             focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
+       focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
             style={`--gold:${accentGold}`}
           >
             <option value="home">Home / Villa</option>
@@ -166,15 +178,15 @@ const {
         </div>
 
         <div>
-          <label class="block text-xs font-medium text-neutral-600 mb-1.5"
-            >Message</label
-          >
+          <label class="block text-xs font-medium text-neutral-600 mb-1.5">
+            Message
+          </label>
           <textarea
             name="message"
             rows={4}
             required
             class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
-             focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
+       focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
             style={`--gold:${accentGold}`}
             placeholder="Tell us about your dream property..."></textarea>
         </div>
@@ -185,8 +197,8 @@ const {
             type="submit"
             id="submitBtn"
             class="inline-flex justify-center items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold
-             text-neutral-900 bg-[color:var(--gold)] hover:brightness-[.97] active:brightness-95
-             shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] transition"
+       text-neutral-900 bg-[color:var(--gold)] hover:brightness-[.97] active:brightness-95
+       shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] transition"
             style={`--gold:${accentGold}`}
           >
             Request Consultation ↗
@@ -197,7 +209,7 @@ const {
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex justify-center items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold
-             text-white bg-[color:var(--green)] hover:brightness-105 active:brightness-95 transition"
+       text-white bg-[color:var(--green)] hover:brightness-105 active:brightness-95 transition"
             style={`--green:${accentGreen}`}
           >
             WhatsApp Now
