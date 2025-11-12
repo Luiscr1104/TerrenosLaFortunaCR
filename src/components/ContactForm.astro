@@ -23,8 +23,7 @@ const {
         <path
           fill-rule="evenodd"
           d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-          clip-rule="evenodd"
-        ></path>
+          clip-rule="evenodd"></path>
       </svg>
       <span>Own a Piece of Paradise</span>
     </div>
@@ -40,25 +39,37 @@ const {
 
     <p class="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto">
       Full legal protection and remote purchase available.
-      <span class="font-semibold text-[color:var(--gold)]" style={`--gold:${accentGold}`}>
+      <span
+        class="font-semibold text-[color:var(--gold)]"
+        style={`--gold:${accentGold}`}
+      >
         Our team makes it effortless.
       </span>
     </p>
   </div>
 
   <!-- Grid principal -->
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
+  <div
+    class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch"
+  >
     <!-- Imagen -->
-    <div class="relative rounded-3xl overflow-hidden border border-neutral-200 shadow-[0_14px_40px_-20px_rgba(0,0,0,0.25)]">
+    <div
+      class="relative rounded-3xl overflow-hidden border border-neutral-200 shadow-[0_14px_40px_-20px_rgba(0,0,0,0.25)]"
+    >
       <img
         src={image}
         alt="Costa Rica luxury property"
         class="w-full h-[420px] md:h-[520px] lg:h-[600px] object-cover"
         loading="lazy"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"></div>
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"
+      >
+      </div>
       <div class="absolute bottom-5 left-6">
-        <span class="rounded-full bg-white/90 backdrop-blur px-4 py-1.5 text-sm font-medium text-neutral-800 shadow">
+        <span
+          class="rounded-full bg-white/90 backdrop-blur px-4 py-1.5 text-sm font-medium text-neutral-800 shadow"
+        >
           La Fortuna • Costa Rica
         </span>
       </div>
@@ -68,100 +79,182 @@ const {
     <div
       class="rounded-3xl border border-[#F5D77C]/50 bg-white/90 backdrop-blur-sm shadow-[0_14px_40px_-20px_rgba(0,0,0,0.2)] p-8 lg:p-10"
     >
-      <h3 class="text-2xl md:text-3xl font-display font-semibold text-neutral-900 mb-3">
+      <h3
+        class="text-2xl md:text-3xl font-display font-semibold text-neutral-900 mb-3"
+      >
         Let’s Talk About Your Investment
       </h3>
       <p class="text-neutral-600 mb-6">
-        Tell us what you’re looking for — we’ll help you find the perfect land or home in Costa Rica.
+        Tell us what you’re looking for — we’ll help you find the perfect land
+        or home in Costa Rica.
       </p>
 
-      <form method="post" action="/api/contact" class="space-y-4">
+      <form id="contactForm" class="space-y-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-medium text-neutral-600 mb-1.5">Full Name</label>
+            <label class="block text-xs font-medium text-neutral-600 mb-1.5"
+              >First name</label
+            >
             <input
-              name="fullname"
+              name="firstname"
               required
-              class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
+              class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
+               focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
               style={`--gold:${accentGold}`}
-              placeholder="John Doe"
+              placeholder="John"
             />
           </div>
           <div>
-            <label class="block text-xs font-medium text-neutral-600 mb-1.5">Email</label>
+            <label class="block text-xs font-medium text-neutral-600 mb-1.5"
+              >Last name</label
+            >
+            <input
+              name="lastname"
+              required
+              class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
+               focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
+              style={`--gold:${accentGold}`}
+              placeholder="Doe"
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium text-neutral-600 mb-1.5"
+              >Email</label
+            >
             <input
               type="email"
               name="email"
               required
-              class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
+              class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
+               focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
               style={`--gold:${accentGold}`}
               placeholder="john@example.com"
             />
           </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-medium text-neutral-600 mb-1.5">Phone / WhatsApp</label>
+            <label class="block text-xs font-medium text-neutral-600 mb-1.5"
+              >Phone / WhatsApp</label
+            >
             <input
               name="phone"
-              class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
+              class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
+               focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
               style={`--gold:${accentGold}`}
-              placeholder="+1 555 000 111"
+              placeholder="+506 8935 4697"
             />
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-neutral-600 mb-1.5">Interest</label>
-            <select
-              name="interest"
-              required
-              class="w-full rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
-              style={`--gold:${accentGold}`}
-            >
-              <option value="home">Home / Villa</option>
-              <option value="land">Land / Lots</option>
-              <option value="investment">Investment Property</option>
-            </select>
           </div>
         </div>
 
         <div>
-          <label class="block text-xs font-medium text-neutral-600 mb-1.5">Message</label>
+          <label class="block text-xs font-medium text-neutral-600 mb-1.5"
+            >Interest</label
+          >
+          <select
+            name="interest"
+            required
+            class="w-full rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm outline-none
+             focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
+            style={`--gold:${accentGold}`}
+          >
+            <option value="home">Home / Villa</option>
+            <option value="land">Land / Lots</option>
+            <option value="investment">Investment Property</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-neutral-600 mb-1.5"
+            >Message</label
+          >
           <textarea
             name="message"
             rows={4}
             required
-            class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
-            placeholder="Tell us about your dream property..."
+            class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
+             focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
             style={`--gold:${accentGold}`}
-          ></textarea>
+            placeholder="Tell us about your dream property..."></textarea>
         </div>
 
         <!-- CTA -->
         <div class="flex flex-col sm:flex-row gap-3 pt-2">
           <button
             type="submit"
-            class="inline-flex justify-center items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-neutral-900 bg-[color:var(--gold)] hover:brightness-[.97] active:brightness-95 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] transition"
+            id="submitBtn"
+            class="inline-flex justify-center items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold
+             text-neutral-900 bg-[color:var(--gold)] hover:brightness-[.97] active:brightness-95
+             shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] transition"
             style={`--gold:${accentGold}`}
           >
             Request Consultation ↗
           </button>
 
           <a
-            href="https://wa.me/50689354697?text=Hi!%20I%20want%20info%20about%20properties%20in%20La%20Fortuna"
+            href="https://wa.me/50689354697?text=Hola!%20Estoy%20interesado(a)%20en%20propiedades%20en%20La%20Fortuna.%20¿Podr%C3%ADan%20enviarme%20opciones%20y%20m%C3%A1s%20informaci%C3%B3n?"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex justify-center items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white bg-[color:var(--green)] hover:brightness-105 active:brightness-95 transition"
+            class="inline-flex justify-center items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold
+             text-white bg-[color:var(--green)] hover:brightness-105 active:brightness-95 transition"
             style={`--green:${accentGreen}`}
           >
             WhatsApp Now
           </a>
         </div>
 
-        <p class="mt-3 text-[11px] text-neutral-500 text-center sm:text-left">
-          By submitting, you agree to be contacted about available properties in Costa Rica.
+        <p
+          id="formMessage"
+          class="mt-3 text-[13px] text-center text-neutral-500 hidden"
+        >
         </p>
       </form>
+
+      <!-- Script de envío -->
+      <script>
+        const form = document.getElementById("contactForm");
+        const btn = document.getElementById("submitBtn");
+        const msg = document.getElementById("formMessage");
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          msg.classList.add("hidden");
+          btn.disabled = true;
+          btn.innerHTML = "Enviando... ⏳";
+
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
+
+          try {
+            const res = await fetch("/api/contact", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+
+            const result = await res.json();
+
+            if (res.ok && result.success) {
+              msg.textContent = "✅ Tu mensaje fue enviado correctamente.";
+              msg.classList.remove("hidden");
+              msg.classList.add("text-green-600");
+              form.reset();
+            } else {
+              msg.textContent = "❌ Ocurrió un error al enviar tu mensaje.";
+              msg.classList.remove("hidden");
+              msg.classList.add("text-red-600");
+            }
+          } catch (error) {
+            msg.textContent = "❌ Error de conexión. Inténtalo de nuevo.";
+            msg.classList.remove("hidden");
+            msg.classList.add("text-red-600");
+          } finally {
+            btn.disabled = false;
+            btn.innerHTML = "Request Consultation ↗";
+          }
+        });
+      </script>
     </div>
   </div>
 </section>

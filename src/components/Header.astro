@@ -2,19 +2,36 @@
 // src/components/layout/Header.astro
 ---
 
-<header id="header" class="fixed top-0 left-0 right-0 z-50 bg-neutral-900/90 backdrop-blur-md shadow-xl transition-all duration-300 border-b border-white/10">
+<header
+  id="header"
+  class="fixed top-0 left-0 right-0 z-50 bg-neutral-900/90 backdrop-blur-md shadow-xl transition-all duration-300 border-b border-white/10"
+>
   <nav class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
     <div class="flex items-center justify-between h-20 lg:h-24">
-      
+      <!-- Logo -->
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2 group">
-        <div class="flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-          <svg class="w-6 h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-          </svg>
+        <!-- Ícono -->
+        <div
+          class="flex items-center justify-center w-14 h-14 lg:w-16 lg:h-16 rounded-2xl
+           bg-gradient-to-br from-primary-500 to-primary-700
+           shadow-lg group-hover:shadow-xl group-hover:scale-[1.03]
+           transition-all duration-300 ring-1 ring-white/10"
+        >
+          <img
+            src="/favicon.svg"
+            alt="Terrenos La Fortuna CR Logo"
+            class="w-full h-full p-1.5 object-contain"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
+
+        <!-- Texto -->
         <div class="hidden sm:block">
-          <div class="text-lg lg:text-xl font-display font-bold text-white group-hover:text-accent-gold transition-colors">
+          <div
+            class="text-lg lg:text-xl font-display font-bold text-white group-hover:text-accent-gold transition-colors"
+          >
             La Fortuna CR
           </div>
           <div class="text-xs text-white/70 -mt-1">Real Estate</div>
@@ -23,152 +40,217 @@
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex items-center gap-8">
-        <a href="#properties" class="text-white/90 hover:text-white font-medium transition-colors relative group">
+        <a
+          href="#properties"
+          class="text-white/90 hover:text-white font-medium transition-colors relative group"
+        >
           Properties
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-gold group-hover:w-full transition-all duration-300"></span>
+          <span
+            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-gold group-hover:w-full transition-all duration-300"
+          ></span>
         </a>
-        <a href="#why-buy" class="text-white/90 hover:text-white font-medium transition-colors relative group">
+        <a
+          href="#why-buy"
+          class="text-white/90 hover:text-white font-medium transition-colors relative group"
+        >
           Why Buy Remote
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-gold group-hover:w-full transition-all duration-300"></span>
+          <span
+            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-gold group-hover:w-full transition-all duration-300"
+          ></span>
         </a>
-        <a href="#about" class="text-white/90 hover:text-white font-medium transition-colors relative group">
+        <a
+          href="#about"
+          class="text-white/90 hover:text-white font-medium transition-colors relative group"
+        >
           About La Fortuna
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-gold group-hover:w-full transition-all duration-300"></span>
+          <span
+            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-gold group-hover:w-full transition-all duration-300"
+          ></span>
         </a>
-        <a href="#faq" class="text-white/90 hover:text-white font-medium transition-colors relative group">
+        <a
+          href="#faq"
+          class="text-white/90 hover:text-white font-medium transition-colors relative group"
+        >
           FAQ
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-gold group-hover:w-full transition-all duration-300"></span>
+          <span
+            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-gold group-hover:w-full transition-all duration-300"
+          ></span>
         </a>
       </div>
 
       <!-- CTA Buttons Desktop -->
       <div class="hidden lg:flex items-center gap-3">
-        <a 
-          href="tel:+50612345678"
+        <a
+          href="tel:+50689354697"
           class="inline-flex items-center gap-2 text-white/90 hover:text-white font-medium transition-colors"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+            ></path>
           </svg>
           <span class="hidden xl:inline">+506 8935 4697</span>
         </a>
-<a
-  href="https://wa.me/50689354697?text=Hello!%20I'm%20interested%20in%20one%20of%20your%20properties%20in%20La%20Fortuna.%20Could%20you%20please%20send%20me%20more%20details%20or%20available%20options?"
-  target="_blank"
-  rel="noopener noreferrer"
-  class="inline-flex items-center gap-2 bg-accent-gold hover:bg-accent-gold/90 text-white px-5 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
->
-  Contact via WhatsApp
-</a>
-
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-          </svg>
-          Contact Us
-        </a>
-      </div>
-
-      <!-- Mobile Menu Button -->
-      <button 
-        id="mobile-menu-button"
-        class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-white hover:bg-white/10 transition-colors"
-        aria-label="Toggle menu"
-      >
-        <svg id="menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-        <svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="lg:hidden hidden">
-    <div class="px-4 pt-2 pb-6 space-y-3 bg-neutral-900/95 backdrop-blur-lg border-t border-white/10">
-      <a 
-        href="#properties" 
-        class="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-medium"
-      >
-        Properties
-      </a>
-      <a 
-        href="#why-buy" 
-        class="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-medium"
-      >
-        Why Buy Remote
-      </a>
-      <a 
-        href="#about" 
-        class="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-medium"
-      >
-        About La Fortuna
-      </a>
-      <a 
-        href="#faq" 
-        class="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-medium"
-      >
-        FAQ
-      </a>
-      
-      <div class="pt-4 space-y-3">
-        <a 
-          href="tel:+50689354697"
-          class="flex items-center justify-center gap-2 w-full px-4 py-3 bg-white/10 text-white rounded-lg font-medium hover:bg-white/20 transition-colors"
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-          </svg>
-          Call Us
-        </a>
-        <a 
-          href="https://wa.me/89354697?text=Hello,%20I'm%20interested%20in%20La%20Fortuna%20properties"
+        <a
+          href="https://wa.me/50689354697?text=Hello!%20I'm%20interested%20in%20one%20of%20your%20properties%20in%20La%20Fortuna.%20Could%20you%20please%20send%20me%20more%20details%20or%20available%20options?"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center justify-center gap-2 w-full px-4 py-3 bg-accent-gold hover:bg-accent-gold/90 text-white rounded-lg font-semibold transition-colors"
+          class="inline-flex items-center gap-2 bg-accent-gold hover:bg-accent-gold/90 text-white px-5 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
         >
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-          </svg>
-          WhatsApp Us
+          Contact via WhatsApp
         </a>
+
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+          ></path>
+        </svg>
+        Contact Us
       </div>
     </div>
-  </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-button"
+      class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-white hover:bg-white/10 transition-colors"
+      aria-label="Toggle menu"
+    >
+      <svg
+        id="menu-open-icon"
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      <svg
+        id="menu-close-icon"
+        class="w-6 h-6 hidden"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </nav>
 </header>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="lg:hidden hidden">
+  <div
+    class="px-4 pt-2 pb-6 space-y-3 bg-neutral-900/95 backdrop-blur-lg border-t border-white/10"
+  >
+    <a
+      href="#properties"
+      class="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-medium"
+    >
+      Properties
+    </a>
+    <a
+      href="#why-buy"
+      class="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-medium"
+    >
+      Why Buy Remote
+    </a>
+    <a
+      href="#about"
+      class="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-medium"
+    >
+      About La Fortuna
+    </a>
+    <a
+      href="#faq"
+      class="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-medium"
+    >
+      FAQ
+    </a>
+
+    <div class="pt-4 space-y-3">
+      <a
+        href="tel:+50689354697"
+        class="flex items-center justify-center gap-2 w-full px-4 py-3 bg-white/10 text-white rounded-lg font-medium hover:bg-white/20 transition-colors"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+          ></path>
+        </svg>
+        Call Us
+      </a>
+      <a
+        href="https://wa.me/89354697?text=Hello,%20I'm%20interested%20in%20La%20Fortuna%20properties"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center gap-2 w-full px-4 py-3 bg-accent-gold hover:bg-accent-gold/90 text-white rounded-lg font-semibold transition-colors"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+          ></path>
+        </svg>
+        WhatsApp Us
+      </a>
+    </div>
+  </div>
+</div>
 
 <script is:inline>
   // Mobile menu toggle
   function setupMobileMenu() {
-    const menuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const openIcon = document.getElementById('menu-open-icon');
-    const closeIcon = document.getElementById('menu-close-icon');
-    
+    const menuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const openIcon = document.getElementById("menu-open-icon");
+    const closeIcon = document.getElementById("menu-close-icon");
+
     if (!menuButton || !mobileMenu || !openIcon || !closeIcon) return;
-    
-    menuButton.addEventListener('click', () => {
-      const isHidden = mobileMenu.classList.contains('hidden');
-      
+
+    menuButton.addEventListener("click", () => {
+      const isHidden = mobileMenu.classList.contains("hidden");
+
       if (isHidden) {
-        mobileMenu.classList.remove('hidden');
-        openIcon.classList.add('hidden');
-        closeIcon.classList.remove('hidden');
+        mobileMenu.classList.remove("hidden");
+        openIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
       } else {
-        mobileMenu.classList.add('hidden');
-        openIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
+        mobileMenu.classList.add("hidden");
+        openIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
       }
     });
 
     // Close menu when clicking a link
-    const menuLinks = mobileMenu.querySelectorAll('a');
-    menuLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        openIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
+    const menuLinks = mobileMenu.querySelectorAll("a");
+    menuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        openIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
       });
     });
   }
