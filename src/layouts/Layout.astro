@@ -120,20 +120,6 @@ const jsonLd = {
     </script>
     <!-- END GTM -->
 
-    <!-- GA4 (Optional) -->
-    {GA_ID && (
-      <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-        <script>
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_ID}', { anonymize_ip: true });
-          `}
-        </script>
-      </>
-    )}
 
     <title>{title}</title>
   </head>
