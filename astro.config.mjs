@@ -2,13 +2,23 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
-import vercel from '@astrojs/vercel/serverless'; // o '@astrojs/vercel/edge'
+import vercel from '@astrojs/vercel/serverless';
+import sitemap from '@astrojs/sitemap';
+
+// Dominio principal
+const SITE_URL = 'https://www.terrenoslafortunacr.com';
 
 export default defineConfig({
-  output: 'server',          // necesario para SSR (prerender=false)
-  adapter: vercel({}),       // 👈 pasa un objeto (aunque esté vacío)
+  site: SITE_URL,
+  output: 'server',
+  adapter: vercel({}),
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [react()],
+  integrations: [
+    react(),
+
+    // 🗺️ Sitemap simple para todo el sitio (solo en inglés)
+    sitemap(),
+  ],
 });
