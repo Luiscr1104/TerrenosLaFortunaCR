@@ -6,12 +6,41 @@ import { getAllProperties } from "@/lib/properties";
 const properties = getAllProperties();
 
 const brand = { gold: "#D4AF37", goldSoft: "#F5D77C", forest: "#052E14" };
+const siteUrl = "https://www.terrenoslafortunacr.com";
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Properties and land for sale in La Fortuna, Costa Rica",
+  description:
+    "Curated homes, vacation rentals and land for sale in La Fortuna de San Carlos, near Arenal Volcano in Costa Rica. Ideal for foreigners looking to invest safely with full title and legal advice.",
+  itemListElement: properties.map((property, index) => ({
+    "@type": "Product",
+    position: index + 1,
+    name: property.title,
+    url: `${siteUrl}/properties/${property.slug}`,
+    description:
+      property.description ||
+      `Property for sale in ${property.location || "La Fortuna"}, Costa Rica.`,
+    offers: {
+      "@type": "Offer",
+      price: property.price,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock"
+    }
+  }))
+};
 ---
 
 <Layout
-  title="Properties for Sale — La Fortuna, Costa Rica"
-  description="Browse curated homes and land opportunities around La Fortuna and Arenal Volcano, Costa Rica."
+  title="Land & Luxury Homes for Sale in La Fortuna, Costa Rica | Arenal Volcano View Properties"
+  description="Buy land and homes in La Fortuna de San Carlos, Costa Rica. Volcano-view lots, farms and investment properties with clear title, legal support and financing options for foreign investors."
 >
+  <!-- Schema.org: listado de propiedades -->
+  <script type="application/ld+json">
+    {JSON.stringify(itemListSchema)}
+  </script>
+
   <style>
     :root {
       --forest: #052E14;
@@ -19,7 +48,6 @@ const brand = { gold: "#D4AF37", goldSoft: "#F5D77C", forest: "#052E14" };
       --gold-soft: #F5D77C;
     }
 
-    /* Animación global para View Transitions */
     :root::view-transition-old(root),
     :root::view-transition-new(root) {
       animation-duration: 320ms;
@@ -34,43 +62,126 @@ const brand = { gold: "#D4AF37", goldSoft: "#F5D77C", forest: "#052E14" };
     }
   </style>
 
+
   <!-- HERO -->
-  <section class="mt-20 relative w-full overflow-hidden bg-[color:var(--forest)] text-white">
-    <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/20"></div>
-    <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
+<section class="mt-20 relative w-full overflow-hidden bg-[color:var(--forest)] text-white">
+  <div class="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-20">
+    <div class="max-w-3xl space-y-6">
+
+      <p class="uppercase tracking-[0.25em] text-xs md:text-sm text-white/70">
+        La Fortuna · Arenal Volcano · Costa Rica
+      </p>
+
       <h1
-        class="text-4xl md:text-5xl font-extrabold leading-tight mb-4"
+        class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight md:leading-[1.05]"
         style="view-transition-name: title-properties;"
       >
-        Properties in
-        <span class="text-[color:var(--gold-soft)]">La Fortuna</span>
+        Land & Luxury Homes
+        <span class="block text-[color:var(--gold-soft)]">
+          for Sale in La Fortuna
+        </span>
       </h1>
-      <p class="text-neutral-200 max-w-2xl">
-        Explore our exclusive listings — clear titles, legal support, and personalized investment guidance.
+
+      <p class="text-neutral-100/85 text-sm md:text-base leading-relaxed max-w-xl">
+        Curated volcano-view lots, villas and investment properties with full legal support
+        for international buyers.
       </p>
+
       <a
-        href="https://wa.me/50689354697?text=Hello!%20I'm%20interested%20in%20investing%20in%20La%20Fortuna.%20Could%20you%20please%20share%20the%20available%20property%20options?"
+        href="https://wa.me/50689354697?text=Hello!%20I'm%20interested%20in%20investing%20in%20La%20Fortuna%2C%20Costa%20Rica.%20Could%20you%20please%20share%20the%20available%20property%20options%20and%20explain%20how%20foreigners%20can%20buy%20safely%3F"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 mt-6 bg-[color:var(--gold)] hover:brightness-110 text-[color:var(--forest)] font-semibold px-5 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+        class="inline-flex items-center gap-2 bg-[color:var(--gold)] text-[color:var(--forest)] font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:brightness-110 transition-all duration-300 text-sm md:text-base"
       >
-        Contact an Advisor
+        Speak with a Real Estate Advisor
       </a>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- INTRO SEO / TRUST SECTION -->
+  <section class="max-w-6xl mx-auto px-6 py-10 md:py-14">
+    <div class="grid gap-10 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] items-start">
+      <div class="space-y-5">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-neutral-900">
+          Buy Property in La Fortuna de San Carlos as a Foreign Investor
+        </h2>
+
+        <p class="text-neutral-700 leading-relaxed text-sm md:text-base">
+          La Fortuna is one of Costa Rica’s strongest real-estate markets thanks to its
+          year-round tourism, lush rainforest and proximity to
+          <strong> Arenal Volcano, the country’s most visited landmark</strong>.
+          This constant flow of visitors creates solid demand for vacation rentals,
+          boutique projects and long-term stays.
+        </p>
+
+        <p class="text-neutral-700 leading-relaxed text-sm md:text-base">
+          As a foreigner, you enjoy the <strong>same ownership rights as Costa Rican citizens</strong>.
+          You can purchase under your personal name or through a local corporation.
+          Our team coordinates due diligence, title verification, purchase contracts
+          and closing so you can invest with confidence from abroad.
+        </p>
+      </div>
+
+      <aside class="bg-neutral-50 border border-neutral-200 rounded-2xl p-5 md:p-6 space-y-4">
+        <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500">
+          Why investors choose La Fortuna
+        </h3>
+
+        <ul class="space-y-3 text-sm text-neutral-700">
+          <li class="flex gap-2">
+            <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[color:var(--gold)]"></span>
+            <span>Strong tourism all year (not only high season).</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[color:var(--gold)]"></span>
+            <span>High demand for vacation rentals and boutique developments.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[color:var(--gold)]"></span>
+            <span>Attractive appreciation for well-located land with views or water sources.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[color:var(--gold)]"></span>
+            <span>Full legal support in English for international buyers.</span>
+          </li>
+        </ul>
+      </aside>
     </div>
   </section>
 
   <!-- FILTER TABS -->
-  <div class="max-w-6xl mx-auto px-6 mt-10 mb-6 flex items-center justify-between flex-wrap gap-3">
-    <h2 class="text-2xl font-bold text-neutral-900">Available Properties</h2>
+  <div class="max-w-6xl mx-auto px-6 mt-4 mb-6 flex items-center justify-between flex-wrap gap-4">
+    <div>
+      <h3 class="text-xl md:text-2xl font-semibold text-neutral-900">
+        Available Properties in La Fortuna, Costa Rica
+      </h3>
+      <p class="text-xs md:text-sm text-neutral-600 mt-1">
+        Updated selection of land, farms, villas and residential homes near Arenal Volcano.
+      </p>
+    </div>
 
-    <div class="flex items-center gap-3 text-sm font-medium">
-      <button id="filter-all" class="filter-btn filter-active border border-neutral-300 px-4 py-1.5 rounded-full transition">
+    <div class="flex items-center gap-2 md:gap-3 text-xs md:text-sm font-medium">
+      <button
+        id="filter-all"
+        class="filter-btn filter-active border border-neutral-300 px-4 py-1.5 rounded-full transition bg-white shadow-sm text-neutral-800"
+      >
         All
       </button>
-      <button id="filter-home" class="filter-btn border border-neutral-300 px-4 py-1.5 rounded-full hover:border-[color:var(--forest)] transition">
+      <button
+        id="filter-home"
+        class="filter-btn border border-neutral-300 px-4 py-1.5 rounded-full hover:border-[color:var(--forest)] hover:bg-neutral-50 transition text-neutral-700"
+      >
         Homes
       </button>
-      <button id="filter-land" class="filter-btn border border-neutral-300 px-4 py-1.5 rounded-full hover:border-[color:var(--forest)] transition">
+      <button
+        id="filter-land"
+        class="filter-btn border border-neutral-300 px-4 py-1.5 rounded-full hover:border-[color:var(--forest)] hover:bg-neutral-50 transition text-neutral-700"
+      >
         Land
       </button>
     </div>
@@ -78,9 +189,16 @@ const brand = { gold: "#D4AF37", goldSoft: "#F5D77C", forest: "#052E14" };
 
   <!-- GRID -->
   <section class="max-w-6xl mx-auto px-6 pb-16">
-    <div id="property-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
+    <div
+      id="property-grid"
+      class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12"
+    >
       {properties.map((property) => (
-        <div class="property-item" data-type={property.type}>
+        <div
+          class="property-item"
+          data-type={property.type}
+          data-location={property.location}
+        >
           <PropertyCard {...property} />
         </div>
       ))}
@@ -103,21 +221,72 @@ const brand = { gold: "#D4AF37", goldSoft: "#F5D77C", forest: "#052E14" };
   </section>
 
   <!-- CTA BAND -->
-  <section class="w-full py-12 bg-[color:var(--forest)] text-center text-white">
-    <h3 class="text-2xl md:text-3xl font-bold mb-3">
-      Looking for something specific?
-    </h3>
-    <p class="text-neutral-300 mb-6">
-      We’ll find a property tailored to your budget and needs.
-    </p>
-    <a
-      href="https://wa.me/50689354697?text=Hi!%20I'm%20looking%20for%20a%20specific%20type%20of%20property%20in%20La%20Fortuna.%20Could%20you%20help%20me%20find%20it?"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 bg-[color:var(--gold)] text-[color:var(--forest)] px-6 py-3 rounded-lg font-semibold hover:brightness-110 transition-all shadow-lg hover:shadow-xl"
-    >
-      Contact Us on WhatsApp
-    </a>
+  <section class="w-full py-12 md:py-14 bg-[color:var(--forest)] text-center text-white">
+    <div class="max-w-3xl mx-auto px-6">
+      <h3 class="text-2xl md:text-3xl font-bold mb-3">
+        Looking for something very specific?
+      </h3>
+      <p class="text-neutral-200 mb-6 text-sm md:text-base leading-relaxed">
+        Share your budget, preferred size and whether you want a volcano-view lot,
+        a farm with a natural water source or an income-generating rental.
+        We’ll send you a personalized shortlist directly to your WhatsApp or email.
+      </p>
+      <a
+        href="https://wa.me/50689354697?text=Hi!%20I'm%20looking%20for%20a%20specific%20type%20of%20property%20in%20La%20Fortuna%2C%20Costa%20Rica.%20Please%20help%20me%20find%20land%20or%20a%20home%20that%20matches%20my%20budget%20and%20investment%20goals."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-[color:var(--gold)] text-[color:var(--forest)] px-6 py-3 rounded-lg font-semibold hover:brightness-110 transition-all shadow-lg hover:shadow-xl text-sm md:text-base"
+      >
+        Get Personalized Options on WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- MINI FAQ SEO -->
+  <section class="max-w-6xl mx-auto px-6 py-12 md:py-16 space-y-6">
+    <div class="max-w-3xl space-y-2">
+      <h3 class="text-2xl md:text-3xl font-bold text-neutral-900">
+        Frequently Asked Questions
+      </h3>
+      <p class="text-sm md:text-base text-neutral-600">
+        A few key points for international buyers interested in properties in La Fortuna and Arenal Volcano.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      <article class="md:col-span-1 bg-neutral-50 border border-neutral-200 rounded-2xl p-5 md:p-6 space-y-2">
+        <h4 class="font-semibold text-neutral-900 text-sm md:text-base">
+          Can foreigners buy land and homes in La Fortuna?
+        </h4>
+        <p class="text-xs md:text-sm text-neutral-700 leading-relaxed">
+          Yes. Foreigners have full ownership rights in Costa Rica, including titled land, homes,
+          farms and investment properties. We guide you through each step of the process
+          so everything is clear and properly documented.
+        </p>
+      </article>
+
+      <article class="md:col-span-1 bg-neutral-50 border border-neutral-200 rounded-2xl p-5 md:p-6 space-y-2">
+        <h4 class="font-semibold text-neutral-900 text-sm md:text-base">
+          Is La Fortuna a good area for real-estate investment?
+        </h4>
+        <p class="text-xs md:text-sm text-neutral-700 leading-relaxed">
+          Absolutely. The region receives international tourism all year thanks to Arenal Volcano,
+          hot springs and adventure activities. Properties with volcano views or natural water
+          sources are highly attractive for vacation rentals and long-term appreciation.
+        </p>
+      </article>
+
+      <article class="md:col-span-1 bg-neutral-50 border border-neutral-200 rounded-2xl p-5 md:p-6 space-y-2">
+        <h4 class="font-semibold text-neutral-900 text-sm md:text-base">
+          Do you assist clients who live abroad?
+        </h4>
+        <p class="text-xs md:text-sm text-neutral-700 leading-relaxed">
+          Yes. Most of our investors live in the United States, Canada or Europe.
+          We offer video calls, virtual tours, remote signings and coordination with
+          trusted attorneys, architects and builders so you can invest securely from anywhere.
+        </p>
+      </article>
+    </div>
   </section>
 
   <!-- SCRIPT: Filters -->
