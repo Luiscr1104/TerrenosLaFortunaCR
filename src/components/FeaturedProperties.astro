@@ -1,51 +1,68 @@
 ---
 // src/components/sections/FeaturedProperties.astro
-import PropertyCard from './PropertyCard.astro';
-import propertiesData from '../data/properties.json';
-import HeroTitle  from './HeroTitle';
+import PropertyCard from "./PropertyCard.astro";
+import propertiesData from "../data/properties.json";
+import HeroTitle from "./HeroTitle";
 import { getAllProperties } from "@/lib/properties";
+import AnimatedStats from "./AnimatedStats";
 
 // Filter only featured properties
 const allProperties = getAllProperties();
 const featuredProperties = allProperties.filter((p) => p.featured);
 ---
 
-<section id="properties" class="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-white to-neutral-50 overflow-hidden">
+<section
+  id="properties"
+  class="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-white to-neutral-50 overflow-hidden"
+>
   <!-- Decorative elements -->
-  <div class="absolute top-0 right-0 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary-400/5 rounded-full blur-3xl"></div>
+  <div
+    class="absolute top-0 right-0 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 left-0 w-96 h-96 bg-secondary-400/5 rounded-full blur-3xl"
+  >
+  </div>
 
   <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
     <!-- Section Header -->
     <div class="text-center mb-12 md:mb-16 lg:mb-20">
-      <div class="inline-flex items-center gap-2 bg-primary-500/10 text-primary-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+      <div
+        class="inline-flex items-center gap-2 bg-primary-500/10 text-primary-600 px-4 py-2 rounded-full text-sm font-semibold mb-4"
+      >
         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+          <path
+            d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"
+          ></path>
         </svg>
         <span>Featured Properties</span>
       </div>
-	  <HeroTitle client:load />
+      <HeroTitle client:load />
 
       <p class="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto mb-8">
-        Handpicked luxury homes and pristine land in La Fortuna's most desirable locations. 
-        <span class="font-semibold text-primary-600">Every property personally inspected and verified.</span>
+        Handpicked luxury homes and pristine land in La Fortuna's most desirable
+        locations.
+        <span class="font-semibold text-primary-600"
+          >Every property personally inspected and verified.</span
+        >
       </p>
 
       <!-- Filter Tabs -->
       <div class="flex flex-wrap justify-center gap-3 mb-8">
-        <button 
+        <button
           data-filter="all"
           class="filter-btn active px-6 py-2.5 rounded-full font-bold transition-all duration-300 bg-neutral-900 text-white shadow-xl border-2 border-neutral-900"
         >
           All Properties
         </button>
-        <button 
+        <button
           data-filter="home"
           class="filter-btn px-6 py-2.5 rounded-full font-semibold transition-all duration-300 bg-white text-neutral-900 hover:bg-neutral-100 border-2 border-neutral-300 hover:border-neutral-900 hover:shadow-lg shadow-md"
         >
           🏠 Luxury Homes
         </button>
-        <button 
+        <button
           data-filter="land"
           class="filter-btn px-6 py-2.5 rounded-full font-semibold transition-all duration-300 bg-white text-neutral-900 hover:bg-neutral-100 border-2 border-neutral-300 hover:border-neutral-900 hover:shadow-lg shadow-md"
         >
@@ -56,32 +73,56 @@ const featuredProperties = allProperties.filter((p) => p.featured);
 
     <!-- Properties Grid -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
-      {featuredProperties.map((property) => (
-        <div class="property-item" data-type={property.type}>
-          <PropertyCard {...property} />
-        </div>
-      ))}
+      {
+        featuredProperties.map((property) => (
+          <div class="property-item" data-type={property.type}>
+            <PropertyCard {...property} />
+          </div>
+        ))
+      }
     </div>
 
     <!-- No properties message (hidden by default) -->
     <div id="no-properties" class="hidden text-center py-12">
-      <div class="inline-flex items-center justify-center w-16 h-16 bg-neutral-100 rounded-full mb-4">
-        <svg class="w-8 h-8 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+      <div
+        class="inline-flex items-center justify-center w-16 h-16 bg-neutral-100 rounded-full mb-4"
+      >
+        <svg
+          class="w-8 h-8 text-neutral-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
       </div>
-      <p class="text-lg text-neutral-600">No properties found in this category</p>
+      <p class="text-lg text-neutral-600">
+        No properties found in this category
+      </p>
     </div>
 
     <!-- View All CTA -->
     <div class="text-center">
-      <a 
+      <a
         href="/properties"
         class="inline-flex items-center gap-2 bg-white border-2 border-primary-500 text-primary-600 hover:bg-primary-500 hover:text-white px-8 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
       >
         View All Properties
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
         </svg>
       </a>
       <p class="mt-4 text-sm text-neutral-500">
@@ -90,86 +131,82 @@ const featuredProperties = allProperties.filter((p) => p.featured);
     </div>
 
     <!-- Stats Bar -->
-    <section class="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
-  <div class="text-center">
-    <div class="inline-block">
-      <div class="text-3xl md:text-4xl font-display font-bold text-[#25D366]">$2.5M+</div>
-      <span class="block h-1 w-full bg-[#1e7a58] rounded mt-1"></span>
-    </div>
-    <p class="mt-2 text-sm md:text-base text-neutral-600">Properties Sold</p>
-  </div>
-  <div class="text-center">
-    <div class="inline-block">
-      <div class="text-3xl md:text-4xl font-display font-bold text-[#25D366]">98%</div>
-      <span class="block h-1 w-full bg-[#1e7a58] rounded mt-1"></span>
-    </div>
-    <p class="mt-2 text-sm md:text-base text-neutral-600">Client Satisfaction</p>
-  </div>
-  <div class="text-center">
-    <div class="inline-block">
-      <div class="text-3xl md:text-4xl font-display font-bold text-[#25D366]">30 Days</div>
-      <span class="block h-1 w-full bg-[#1e7a58] rounded mt-1"></span>
-    </div>
-    <p class="mt-2 text-sm md:text-base text-neutral-600">Avg. Close Time</p>
-  </div>
-  <div class="text-center">
-    <div class="inline-block">
-      <div class="text-3xl md:text-4xl font-display font-bold text-[#25D366]">24/7</div>
-      <span class="block h-1 w-full bg-[#25D366] rounded mt-1"></span>
-    </div>
-    <p class="mt-2 text-sm md:text-base text-neutral-600">Support</p>
-  </div>
-</section>
-
+    <AnimatedStats client:visible />
   </div>
 </section>
 
 <script>
   // Property filtering functionality
   function setupPropertyFilters() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const propertyItems = document.querySelectorAll('.property-item');
-    const noPropertiesMessage = document.getElementById('no-properties');
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const propertyItems = document.querySelectorAll(".property-item");
+    const noPropertiesMessage = document.getElementById("no-properties");
 
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const filterValue = button.getAttribute('data-filter');
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filterValue = button.getAttribute("data-filter");
 
         // Update active button
-        filterButtons.forEach(btn => {
-          btn.classList.remove('active', 'bg-neutral-900', 'text-white', 'shadow-xl', 'font-bold', 'border-neutral-900');
-          btn.classList.add('bg-white', 'text-neutral-900', 'border-neutral-300', 'shadow-md', 'font-semibold');
+        filterButtons.forEach((btn) => {
+          btn.classList.remove(
+            "active",
+            "bg-neutral-900",
+            "text-white",
+            "shadow-xl",
+            "font-bold",
+            "border-neutral-900",
+          );
+          btn.classList.add(
+            "bg-white",
+            "text-neutral-900",
+            "border-neutral-300",
+            "shadow-md",
+            "font-semibold",
+          );
         });
-        button.classList.add('active', 'bg-neutral-900', 'text-white', 'shadow-xl', 'font-bold', 'border-neutral-900');
-        button.classList.remove('bg-white', 'text-neutral-900', 'border-neutral-300', 'shadow-md', 'font-semibold');
+        button.classList.add(
+          "active",
+          "bg-neutral-900",
+          "text-white",
+          "shadow-xl",
+          "font-bold",
+          "border-neutral-900",
+        );
+        button.classList.remove(
+          "bg-white",
+          "text-neutral-900",
+          "border-neutral-300",
+          "shadow-md",
+          "font-semibold",
+        );
 
         // Filter properties
         let visibleCount = 0;
-        propertyItems.forEach(item => {
-          const itemType = item.getAttribute('data-type');
-          
-          if (filterValue === 'all' || itemType === filterValue) {
-            item.style.display = 'block';
+        propertyItems.forEach((item) => {
+          const itemType = item.getAttribute("data-type");
+
+          if (filterValue === "all" || itemType === filterValue) {
+            item.style.display = "block";
             // Fade in animation
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
+            item.style.opacity = "0";
+            item.style.transform = "translateY(20px)";
             setTimeout(() => {
-              item.style.transition = 'all 0.5s ease';
-              item.style.opacity = '1';
-              item.style.transform = 'translateY(0)';
+              item.style.transition = "all 0.5s ease";
+              item.style.opacity = "1";
+              item.style.transform = "translateY(0)";
             }, 50);
             visibleCount++;
           } else {
-            item.style.display = 'none';
+            item.style.display = "none";
           }
         });
 
         // Show/hide no properties message
         if (noPropertiesMessage) {
           if (visibleCount === 0) {
-            noPropertiesMessage.classList.remove('hidden');
+            noPropertiesMessage.classList.remove("hidden");
           } else {
-            noPropertiesMessage.classList.add('hidden');
+            noPropertiesMessage.classList.add("hidden");
           }
         }
       });
@@ -177,7 +214,7 @@ const featuredProperties = allProperties.filter((p) => p.featured);
   }
 
   // Initialize on page load
-  document.addEventListener('DOMContentLoaded', setupPropertyFilters);
+  document.addEventListener("DOMContentLoaded", setupPropertyFilters);
 </script>
 
 <style>
