@@ -43,7 +43,7 @@ export default function AnimatedStats() {
                     <div className="text-3xl md:text-4xl font-display font-bold text-[#25D366]">
                         <Counter value={2.5} prefix="$" suffix="M+" decimals={1} />
                     </div>
-                    <span className="block h-1 w-full bg-[#1e7a58] rounded mt-1"></span>
+                    <span className="block h-1 w-full bg-[#25D366] rounded mt-1"></span>
                 </div>
                 <p className="mt-2 text-sm md:text-base text-neutral-600">Properties Sold</p>
             </div>
@@ -52,7 +52,7 @@ export default function AnimatedStats() {
                     <div className="text-3xl md:text-4xl font-display font-bold text-[#25D366]">
                         <Counter value={98} suffix="%" />
                     </div>
-                    <span className="block h-1 w-full bg-[#1e7a58] rounded mt-1"></span>
+                    <span className="block h-1 w-full bg-[#25D366] rounded mt-1"></span>
                 </div>
                 <p className="mt-2 text-sm md:text-base text-neutral-600">Client Satisfaction</p>
             </div>
@@ -61,7 +61,7 @@ export default function AnimatedStats() {
                     <div className="text-3xl md:text-4xl font-display font-bold text-[#25D366]">
                         <Counter value={30} suffix=" Days" />
                     </div>
-                    <span className="block h-1 w-full bg-[#1e7a58] rounded mt-1"></span>
+                    <span className="block h-1 w-full bg-[#25D366] rounded mt-1"></span>
                 </div>
                 <p className="mt-2 text-sm md:text-base text-neutral-600">Avg. Close Time</p>
             </div>
