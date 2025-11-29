@@ -27,22 +27,63 @@ const stats = [
 	<Hero />
 	<FeaturedProperties />
 	<ShowcaseSplit
-		title="Luxury 4-Bedroom Villa with Pool, Jacuzzi & Volcano View"
-		subtitle="Experience the perfect blend of tropical luxury and tranquility just 16 minutes from downtown La Fortuna. This fully titled 3,000 m² property features 4 bedrooms, 3 bathrooms, a private pool with jacuzzi, a covered bar with pool table, and stunning views of the Arenal Volcano — ideal for residence or Airbnb investment."
-		ctaLabel="View Property"
-		ctaHref="/properties/villa-arenal-luxury-4br"
-		image="https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/e6ef6c46-e7c9-4019-cbcb-9dd4984a9000/public"
-		locationChip="La Fortuna, Costa Rica"
-		stats={[
-			{ value: "4 / 3", label: "Beds / Baths" },
-			{ value: "3,000 m²", label: "Lot Size" },
-			{ value: "$715k", label: "Target Price" },
+		offers={[
+			{
+				title: "Luxury 4-Bedroom Villa with Pool, Jacuzzi & Volcano View",
+				subtitle:
+					"Experience the perfect blend of tropical luxury and tranquility just 16 minutes from downtown La Fortuna. This fully titled 3,000 m² property features 4 bedrooms, 3 bathrooms, a private pool with jacuzzi, a covered bar with pool table, and stunning views of the Arenal Volcano — ideal for residence or Airbnb investment.",
+				promoTitle: "🔥 Hot Offer",
+				promoHighlight: "Arenal Volcano View",
+				ctaLabel: "View Property",
+				ctaHref: "/properties/villa-arenal-luxury-4br",
+				image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/e6ef6c46-e7c9-4019-cbcb-9dd4984a9000/public",
+				locationChip: "La Fortuna, Costa Rica",
+				stats: [
+					{ value: "4 / 3", label: "Beds / Baths" },
+					{ value: "3,000 m²", label: "Lot Size" },
+					{ value: "$715k", label: "Target Price" },
+				],
+				accent: "#16a34a",
+			},
+			{
+				title: "Exclusive Riverfront Eco-Lodge Opportunity",
+				subtitle:
+					"A rare chance to own a piece of paradise. This 5,000 m² riverfront property is perfect for an eco-lodge or private retreat. Surrounded by lush rainforest and abundant wildlife.",
+				promoTitle: "🌿 Eco Investment",
+				promoHighlight: "Riverfront Paradise",
+				ctaLabel: "Explore Opportunity",
+				ctaHref: "/properties/riverfront-eco-lodge",
+				image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/44060157-e87e-4492-8987-3dc51ccac900/public",
+				locationChip: "Chachagua, Costa Rica",
+				stats: [
+					{ value: "5,000 m²", label: "Lot Size" },
+					{ value: "River", label: "Frontage" },
+					{ value: "$450k", label: "Listing Price" },
+				],
+				accent: "#0ea5e9",
+			},
+			{
+				title: "Modern Mountain Cabin with Panoramic Views",
+				subtitle:
+					"Escape to the cool mountain air in this stylish 2-bedroom cabin. Featuring floor-to-ceiling windows, a cozy fireplace, and a spacious deck overlooking the valley. Perfect for a weekend getaway or rental income.",
+				promoTitle: "⛰️ Mountain Retreat",
+				promoHighlight: "Valley Views",
+				ctaLabel: "View Cabin",
+				ctaHref: "/properties/mountain-cabin-retreat",
+				image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/e6ef6c46-e7c9-4019-cbcb-9dd4984a9000/public",
+				locationChip: "Monteverde, Costa Rica",
+				stats: [
+					{ value: "2 / 2", label: "Beds / Baths" },
+					{ value: "1,500 m²", label: "Lot Size" },
+					{ value: "$325k", label: "Target Price" },
+				],
+				accent: "#f59e0b",
+			},
 		]}
-		accent="#16a34a"
 	/>
 
 	<HeroScrollDemo client:load />
-	<div class="mb-20" >
+	<div class="mb-20">
 		<Process />
 	</div>
 	<div class="mb-32">
@@ -50,7 +91,7 @@ const stats = [
 	</div>
 	<WhyBuyWithUs />
 	<FeaturedBlogs />
-	<div class="mb-32" >
+	<div class="mb-32">
 		<ContactForm />
 	</div>
 </Layout>
