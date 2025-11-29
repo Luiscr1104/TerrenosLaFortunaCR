@@ -45,7 +45,7 @@
       class="relative rounded-3xl p-8 md:p-12 lg:p-16 mb-12 md:mb-16 shadow-[0_25px_60px_-25px_rgba(0,0,0,0.6)] overflow-hidden"
     >
       <div
-        class="absolute inset-0 bg-gradient-to-br from-[#0D1110] via-[#111C1B] to-[#1E3A38]"
+        class="absolute inset-0 bg-gradient-to-br from-[#1e7a58] via-[#165f42] to-[#0f422e]"
       >
       </div>
       <div
@@ -171,18 +171,23 @@
           // Lista de videos locales (en /public)
           const videos = ["/catarata.mp4", "/cayac.mov", "/sendero.mp4"];
 
-          const videoElement = document.getElementById("property-video");
-          let currentIndex = 0;
+          const videoElement = document.getElementById(
+            "property-video",
+          ) as HTMLVideoElement;
 
-          // Carga el primer video
-          videoElement.src = videos[currentIndex];
+          if (videoElement) {
+            let currentIndex = 0;
 
-          // Cuando termine un video, pasa al siguiente
-          videoElement.addEventListener("ended", () => {
-            currentIndex = (currentIndex + 1) % videos.length; // vuelve al inicio al terminar
+            // Carga el primer video
             videoElement.src = videos[currentIndex];
-            videoElement.play();
-          });
+
+            // Cuando termine un video, pasa al siguiente
+            videoElement.addEventListener("ended", () => {
+              currentIndex = (currentIndex + 1) % videos.length; // vuelve al inicio al terminar
+              videoElement.src = videos[currentIndex];
+              videoElement.play();
+            });
+          }
         </script>
 
         <!-- Floating trust badge -->
@@ -196,10 +201,7 @@
   </div>
 </section>
 
-
-
 <!-- Key Benefits Grid -->
-
 
 <!-- CTA -->
 <div class="mt-12 md:mt-16 text-center">
