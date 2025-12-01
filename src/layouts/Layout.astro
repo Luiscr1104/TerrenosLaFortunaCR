@@ -1,7 +1,7 @@
 ---
-import Header from '../components/Header.astro';
-import '../styles/global.css';
-import Footer from '../components/Footer.astro';
+import Header from "../components/Header.astro";
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title?: string;
@@ -11,137 +11,144 @@ interface Props {
   keywords?: string;
   articleSchema?: boolean;
   propertySchema?: any;
+  preloadImage?: string;
 }
 
 const {
-  title = 'Retire in La Fortuna Costa Rica | Land & Luxury Homes Near Arenal Volcano',
+  title = "Retire in La Fortuna Costa Rica | Land & Luxury Homes Near Arenal Volcano",
   description = `Discover your paradise retirement in La Fortuna, Costa Rica. Premium land parcels and turnkey eco-homes near Arenal Volcano. Perfect for expats and investors seeking nature, peace, and adventure. Secure purchases for US, Canadian & European buyers.`,
-  image = '/images/og-image.jpg',
-  lang = 'en',
-  keywords = 'retire in costa rica, la fortuna real estate, buy land costa rica, arenal volcano property, costa rica retirement homes, expat property costa rica, invest in la fortuna, turnkey homes costa rica, eco homes arenal, costa rica land for sale',
+  image = "/images/og-image.jpg",
+  lang = "en",
+  keywords = "retire in costa rica, la fortuna real estate, buy land costa rica, arenal volcano property, costa rica retirement homes, expat property costa rica, invest in la fortuna, turnkey homes costa rica, eco homes arenal, costa rica land for sale",
   articleSchema = false,
   propertySchema = null,
+  preloadImage,
 } = Astro.props;
 
-const isProd = import.meta.env.MODE === 'production';
-const site = Astro.site?.href?.replace(/\/$/, '') ?? 'https://terrenoslafortunacr.com';
-const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : '';
+const isProd = import.meta.env.MODE === "production";
+const site =
+  Astro.site?.href?.replace(/\/$/, "") ?? "https://terrenoslafortunacr.com";
+const canonicalURL = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : "";
 const ogImageUrl = Astro.site ? new URL(image, Astro.site).href : image;
 
-const WHATSAPP_NUMBER = '+50689354697';
+const WHATSAPP_NUMBER = "+50689354697";
 const waText = encodeURIComponent(
-  `Hi! I'm interested in retiring/investing in La Fortuna. Can we schedule a video tour of your properties?`
+  `Hi! I'm interested in retiring/investing in La Fortuna. Can we schedule a video tour of your properties?`,
 );
-const waHref = `https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, '')}?text=${waText}`;
+const waHref = `https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, "")}?text=${waText}`;
 
 // Enhanced JSON-LD with multiple schemas
 const jsonLdGraph: any[] = [
   {
-    '@type': 'WebSite',
-    '@id': `${site}/#website`,
+    "@type": "WebSite",
+    "@id": `${site}/#website`,
     url: site,
-    name: 'Terrenos La Fortuna CR - Retire in Paradise',
-    description: 'Premium real estate in La Fortuna, Costa Rica for retirement and investment',
-    inLanguage: 'en',
+    name: "Terrenos La Fortuna CR - Retire in Paradise",
+    description:
+      "Premium real estate in La Fortuna, Costa Rica for retirement and investment",
+    inLanguage: "en",
     publisher: {
-      '@id': `${site}/#organization`
+      "@id": `${site}/#organization`,
     },
     potentialAction: {
-      '@type': 'SearchAction',
+      "@type": "SearchAction",
       target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${site}/en/search?q={search_term_string}`
+        "@type": "EntryPoint",
+        urlTemplate: `${site}/en/search?q={search_term_string}`,
       },
-      'query-input': 'required name=search_term_string',
+      "query-input": "required name=search_term_string",
     },
   },
   {
-    '@type': 'RealEstateAgent',
-    '@id': `${site}/#realestate`,
-    name: 'Terrenos La Fortuna CR',
+    "@type": "RealEstateAgent",
+    "@id": `${site}/#realestate`,
+    name: "Terrenos La Fortuna CR",
     url: site,
     logo: {
-      '@type': 'ImageObject',
+      "@type": "ImageObject",
       url: `${site}/images/logo.png`,
       width: 250,
-      height: 60
+      height: 60,
     },
     image: ogImageUrl,
-    description: 'Luxury real estate agency specializing in retirement and investment properties in La Fortuna, Costa Rica',
-    priceRange: '$$$',
+    description:
+      "Luxury real estate agency specializing in retirement and investment properties in La Fortuna, Costa Rica",
+    priceRange: "$$$",
     address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'CR',
-      addressRegion: 'Alajuela Province',
-      addressLocality: 'La Fortuna de San Carlos',
-      postalCode: '21007',
+      "@type": "PostalAddress",
+      addressCountry: "CR",
+      addressRegion: "Alajuela Province",
+      addressLocality: "La Fortuna de San Carlos",
+      postalCode: "21007",
     },
     geo: {
-      '@type': 'GeoCoordinates',
-      latitude: '10.4678',
-      longitude: '-84.6431'
+      "@type": "GeoCoordinates",
+      latitude: "10.4678",
+      longitude: "-84.6431",
     },
     areaServed: [
       {
-        '@type': 'Country',
-        name: 'United States'
+        "@type": "Country",
+        name: "United States",
       },
       {
-        '@type': 'Country',
-        name: 'Canada'
+        "@type": "Country",
+        name: "Canada",
       },
       {
-        '@type': 'Country',
-        name: 'Germany'
+        "@type": "Country",
+        name: "Germany",
       },
       {
-        '@type': 'Country',
-        name: 'Switzerland'
+        "@type": "Country",
+        name: "Switzerland",
       },
       {
-        '@type': 'Place',
-        name: 'La Fortuna'
+        "@type": "Place",
+        name: "La Fortuna",
       },
       {
-        '@type': 'Place',
-        name: 'Arenal'
-      }
+        "@type": "Place",
+        name: "Arenal",
+      },
     ],
-    availableLanguage: ['English', 'Spanish'],
+    availableLanguage: ["English", "Spanish"],
     telephone: WHATSAPP_NUMBER,
-    email: 'info@terrenoslafortunacr.com',
-    openingHours: 'Mo-Su 08:00-20:00',
-    paymentAccepted: 'Cash, Credit Card, Bank Transfer, Cryptocurrency',
-    currenciesAccepted: 'USD, CRC, EUR',
+    email: "info@terrenoslafortunacr.com",
+    openingHours: "Mo-Su 08:00-20:00",
+    paymentAccepted: "Cash, Credit Card, Bank Transfer, Cryptocurrency",
+    currenciesAccepted: "USD, CRC, EUR",
     knowsAbout: [
-      'Retirement Real Estate',
-      'Investment Properties',
-      'Land Development',
-      'Eco Homes',
-      'Expat Services',
-      'Costa Rica Residency'
+      "Retirement Real Estate",
+      "Investment Properties",
+      "Land Development",
+      "Eco Homes",
+      "Expat Services",
+      "Costa Rica Residency",
     ],
     sameAs: [
       // Agrega tus redes sociales aquí
     ],
   },
   {
-    '@type': 'Organization',
-    '@id': `${site}/#organization`,
-    name: 'Terrenos La Fortuna CR',
+    "@type": "Organization",
+    "@id": `${site}/#organization`,
+    name: "Terrenos La Fortuna CR",
     url: site,
     logo: {
-      '@type': 'ImageObject',
-      url: `${site}/images/logo.png`
+      "@type": "ImageObject",
+      url: `${site}/images/logo.png`,
     },
     contactPoint: {
-      '@type': 'ContactPoint',
+      "@type": "ContactPoint",
       telephone: WHATSAPP_NUMBER,
-      contactType: 'Sales',
-      areaServed: ['US', 'CA', 'DE', 'CH'],
-      availableLanguage: ['en', 'es']
-    }
-  }
+      contactType: "Sales",
+      areaServed: ["US", "CA", "DE", "CH"],
+      availableLanguage: ["en", "es"],
+    },
+  },
 ];
 
 // Add property schema if provided
@@ -152,29 +159,29 @@ if (propertySchema) {
 // Add article schema for blog posts
 if (articleSchema) {
   jsonLdGraph.push({
-    '@type': 'Article',
+    "@type": "Article",
     headline: title,
     description: description,
     image: ogImageUrl,
     author: {
-      '@type': 'Organization',
-      name: 'Terrenos La Fortuna CR'
+      "@type": "Organization",
+      name: "Terrenos La Fortuna CR",
     },
     publisher: {
-      '@type': 'Organization',
-      name: 'Terrenos La Fortuna CR',
+      "@type": "Organization",
+      name: "Terrenos La Fortuna CR",
       logo: {
-        '@type': 'ImageObject',
-        url: `${site}/images/logo.png`
-      }
+        "@type": "ImageObject",
+        url: `${site}/images/logo.png`,
+      },
     },
     datePublished: new Date().toISOString(),
   });
 }
 
 const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': jsonLdGraph
+  "@context": "https://schema.org",
+  "@graph": jsonLdGraph,
 };
 ---
 
@@ -186,13 +193,21 @@ const jsonLd = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
+    <!-- Preload LCP Image -->
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
+
     <!-- Google Tag Manager -->
     <script is:inline>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-WTNGG5FW');
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WTNGG5FW");
     </script>
     <!-- End Google Tag Manager -->
 
@@ -203,26 +218,41 @@ const jsonLd = {
     <meta name="keywords" content={keywords} />
     <meta name="theme-color" content="#0f172a" />
     <meta name="author" content="Terrenos La Fortuna CR" />
-    
+
     <!-- Geo tags for local SEO -->
     <meta name="geo.region" content="CR-A" />
     <meta name="geo.placename" content="La Fortuna" />
     <meta name="geo.position" content="10.4678;-84.6431" />
     <meta name="ICBM" content="10.4678, -84.6431" />
-    
+
     {!isProd && <meta name="robots" content="noindex,nofollow" />}
-    {isProd && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
+    {
+      isProd && (
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+      )
+    }
 
     <!-- Canonical -->
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}
 
     <!-- Hreflang - Enhanced -->
-    <link rel="alternate" hrefLang="en" href={canonicalURL} />
-    <link rel="alternate" hrefLang="en-US" href={canonicalURL} />
-    <link rel="alternate" hrefLang="en-CA" href={canonicalURL} />
-    <link rel="alternate" hrefLang="es-CR" href={canonicalURL.replace('/en/', '/')} />
-    <link rel="alternate" hrefLang="de" href={canonicalURL.replace('/en/', '/de/')} />
-    <link rel="alternate" hrefLang="x-default" href={canonicalURL} />
+    <link rel="alternate" hreflang="en" href={canonicalURL} />
+    <link rel="alternate" hreflang="en-US" href={canonicalURL} />
+    <link rel="alternate" hreflang="en-CA" href={canonicalURL} />
+    <link
+      rel="alternate"
+      hreflang="es-CR"
+      href={canonicalURL.replace("/en/", "/")}
+    />
+    <link
+      rel="alternate"
+      hreflang="de"
+      href={canonicalURL.replace("/en/", "/de/")}
+    />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
     <!-- Open Graph - Enhanced -->
     <meta property="og:type" content="website" />
@@ -233,7 +263,10 @@ const jsonLd = {
     {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Luxury properties in La Fortuna, Costa Rica" />
+    <meta
+      property="og:image:alt"
+      content="Luxury properties in La Fortuna, Costa Rica"
+    />
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="es_CR" />
 
@@ -243,7 +276,10 @@ const jsonLd = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
-    <meta name="twitter:image:alt" content="Premium real estate in La Fortuna near Arenal Volcano" />
+    <meta
+      name="twitter:image:alt"
+      content="Premium real estate in La Fortuna near Arenal Volcano"
+    />
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -254,18 +290,19 @@ const jsonLd = {
 
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    
+
     <title>{title}</title>
   </head>
 
   <body class="min-h-dvh bg-white text-neutral-900 antialiased">
     <!-- Google Tag Manager (noscript) -->
     <noscript>
-      <iframe 
+      <iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-WTNGG5FW"
-        height="0" 
-        width="0" 
-        style="display:none;visibility:hidden">
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      >
       </iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
@@ -286,31 +323,38 @@ const jsonLd = {
       id="wa-float-btn"
       title="Chat with us on WhatsApp"
     >
-      <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/>
+      <svg
+        class="w-8 h-8"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"
+        ></path>
       </svg>
       <span class="sr-only">Contact via WhatsApp</span>
     </a>
 
     <!-- Enhanced Tracking -->
     <script is:inline>
-      document.addEventListener('DOMContentLoaded', function() {
-        const waBtn = document.getElementById('wa-float-btn');
+      document.addEventListener("DOMContentLoaded", function () {
+        const waBtn = document.getElementById("wa-float-btn");
         if (waBtn) {
-          waBtn.addEventListener('click', function() {
+          waBtn.addEventListener("click", function () {
             if (window.dataLayer) {
               window.dataLayer.push({
-                event: 'click_whatsapp',
-                location: 'floating_button',
+                event: "click_whatsapp",
+                location: "floating_button",
                 page: window.location.pathname,
-                source: 'organic_search'
+                source: "organic_search",
               });
             }
             // Track with GA4 if available
             if (window.gtag) {
-              window.gtag('event', 'contact', {
-                method: 'whatsapp',
-                page_location: window.location.pathname
+              window.gtag("event", "contact", {
+                method: "whatsapp",
+                page_location: window.location.pathname,
               });
             }
           });
@@ -318,16 +362,19 @@ const jsonLd = {
 
         // Track scroll depth for engagement metrics
         let scrolled = false;
-        window.addEventListener('scroll', function() {
-          const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-          
+        window.addEventListener("scroll", function () {
+          const scrollPercent =
+            (window.scrollY /
+              (document.documentElement.scrollHeight - window.innerHeight)) *
+            100;
+
           if (scrollPercent > 50 && !scrolled) {
             scrolled = true;
             if (window.dataLayer) {
               window.dataLayer.push({
-                event: 'scroll_depth',
-                depth: '50%',
-                page: window.location.pathname
+                event: "scroll_depth",
+                depth: "50%",
+                page: window.location.pathname,
               });
             }
           }
