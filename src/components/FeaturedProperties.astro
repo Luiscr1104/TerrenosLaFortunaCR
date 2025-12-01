@@ -38,7 +38,7 @@ const featuredProperties = allProperties.filter((p) => p.featured);
         </svg>
         <span>Featured Properties</span>
       </div>
-      <HeroTitle client:load />
+      <HeroTitle client:visible />
 
       <p class="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto mb-8">
         Handpicked luxury homes and pristine land in La Fortuna's most desirable
@@ -183,21 +183,22 @@ const featuredProperties = allProperties.filter((p) => p.featured);
         // Filter properties
         let visibleCount = 0;
         propertyItems.forEach((item) => {
-          const itemType = item.getAttribute("data-type");
+          const element = item as HTMLElement;
+          const itemType = element.getAttribute("data-type");
 
           if (filterValue === "all" || itemType === filterValue) {
-            item.style.display = "block";
+            element.style.display = "block";
             // Fade in animation
-            item.style.opacity = "0";
-            item.style.transform = "translateY(20px)";
+            element.style.opacity = "0";
+            element.style.transform = "translateY(20px)";
             setTimeout(() => {
-              item.style.transition = "all 0.5s ease";
-              item.style.opacity = "1";
-              item.style.transform = "translateY(0)";
+              element.style.transition = "all 0.5s ease";
+              element.style.opacity = "1";
+              element.style.transform = "translateY(0)";
             }, 50);
             visibleCount++;
           } else {
-            item.style.display = "none";
+            element.style.display = "none";
           }
         });
 
