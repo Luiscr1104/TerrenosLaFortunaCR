@@ -225,47 +225,53 @@ const {
 
       <!-- Script de envío -->
       <script>
-        const form = document.getElementById("contactForm");
-        const btn = document.getElementById("submitBtn");
+        const form = document.getElementById(
+          "contactForm",
+        ) as HTMLFormElement | null;
+        const btn = document.getElementById(
+          "submitBtn",
+        ) as HTMLButtonElement | null;
         const msg = document.getElementById("formMessage");
 
-        form.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          msg.classList.add("hidden");
-          btn.disabled = true;
-          btn.innerHTML = "Enviando... ⏳";
+        if (form && btn && msg) {
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            msg.classList.add("hidden");
+            btn.disabled = true;
+            btn.innerHTML = "Enviando... ⏳";
 
-          const formData = new FormData(form);
-          const data = Object.fromEntries(formData.entries());
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
 
-          try {
-            const res = await fetch("/api/contact", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(data),
-            });
+            try {
+              const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+              });
 
-            const result = await res.json();
+              const result = await res.json();
 
-            if (res.ok && result.success) {
-              msg.textContent = "✅ Tu mensaje fue enviado correctamente.";
-              msg.classList.remove("hidden");
-              msg.classList.add("text-green-600");
-              form.reset();
-            } else {
-              msg.textContent = "❌ Ocurrió un error al enviar tu mensaje.";
+              if (res.ok && result.success) {
+                msg.textContent = "✅ Tu mensaje fue enviado correctamente.";
+                msg.classList.remove("hidden");
+                msg.classList.add("text-green-600");
+                form.reset();
+              } else {
+                msg.textContent = "❌ Ocurrió un error al enviar tu mensaje.";
+                msg.classList.remove("hidden");
+                msg.classList.add("text-red-600");
+              }
+            } catch (error) {
+              msg.textContent = "❌ Error de conexión. Inténtalo de nuevo.";
               msg.classList.remove("hidden");
               msg.classList.add("text-red-600");
+            } finally {
+              btn.disabled = false;
+              btn.innerHTML = "Request Consultation ↗";
             }
-          } catch (error) {
-            msg.textContent = "❌ Error de conexión. Inténtalo de nuevo.";
-            msg.classList.remove("hidden");
-            msg.classList.add("text-red-600");
-          } finally {
-            btn.disabled = false;
-            btn.innerHTML = "Request Consultation ↗";
-          }
-        });
+          });
+        }
       </script>
     </div>
   </div>

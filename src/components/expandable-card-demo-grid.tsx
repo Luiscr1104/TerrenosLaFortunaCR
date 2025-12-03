@@ -28,7 +28,7 @@ export default function ExpandableCardDemo() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [active]);
 
-  useOutsideClick(ref, () => setActive(null));
+  useOutsideClick(ref as React.RefObject<HTMLDivElement>, () => setActive(null));
 
   return (
     <>
@@ -210,11 +210,11 @@ const cards = [
     content: () => {
       return (
         <p>
-          🌋 <strong>5,200 m² (1.28 acres)</strong> lot with an extraordinary view of the Arenal Volcano.  
-          Located just 8 minutes from downtown La Fortuna, this property is perfect for a private villa or vacation rentals.  
+          🌋 <strong>5,200 m² (1.28 acres)</strong> lot with an extraordinary view of the Arenal Volcano.
+          Located just 8 minutes from downtown La Fortuna, this property is perfect for a private villa or vacation rentals.
           <br />
           <br />
-          ✅ Ready for construction — water, electricity, and paved road access.  
+          ✅ Ready for construction — water, electricity, and paved road access.
           <br />
           💵 <strong>$95,000 USD</strong> – full title and legal verification included.
         </p>
@@ -230,11 +230,11 @@ const cards = [
     content: () => {
       return (
         <p>
-          🌴 <strong>3,800 m² (0.94 acres)</strong> of lush green land surrounded by tropical forest and rivers.  
-          Ideal for building an eco-lodge, Airbnb cabins, or your dream home in nature.  
+          🌴 <strong>3,800 m² (0.94 acres)</strong> of lush green land surrounded by tropical forest and rivers.
+          Ideal for building an eco-lodge, Airbnb cabins, or your dream home in nature.
           <br />
           <br />
-          🛣️ Easy access, close to hotels and hot springs.  
+          🛣️ Easy access, close to hotels and hot springs.
           💵 <strong>$78,000 USD</strong> – financing available for foreigners.
         </p>
       );
@@ -249,11 +249,11 @@ const cards = [
     content: () => {
       return (
         <p>
-          🏘️ <strong>600 m² (6,458 ft²)</strong> flat land inside a new gated community with mountain views.  
-          Walking distance to schools, supermarkets, and 10 minutes to La Fortuna downtown.  
+          🏘️ <strong>600 m² (6,458 ft²)</strong> flat land inside a new gated community with mountain views.
+          Walking distance to schools, supermarkets, and 10 minutes to La Fortuna downtown.
           <br />
           <br />
-          🧱 Ready to build — all services available.  
+          🧱 Ready to build — all services available.
           💵 <strong>$45,000 USD</strong> – perfect for retirement or investment.
         </p>
       );
@@ -268,11 +268,11 @@ const cards = [
     content: () => {
       return (
         <p>
-          🌊 <strong>10,000 m² (2.47 acres)</strong> of pure tranquility next to a crystal-clear river.  
-          Surrounded by forest and wildlife — a dream spot for nature lovers and yoga retreats.  
+          🌊 <strong>10,000 m² (2.47 acres)</strong> of pure tranquility next to a crystal-clear river.
+          Surrounded by forest and wildlife — a dream spot for nature lovers and yoga retreats.
           <br />
           <br />
-          ⚡ Electricity nearby, natural spring water available.  
+          ⚡ Electricity nearby, natural spring water available.
           💵 <strong>$120,000 USD</strong> – financing and full legal assistance included.
         </p>
       );

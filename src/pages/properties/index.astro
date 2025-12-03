@@ -199,7 +199,14 @@ const itemListSchema = {
           data-type={property.type}
           data-location={property.location}
         >
-          <PropertyCard {...property} />
+          <PropertyCard 
+            {...property} 
+            price={property.price || 0} 
+            size={property.size || 0}
+            sizeUnit={property.sizeUnit || "m²"}
+            features={property.features || []}
+            description={property.description || ""}
+          />
         </div>
       ))}
     </div>
@@ -305,16 +312,21 @@ const itemListSchema = {
           let visibleCount = 0;
 
           cards.forEach((card) => {
-            const type = card.dataset.type;
+            // Cast to HTMLElement to access dataset
+            const element = card as HTMLElement;
+            const type = element.dataset.type;
+            
             if (filter === "all" || filter === type) {
-              card.classList.remove("hidden");
+              element.classList.remove("hidden");
               visibleCount++;
             } else {
-              card.classList.add("hidden");
+              element.classList.add("hidden");
             }
           });
 
-          emptyMsg.classList.toggle("hidden", visibleCount > 0);
+          if (emptyMsg) {
+            emptyMsg.classList.toggle("hidden", visibleCount > 0);
+          }
         });
       });
     });

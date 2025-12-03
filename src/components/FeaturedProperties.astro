@@ -76,7 +76,14 @@ const featuredProperties = allProperties.filter((p) => p.featured);
       {
         featuredProperties.map((property) => (
           <div class="property-item" data-type={property.type}>
-            <PropertyCard {...property} />
+            <PropertyCard
+              {...property}
+              price={property.price || 0}
+              size={property.size || 0}
+              sizeUnit={property.sizeUnit || "m²"}
+              features={property.features || []}
+              description={property.description || ""}
+            />
           </div>
         ))
       }
