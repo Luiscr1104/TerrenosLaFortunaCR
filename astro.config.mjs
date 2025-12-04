@@ -21,4 +21,7 @@ export default defineConfig({
     // 🗺️ Sitemap simple para todo el sitio (solo en inglés)
     sitemap(),
   ],
+  image: {
+    domains: ["imagedelivery.net"],
+  },
 });
