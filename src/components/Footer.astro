@@ -4,11 +4,16 @@ const year = new Date().getFullYear();
 
 <footer class="relative overflow-hidden bg-[#0c1612] text-white">
   <!-- Línea superior -->
-  <div class="h-[2px] w-full bg-gradient-to-r from-transparent via-green-600 to-transparent"></div>
+  <div
+    class="h-[2px] w-full bg-gradient-to-r from-transparent via-green-600 to-transparent"
+  >
+  </div>
 
   <!-- CTA superior -->
   <section class="border-b border-white/10 bg-[#0c1612]">
-    <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div
+      class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6"
+    >
       <div class="text-center md:text-left">
         <h3 class="text-3xl font-bold text-white">
           Ready to own your piece of paradise?
@@ -27,7 +32,7 @@ const year = new Date().getFullYear();
                transition-all duration-300 hover:scale-[1.03]"
       >
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967..."/>
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967..."></path>
         </svg>
         WhatsApp Now
       </a>
@@ -35,11 +40,17 @@ const year = new Date().getFullYear();
   </section>
 
   <!-- Contenido principal -->
-  <section class="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+  <section
+    class="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10"
+  >
     <div>
       <div class="flex items-center gap-3 mb-3">
-        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-green-600 to-green-400 shadow-[0_0_18px_rgba(34,197,94,0.5)]"></div>
-        <span class="text-xl font-semibold text-white">Terrenos La Fortuna</span>
+        <div
+          class="h-10 w-10 rounded-lg bg-gradient-to-br from-green-600 to-green-400 shadow-[0_0_18px_rgba(34,197,94,0.5)]"
+        >
+        </div>
+        <span class="text-xl font-semibold text-white">Terrenos La Fortuna</span
+        >
       </div>
       <p class="text-sm text-gray-300 leading-relaxed">
         Boutique real estate focused on premium lots in La Fortuna, San Carlos.
@@ -48,22 +59,50 @@ const year = new Date().getFullYear();
     </div>
 
     <div>
-      <h4 class="text-sm uppercase tracking-widest text-gray-400">Quick Links</h4>
+      <h4 class="text-sm uppercase tracking-widest text-gray-400">
+        Quick Links
+      </h4>
       <ul class="mt-4 space-y-3 text-gray-300 text-sm">
-        <li><a href="/#catalog" class="hover:text-green-400 transition">Top Listings</a></li>
-        <li><a href="/#process" class="hover:text-green-400 transition">How it works</a></li>
-        <li><a href="/#why" class="hover:text-green-400 transition">Why buy with us</a></li>
-        <li><a href="/#contact" class="hover:text-green-400 transition">Contact</a></li>
+        <li>
+          <a href="/#catalog" class="hover:text-green-400 transition"
+            >Top Listings</a>
+        </li>
+        <li>
+          <a href="/#process" class="hover:text-green-400 transition"
+            >How it works</a>
+        </li>
+        <li>
+          <a href="/#why" class="hover:text-green-400 transition"
+            >Why buy with us</a>
+        </li>
+        <li>
+          <a href="/#contact" class="hover:text-green-400 transition"
+            >Contact</a>
+        </li>
       </ul>
     </div>
 
     <div>
-      <h4 class="text-sm uppercase tracking-widest text-gray-400">Categories</h4>
+      <h4 class="text-sm uppercase tracking-widest text-gray-400">
+        Categories
+      </h4>
       <ul class="mt-4 space-y-3 text-gray-300 text-sm">
-        <li><a href="/lots/volcano-view" class="hover:text-green-400 transition">Volcano View</a></li>
-        <li><a href="/lots/jungle" class="hover:text-green-400 transition">Jungle & Privacy</a></li>
-        <li><a href="/lots/river" class="hover:text-green-400 transition">Riverside</a></li>
-        <li><a href="/lots/investment" class="hover:text-green-400 transition">Investment Deals</a></li>
+        <li>
+          <a href="/lots/volcano-view" class="hover:text-green-400 transition"
+            >Volcano View</a>
+        </li>
+        <li>
+          <a href="/lots/jungle" class="hover:text-green-400 transition"
+            >Jungle & Privacy</a>
+        </li>
+        <li>
+          <a href="/lots/river" class="hover:text-green-400 transition"
+            >Riverside</a>
+        </li>
+        <li>
+          <a href="/lots/investment" class="hover:text-green-400 transition"
+            >Investment Deals</a>
+        </li>
       </ul>
     </div>
 
@@ -71,8 +110,19 @@ const year = new Date().getFullYear();
       <h4 class="text-sm uppercase tracking-widest text-gray-400">Contact</h4>
       <ul class="mt-4 space-y-3 text-gray-300 text-sm">
         <li>La Fortuna, San Carlos, Alajuela</li>
-        <li><a href="mailto:hello@terrenoslafortuna.com" class="hover:text-green-400 transition">hello@terrenoslafortuna.com</a></li>
-        <li><a href="tel:+50689354697" class="hover:text-green-400 transition">+506 8935 4697</a></li>
+        <li>
+          <a
+            href="#"
+            class="hover:text-green-400 transition"
+            onclick="event.preventDefault();window.location.href='mailto:'+'hello'+'@'+'terrenoslafortuna.com'"
+          >
+            hello<!-- -->@<!-- -->terrenoslafortuna.com
+          </a>
+        </li>
+        <li>
+          <a href="tel:+50689354697" class="hover:text-green-400 transition"
+            >+506 8935 4697</a>
+        </li>
       </ul>
 
       <a
@@ -82,7 +132,9 @@ const year = new Date().getFullYear();
         class="mt-5 inline-flex items-center gap-2 bg-green-600 hover:bg-green-500
                text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow-md hover:shadow-[0_0_18px_rgba(34,197,94,0.4)]"
       >
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382..."/></svg>
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"
+          ><path d="M17.472 14.382..."></path></svg
+        >
         Free Consultation
       </a>
     </div>
@@ -91,7 +143,9 @@ const year = new Date().getFullYear();
   <div class="border-t border-white/10 py-6 text-center text-xs text-gray-400">
     <p>© {year} Terrenos La Fortuna. All rights reserved.</p>
     <div class="flex items-center justify-center gap-4 mt-2 text-xs">
-      <a href="/privacy" class="hover:text-green-400 transition">Privacy Policy</a>
+      <a href="/privacy" class="hover:text-green-400 transition"
+        >Privacy Policy</a
+      >
       <span class="opacity-40">•</span>
       <a href="/terms" class="hover:text-green-400 transition">Terms</a>
       <span class="opacity-40">•</span>

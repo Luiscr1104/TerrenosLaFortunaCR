@@ -116,7 +116,7 @@ const jsonLdGraph: any[] = [
     ],
     availableLanguage: ["English", "Spanish"],
     telephone: WHATSAPP_NUMBER,
-    email: "info@terrenoslafortunacr.com",
+    email: "info\u0040terrenoslafortunacr.com",
     openingHours: "Mo-Su 08:00-20:00",
     paymentAccepted: "Cash, Credit Card, Bank Transfer, Cryptocurrency",
     currenciesAccepted: "USD, CRC, EUR",
@@ -192,6 +192,17 @@ const jsonLd = {
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+    <!-- Preload Fonts -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
