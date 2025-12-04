@@ -3,22 +3,28 @@
   <div class="absolute inset-0 -z-10">
     <div class="lux-video-cover">
       <iframe
-        src="https://www.youtube.com/embed/kHQ4PgCurc8?autoplay=1&mute=1&loop=1&playlist=kHQ4PgCurc8&controls=0&modestbranding=1&showinfo=0&playsinline=1"
+        src="https://www.youtube-nocookie.com/embed/kHQ4PgCurc8?autoplay=1&mute=1&loop=1&playlist=kHQ4PgCurc8&controls=0&modestbranding=1&showinfo=0&playsinline=1"
         title="Background video"
         frameborder="0"
         allow="autoplay; fullscreen"
-        class="lux-video-iframe pointer-events-none"
-      ></iframe>
+        class="lux-video-iframe pointer-events-none"></iframe>
     </div>
 
     <!-- Overlay degradado para legibilidad -->
-    <div class="absolute inset-0 bg-gradient-to-r from-[#052E14]/85 via-[#052E14]/65 to-[#0A4F28]/75"></div>
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-[#052E14]/85 via-[#052E14]/65 to-[#0A4F28]/75"
+    >
+    </div>
   </div>
 
   <!-- Contenido -->
-  <div class="relative z-10 mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-6">
+  <div
+    class="relative z-10 mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-6"
+  >
     <div class="text-white">
-      <h2 class="text-2xl md:text-3xl font-display font-bold mb-2 text-[#F5D77C]">
+      <h2
+        class="text-2xl md:text-3xl font-display font-bold mb-2 text-[#F5D77C]"
+      >
         Own a Piece of Paradise
       </h2>
       <p class="text-base md:text-lg text-neutral-200 max-w-xl">
@@ -36,7 +42,9 @@
     >
       Explore Opportunities
       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/>
+        <path
+          d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
+        ></path>
       </svg>
     </a>
   </div>
@@ -61,7 +69,7 @@
     /* Si el viewport es más ANCHO que 16:9, ajusta por altura para cubrir */
     @media (min-aspect-ratio: 16/9) {
       .lux-video-iframe {
-        width: 177.78vh;  /* 16/9 * 100 */
+        width: 177.78vh; /* 16/9 * 100 */
         height: 100vh;
       }
     }
