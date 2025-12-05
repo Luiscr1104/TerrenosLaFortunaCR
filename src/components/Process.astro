@@ -2,12 +2,13 @@
   <!-- Fondo YouTube que siempre cubre -->
   <div class="absolute inset-0 -z-10">
     <div class="lux-video-cover">
-      <iframe
-        src="https://www.youtube-nocookie.com/embed/kHQ4PgCurc8?autoplay=1&mute=1&loop=1&playlist=kHQ4PgCurc8&controls=0&modestbranding=1&showinfo=0&playsinline=1"
-        title="Background video"
-        frameborder="0"
-        allow="autoplay; fullscreen"
-        class="lux-video-iframe pointer-events-none"></iframe>
+      <video
+        src="/catarata.mp4"
+        autoplay
+        loop
+        muted
+        playsinline
+        class="lux-video-iframe pointer-events-none object-cover"></video>
     </div>
 
     <!-- Overlay degradado para legibilidad -->
@@ -59,26 +60,11 @@
     }
     .lux-video-iframe {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      /* por defecto: que el ancho llene, alto ajusta */
-      width: 100vw;
-      height: 56.25vw; /* 9/16 * 100 */
-      transform: translate(-50%, -50%);
-    }
-    /* Si el viewport es más ANCHO que 16:9, ajusta por altura para cubrir */
-    @media (min-aspect-ratio: 16/9) {
-      .lux-video-iframe {
-        width: 177.78vh; /* 16/9 * 100 */
-        height: 100vh;
-      }
-    }
-    /* Si el viewport es más ALTO que 16:9, ajusta por ancho para cubrir (ya por defecto) */
-    @media (max-aspect-ratio: 16/9) {
-      .lux-video-iframe {
-        width: 100vw;
-        height: 56.25vw;
-      }
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   </style>
 </section>
