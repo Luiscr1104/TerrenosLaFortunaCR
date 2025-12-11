@@ -128,9 +128,8 @@ export default function LeadForm() {
 
       <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p
-          className={`text-sm ${
-            state === "success" ? "text-green-400" : state === "error" ? "text-red-400" : "text-neutral-400"
-          }`}
+          className={`text-sm ${state === "success" ? "text-green-400" : state === "error" ? "text-red-400" : "text-neutral-400"
+            }`}
         >
           {msg}
         </p>
@@ -170,13 +169,14 @@ function Field({
 }) {
   return (
     <div className="flex flex-col">
-      <label className="mb-1 text-[13px] font-semibold uppercase tracking-wide text-neutral-300">{label}</label>
+      <label htmlFor={name} className="mb-1 text-[13px] font-semibold uppercase tracking-wide text-neutral-300">{label}</label>
       <div
         className="flex items-center gap-2 rounded-xl border bg-neutral-900/60 px-4 py-3 focus-within:border-[color:var(--gold)] focus-within:ring-2 focus-within:ring-[color:var(--gold)]/40 transition-all"
         style={{ borderColor: "#3a3a3a", "--gold": GOLD } as any}
       >
         {icon}
         <input
+          id={name}
           name={name}
           type={type}
           required={required}
@@ -201,13 +201,13 @@ function SelectField({
 }) {
   return (
     <div className="flex flex-col">
-      <label className="mb-1 text-[13px] font-semibold uppercase tracking-wide text-neutral-300">{label}</label>
+      <label htmlFor={name} className="mb-1 text-[13px] font-semibold uppercase tracking-wide text-neutral-300">{label}</label>
       <div
         className="flex items-center gap-2 rounded-xl border bg-neutral-900/60 px-4 py-3 focus-within:border-[color:var(--gold)] focus-within:ring-2 focus-within:ring-[color:var(--gold)]/40 transition-all"
         style={{ borderColor: "#3a3a3a", "--gold": GOLD } as any}
       >
         {icon}
-        <select name={name} className="w-full bg-transparent text-[15px] text-neutral-100 outline-none">
+        <select id={name} name={name} className="w-full bg-transparent text-[15px] text-neutral-100 outline-none">
           {options.map((opt) => (
             <option key={opt} className="bg-neutral-900">
               {opt}
