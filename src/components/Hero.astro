@@ -5,6 +5,13 @@ import "lite-youtube-embed/src/lite-yt-embed.css";
 <section class="relative h-screen w-full overflow-hidden">
   <!-- Video Background - YouTube via lite-youtube-embed -->
   <div class="absolute inset-0 z-0 bg-black">
+    <!-- LCP Image - High Priority -->
+    <img
+      src="https://i.ytimg.com/vi/DxbLZ_RPCuo/maxresdefault.jpg"
+      alt="Arenal Volcano Landscape"
+      fetchpriority="high"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
     <lite-youtube
       videoid="DxbLZ_RPCuo"
       nocookie
@@ -37,7 +44,7 @@ import "lite-youtube-embed/src/lite-yt-embed.css";
     <div class="w-full max-w-6xl text-center pointer-events-auto">
       <!-- Location Badge -->
       <div
-        class="mb-4 sm:mb-6 inline-flex items-center gap-2 rounded-full bg-neutral-900/80 backdrop-blur-sm px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm text-white border border-white/20 shadow-xl animate-fade-in"
+        class="mb-4 sm:mb-6 inline-flex items-center gap-2 rounded-full bg-neutral-900/80 backdrop-blur-sm px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm text-white border border-white/20 shadow-xl"
       >
         <svg
           class="w-3 h-3 sm:w-4 sm:h-4 text-accent-gold"
@@ -54,7 +61,7 @@ import "lite-youtube-embed/src/lite-yt-embed.css";
 
       <!-- Main Headline - SEO Optimized -->
       <h1
-        class="mb-4 sm:mb-6 font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight px-4 animate-slide-up"
+        class="mb-4 sm:mb-6 font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight px-4"
         style="text-shadow: 0 4px 12px rgba(0,0,0,0.9), 0 2px 6px rgba(0,0,0,1);"
       >
         Buy Land & Homes in
@@ -68,7 +75,7 @@ import "lite-youtube-embed/src/lite-yt-embed.css";
 
       <!-- Subheadline - Value Proposition -->
       <p
-        class="mb-6 sm:mb-10 text-base sm:text-xl md:text-2xl lg:text-3xl text-white font-normal max-w-4xl mx-auto leading-relaxed px-4 animate-fade-in"
+        class="mb-6 sm:mb-10 text-base sm:text-xl md:text-2xl lg:text-3xl text-white font-normal max-w-4xl mx-auto leading-relaxed px-4"
         style="text-shadow: 0 3px 10px rgba(0,0,0,0.9), 0 1px 5px rgba(0,0,0,1);"
       >
         Prime real estate near <strong class="font-bold text-white"
@@ -81,8 +88,7 @@ import "lite-youtube-embed/src/lite-yt-embed.css";
 
       <!-- CTA Buttons - Enhanced with vibrant colors and animations -->
       <div
-        class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4 animate-slide-up"
-        style="animation-delay: 0.2s;"
+        class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4"
       >
         <a
           href="#properties"
@@ -136,8 +142,7 @@ import "lite-youtube-embed/src/lite-yt-embed.css";
 
       <!-- Trust Badges - Interactive Pills -->
       <div
-        class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4 animate-fade-in"
-        style="animation-delay: 0.4s;"
+        class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4"
       >
         <button
           class="trust-pill group flex items-center gap-2 bg-neutral-900/70 hover:bg-neutral-900/90 backdrop-blur-md px-3 sm:px-4 py-2 sm:py-2.5 rounded-full border border-white/20 hover:border-accent-gold/50 text-white text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-105"
@@ -276,15 +281,7 @@ import "lite-youtube-embed/src/lite-yt-embed.css";
     }
   }
 
-  .animate-fade-in {
-    animation: fade-in 0.8s ease-out forwards;
-  }
-
-  .animate-slide-up {
-    animation: slide-up 0.8s ease-out forwards;
-  }
-
-  /* Pulsing glow effect for CTA buttons */
+  /* Animations removed for LCP optimization */
   .cta-primary {
     animation: pulse-glow 2s ease-in-out infinite;
   }
@@ -299,8 +296,7 @@ import "lite-youtube-embed/src/lite-yt-embed.css";
   }
 
   .scroll-indicator {
-    animation: fade-in 1s ease-out 1s forwards;
-    opacity: 0;
+    opacity: 1; /* Was animated, now visible immediately for better UX/LCP */
   }
 
   /* Make lite-youtube cover the background */
@@ -315,17 +311,6 @@ import "lite-youtube-embed/src/lite-yt-embed.css";
   import "lite-youtube-embed/src/lite-yt-embed.js";
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Attempt to auto-click the video to start playing (browser policies might block this if not muted)
-    // Since we added mute=1, it has a higher chance of working if we trigger it.
-    const video = document.querySelector("lite-youtube");
-    if (video) {
-      // Small delay to ensure custom element is upgraded
-      setTimeout(() => {
-        // @ts-ignore
-        video.click();
-      }, 500);
-    }
-
     // Trust pills interaction
     const pills = document.querySelectorAll(".trust-pill");
     pills.forEach((pill) => {
