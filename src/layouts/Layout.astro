@@ -12,6 +12,7 @@ interface Props {
   articleSchema?: boolean;
   propertySchema?: any;
   preloadImage?: string;
+  ogType?: "website" | "article";
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   articleSchema = false,
   propertySchema = null,
   preloadImage,
+  ogType = "website",
 } = Astro.props;
 
 const isProd = import.meta.env.MODE === "production";
@@ -116,7 +118,7 @@ const jsonLdGraph: any[] = [
     ],
     availableLanguage: ["English", "Spanish"],
     telephone: WHATSAPP_NUMBER,
-    email: "info\u0040terrenoslafortunacr.com",
+    email: "terrenoslafortunacr\u0040gmail.com",
     openingHours: "Mo-Su 08:00-20:00",
     paymentAccepted: "Cash, Credit Card, Bank Transfer, Cryptocurrency",
     currenciesAccepted: "USD, CRC, EUR",
@@ -276,7 +278,7 @@ const jsonLd = {
     <link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
     <!-- Open Graph - Enhanced -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     {canonicalURL && <meta property="og:url" content={canonicalURL} />}
     <meta property="og:site_name" content="Terrenos La Fortuna CR" />
     <meta property="og:title" content={title} />
