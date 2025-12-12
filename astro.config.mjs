@@ -11,6 +11,7 @@ const SITE_URL = 'https://www.terrenoslafortunacr.com';
 
 export default defineConfig({
   site: SITE_URL,
+  trailingSlash: 'never',
   output: 'server',
   adapter: vercel({}),
   vite: {
