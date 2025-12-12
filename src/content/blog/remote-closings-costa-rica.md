@@ -50,4 +50,4 @@ On the big day, you can be sipping coffee in New York or wine in Paris.
 
 **Remote doesn't mean alone.** We guide you through every single step.
 
-[Start your journey today](/contact) 🚀
+[Start your journey today](/#contact) 🚀

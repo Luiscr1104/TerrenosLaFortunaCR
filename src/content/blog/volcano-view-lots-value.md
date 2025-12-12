@@ -50,4 +50,4 @@ Does the lot feel private? Can you hear the birds, or the highway?
 
 Don't just buy a view; buy a **future**. A well-chosen lot with a protected view, good infrastructure, and usable land will always appreciate faster than a difficult lot with a fleeting glimpse of the volcano.
 
-**Ready to find your perfect view?** [Contact us today](/contact) for a curated list of premium lots.
+**Ready to find your perfect view?** [Contact us today](/#contact) for a curated list of premium lots.

@@ -1,5 +1,7 @@
 ---
 // src/components/sections/FeaturedBlogs.astro
+import { getCollection } from "astro:content";
+
 interface Post {
   title: string
   slug: string
@@ -22,45 +24,29 @@ interface Props {
 const {
   heading = "Featured Articles",
   subheading = "Insightful market updates, buying guidance, and lifestyle perspectives from La Fortuna and Costa Rica.",
-  posts = [
-    {
-      title: "How to Buy Land in Costa Rica as a Foreign Investor",
-      slug: "/blog/how-to-buy-land-costa-rica",
-      excerpt:
-        "A clear, step-by-step overview of due diligence, title verification, corporations vs. personal purchase, and closing timelines.",
-      image:
-        "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/a836c327-13c8-46ae-76a6-8e956a408500/public",
-      date: "2025-09-20",
-      category: "Guides",
-      readingTime: "6 min",
-    },
-    {
-      title: "Volcano-View Lots: What Adds Real Value",
-      slug: "/blog/volcano-view-lots-value",
-      excerpt:
-        "Beyond the view: access, zoning, slope, utilities, and rental potential that materially impact appreciation.",
-      image:
-        "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/162d3767-da91-49f4-2940-a95a8b5d6000/public",
-      date: "2025-10-08",
-      category: "Market",
-      readingTime: "4 min",
-    },
-    {
-      title: "Remote Closings in Costa Rica: A Practical Checklist",
-      slug: "/blog/remote-closings-costa-rica",
-      excerpt:
-        "From power of attorney to bank compliance and escrow: what to prepare for a smooth remote transaction.",
-      image:
-        "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/d11783f5-4e36-4456-fb37-6a96f70a4100/public",
-      date: "2025-10-22",
-      category: "Legal",
-      readingTime: "5 min",
-    },
-  ],
+  posts: propPosts,
   moreHref = "/blog",
   accent = "#16a34a",
   dark = "#052e14",
 } = Astro.props;
+
+let posts = propPosts;
+if (!posts) {
+  const allPosts = await getCollection("blog");
+  const sortedPosts = allPosts.sort(
+    (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+  );
+
+  posts = sortedPosts.slice(0, 3).map((post) => ({
+    title: post.data.title,
+    slug: `/blog/${post.slug}`,
+    excerpt: post.data.excerpt,
+    image: post.data.image,
+    date: post.data.date.toISOString(),
+    category: post.data.category,
+    readingTime: post.data.readingTime,
+  }));
+}
 ---
 
 <section
