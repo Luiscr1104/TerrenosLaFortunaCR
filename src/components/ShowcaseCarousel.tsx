@@ -191,7 +191,7 @@ export default function ShowcaseCarousel({ offers }: ShowcaseCarouselProps) {
 
                     {/* Pagination Dots */}
                     {offers.length > 1 && (
-                        <div className="flex justify-center gap-2 mt-8">
+                        <div className="flex justify-center gap-1 mt-8">
                             {offers.map((_, idx) => (
                                 <button
                                     key={idx}
@@ -199,12 +199,15 @@ export default function ShowcaseCarousel({ offers }: ShowcaseCarouselProps) {
                                         setDirection(idx > currentIndex ? 1 : -1);
                                         setCurrentIndex(idx);
                                     }}
-                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex
-                                        ? "bg-[color:var(--accent)] w-6"
-                                        : "bg-neutral-300 hover:bg-neutral-400"
-                                        }`}
+                                    className="w-12 h-12 flex items-center justify-center group focus:outline-none"
                                     aria-label={`Go to offer ${idx + 1}`}
-                                />
+                                >
+                                    <span className={`rounded-full transition-all duration-300 ${idx === currentIndex
+                                        ? "bg-[color:var(--accent)] w-6 h-2"
+                                        : "bg-neutral-300 w-2 h-2 group-hover:bg-neutral-400"
+                                        }`}
+                                    />
+                                </button>
                             ))}
                         </div>
                     )}
