@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 import partytown from '@astrojs/partytown';
 
 // Dominio principal
-const SITE_URL = 'https://www.terrenoslafortunacr.com';
+const SITE_URL = 'https://www.buylandcr.com';
 
 export default defineConfig({
   site: SITE_URL,

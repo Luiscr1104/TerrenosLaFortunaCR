@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
-const FROM = import.meta.env.RESEND_FROM || "Terrenos La Fortuna <no-reply@terrenoslafortunacr.com>";
+const FROM = import.meta.env.RESEND_FROM || "Buy Land CR <no-reply@buylandcr.com>";
 const TO = import.meta.env.LEADS_TO || ["terrenoslafortunacr@gmail.com", "luiscr1104@gmail.com"];
 
 export async function sendContactEmail({
@@ -74,7 +74,7 @@ export async function sendContactEmail({
   });
 
   // 💌 Auto-respuesta al cliente (sin cambios)
-const clientHtml = `
+  const clientHtml = `
   <div style="font-family:'Segoe UI',Roboto,Arial,sans-serif;background-color:#f8fafb;padding:40px 0;">
     <div style="max-width:640px;margin:auto;background:white;border-radius:12px;box-shadow:0 8px 25px rgba(0,0,0,0.08);overflow:hidden;">
       <div style="background:linear-gradient(135deg,#16a34a,#047857);color:white;padding:24px 32px;text-align:center;">
