@@ -2,7 +2,9 @@ import { Resend } from "resend";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 const FROM = import.meta.env.RESEND_FROM || "Buy Land CR <no-reply@buylandcr.com>";
-const TO = import.meta.env.LEADS_TO || ["terrenoslafortunacr@gmail.com", "luiscr1104@gmail.com"];
+// 🔹 Configuración de destinatarios (Soporta string separado por comas o array fallback)
+const LEADS_ENV = import.meta.env.LEADS_TO;
+const TO = LEADS_ENV ? LEADS_ENV.split(",").map((e: string) => e.trim()) : ["terrenoslafortunacr@gmail.com", "luiscr1104@gmail.com"];
 
 export async function sendContactEmail({
   firstname,
