@@ -26,7 +26,7 @@ export async function sendContactEmail({
   <div style="font-family:'Segoe UI',Roboto,Arial,sans-serif;background-color:#f8fafb;padding:40px 0;">
     <div style="max-width:640px;margin:auto;background:white;border-radius:12px;box-shadow:0 8px 25px rgba(0,0,0,0.08);overflow:hidden;">
       <div style="background:linear-gradient(135deg,#16a34a,#047857);color:white;padding:24px 32px;">
-        <h1 style="margin:0;font-size:22px;font-weight:700;">Nuevo Contacto — Terrenos La Fortuna</h1>
+        <h1 style="margin:0;font-size:22px;font-weight:700;">Nuevo Contacto — BuyLandCR</h1>
         <p style="margin:4px 0 0;font-size:14px;opacity:.9;">Se ha recibido un nuevo mensaje desde el sitio web</p>
       </div>
 
@@ -84,7 +84,7 @@ export async function sendContactEmail({
 
       <div style="padding:32px;text-align:center;color:#333;">
         <p style="font-size:15px;margin-bottom:16px;">
-          A <strong>Terrenos La Fortuna</strong> advisor will contact you very soon with more details about our available properties.
+          A <strong>BuyLandCR</strong> advisor will contact you very soon with more details about our available properties.
         </p>
 
         <p style="font-size:15px;margin-bottom:28px;">
@@ -106,7 +106,7 @@ export async function sendContactEmail({
   await resend.emails.send({
     from: FROM,
     to: email,
-    subject: "Hemos recibido tu mensaje — Terrenos La Fortuna",
+    subject: "Hemos recibido tu mensaje — BuyLandCR",
     html: clientHtml,
   });
 }
