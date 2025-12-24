@@ -160,16 +160,21 @@ const slugChip = `slug-${slug}`;
         </div>
 
         {description && (
-          <article class="prose prose-neutral max-w-none mt-8">
+          <article class="prose prose-lg prose-neutral max-w-none mt-8 text-neutral-700 leading-relaxed">
             <p>{description}</p>
           </article>
         )}
 
         {features.length > 0 && (
-          <div class="mt-6">
-            <div class="text-sm font-semibold text-neutral-900 mb-2">Property Highlights</div>
-            <ul class="space-y-1 text-sm text-neutral-700">
-              {features.map((f) => <li>• {f}</li>)}
+          <div class="mt-8 bg-neutral-50 rounded-2xl p-6 border border-neutral-100">
+            <div class="text-lg font-bold text-neutral-900 mb-4">Property Highlights</div>
+            <ul class="space-y-3 text-base text-neutral-700">
+              {features.map((f) => (
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>{f}</span>
+                </li>
+              ))}
             </ul>
           </div>
         )}
@@ -177,14 +182,36 @@ const slugChip = `slug-${slug}`;
 
       <!-- Columna derecha (hero con recorte + thumbs) -->
       <div class="col-span-12 md:col-span-7 lg:col-span-7">
-        <div class="relative bg-neutral-100 squircle-cut overflow-hidden shadow-sm">
+        <div class="group relative bg-neutral-100 squircle-cut overflow-hidden shadow-sm">
           <img
+            id="main-image"
             src={imageCover}
             alt={title}
-            class="w-full h-[44vh] md:h-[62vh] object-cover"
+            class="w-full h-[44vh] md:h-[62vh] object-cover transition-opacity duration-300"
             style={`view-transition-name: prop-${slug};`}
             loading="eager"
+            data-images={JSON.stringify(images)}
           />
+
+          <!-- Carousel Navigation (Left/Right) -->
+          {images.length > 1 && (
+            <>
+              <button
+                id="prev-btn"
+                class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+                aria-label="Previous image"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+              </button>
+              <button
+                id="next-btn"
+                class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+                aria-label="Next image"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+              </button>
+            </>
+          )}
 
           <!-- Botones flotantes -->
           <div class="absolute top-4 right-4 flex flex-col gap-2">
@@ -201,7 +228,11 @@ const slugChip = `slug-${slug}`;
             <div class="absolute bottom-4 right-4 left-auto flex items-center gap-3">
               <div class="hidden sm:flex items-center gap-2 rounded-2xl bg-white/90 p-2 shadow">
                 {images.slice(0,4).map((src, i) => (
-                  <button class="relative w-24 h-16 rounded-xl overflow-hidden border border-neutral-200 hover:border-neutral-300">
+                  <button
+                    class="thumb-btn relative w-24 h-16 rounded-xl overflow-hidden border border-neutral-200 hover:border-neutral-800 transition-colors"
+                    data-index={i}
+                    data-src={src}
+                  >
                     <img src={src} alt={`${title} ${i+1}`} class="w-full h-full object-cover" loading="lazy" />
                   </button>
                 ))}
@@ -216,4 +247,86 @@ const slugChip = `slug-${slug}`;
   <Process />
   <!-- Banda CTA -->
 
+  <script>
+    function setupCarousel() {
+      const mainImage = document.getElementById("main-image") as HTMLImageElement;
+      if (!mainImage) return;
+
+      const imagesData = mainImage.dataset.images;
+      if (!imagesData) return;
+      
+      const images = JSON.parse(imagesData);
+      let currentIndex = 0;
+
+      const updateImage = (index: number) => {
+        currentIndex = index;
+        // Simple fade effect
+        mainImage.style.opacity = "0.8";
+        
+        setTimeout(() => {
+          mainImage.src = images[currentIndex];
+          mainImage.style.opacity = "1";
+        }, 150);
+
+        // Update active thumb style
+        document.querySelectorAll(".thumb-btn").forEach((btn, i) => {
+          if (i === currentIndex) {
+            btn.classList.add("ring-2", "ring-neutral-900", "border-transparent");
+            btn.classList.remove("border-neutral-200");
+          } else {
+            btn.classList.remove("ring-2", "ring-neutral-900", "border-transparent");
+            btn.classList.add("border-neutral-200");
+          }
+        });
+      };
+
+      // Previous Button
+      const prevBtn = document.getElementById("prev-btn");
+      if (prevBtn) {
+        // Clone to remove existing listeners if re-running
+        const newPrevBtn = prevBtn.cloneNode(true);
+        prevBtn.parentNode?.replaceChild(newPrevBtn, prevBtn);
+        newPrevBtn.addEventListener("click", () => {
+          let newIndex = currentIndex - 1;
+          if (newIndex < 0) newIndex = images.length - 1;
+          updateImage(newIndex);
+        });
+      }
+
+      // Next Button
+      const nextBtn = document.getElementById("next-btn");
+      if (nextBtn) {
+        const newNextBtn = nextBtn.cloneNode(true);
+        nextBtn.parentNode?.replaceChild(newNextBtn, nextBtn);
+        newNextBtn.addEventListener("click", () => {
+          let newIndex = currentIndex + 1;
+          if (newIndex >= images.length) newIndex = 0;
+          updateImage(newIndex);
+        });
+      }
+
+      // Thumbs
+      document.querySelectorAll(".thumb-btn").forEach((btn) => {
+        // Clone to remove existing listeners
+        const newBtn = btn.cloneNode(true) as HTMLElement;
+        btn.parentNode?.replaceChild(newBtn, btn);
+        
+        newBtn.addEventListener("click", (e) => {
+          const target = e.currentTarget as HTMLElement;
+          const index = parseInt(target.dataset.index || "0");
+          updateImage(index);
+        });
+      });
+    }
+
+    // Run immediately if DOM is ready, otherwise wait for load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupCarousel);
+    } else {
+      setupCarousel();
+    }
+
+    // Also run on Astro page transitions
+    document.addEventListener("astro:page-load", setupCarousel);
+  </script>
 </Layout>
