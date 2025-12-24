@@ -40,24 +40,19 @@ export function ParallaxScrollSecondDemo() {
 }
 
 const images = [
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/c86779d7-53ff-44a0-0241-3804e2bba900/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/effbb4f2-933e-46ef-4d80-07f34f3c0000/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/70877784-f7c9-4b0a-fb28-ecdf3cbae900/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/0a7447bb-1b5a-40c1-ebd3-f834f030d500/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/f63082b1-eee4-4d02-7af3-455cdc8faf00/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/896b7f54-7551-4270-6973-90742d2edd00/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/b7fb96c9-e60e-48bc-9e0e-4f7c96b6c000/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/e1dfba7d-7dda-48ef-eb81-e6e0d5d9fc00/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/ae1c2c8a-44db-4503-32e7-3d3bea799f00/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/34ab21d4-0ce3-473f-324c-91c12ec0b100/public",  
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/c86779d7-53ff-44a0-0241-3804e2bba900/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/effbb4f2-933e-46ef-4d80-07f34f3c0000/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/70877784-f7c9-4b0a-fb28-ecdf3cbae900/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/0a7447bb-1b5a-40c1-ebd3-f834f030d500/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/f63082b1-eee4-4d02-7af3-455cdc8faf00/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/896b7f54-7551-4270-6973-90742d2edd00/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/b7fb96c9-e60e-48bc-9e0e-4f7c96b6c000/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/e1dfba7d-7dda-48ef-eb81-e6e0d5d9fc00/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/ae1c2c8a-44db-4503-32e7-3d3bea799f00/public",
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/34ab21d4-0ce3-473f-324c-91c12ec0b100/public",
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/5cd588c4-a4ad-4d7b-2265-c32b4e859900/public", // Luxury Home Pool
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/0b20ab98-9a27-42da-4d12-9adcb7066200/public", // Eco Villas
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/984f3b88-418c-42e0-8a13-ca8f69ce6900/public", // Nature Sanctuary
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/f41525fe-ec6d-4132-0f8f-df340eb94200/public", // Luxury Home Aerial
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/1bc0b595-3e78-49fa-a6b5-6aab2cb66600/public", // Eco Villas Cabin
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/7a71c4ee-fbbc-4dc2-59a1-b54a39631400/public", // Nature Sanctuary Stream
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/6decbeec-ab94-4a93-f1d2-570ed6d25200/public", // Luxury Home Interior
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/d01d1f85-1f2c-4db1-25d2-9e922c430c00/public", // Eco Villas Lake
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/0ed12853-ed27-41a5-8e4b-5b636883b100/public", // Private Land View
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/a9fefc66-ebd7-4901-32ea-9605a0b6b600/public", // Scenic Land
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/fa2b6a83-c768-42d7-effe-215ccd812000/public", // Luxury Home Terrace
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/aad39732-edde-4482-9e97-c9e8dc623400/public", // Eco Villas Interior
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/deb6f230-4a80-430a-7897-3ec224148100/public", // Private Land Forest
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/364c5e6f-f11c-4a71-1be9-2e91761d9000/public", // Luxury Home Bedroom
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/6bcfb2a5-adba-4a8a-a1ab-1b6960c03200/public", // Eco Villas Garden
 ];
