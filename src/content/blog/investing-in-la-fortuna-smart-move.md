@@ -2,7 +2,7 @@
 title: "Why Investing in La Fortuna Is a Smart Move for High-End Buyers"
 excerpt: "A clear, investor-focused look at why La Fortuna stands out as one of Costa Rica’s strongest real estate markets."
 date: 2025-10-08
-image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/162d3767-da91-49f4-2940-a95a8b5d6000/public"
+image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/a7851005-51b2-47a7-29a4-c9585d35f200/public"
 category: "Market"
 readingTime: "5 min"
 ---

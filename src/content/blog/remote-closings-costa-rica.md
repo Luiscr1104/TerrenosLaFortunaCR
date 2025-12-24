@@ -2,7 +2,7 @@
 title: "Remote Closings in Costa Rica: A Practical Checklist ✍️"
 excerpt: "From power of attorney to bank compliance and escrow: what to prepare for a smooth remote transaction."
 date: 2025-10-22
-image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/d11783f5-4e36-4456-fb37-6a96f70a4100/public"
+image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/fdde4173-3bb6-4d24-e664-65250030ad00/public"
 category: "Legal"
 readingTime: "5 min"
 ---

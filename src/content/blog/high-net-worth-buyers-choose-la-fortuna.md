@@ -2,7 +2,7 @@
 title: "Why High-Net-Worth Buyers Choose La Fortuna: A Lifestyle Investment With Global Appeal"
 excerpt: "La Fortuna is emerging as a world-class destination for investors seeking privacy, nature, and long-term appreciation without the complexity of traditional markets."
 date: 2025-10-18
-image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/162d3767-da91-49f4-2940-a95a8b5d6000/public"
+image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/721505cb-20db-4910-66d7-d36de2442d00/public"
 category: "Market"
 readingTime: "5 min"
 ---

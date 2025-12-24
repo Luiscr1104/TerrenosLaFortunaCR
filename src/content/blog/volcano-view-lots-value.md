@@ -2,7 +2,7 @@
 title: "Volcano-View Lots: What Adds Real Value 🌋"
 excerpt: "Beyond the view: access, zoning, slope, utilities, and rental potential that materially impact appreciation."
 date: 2025-10-08
-image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/162d3767-da91-49f4-2940-a95a8b5d6000/public"
+image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/cb1411dc-1f26-4791-e0dc-bb2fc1990900/public"
 category: "Market"
 readingTime: "4 min"
 ---

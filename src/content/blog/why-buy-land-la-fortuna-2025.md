@@ -2,7 +2,7 @@
 title: "Why 2025 Is The Year Smart Investors Are Buying Land in La Fortuna (ROI & Market Report)"
 excerpt: "Infrastructure growth, rising tourism demand, and limited inventory make La Fortuna one of the hottest real estate markets in Central America for 2025."
 date: 2024-12-22
-image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/26f9487f-8661-4988-ee12-e50e136b4d00/public"
+image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/aeeb21bb-9829-460f-f94d-449aebe92200/public"
 category: "Investment"
 readingTime: "6 min"
 ---

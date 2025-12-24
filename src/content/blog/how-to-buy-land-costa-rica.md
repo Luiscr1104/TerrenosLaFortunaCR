@@ -1,7 +1,7 @@
 ---
 title: "How to Buy Land in Costa Rica as a Foreign Investor"
 excerpt: "A clear, step-by-step overview of due diligence, title verification, corporations vs. personal purchase, and closing timelines."
-image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/a836c327-13c8-46ae-76a6-8e956a408500/public"
+image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/7217ea82-a84d-4158-1636-0678186d6200/public"
 date: "2025-09-20"
 category: "Guides"
 readingTime: "6 min"
