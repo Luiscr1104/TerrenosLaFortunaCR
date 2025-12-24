@@ -105,7 +105,7 @@ export function HeroScrollDemo() {
         )}
       >
         <img
-          src="https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/c86779d7-53ff-44a0-0241-3804e2bba900/public"
+          src="https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/7882183c-a6cf-4aed-54a2-ca8be9241000/public"
           alt="hero"
           height={720}
           width={1400}
