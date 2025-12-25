@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.terrenoslafortunacr.com/sitemap-index.xml
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+Sitemap: https://www.buylandcr.com/sitemap-index.xml
