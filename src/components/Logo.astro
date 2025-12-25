@@ -1,0 +1,94 @@
+---
+interface Props {
+  class?: string;
+  type?: "full" | "icon";
+}
+
+const { class: className, type = "full" } = Astro.props;
+
+const viewBox = type === "icon" ? "40 30 160 160" : "0 0 860 220";
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox={viewBox}
+  class={className}
+  role="img"
+  aria-label="BuyLandCR logo"
+>
+  <title>BuyLandCR</title>
+
+  <style>
+    .mark {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .fill {
+      fill: currentColor;
+    }
+    .text {
+      fill: currentColor;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+        Arial;
+      font-weight: 800;
+    }
+    .sub {
+      fill: currentColor;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+        Arial;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+  </style>
+
+  <!-- ICON / MARK -->
+  <g transform="translate(40,30)">
+    <!-- Outer badge -->
+    <rect x="0" y="0" width="160" height="160" rx="34" class="mark"></rect>
+
+    <!-- Volcano (Arenal-inspired) -->
+    <path class="mark" d="M35 110 L80 52 L125 110"></path>
+    <path class="mark" d="M62 84 L80 68 L98 84"></path>
+
+    <!-- Land lines -->
+    <path class="mark" d="M28 126 C55 114, 105 114, 132 126"></path>
+    <path class="mark" d="M28 140 C60 130, 100 130, 132 140"></path>
+
+    <!-- Small 'CR' tag -->
+    <rect
+      x="96"
+      y="18"
+      width="52"
+      height="34"
+      rx="12"
+      class="fill"
+      opacity="0.10"></rect>
+    <text x="122" y="42" text-anchor="middle" class="text" font-size="18"
+      >CR</text
+    >
+  </g>
+
+  <!-- WORDMARK -->
+  {
+    type === "full" && (
+      <g transform="translate(240,80)">
+        <text class="text" font-size="66">
+          <tspan>Buy</tspan>
+          <tspan class="fill" opacity="0.85">
+            Land
+          </tspan>
+          <tspan>CR</tspan>
+        </text>
+        <text class="sub" font-size="16" y="44">
+          REAL ESTATE • LA FORTUNA
+        </text>
+
+        <!-- underline accent -->
+        <path d="M0 62 H520" class="mark" opacity="0.35" />
+      </g>
+    )
+  }
+</svg>
