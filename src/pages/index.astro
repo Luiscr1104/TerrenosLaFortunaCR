@@ -24,40 +24,56 @@ const stats = [
 ---
 
 <Layout preloadImage="https://i.ytimg.com/vi/DxbLZ_RPCuo/maxresdefault.jpg">
+	<!-- 1. HOOK: Hero Section -->
 	<Hero />
+
+	<!-- 2. PRODUCT: Immediate Value (The "Goods") -->
 	<FeaturedProperties />
+
+	<!-- 3. UPSELL: The High-Ticket Flagship Item -->
 	<ShowcaseSplit
 		offers={[
 			{
-				title: "Luxury 4-Bedroom Villa with Pool, Jacuzzi & Volcano View",
+				title: "The Ultimate Wealth Preservation Asset: Luxury Turnkey Estate",
 				subtitle:
-					"Experience the perfect blend of tropical luxury and tranquility just 16 minutes from downtown La Fortuna. This fully titled 3,000 m² property features 4 bedrooms, 3 bathrooms, a private pool with jacuzzi, a covered bar with pool table, and stunning views of the Arenal Volcano — ideal for residence or Airbnb investment.",
-				promoTitle: "🔥 Hot Offer",
-				promoHighlight: "Arenal Volcano View",
-				ctaLabel: "View Property",
+					"An architectural masterpiece engineered for high-yield returns. This 4-bedroom sanctuary isn't just a home; it's a performing asset. Featuring panoramic volcano views, resort-style amenities, and established rental potential, it offers the perfect hedge against inflation while delivering immediate lifestyle dividends. Located just 16 minutes from La Fortuna.",
+				promoTitle: "💎 Premium Portfolio",
+				promoHighlight: "High ROI Potential",
+				ctaLabel: "View Investment Details",
 				ctaHref: "/properties/villa-arenal-luxury-4br",
 				image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/f41525fe-ec6d-4132-0f8f-df340eb94200/public",
-				locationChip: "La Fortuna, Costa Rica",
+				locationChip: "Arenal, Costa Rica",
 				stats: [
 					{ value: "4 / 3", label: "Beds / Baths" },
-					{ value: "3,000 m²", label: "Lot Size" },
-					{ value: "$715k", label: "Target Price" },
+					{ value: "3,000 m²", label: "Estate Size" },
+					{ value: "$715k", label: "Turnkey Price" },
 				],
 				accent: "#16a34a",
 			},
 		]}
 	/>
 
+	<!-- 4. TRANSITION: Visual Brand Reinforcement -->
 	<HeroScrollDemo client:visible />
+
+	<!-- 5. TRUST & AUTHORITY: Why Us? -->
+	<WhyBuyWithUs />
+
+	<!-- 6. LOGIC: How it works (Objection Handling) -->
 	<div class="mb-20">
 		<Process />
 	</div>
-	<WhyBuyWithUs />
+
+	<!-- 7. ACTION: Close the Deal -->
 	<div class="mb-32">
 		<ContactForm />
 	</div>
-	<FeaturedBlogs />
+
+	<!-- 8. REINFORCEMENT: Visual Proof / Lifestyle -->
 	<div class="mb-32">
 		<ParallaxScrollSecondDemo client:visible />
 	</div>
+
+	<!-- 9. SEO & EDUCATION: Long-tail content (Lowest priority for direct sales) -->
+	<FeaturedBlogs />
 </Layout>

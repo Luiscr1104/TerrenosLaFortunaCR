@@ -6,7 +6,7 @@ interface Props {
 }
 
 const {
-  image = "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/44060157-e87e-4492-8987-3dc51ccac900/public",
+  image = "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/984f3b88-418c-42e0-8a13-ca8f69ce6900/public",
   accentGold = "#16a34a",
   accentGreen = "#16a34a",
 } = Astro.props;
@@ -89,18 +89,24 @@ const {
         or home in Costa Rica.
       </p>
 
-      <form id="contactForm" class="space-y-4">
-        <!-- 🕵️‍♂️ Honeypot (anti-bots simple) -->
+      <form
+        action="https://formsubmit.co/terrenoslafortunacr@gmail.com"
+        method="POST"
+        class="space-y-4"
+      >
+        <!-- Configuration Fields -->
         <input
-          type="text"
-          name="website"
-          tabindex="-1"
-          autocomplete="off"
-          style="display:none !important"
+          type="hidden"
+          name="_subject"
+          value="New Lead from BuyLandCR Website"
         />
-
-        <!-- ⏱️ Time trap (tiempo de carga del form) -->
-        <input type="hidden" name="start_time" value={Date.now()} />
+        <input type="hidden" name="_captcha" value="false" />
+        <input
+          type="hidden"
+          name="_next"
+          value="https://buylandcr.com/?success=true"
+        />
+        <input type="hidden" name="_template" value="table" />
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
@@ -219,10 +225,9 @@ const {
         <div class="flex flex-col sm:flex-row gap-3 pt-2">
           <button
             type="submit"
-            id="submitBtn"
             class="inline-flex justify-center items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold
        text-neutral-900 bg-[color:var(--gold)] hover:brightness-[.97] active:brightness-95
-       shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] transition"
+       shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] transition cursor-pointer"
             style={`--gold:${accentGold}`}
           >
             Request Consultation ↗
@@ -239,64 +244,7 @@ const {
             WhatsApp Now
           </a>
         </div>
-
-        <p
-          id="formMessage"
-          class="mt-3 text-[13px] text-center text-neutral-500 hidden"
-        >
-        </p>
       </form>
-
-      <!-- Script de envío -->
-      <script>
-        const form = document.getElementById(
-          "contactForm",
-        ) as HTMLFormElement | null;
-        const btn = document.getElementById(
-          "submitBtn",
-        ) as HTMLButtonElement | null;
-        const msg = document.getElementById("formMessage");
-
-        if (form && btn && msg) {
-          form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            msg.classList.add("hidden");
-            btn.disabled = true;
-            btn.innerHTML = "Enviando... ⏳";
-
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-
-            try {
-              const res = await fetch("/api/contact", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
-              });
-
-              const result = await res.json();
-
-              if (res.ok && result.success) {
-                msg.textContent = "✅ Tu mensaje fue enviado correctamente.";
-                msg.classList.remove("hidden");
-                msg.classList.add("text-green-600");
-                form.reset();
-              } else {
-                msg.textContent = "❌ Ocurrió un error al enviar tu mensaje.";
-                msg.classList.remove("hidden");
-                msg.classList.add("text-red-600");
-              }
-            } catch (error) {
-              msg.textContent = "❌ Error de conexión. Inténtalo de nuevo.";
-              msg.classList.remove("hidden");
-              msg.classList.add("text-red-600");
-            } finally {
-              btn.disabled = false;
-              btn.innerHTML = "Request Consultation ↗";
-            }
-          });
-        }
-      </script>
     </div>
   </div>
 </section>
