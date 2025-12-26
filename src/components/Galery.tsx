@@ -8,10 +8,10 @@ export function ParallaxScrollSecondDemo() {
       {/* Encabezado de la sección */}
       <div className="text-center mb-12 md:mb-16 lg:mb-20 px-4">
         <div
-          className="inline-flex items-center gap-2 bg-[#F5D77C]/15 text-neutral-900
-                     px-4 py-2 rounded-full text-sm font-semibold border border-[#F5D77C]/40 mb-4"
+          className="inline-flex items-center gap-2 bg-[#16a34a]/10 text-[#16a34a]
+                     px-4 py-2 rounded-full text-sm font-semibold mb-4"
         >
-          <span className="inline-block h-2 w-2 rounded-full bg-[#F5D77C]"></span>
+          <span className="inline-block h-2 w-2 rounded-full bg-[#16a34a]"></span>
           <span>Featured Gallery</span>
         </div>
 
@@ -49,7 +49,7 @@ const images = [
   "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/6decbeec-ab94-4a93-f1d2-570ed6d25200/public", // Luxury Home Interior
   "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/d01d1f85-1f2c-4db1-25d2-9e922c430c00/public", // Eco Villas Lake
   "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/0ed12853-ed27-41a5-8e4b-5b636883b100/public", // Private Land View
-  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/a9fefc66-ebd7-4901-32ea-9605a0b6b600/public", // Scenic Land
+  "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/5cd588c4-a4ad-4d7b-2265-c32b4e859900/public", // Scenic Land
   "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/fa2b6a83-c768-42d7-effe-215ccd812000/public", // Luxury Home Terrace
   "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/aad39732-edde-4482-9e97-c9e8dc623400/public", // Eco Villas Interior
   "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/deb6f230-4a80-430a-7897-3ec224148100/public", // Private Land Forest
