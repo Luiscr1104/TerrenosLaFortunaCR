@@ -93,7 +93,7 @@ import WhatsappIcon from "./WhatsappIcon.astro";
         class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4"
       >
         <a
-          href="#properties"
+          href="/properties"
           class="cta-primary group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-400 via-accent-gold to-yellow-500 hover:from-yellow-300 hover:via-yellow-400 hover:to-accent-gold text-neutral-900 px-6 sm:px-8 py-4 sm:py-5 rounded-xl font-bold text-base sm:text-lg shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-yellow-300/50"
         >
           <svg
@@ -209,7 +209,7 @@ import WhatsappIcon from "./WhatsappIcon.astro";
   <!-- Scroll Indicator -->
   <button
     class="scroll-indicator absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/70 hover:text-white transition-all duration-300 cursor-pointer group pointer-events-auto"
-    onclick="document.getElementById('properties').scrollIntoView({ behavior: 'smooth' });"
+    onclick="window.location.href='/properties';"
   >
     <span class="text-xs sm:text-sm font-medium tracking-wide"
       >Explore Properties</span

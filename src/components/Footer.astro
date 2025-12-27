@@ -1,6 +1,7 @@
 ---
 const year = new Date().getFullYear();
 import Logo from "./Logo.astro";
+import WhatsappIcon from "./WhatsappIcon.astro";
 ---
 
 <footer class="relative overflow-hidden bg-[#0c1612] text-white">
@@ -32,11 +33,7 @@ import Logo from "./Logo.astro";
                text-white font-semibold px-6 py-3 rounded-xl shadow-[0_6px_20px_rgba(22,163,74,0.4)]
                transition-all duration-300 hover:scale-[1.03]"
       >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path
-            d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.332 4.993L2 22l5.083-1.334a9.96 9.96 0 0 0 4.928 1.317h.004a9.99 9.99 0 0 0 9.99-9.982C22.002 6.666 17.522 2 12.012 2zm0 18.288h-.004a8.27 8.27 0 0 1-4.22-1.157l-.302-.18-3.138.823.838-3.058-.196-.313a8.28 8.28 0 0 1-1.27-4.417c.002-4.57 3.725-8.287 8.29-8.287 2.214 0 4.295.863 5.86 2.428a8.26 8.26 0 0 1 2.433 5.865c-.003 4.568-3.725 8.286-8.29 8.296zm4.538-6.205c-.248-.124-1.472-.726-1.7-.81-.226-.082-.392-.123-.556.124-.166.248-.642.81-.787.974-.144.166-.29.186-.537.062-.248-.125-1.047-.386-1.994-1.23-1.74-1.55-2.07-2.48-2.31-2.88-.23-.39-.18-.56.05-.78.21-.19.46-.49.69-.74.23-.25.3-.42.45-.7.15-.27.07-.52-.04-.73-.11-.2-.56-2.28-.99-2.67-.3-.26-.64-.23-.87-.23-.23 0-.5.08-.76.36-.26.29-1 .98-1 2.38s1.02 2.76 1.16 2.95c.14.19 2 3.06 4.85 4.29 2.84 1.23 2.84.82 3.36.76.51-.06 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.16-.48-.28z"
-          ></path>
-        </svg>
+        <WhatsappIcon className="w-5 h-5" />
         WhatsApp Now
       </a>
     </div>
@@ -62,7 +59,7 @@ import Logo from "./Logo.astro";
       </h4>
       <ul class="mt-4 space-y-3 text-gray-300 text-sm">
         <li>
-          <a href="/#catalog" class="hover:text-green-400 transition"
+          <a href="/properties" class="hover:text-green-400 transition"
             >Top Listings</a
           >
         </li>
@@ -89,22 +86,22 @@ import Logo from "./Logo.astro";
       </h4>
       <ul class="mt-4 space-y-3 text-gray-300 text-sm">
         <li>
-          <a href="/lots/volcano-view" class="hover:text-green-400 transition"
+          <a href="/properties" class="hover:text-green-400 transition"
             >Volcano View</a
           >
         </li>
         <li>
-          <a href="/lots/jungle" class="hover:text-green-400 transition"
+          <a href="/properties" class="hover:text-green-400 transition"
             >Jungle & Privacy</a
           >
         </li>
         <li>
-          <a href="/lots/river" class="hover:text-green-400 transition"
+          <a href="/properties" class="hover:text-green-400 transition"
             >Riverside</a
           >
         </li>
         <li>
-          <a href="/lots/investment" class="hover:text-green-400 transition"
+          <a href="/properties" class="hover:text-green-400 transition"
             >Investment Deals</a
           >
         </li>
@@ -138,11 +135,7 @@ import Logo from "./Logo.astro";
         class="mt-5 inline-flex items-center gap-2 bg-green-600 hover:bg-green-500
                text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow-md hover:shadow-[0_0_18px_rgba(34,197,94,0.4)]"
       >
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"
-          ><path
-            d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.332 4.993L2 22l5.083-1.334a9.96 9.96 0 0 0 4.928 1.317h.004a9.99 9.99 0 0 0 9.99-9.982C22.002 6.666 17.522 2 12.012 2zm0 18.288h-.004a8.27 8.27 0 0 1-4.22-1.157l-.302-.18-3.138.823.838-3.058-.196-.313a8.28 8.28 0 0 1-1.27-4.417c.002-4.57 3.725-8.287 8.29-8.287 2.214 0 4.295.863 5.86 2.428a8.26 8.26 0 0 1 2.433 5.865c-.003 4.568-3.725 8.286-8.29 8.296zm4.538-6.205c-.248-.124-1.472-.726-1.7-.81-.226-.082-.392-.123-.556.124-.166.248-.642.81-.787.974-.144.166-.29.186-.537.062-.248-.125-1.047-.386-1.994-1.23-1.74-1.55-2.07-2.48-2.31-2.88-.23-.39-.18-.56.05-.78.21-.19.46-.49.69-.74.23-.25.3-.42.45-.7.15-.27.07-.52-.04-.73-.11-.2-.56-2.28-.99-2.67-.3-.26-.64-.23-.87-.23-.23 0-.5.08-.76.36-.26.29-1 .98-1 2.38s1.02 2.76 1.16 2.95c.14.19 2 3.06 4.85 4.29 2.84 1.23 2.84.82 3.36.76.51-.06 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.16-.48-.28z"
-          ></path></svg
-        >
+        <WhatsappIcon className="w-4 h-4" />
         Free Consultation
       </a>
     </div>
