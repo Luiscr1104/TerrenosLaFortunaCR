@@ -1,6 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import ContactForm from "../../components/ContactForm.astro";
+import { getAllProperties, formatPriceUSD } from "../../lib/properties";
+
+const properties = getAllProperties().slice(0, 3);
 
 const title = "Investor's Guide to La Fortuna, Costa Rica | BuyLandCR";
 const description =
@@ -76,18 +79,18 @@ const coverImage =
                     <h1
                         class="text-5xl md:text-7xl font-display font-black text-white mb-8 leading-[1.1] text-glow"
                     >
-                        Master the <span
+                        Secure <span
                             class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-200"
-                            >Costa Rica</span
-                        > Real Estate Market
+                            >15%+ Annual ROI</span
+                        > in the Arenal Market
                     </h1>
 
                     <p
                         class="text-xl md:text-2xl text-white/80 mb-10 leading-relaxed font-light"
                     >
-                        Stop navigating in the dark. Access the data, legal
-                        frameworks, and ROI models used by top international
-                        investors in <span
+                        Master the "Regla del 2%" used by top international
+                        investors. Access the same legal frameworks and
+                        proprietary data used to secure premium land in <span
                             class="text-white font-medium italic underline decoration-green-500/50"
                             >La Fortuna</span
                         >.
@@ -156,7 +159,9 @@ const coverImage =
     </section>
 
     <!-- Value Propositions with Glassmorphism -->
-    <section class="py-24 bg-[#031d0d] relative overflow-hidden">
+    <section
+        class="py-24 bg-[#052E14] relative overflow-hidden border-t border-white/5"
+    >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
                 <h2
@@ -164,38 +169,218 @@ const coverImage =
                 >
                     Inside the Guide
                 </h2>
-                <div class="w-24 h-1 bg-green-600 mx-auto rounded-full"></div>
+                <div class="w-24 h-1 bg-[#D4AF37] mx-auto rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
                 {
                     [
                         {
-                            title: "Legal Safety",
-                            desc: "Understand 'Corporation vs Person' ownership and the Digital escrow process.",
-                            icon: "⚖️",
+                            title: "The 2% Rule",
+                            desc: "How to identify properties that generate enough rental income to cover all expenses and more.",
+                            icon: "💎",
                         },
                         {
                             title: "ROI Hotspots",
-                            desc: "Discover which areas in La Fortuna are seeing 15%+ annual appreciation.",
+                            desc: "Discover which areas in La Fortuna are seeing 15%+ annual appreciation in 2024.",
                             icon: "📈",
                         },
                         {
-                            title: "Tax Planning",
-                            desc: "The expat's guide to property taxes and residency benefits in 2024.",
-                            icon: "🏛️",
+                            title: "Legal Protection",
+                            desc: "The expat's guide to Title Assurance, Digital Escrow, and safe remote signings.",
+                            icon: "🛡️",
                         },
                     ].map((item) => (
-                        <div class="glass-card p-10 rounded-[2.5rem] hover:bg-white/5 transition-colors border border-white/5 group">
+                        <div class="glass-card p-10 rounded-[2.5rem] hover:bg-white/5 transition-colors border border-white/5 group text-center md:text-left">
                             <div class="text-5xl mb-6 group-hover:scale-110 transition-transform inline-block">
                                 {item.icon}
                             </div>
                             <h3 class="text-2xl font-bold text-white mb-4">
                                 {item.title}
                             </h3>
-                            <p class="text-white/60 leading-relaxed">
+                            <p class="text-white/60 leading-relaxed font-light">
                                 {item.desc}
                             </p>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="max-w-4xl mx-auto">
+                <div
+                    class="glass-card rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl relative"
+                >
+                    <div class="absolute top-0 right-0 p-4">
+                        <span
+                            class="text-[10px] font-black text-[#D4AF37] uppercase tracking-[0.3em] opacity-40"
+                            >Benchmark v2.4</span
+                        >
+                    </div>
+                    <div class="p-10 border-b border-white/10 bg-white/5">
+                        <h3 class="text-2xl font-bold text-white text-center">
+                            Market Performance 2024
+                        </h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-white/5 text-[#D4AF37]">
+                                    <th
+                                        class="px-8 py-5 uppercase tracking-widest text-[10px] font-black"
+                                        >Region</th
+                                    >
+                                    <th
+                                        class="px-8 py-5 uppercase tracking-widest text-[10px] font-black"
+                                        >Avg. ROI</th
+                                    >
+                                    <th
+                                        class="px-8 py-5 uppercase tracking-widest text-[10px] font-black"
+                                        >Stability</th
+                                    >
+                                    <th
+                                        class="px-8 py-5 uppercase tracking-widest text-[10px] font-black"
+                                        >Growth</th
+                                    >
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr
+                                    class="group/row hover:bg-white/5 transition-colors"
+                                >
+                                    <td
+                                        class="px-8 py-6 text-[#D4AF37] font-bold"
+                                        >La Fortuna</td
+                                    >
+                                    <td class="px-8 py-6 text-white font-medium"
+                                        >12-18%</td
+                                    >
+                                    <td class="px-8 py-6 text-white/80"
+                                        >High (Year-round)</td
+                                    >
+                                    <td class="px-8 py-6 text-white/80"
+                                        >Explosive</td
+                                    >
+                                </tr>
+                                <tr
+                                    class="opacity-50 hover:opacity-100 transition-opacity"
+                                >
+                                    <td class="px-8 py-6 text-white italic"
+                                        >Nosara</td
+                                    >
+                                    <td class="px-8 py-6 text-white">6-8%</td>
+                                    <td class="px-8 py-6 text-white/60"
+                                        >Seasonal</td
+                                    >
+                                    <td class="px-8 py-6 text-white/60"
+                                        >Saturated</td
+                                    >
+                                </tr>
+                                <tr
+                                    class="opacity-50 hover:opacity-100 transition-opacity border-none"
+                                >
+                                    <td class="px-8 py-6 text-white italic"
+                                        >Tamarindo</td
+                                    >
+                                    <td class="px-8 py-6 text-white">5-7%</td>
+                                    <td class="px-8 py-6 text-white/60"
+                                        >Seasonal</td
+                                    >
+                                    <td class="px-8 py-6 text-white/60"
+                                        >Mature</td
+                                    >
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div
+                        class="p-6 bg-[#D4AF37]/10 text-center border-t border-white/5"
+                    >
+                        <p
+                            class="text-[#D4AF37] text-xs font-bold uppercase tracking-widest"
+                        >
+                            Strategy: Year-round demand vs. Coastal volatility.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaser Property Catalog -->
+    <section
+        class="py-24 bg-[#052E14] border-t border-white/5 relative overflow-hidden"
+    >
+        <!-- Subtle background texture -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div
+                class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:40px_40px]"
+            >
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div
+                class="flex flex-col md:flex-row justify-between items-end gap-6 mb-16"
+            >
+                <div class="max-w-xl">
+                    <h2
+                        class="text-3xl md:text-5xl font-display font-bold text-white mb-4"
+                    >
+                        Current High-Yield Opportunities
+                    </h2>
+                    <p class="text-white/60">
+                        A sneak peek at real properties available in our
+                        inventory. Fully titled, vetted, and featured in the
+                        guide's investment case studies.
+                    </p>
+                </div>
+                <a
+                    href="/properties"
+                    class="text-[#D4AF37] font-bold hover:text-white transition-colors inline-flex items-center gap-2 group"
+                >
+                    View Full Catalog <span
+                        class="group-hover:translate-x-1 transition-transform"
+                        >→</span
+                    >
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {
+                    properties.map((prop) => (
+                        <div class="group relative rounded-[2.5rem] overflow-hidden border border-white/10 glass-card">
+                            <div class="aspect-[4/3] relative overflow-hidden">
+                                <img
+                                    src={prop.images[0]}
+                                    alt={prop.title}
+                                    class="w-full h-full object-cover grayscale blur-[3px] group-hover:blur-0 group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
+                                />
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#052E14] via-[#052E14]/20 to-transparent opacity-80" />
+                                <div class="absolute top-5 left-5">
+                                    <span class="px-3 py-1 rounded-full bg-[#D4AF37] text-[#052E14] text-[10px] font-black uppercase tracking-widest shadow-lg">
+                                        {prop.type === "land"
+                                            ? "Exclusive Land"
+                                            : "Yield Asset"}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h3 class="text-xl font-bold text-white mb-3 line-clamp-1">
+                                    {prop.title}
+                                </h3>
+                                <p class="text-white/40 text-sm mb-6 leading-relaxed line-clamp-2">
+                                    {prop.description || prop.features?.[0]}
+                                </p>
+                                <div class="flex items-center justify-between border-t border-white/5 pt-6">
+                                    <span class="text-[#D4AF37] font-black text-2xl">
+                                        {formatPriceUSD(prop.price)}
+                                    </span>
+                                    <span class="text-white/20 text-[10px] uppercase font-bold tracking-[0.2em]">
+                                        Inquire for Private File
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     ))
                 }
@@ -203,52 +388,166 @@ const coverImage =
         </div>
     </section>
 
+    <!-- Legal Pitfalls: Position as Expert -->
+    <section
+        class="py-24 bg-[#052E14] border-y border-white/5 relative overflow-hidden"
+    >
+        <div class="absolute inset-0 bg-red-500/5 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span
+                        class="text-red-400 font-bold uppercase tracking-[0.3em] text-xs mb-6 block"
+                        >Critical Investor Alert</span
+                    >
+                    <h2
+                        class="text-3xl md:text-5xl font-display font-bold text-white mb-8 leading-tight"
+                    >
+                        3 "Hidden Traps" that cost foreign investors thousands.
+                    </h2>
+                    <p class="text-white/60 mb-10 leading-relaxed font-light">
+                        Costa Rica is a safe haven, but skipping these steps can
+                        lead to years of legal battles. Our guide reveals how to
+                        bypass these critical errors:
+                    </p>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <span class="text-red-400 font-bold mt-1">✕</span>
+                            <p
+                                class="text-white/80 leading-relaxed font-medium"
+                            >
+                                Buying land without <span
+                                    class="text-white border-b border-red-400/30"
+                                    >Verified Digital Water Letters</span
+                                > (No water = No permit).
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-red-400 font-bold mt-1">✕</span>
+                            <p
+                                class="text-white/80 leading-relaxed font-medium"
+                            >
+                                Using the <span
+                                    class="text-white border-b border-red-400/30"
+                                    >Seller's Attorney</span
+                                > instead of an independent advocate.
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-red-400 font-bold mt-1">✕</span>
+                            <p
+                                class="text-white/80 leading-relaxed font-medium"
+                            >
+                                Failing to check <span
+                                    class="text-white border-b border-red-400/30"
+                                    >'Natural Heritage' (PNE)</span
+                                > borders on jungle lots.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div
+                    class="glass-card p-12 rounded-[3.5rem] border-white/5 relative overflow-hidden bg-white/[0.02]"
+                >
+                    <div
+                        class="absolute -top-10 -right-10 w-40 h-40 bg-red-500/5 blur-3xl rounded-full"
+                    >
+                    </div>
+                    <h3
+                        class="text-2xl font-bold text-white mb-6 italic leading-relaxed"
+                    >
+                        "I wish I had this guide 5 years ago when I started my
+                        first development here..."
+                    </h3>
+                    <p class="text-white/40 mb-10 leading-relaxed font-light">
+                        Investing large capital shouldn't be a gamble. We built
+                        this guide to ensure every buyer in La Fortuna has the
+                        same protection as a local developer.
+                    </p>
+                    <div class="flex items-center gap-5">
+                        <img
+                            src="https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/5c1a8a2a-466d-495c-3729-1a00a18f8e00/public"
+                            class="w-14 h-14 rounded-full grayscale border border-white/10"
+                            alt="Luis Rodríguez"
+                        />
+                        <div>
+                            <p class="text-white font-black tracking-tight">
+                                Luis Rodríguez
+                            </p>
+                            <p
+                                class="text-[#D4AF37] text-[10px] font-black uppercase tracking-widest"
+                            >
+                                Arenal Specialist
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- The Form: High Impact Transition -->
-    <section id="contact" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" class="py-24 bg-white relative">
+        <div
+            class="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-[#052E14] to-white"
+        >
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
-                <span
-                    class="text-green-600 font-bold uppercase tracking-widest text-sm"
-                    >Step 1 of 1</span
+                <div
+                    class="inline-flex items-center gap-2 bg-[#052E14]/5 text-[#052E14] px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-widest mb-8 border border-[#052E14]/10"
                 >
+                    <span
+                        class="flex h-2 w-2 rounded-full bg-[#D4AF37] animate-pulse"
+                    ></span>
+                    Immediate Delivery
+                </div>
                 <h2
-                    class="text-4xl md:text-6xl font-display font-black text-neutral-900 mt-2"
+                    class="text-4xl md:text-6xl font-display font-black text-neutral-900 mt-2 tracking-tight"
                 >
-                    Get Your Copy Instantly
+                    Access the Full Report
                 </h2>
-                <p class="text-neutral-500 mt-4 text-lg">
-                    Enter your details and receive the PDF via Email & WhatsApp.
+                <p
+                    class="text-neutral-500 mt-6 text-lg max-w-2xl mx-auto font-light leading-relaxed"
+                >
+                    We'll send the <span class="font-bold text-neutral-900"
+                        >54-page PDF</span
+                    > and the <span class="font-bold text-neutral-900"
+                        >Exclusive Inventory List</span
+                    > via Email and WhatsApp within 60 seconds.
                 </p>
             </div>
 
             <div
-                class="rounded-[3rem] overflow-hidden shadow-[0_50px_100px_-30px_rgba(0,0,0,0.15)] border border-neutral-100"
+                class="rounded-[3rem] overflow-hidden shadow-[0_100px_150px_-50px_rgba(0,0,0,0.1)] border border-neutral-100"
             >
-                <ContactForm accentGold="#16a34a" />
+                <ContactForm accentGold="#D4AF37" />
             </div>
         </div>
     </section>
 
     <!-- Trust Bar -->
-    <section class="py-20 bg-neutral-50">
+    <section class="py-20 bg-neutral-50 border-t border-neutral-100">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <p
-                class="text-neutral-400 font-medium uppercase tracking-[0.2em] mb-12 text-sm"
+                class="text-neutral-400 font-black uppercase tracking-[0.4em] mb-12 text-[10px]"
             >
-                Recognized for Excellence in Arenal Real Estate
+                Vetted by In-Country Legal Experts
             </p>
             <div
-                class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all"
+                class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale hover:grayscale-0 transition-all duration-700"
             >
-                <!-- Placeholders for partner/authority logos -->
-                <span class="text-2xl font-black text-neutral-800"
-                    >COSTA RICA INSIDER</span
+                <span
+                    class="text-xl font-black text-neutral-800 tracking-tighter"
+                    >COSTA RICA LAW</span
                 >
-                <span class="text-2xl font-black text-neutral-800"
-                    >ARENAL NEWS</span
+                <span
+                    class="text-xl font-black text-neutral-800 tracking-tighter"
+                    >DUEDILIGENCE CR</span
                 >
-                <span class="text-2xl font-black text-neutral-800"
-                    >INVEST CR</span
+                <span
+                    class="text-xl font-black text-neutral-800 tracking-tighter"
+                    >ARENAL ADVISORS</span
                 >
             </div>
         </div>
@@ -263,5 +562,11 @@ const coverImage =
     h3,
     .font-display {
         font-family: "Outfit", sans-serif;
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
     }
 </style>
