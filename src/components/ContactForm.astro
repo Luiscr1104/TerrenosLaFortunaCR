@@ -89,24 +89,16 @@ const {
         or home in Costa Rica.
       </p>
 
-      <form
-        action="https://formsubmit.co/terrenoslafortunacr@gmail.com"
-        method="POST"
-        class="space-y-4"
-      >
-        <!-- Configuration Fields -->
+      <form id="contact-form" class="space-y-4">
+        <!-- Anti-bot fields -->
+        <input type="hidden" name="start_time" id="start_time" />
         <input
-          type="hidden"
-          name="_subject"
-          value="New Lead from BuyLandCR Website"
+          type="text"
+          name="website"
+          style="display:none"
+          tabindex="-1"
+          autocomplete="off"
         />
-        <input type="hidden" name="_captcha" value="false" />
-        <input
-          type="hidden"
-          name="_next"
-          value="https://www.buylandcr.com/?success=true"
-        />
-        <input type="hidden" name="_template" value="table" />
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
@@ -290,3 +282,64 @@ const {
     </div>
   </div>
 </section>
+
+<script>
+  // Set start time when page loads
+  document.addEventListener("DOMContentLoaded", () => {
+    const startTimeInput = document.getElementById(
+      "start_time",
+    ) as HTMLInputElement;
+    if (startTimeInput) {
+      startTimeInput.value = Date.now().toString();
+    }
+
+    // Handle form submission
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const submitButton = form.querySelector(
+          'button[type="submit"]',
+        ) as HTMLButtonElement;
+        const originalText = submitButton.innerHTML;
+
+        // Disable button and show loading state
+        submitButton.disabled = true;
+        submitButton.innerHTML = "Sending...";
+
+        try {
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
+
+          const response = await fetch("/api/contact", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          const result = await response.json();
+
+          if (response.ok && result.success) {
+            // Success - redirect with success parameter
+            window.location.href = "/?success=true";
+          } else {
+            // Error
+            alert(result.message || "Error sending message. Please try again.");
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert(
+            "Error sending message. Please try again or contact us via WhatsApp.",
+          );
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalText;
+        }
+      });
+    }
+  });
+</script>
