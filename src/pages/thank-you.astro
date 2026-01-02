@@ -85,3 +85,20 @@ import WhatsappIcon from "../components/WhatsappIcon.astro";
         </div>
     </main>
 </Layout>
+
+<script>
+    // Define the type for dataLayer
+    declare global {
+        interface Window {
+            dataLayer: any[];
+        }
+    }
+
+    // Conversion Tracking
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        event: "generate_lead",
+        currency: "USD",
+        value: 100.0,
+    });
+</script>

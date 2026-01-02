@@ -217,18 +217,22 @@ const jsonLd = {
     {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
 
     <!-- Google Tag Manager -->
-    <script is:inline>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-WTNGG5FW");
-    </script>
+    {
+      isProd && (
+        <script is:inline>
+          (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+            var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s),
+              dl = l != "dataLayer" ? "&l=" + l : "";
+            j.async = true;
+            j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+            f.parentNode.insertBefore(j, f);
+          })(window, document, "script", "dataLayer", "GTM-WTNGG5FW");
+        </script>
+      )
+    }
     <!-- End Google Tag Manager -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -303,15 +307,18 @@ const jsonLd = {
 
   <body class="min-h-dvh bg-white text-neutral-900 antialiased">
     <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-WTNGG5FW"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"
-      >
-      </iframe>
-    </noscript>
+    {
+      isProd && (
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-WTNGG5FW"
+            height="0"
+            width="0"
+            style="display:none;visibility:hidden"
+          />
+        </noscript>
+      )
+    }
     <!-- End Google Tag Manager (noscript) -->
 
     <Header />
@@ -329,6 +336,7 @@ const jsonLd = {
       aria-label="Contact us via WhatsApp for property inquiries"
       id="wa-float-btn"
       title="Chat with us on WhatsApp"
+      data-wa-location="floating"
     >
       <WhatsappIcon className="w-8 h-8" />
       <span class="sr-only">Contact via WhatsApp</span>
@@ -337,26 +345,31 @@ const jsonLd = {
     <!-- Enhanced Tracking -->
     <script is:inline>
       document.addEventListener("DOMContentLoaded", function () {
-        const waBtn = document.getElementById("wa-float-btn");
-        if (waBtn) {
-          waBtn.addEventListener("click", function () {
+        // Generic click handler for all WhatsApp buttons with data-wa-location
+        document.addEventListener("click", function (e) {
+          const target = e.target.closest("[data-wa-location]");
+          if (target) {
+            const location = target.getAttribute("data-wa-location");
+            
             if (window.dataLayer) {
               window.dataLayer.push({
                 event: "click_whatsapp",
-                location: "floating_button",
+                location: location,
                 page: window.location.pathname,
                 source: "organic_search",
               });
             }
+            
             // Track with GA4 if available
             if (window.gtag) {
               window.gtag("event", "contact", {
                 method: "whatsapp",
                 page_location: window.location.pathname,
+                location: location
               });
             }
-          });
-        }
+          }
+        });
 
         // Track scroll depth for engagement metrics
         let scrolled = false;
