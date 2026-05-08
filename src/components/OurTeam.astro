@@ -2,7 +2,7 @@
 const team = [
   {
     name: "Luis Roberto Zúñiga Sánchez",
-    role: "Co-Owner · Full-Stack Developer",
+    role: "Co-Owner · Tech & Operations",
     bio: "Born and raised in La Fortuna. Built this platform from scratch to give international buyers a transparent, secure experience. Your digital and operational point of contact.",
     image: "/luis.webp",
     tags: ["🇨🇷 La Fortuna Native", "Tech & Operations", "Bilingual"],
@@ -17,72 +17,97 @@ const team = [
 ];
 ---
 
-<section id="team" class="relative py-24 bg-white overflow-hidden">
-  <div class="text-center mb-16 md:mb-20">
-    <div
-      class="inline-flex items-center gap-2 bg-[#1a4a2e]/10 text-[#1a4a2e] font-semibold text-sm px-5 py-2 rounded-full border border-[#1a4a2e]/20 mb-4 shadow-sm tracking-wide"
-    >
-      <span class="inline-block h-2.5 w-2.5 rounded-full bg-[#1a4a2e]"></span>
-      Your Local Experts
+<section id="team" class="relative py-24 bg-[#F7F6F2] overflow-hidden">
+  <div
+    class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(26,74,46,0.06),transparent_60%)] pointer-events-none"
+  ></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div
+        class="inline-flex items-center gap-2 bg-[#1a4a2e]/10 text-[#1a4a2e] font-semibold text-sm px-5 py-2 rounded-full border border-[#1a4a2e]/20 mb-5 tracking-wide"
+      >
+        <span class="inline-block h-2 w-2 rounded-full bg-[#1a4a2e]"></span>
+        Your Local Experts
+      </div>
+
+      <h2
+        class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-[#0d2218] mb-5 tracking-tight"
+      >
+        Meet the Team Behind <span class="text-[#1a4a2e]">BuyLandCR</span>
+      </h2>
+
+      <p
+        class="text-neutral-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
+      >
+        Two locals from La Fortuna who know every road, every view, and every
+        legal step. When you buy with us, you deal with the owners — directly.
+      </p>
     </div>
 
-    <h2
-      class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-[#0d2218] mb-5 tracking-tight leading-tight"
-    >
-      Meet the Team Behind
-      <span class="text-[#1a4a2e] font-black"> BuyLandCR</span>
-    </h2>
+    <!-- Team Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+      {
+        team.map((member) => (
+          <article class="group bg-white rounded-3xl overflow-hidden shadow-[0_10px_40px_-15px_rgba(0,0,0,0.18)] hover:shadow-[0_20px_50px_-15px_rgba(212,175,55,0.28)] transition-all duration-500 border border-[#1a4a2e]/10">
+            <!-- Gold accent top bar -->
+            <div class="h-1.5 bg-gradient-to-r from-[#D4AF37] via-[#F5E08A] to-[#D4AF37]" />
 
-    <p class="text-neutral-700 text-base md:text-lg max-w-3xl mx-auto leading-relaxed font-medium">
-      Two locals from La Fortuna who know every road, every view, and every legal step.
-      When you buy with us, you deal with the owners — directly.
-    </p>
-  </div>
+            <!-- Photo section with gradient overlay -->
+            <div class="relative h-72 overflow-hidden">
+              <img
+                src={member.image}
+                alt={member.name}
+                class="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-700"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0d2218]/80 via-[#0d2218]/20 to-transparent" />
+              <div class="absolute bottom-4 left-5">
+                <span class="inline-block bg-[#D4AF37] text-[#0d2218] text-[11px] font-bold px-3 py-1.5 rounded-full tracking-wider uppercase">
+                  {member.role}
+                </span>
+              </div>
+            </div>
 
-  <div class="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
-    {team.map((member) => (
-      <article
-        class="group relative rounded-3xl border border-[#1a4a2e]/20 bg-white
-               shadow-[0_10px_35px_-15px_rgba(0,0,0,0.2)]
-               hover:shadow-[0_18px_45px_-10px_rgba(212,175,55,0.25)]
-               transition-all duration-500"
+            <!-- Content -->
+            <div class="p-7">
+              <h3 class="text-xl md:text-2xl font-display font-extrabold text-[#0d2218] mb-2">
+                {member.name}
+              </h3>
+              <p class="text-neutral-500 text-sm leading-relaxed mb-5">
+                {member.bio}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {member.tags.map((tag) => (
+                  <span class="inline-flex items-center bg-[#1a4a2e]/[0.08] text-[#1a4a2e] border border-[#1a4a2e]/15 px-3 py-1.5 rounded-full text-xs font-semibold">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <!-- Footer bar -->
+    <div class="mt-10 text-center">
+      <div
+        class="inline-flex flex-wrap items-center justify-center gap-x-5 gap-y-2 bg-white border border-[#1a4a2e]/15 px-6 py-3.5 rounded-2xl shadow-sm"
       >
-        <div class="aspect-[4/3] overflow-hidden rounded-t-3xl">
-          <img
-            src={member.image}
-            alt={`${member.name} — ${member.role}`}
-            class="h-full w-full object-cover group-hover:scale-[1.05] transition-transform duration-500"
-            loading="lazy"
-          />
-        </div>
-        <div class="p-8 text-center">
-          <h3 class="text-2xl md:text-3xl font-display font-extrabold text-[#0d2218] mb-1">
-            {member.name}
-          </h3>
-          <p class="text-sm font-bold text-[#1a4a2e] uppercase tracking-wide mb-4">
-            {member.role}
-          </p>
-          <p class="text-neutral-600 text-sm md:text-base leading-relaxed mb-5">
-            {member.bio}
-          </p>
-          <div class="flex flex-wrap justify-center gap-2">
-            {member.tags.map((tag) => (
-              <span class="bg-[#f0f7f0] text-[#1a4a2e] px-3 py-1 rounded-full text-xs font-semibold">
-                {tag}
-              </span>
-            ))}
-          </div>
-          <div class="mt-6 w-24 h-[2px] mx-auto bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent rounded-full"></div>
-        </div>
-      </article>
-    ))}
+        <span class="flex items-center gap-2 text-sm font-medium text-[#0d2218]">
+          <span class="text-[#D4AF37]">📍</span> La Fortuna, Costa Rica
+        </span>
+        <span class="hidden sm:block w-px h-4 bg-neutral-200"></span>
+        <span class="flex items-center gap-2 text-sm font-medium text-[#0d2218]">
+          <span class="text-[#D4AF37]">🕐</span> Mon–Sun, 8am–8pm
+        </span>
+        <span class="hidden sm:block w-px h-4 bg-neutral-200"></span>
+        <span class="flex items-center gap-2 text-sm font-medium text-[#0d2218]">
+          <span class="text-[#D4AF37]">🤝</span> Direct owners, no middlemen
+        </span>
+      </div>
+    </div>
   </div>
-
-  <div class="mt-10 text-center px-6">
-    <p class="inline-flex items-center gap-2 text-sm font-semibold text-[#0d2218]/80 bg-[#1a4a2e]/10 border border-[#1a4a2e]/30 px-5 py-2.5 rounded-full">
-      📍 Based in La Fortuna · Available Mon–Sun, 8am–8pm · Direct owners, no middlemen
-    </p>
-  </div>
-
-  <div class="pointer-events-none absolute inset-0 opacity-[0.04] bg-[radial-gradient(60%_40%_at_80%_0%,#D4AF37,transparent)]"></div>
 </section>

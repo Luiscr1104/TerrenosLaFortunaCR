@@ -32,7 +32,12 @@ const steps = [
 ---
 
 <section class="relative py-20 md:py-28 bg-[#F7F6F2] overflow-hidden">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+  <div
+    class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(26,74,46,0.04),transparent_55%)] pointer-events-none"
+  ></div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative">
+    <!-- Header -->
     <div class="text-center mb-14">
       <div
         class="inline-flex items-center gap-2 bg-[#1a4a2e]/10 text-[#1a4a2e] border border-[#1a4a2e]/20 px-4 py-2 rounded-full text-sm font-semibold mb-4"
@@ -52,21 +57,28 @@ const steps = [
       </p>
     </div>
 
+    <!-- Steps grid -->
     <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-      <!-- Connector line visible on lg+ only -->
+      <!-- Desktop connector line positioned at center of the step circles (top: 2.5rem = h-20/2) -->
       <div
-        class="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-[#D4AF37] via-[#1a4a2e] to-[#D4AF37] z-0"
+        class="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[#D4AF37]/40 via-[#1a4a2e]/60 to-[#D4AF37]/40 z-0"
       ></div>
 
       {
         steps.map((step) => (
-          <div class="relative z-10 bg-white rounded-2xl p-6 text-center shadow-[0_4px_20px_rgba(0,0,0,0.07)] border border-[#1a4a2e]/10 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-shadow duration-300">
-            <div class="w-12 h-12 bg-[#0d2218] text-[#D4AF37] font-black text-lg rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-[#D4AF37]">
+          <div class="relative z-10 bg-white rounded-2xl p-7 text-center shadow-[0_4px_24px_rgba(0,0,0,0.07)] border border-[#1a4a2e]/10 hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:border-[#1a4a2e]/20 transition-all duration-300 group">
+            <!-- Step circle -->
+            <div class="w-16 h-16 bg-[#0d2218] text-[#D4AF37] font-black text-xl rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(13,34,24,0.3)] group-hover:scale-105 transition-transform duration-300">
               {step.num}
             </div>
-            <div class="text-2xl mb-2">{step.icon}</div>
-            <h3 class="font-bold text-[#0d2218] text-sm mb-2">{step.title}</h3>
-            <p class="text-neutral-500 text-xs leading-relaxed">
+            <!-- Icon -->
+            <div class="text-3xl mb-3">{step.icon}</div>
+            <!-- Title -->
+            <h3 class="font-bold text-[#0d2218] text-base mb-2.5">
+              {step.title}
+            </h3>
+            <!-- Description -->
+            <p class="text-neutral-500 text-sm leading-relaxed">
               {step.description}
             </p>
           </div>
@@ -74,14 +86,16 @@ const steps = [
       }
     </div>
 
+    <!-- Timeline note -->
     <div
-      class="bg-white border border-[#D4AF37]/30 rounded-xl p-4 flex items-start gap-3 max-w-2xl mx-auto"
+      class="bg-white border border-[#D4AF37]/30 rounded-xl p-5 flex items-start gap-4 max-w-2xl mx-auto shadow-sm"
     >
-      <span class="text-xl flex-shrink-0">⏱️</span>
-      <p class="text-sm text-neutral-600">
-        <strong class="text-[#0d2218]">Typical timeline: 30–60 days</strong> from
-        first contact to title transfer. Fully manageable remotely — most buyers
-        never travel until after closing.
+      <span class="text-2xl flex-shrink-0">⏱️</span>
+      <p class="text-sm text-neutral-600 leading-relaxed">
+        <strong class="text-[#0d2218] font-bold"
+          >Typical timeline: 30–60 days</strong
+        > from first contact to title transfer. Fully manageable remotely — most
+        buyers never travel until after closing.
       </p>
     </div>
   </div>
