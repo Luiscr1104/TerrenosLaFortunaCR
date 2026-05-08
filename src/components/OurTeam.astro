@@ -1,63 +1,50 @@
 ---
-// src/components/sections/OurTeam.astro
-const accentGold = "#16a34a";
-const darkColor = "#0B0B0B";
-
 const team = [
   {
     name: "Luis Roberto Zúñiga Sánchez",
-    role: "Full-Stack Developer & Co-Owner",
-    bio:
-      "Founder and lead engineer at BuyLandCR. Luis combines full-stack development expertise with a clear understanding of real-estate operations to deliver secure, reliable, and elegant digital experiences for international buyers.",
-    image:
-      "/luis.webp",
+    role: "Co-Owner · Full-Stack Developer",
+    bio: "Born and raised in La Fortuna. Built this platform from scratch to give international buyers a transparent, secure experience. Your digital and operational point of contact.",
+    image: "/luis.webp",
+    tags: ["🇨🇷 La Fortuna Native", "Tech & Operations", "Bilingual"],
   },
   {
     name: "José Ignacio González Zúñiga",
-    role: "Drone Cinematography, Bilingual Sales & Co-Owner",
-    bio:
-      "FAA-style trained drone operator and client advisor. José produces high-fidelity aerial visuals that accurately represent each property and guides English- and Spanish-speaking clients throughout a transparent, compliant purchase process.",
-    image:
-      "/onell.webp",
+    role: "Co-Owner · Sales & Drone Cinematography",
+    bio: "Certified drone operator and bilingual sales advisor. He'll walk the land with you — virtually or in person — and guide you through every step of a transparent, compliant purchase.",
+    image: "/onell.webp",
+    tags: ["🇨🇷 La Fortuna Native", "Drone Certified", "English / Spanish"],
   },
 ];
 ---
 
-<section
-  id="team"
-  class="relative py-24 bg-white overflow-hidden"
-  style={`--accent:${accentGold}; --dark:${darkColor}`}
->
-  <!-- Header -->
+<section id="team" class="relative py-24 bg-white overflow-hidden">
   <div class="text-center mb-16 md:mb-20">
     <div
-      class="inline-flex items-center gap-2 bg-[color:var(--accent)]/15 text-[color:var(--dark)]
-             font-semibold text-sm md:text-base px-5 py-2 rounded-full border border-[color:var(--accent)]/40 mb-4 shadow-sm tracking-wide"
+      class="inline-flex items-center gap-2 bg-[#1a4a2e]/10 text-[#1a4a2e] font-semibold text-sm px-5 py-2 rounded-full border border-[#1a4a2e]/20 mb-4 shadow-sm tracking-wide"
     >
-      <span class="inline-block h-2.5 w-2.5 rounded-full bg-[color:var(--accent)]"></span>
-      Our Team
+      <span class="inline-block h-2.5 w-2.5 rounded-full bg-[#1a4a2e]"></span>
+      Your Local Experts
     </div>
 
     <h2
-      class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-[color:var(--dark)] mb-5 tracking-tight leading-tight"
+      class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-[#0d2218] mb-5 tracking-tight leading-tight"
     >
-      Leadership at
-      <span class="text-[color:var(--accent)] font-black"> BuyLandCR</span>
+      Meet the Team Behind
+      <span class="text-[#1a4a2e] font-black"> BuyLandCR</span>
     </h2>
 
-    <p class="text-neutral-800 text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed font-medium">
-      Two co-owners from La Fortuna combining technology, cinematography, and local market knowledge
-      to provide a meticulous, secure, and client-centric acquisition experience.
+    <p class="text-neutral-700 text-base md:text-lg max-w-3xl mx-auto leading-relaxed font-medium">
+      Two locals from La Fortuna who know every road, every view, and every legal step.
+      When you buy with us, you deal with the owners — directly.
     </p>
   </div>
 
-  <!-- Team Grid -->
   <div class="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
     {team.map((member) => (
       <article
-        class="group relative rounded-3xl border border-[color:var(--accent)]/55 bg-white
-               shadow-[0_10px_35px_-15px_rgba(0,0,0,0.25)]
-               hover:shadow-[0_18px_45px_-10px_rgba(245,215,124,0.35)]
+        class="group relative rounded-3xl border border-[#1a4a2e]/20 bg-white
+               shadow-[0_10px_35px_-15px_rgba(0,0,0,0.2)]
+               hover:shadow-[0_18px_45px_-10px_rgba(212,175,55,0.25)]
                transition-all duration-500"
       >
         <div class="aspect-[4/3] overflow-hidden rounded-t-3xl">
@@ -69,34 +56,33 @@ const team = [
           />
         </div>
         <div class="p-8 text-center">
-          <h3 class="text-2xl md:text-3xl font-display font-extrabold text-[color:var(--dark)] mb-1">
+          <h3 class="text-2xl md:text-3xl font-display font-extrabold text-[#0d2218] mb-1">
             {member.name}
           </h3>
-          <p class="text-base font-bold text-[color:var(--accent)] uppercase tracking-wide mb-4">
+          <p class="text-sm font-bold text-[#1a4a2e] uppercase tracking-wide mb-4">
             {member.role}
           </p>
-          <p class="text-neutral-800 text-[15px] md:text-base leading-relaxed font-semibold">
+          <p class="text-neutral-600 text-sm md:text-base leading-relaxed mb-5">
             {member.bio}
           </p>
-
-          <!-- Decorative line -->
-          <div
-            class="mt-6 w-24 h-[2.5px] mx-auto bg-gradient-to-r from-transparent via-[color:var(--accent)] to-transparent rounded-full"
-          ></div>
+          <div class="flex flex-wrap justify-center gap-2">
+            {member.tags.map((tag) => (
+              <span class="bg-[#f0f7f0] text-[#1a4a2e] px-3 py-1 rounded-full text-xs font-semibold">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <div class="mt-6 w-24 h-[2px] mx-auto bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent rounded-full"></div>
         </div>
       </article>
     ))}
   </div>
 
-  <!-- Closing note (optional) -->
-  <div class="mt-12 text-center px-6">
-    <p class="inline-flex items-center gap-2 text-sm md:text-base font-semibold text-[color:var(--dark)]/80 bg-[color:var(--accent)]/14 border border-[color:var(--accent)]/40 px-4 py-2 rounded-full">
-      Based in La Fortuna, Costa Rica · Bilingual client service · Documentation and due-diligence guidance
+  <div class="mt-10 text-center px-6">
+    <p class="inline-flex items-center gap-2 text-sm font-semibold text-[#0d2218]/80 bg-[#1a4a2e]/10 border border-[#1a4a2e]/30 px-5 py-2.5 rounded-full">
+      📍 Based in La Fortuna · Available Mon–Sun, 8am–8pm · Direct owners, no middlemen
     </p>
   </div>
 
-  <!-- Soft gold glow -->
-  <div
-    class="pointer-events-none absolute inset-0 opacity-[0.07] bg-[radial-gradient(60%_40%_at_80%_0%,var(--accent),transparent)]"
-  ></div>
+  <div class="pointer-events-none absolute inset-0 opacity-[0.04] bg-[radial-gradient(60%_40%_at_80%_0%,#D4AF37,transparent)]"></div>
 </section>
