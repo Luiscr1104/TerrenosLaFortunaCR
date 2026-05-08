@@ -6,63 +6,71 @@ import FeaturedProperties from "../components/FeaturedProperties.astro";
 import ShowcaseSplit from "../components/ShowcaseSplit.astro";
 import ContactForm from "../components/ContactForm.astro";
 import OurTeam from "../components/OurTeam.astro";
+import TrustGuarantees from "../components/TrustGuarantees.astro";
+import HowItWorks from "../components/HowItWorks.astro";
 import FeaturedBlogs from "../components/FeaturedBlogs.astro";
 import { HeroScrollDemo } from "../components/HeroArenalScroll.jsx";
 import { ParallaxScrollSecondDemo } from "../components/Galery.tsx";
-import Process from "../components/Process.astro";
 ---
 
 <Layout preloadImage="https://i.ytimg.com/vi/DxbLZ_RPCuo/maxresdefault.jpg">
-	<!-- 1. HOOK: Hero Section -->
-	<Hero />
+  <!-- 1. HOOK: Hero Section -->
+  <Hero />
 
-	<!-- 2. PRODUCT: Immediate Value (The "Goods") -->
-	<FeaturedProperties />
+  <!-- 2. PRODUCT: Immediate Value -->
+  <FeaturedProperties />
 
-	<!-- 3. UPSELL: The High-Ticket Flagship Item -->
-	<ShowcaseSplit
-		offers={[
-			{
-				title: "The Ultimate Wealth Preservation Asset: Luxury Turnkey Estate",
-				subtitle:
-					"An architectural masterpiece engineered for high-yield returns. This 4-bedroom sanctuary isn't just a home; it's a performing asset. Featuring panoramic volcano views, resort-style amenities, and established rental potential, it offers the perfect hedge against inflation while delivering immediate lifestyle dividends. Located just 16 minutes from La Fortuna.",
-				promoTitle: "💎 Premium Portfolio",
-				promoHighlight: "High ROI Potential",
-				ctaLabel: "View Investment Details",
-				ctaHref: "/properties/villa-arenal-luxury-4br",
-				image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/f41525fe-ec6d-4132-0f8f-df340eb94200/public",
-				locationChip: "Arenal, Costa Rica",
-				stats: [
-					{ value: "4 / 3", label: "Beds / Baths" },
-					{ value: "3,000 m²", label: "Estate Size" },
-					{ value: "$715k", label: "Turnkey Price" },
-				],
-				accent: "#16a34a",
-			},
-		]}
-	/>
+  <!-- 2b. UPSELL: Flagship Property -->
+  <ShowcaseSplit
+    offers={[
+      {
+        title: "The Ultimate Wealth Preservation Asset: Luxury Turnkey Estate",
+        subtitle:
+          "An architectural masterpiece engineered for high-yield returns. This 4-bedroom sanctuary isn't just a home; it's a performing asset. Featuring panoramic volcano views, resort-style amenities, and established rental potential, it offers the perfect hedge against inflation while delivering immediate lifestyle dividends. Located just 16 minutes from La Fortuna.",
+        promoTitle: "💎 Premium Portfolio",
+        promoHighlight: "High ROI Potential",
+        ctaLabel: "View Investment Details",
+        ctaHref: "/properties/villa-arenal-luxury-4br",
+        image:
+          "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/f41525fe-ec6d-4132-0f8f-df340eb94200/public",
+        locationChip: "Arenal, Costa Rica",
+        stats: [
+          { value: "4 / 3", label: "Beds / Baths" },
+          { value: "3,000 m²", label: "Estate Size" },
+          { value: "$715k", label: "Turnkey Price" },
+        ],
+        accent: "#16a34a",
+      },
+    ]}
+  />
 
-	<!-- 4. TRANSITION: Visual Brand Reinforcement -->
-	<HeroScrollDemo client:visible />
+  <!-- 2c. VISUAL TRANSITION -->
+  <HeroScrollDemo client:visible />
 
-	<!-- 5. TRUST & AUTHORITY: Why Us? -->
-	<WhyBuyWithUs />
+  <!-- 3. TRUST: Meet the Team (moved up — retirement buyers need this early) -->
+  <OurTeam />
 
-	<!-- 6. LOGIC: How it works (Objection Handling) -->
-	<div class="mb-20">
-		<Process />
-	</div>
+  <!-- 4. SOCIAL PROOF: Guarantees (replaces testimonials until collected) -->
+  <TrustGuarantees />
 
-	<!-- 7. ACTION: Close the Deal -->
-	<div class="mb-32">
-		<ContactForm />
-	</div>
+  <!-- 5. AUTHORITY: Why Us? -->
+  <WhyBuyWithUs />
 
-	<!-- 8. REINFORCEMENT: Visual Proof / Lifestyle -->
-	<div class="mb-32">
-		<ParallaxScrollSecondDemo client:visible />
-	</div>
+  <!-- 6. PROCESS: How It Works (replaces Process.astro CTA band) -->
+  <div class="mb-20">
+    <HowItWorks />
+  </div>
 
-	<!-- 9. SEO & EDUCATION: Long-tail content (Lowest priority for direct sales) -->
-	<FeaturedBlogs />
+  <!-- 7. ACTION: Contact Form -->
+  <div class="mb-32">
+    <ContactForm />
+  </div>
+
+  <!-- 8. LIFESTYLE: Visual Gallery -->
+  <div class="mb-32">
+    <ParallaxScrollSecondDemo client:visible />
+  </div>
+
+  <!-- 9. SEO & EDUCATION -->
+  <FeaturedBlogs />
 </Layout>
