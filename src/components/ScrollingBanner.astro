@@ -1,0 +1,152 @@
+---
+interface Props {
+  theme?: "dark" | "light" | "gold";
+  items?: string[];
+  speed?: "slow" | "normal" | "fast";
+}
+
+const { theme = "dark", items, speed = "normal" } = Astro.props;
+
+const defaultDarkItems = [
+  "La Fortuna · Costa Rica",
+  "Arenal Volcano Views",
+  "Fee Simple Title",
+  "100% Legal & Secure",
+  "Remote Closing Available",
+  "Bilingual Notary",
+  "30–60 Days to Close",
+  "Licensed Escrow Protection",
+  "Foreign Ownership",
+  "No Flights Required",
+];
+
+const defaultLightItems = [
+  "Jungle & Privacy",
+  "Volcano View Lots",
+  "Turnkey Homes",
+  "Riverside Properties",
+  "Retirement Paradise",
+  "Nature Reserve Access",
+  "Year-Round Sunshine",
+  "No Property Tax on Small Lots",
+  "Investment Grade Land",
+  "Move-In Ready",
+];
+
+const defaultGoldItems = [
+  "Meet José & Luis",
+  "Direct Owner Dealings",
+  "Live Video Tours",
+  "Drone Footage Available",
+  "Personally Inspected",
+  "No Middlemen",
+  "Mon–Sun 8am–8pm",
+  "Same-Day Responses",
+];
+
+const displayItems =
+  items ||
+  (theme === "dark"
+    ? defaultDarkItems
+    : theme === "gold"
+      ? defaultGoldItems
+      : defaultLightItems);
+
+const durationMap = { slow: "60s", normal: "40s", fast: "25s" };
+const duration = durationMap[speed];
+
+const bg =
+  theme === "dark"
+    ? "bg-[#0d2218]"
+    : theme === "gold"
+      ? "bg-[#C9A24E]"
+      : "bg-[#F2EBDA]";
+
+const textColor =
+  theme === "dark"
+    ? "text-white/70"
+    : theme === "gold"
+      ? "text-[#0d2218]"
+      : "text-[#1a4a2e]/70";
+
+const dotColor =
+  theme === "dark"
+    ? "text-[#C9A24E]"
+    : theme === "gold"
+      ? "text-[#0d2218]/50"
+      : "text-[#C9A24E]";
+
+const borderTop =
+  theme === "dark"
+    ? "border-t border-white/8"
+    : theme === "gold"
+      ? ""
+      : "border-t border-[#1a4a2e]/10";
+
+const borderBottom =
+  theme === "dark"
+    ? "border-b border-white/8"
+    : theme === "gold"
+      ? ""
+      : "border-b border-[#1a4a2e]/10";
+
+// Duplicate items for seamless loop
+const allItems = [...displayItems, ...displayItems];
+---
+
+<div class={`relative overflow-hidden py-3.5 ${bg} ${borderTop} ${borderBottom}`}>
+  <!-- Fade edges -->
+  <div
+    class={`absolute inset-y-0 left-0 w-20 z-10 pointer-events-none ${
+      theme === "dark"
+        ? "bg-gradient-to-r from-[#0d2218] to-transparent"
+        : theme === "gold"
+          ? "bg-gradient-to-r from-[#C9A24E] to-transparent"
+          : "bg-gradient-to-r from-[#F2EBDA] to-transparent"
+    }`}
+  ></div>
+  <div
+    class={`absolute inset-y-0 right-0 w-20 z-10 pointer-events-none ${
+      theme === "dark"
+        ? "bg-gradient-to-l from-[#0d2218] to-transparent"
+        : theme === "gold"
+          ? "bg-gradient-to-l from-[#C9A24E] to-transparent"
+          : "bg-gradient-to-l from-[#F2EBDA] to-transparent"
+    }`}
+  ></div>
+
+  <div
+    class="marquee-track flex items-center gap-0 whitespace-nowrap"
+    style={`animation: marquee-scroll ${duration} linear infinite;`}
+  >
+    {
+      allItems.map((item) => (
+        <span class={`inline-flex items-center gap-3 ${textColor} text-xs font-medium tracking-[0.15em] uppercase px-6`} style="font-family: var(--font-sans, Inter, system-ui);">
+          <span class={`text-base ${dotColor}`} aria-hidden="true">◆</span>
+          {item}
+        </span>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee-track {
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none !important;
+    }
+  }
+</style>

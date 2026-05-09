@@ -9,6 +9,8 @@ import OurTeam from "../components/OurTeam.astro";
 import TrustGuarantees from "../components/TrustGuarantees.astro";
 import HowItWorks from "../components/HowItWorks.astro";
 import FeaturedBlogs from "../components/FeaturedBlogs.astro";
+import ScrollingBanner from "../components/ScrollingBanner.astro";
+import MidPageCTA from "../components/MidPageCTA.astro";
 import { HeroScrollDemo } from "../components/HeroArenalScroll.jsx";
 import { ParallaxScrollSecondDemo } from "../components/Galery.tsx";
 ---
@@ -16,6 +18,9 @@ import { ParallaxScrollSecondDemo } from "../components/Galery.tsx";
 <Layout preloadImage="https://i.ytimg.com/vi/DxbLZ_RPCuo/maxresdefault.jpg">
   <!-- 1. HOOK: Hero Section -->
   <Hero />
+
+  <!-- Cintillo: trust signals marquee on dark -->
+  <ScrollingBanner theme="dark" speed="normal" />
 
   <!-- 2. PRODUCT: Immediate Value -->
   <FeaturedProperties />
@@ -47,24 +52,40 @@ import { ParallaxScrollSecondDemo } from "../components/Galery.tsx";
   <!-- 2c. VISUAL TRANSITION -->
   <HeroScrollDemo client:visible />
 
-  <!-- 3. TRUST: Meet the Team (moved up — retirement buyers need this early) -->
+  <!-- 3. TRUST: Meet the Team -->
   <OurTeam />
 
-  <!-- 4. SOCIAL PROOF: Guarantees (replaces testimonials until collected) -->
+  <!-- Cintillo: team & service highlights on light cream -->
+  <ScrollingBanner theme="light" speed="slow" />
+
+  <!-- 4. SOCIAL PROOF: Guarantees -->
   <TrustGuarantees />
 
   <!-- 5. AUTHORITY: Why Us? -->
   <WhyBuyWithUs />
 
-  <!-- 6. PROCESS: How It Works (replaces Process.astro CTA band) -->
-  <div class="mb-20">
-    <HowItWorks />
-  </div>
+  <!-- Mid-page conversion CTA -->
+  <MidPageCTA />
+
+  <!-- 6. PROCESS: How It Works -->
+  <HowItWorks />
+
+  <!-- Cintillo: property categories marquee on gold -->
+  <ScrollingBanner theme="gold" speed="normal" items={[
+    "Volcano View Lots",
+    "Jungle & Privacy",
+    "Riverside Parcels",
+    "Turnkey Villas",
+    "Investment Land",
+    "Eco Retreats",
+    "Hot Springs Nearby",
+    "Cloud Forest Edge",
+    "Gated Communities",
+    "Off-Grid Potential",
+  ]} />
 
   <!-- 7. ACTION: Contact Form -->
-  <div class="mb-32">
-    <ContactForm />
-  </div>
+  <ContactForm />
 
   <!-- 8. LIFESTYLE: Visual Gallery -->
   <div class="mb-32">

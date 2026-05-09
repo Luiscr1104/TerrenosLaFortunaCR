@@ -70,8 +70,8 @@ const steps = [
       ></div>
 
       {
-        steps.map((step) => (
-          <div class="relative z-10 bg-white rounded-2xl px-7 pt-8 pb-7 text-center shadow-[0_4px_24px_rgba(0,0,0,0.05)] border border-[#1a4a2e]/8 hover:shadow-[0_12px_40px_rgba(0,0,0,0.09)] hover:border-[#C9A24E]/30 transition-all duration-500 group">
+        steps.map((step, i) => (
+          <div class={`relative z-10 bg-white rounded-2xl px-7 pt-8 pb-7 text-center shadow-[0_4px_24px_rgba(0,0,0,0.05)] border border-[#1a4a2e]/8 hover:shadow-[0_12px_40px_rgba(0,0,0,0.09)] hover:border-[#C9A24E]/30 transition-all duration-500 group reveal reveal-delay-${i + 1}`}>
 
             <!-- Large serif numeral -->
             <div

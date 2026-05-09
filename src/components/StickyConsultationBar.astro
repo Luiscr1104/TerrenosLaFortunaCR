@@ -1,0 +1,79 @@
+---
+// Slides in from the top after scrolling past the hero (1 viewport height).
+// Hides when the contact form section is in view.
+---
+
+<div
+  id="sticky-consult-bar"
+  class="fixed top-0 left-0 right-0 z-40 -translate-y-full transition-transform duration-500 ease-in-out"
+  aria-hidden="true"
+>
+  <div class="bg-[#C9A24E] text-[#0d2218]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4">
+      <p
+        class="text-xs sm:text-sm font-medium tracking-wide hidden sm:block"
+        style="font-family: var(--font-sans, Inter, system-ui);"
+      >
+        <span class="font-semibold">La Fortuna, Costa Rica</span> — Premium land & homes near Arenal Volcano
+      </p>
+      <p
+        class="text-xs font-medium tracking-wide sm:hidden"
+        style="font-family: var(--font-sans);"
+      >
+        Land &amp; Homes · La Fortuna, CR
+      </p>
+
+      <a
+        href="https://wa.me/50689354697?text=Hello!%20I'd%20like%20a%20free%20consultation%20about%20properties%20in%20La%20Fortuna."
+        target="_blank"
+        rel="noopener noreferrer"
+        data-wa-location="sticky-bar"
+        class="flex-shrink-0 inline-flex items-center gap-1.5 bg-[#0d2218] hover:bg-[#1a4a2e] text-white text-xs font-semibold px-4 py-2 rounded-full tracking-wide transition-colors duration-200"
+        style="font-family: var(--font-sans);"
+      >
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.332 4.993L2 22l5.083-1.334a9.96 9.96 0 0 0 4.928 1.317h.004a9.99 9.99 0 0 0 9.99-9.982C22.002 6.666 17.522 2 12.012 2zm0 18.288h-.004a8.27 8.27 0 0 1-4.22-1.157l-.302-.18-3.138.823.838-3.058-.196-.313a8.28 8.28 0 0 1-1.27-4.417c.002-4.57 3.725-8.287 8.29-8.287 2.214 0 4.295.863 5.86 2.428a8.26 8.26 0 0 1 2.433 5.865c-.003 4.568-3.725 8.286-8.29 8.296zm4.538-6.205c-.248-.124-1.472-.726-1.7-.81-.226-.082-.392-.123-.556.124-.166.248-.642.81-.787.974-.144.166-.29.186-.537.062-.248-.125-1.047-.386-1.994-1.23-1.74-1.55-2.07-2.48-2.31-2.88-.23-.39-.18-.56.05-.78.21-.19.46-.49.69-.74.23-.25.3-.42.45-.7.15-.27.07-.52-.04-.73-.11-.2-.56-2.28-.99-2.67-.3-.26-.64-.23-.87-.23-.23 0-.5.08-.76.36-.26.29-1 .98-1 2.38s1.02 2.76 1.16 2.95c.14.19 2 3.06 4.85 4.29 2.84 1.23 2.84.82 3.36.76.51-.06 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.16-.48-.28z" />
+        </svg>
+        Free Consultation
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const bar = document.getElementById("sticky-consult-bar");
+  const contact = document.getElementById("contact");
+
+  if (bar) {
+    const heroHeight = window.innerHeight;
+
+    const show = () => {
+      bar.style.transform = "translateY(0)";
+      bar.setAttribute("aria-hidden", "false");
+    };
+
+    const hide = () => {
+      bar.style.transform = "translateY(-100%)";
+      bar.setAttribute("aria-hidden", "true");
+    };
+
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+
+      // Hide if contact form is in view
+      if (contact) {
+        const contactTop = contact.getBoundingClientRect().top;
+        if (contactTop < window.innerHeight * 0.5) {
+          hide();
+          return;
+        }
+      }
+
+      if (scrollY > heroHeight * 0.8) {
+        show();
+      } else {
+        hide();
+      }
+    }, { passive: true });
+  }
+</script>

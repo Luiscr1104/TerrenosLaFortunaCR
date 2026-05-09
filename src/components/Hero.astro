@@ -30,9 +30,9 @@ import WhatsappIcon from "./WhatsappIcon.astro";
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.45)_100%)] pointer-events-none"></div>
   </div>
 
-  <!-- Content -->
+  <!-- Content — parallax wrapper -->
   <div class="relative z-10 flex h-full items-center justify-center px-4 sm:px-6 lg:px-8">
-    <div class="w-full max-w-5xl text-center">
+    <div id="hero-parallax" class="w-full max-w-5xl text-center" style="will-change: transform;">
 
       <!-- Eyebrow — editorial location line -->
       <div class="mb-6 sm:mb-8 flex items-center justify-center gap-3">
@@ -138,4 +138,20 @@ import WhatsappIcon from "./WhatsappIcon.astro";
 
 <script>
   import "lite-youtube-embed/src/lite-yt-embed.js";
+
+  // Parallax: hero content moves at 0.35x scroll speed
+  const target = document.getElementById("hero-parallax");
+  if (target) {
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY * 0.35;
+          target.style.transform = `translateY(${y}px)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
 </script>

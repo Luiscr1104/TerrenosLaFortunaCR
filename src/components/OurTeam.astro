@@ -52,8 +52,8 @@ const team = [
     <!-- Team Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
       {
-        team.map((member) => (
-          <article class="group bg-white rounded-3xl overflow-hidden shadow-[0_10px_40px_-15px_rgba(0,0,0,0.14)] hover:shadow-[0_20px_50px_-15px_rgba(201,162,78,0.22)] transition-all duration-500 border border-[#0d2218]/6">
+        team.map((member, i) => (
+          <article class={`group bg-white rounded-3xl overflow-hidden shadow-[0_10px_40px_-15px_rgba(0,0,0,0.14)] hover:shadow-[0_20px_50px_-15px_rgba(201,162,78,0.22)] transition-all duration-500 border border-[#0d2218]/6 reveal reveal-delay-${i + 1}`}>
             <!-- Gold accent top bar -->
             <div class="h-1 bg-gradient-to-r from-[#C9A24E] via-[#E2C988] to-[#C9A24E]" />
 
