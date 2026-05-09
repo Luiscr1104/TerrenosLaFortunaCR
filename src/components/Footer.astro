@@ -6,10 +6,7 @@ import WhatsappIcon from "./WhatsappIcon.astro";
 
 <footer class="relative overflow-hidden bg-[#0c1612] text-white">
   <!-- Línea superior -->
-  <div
-    class="h-[2px] w-full bg-gradient-to-r from-transparent via-green-600 to-transparent"
-  >
-  </div>
+  <div class="h-px w-full bg-gradient-to-r from-transparent via-[#C9A24E]/50 to-transparent"></div>
 
   <!-- CTA superior -->
   <section class="border-b border-white/10 bg-[#0c1612]">
@@ -17,7 +14,10 @@ import WhatsappIcon from "./WhatsappIcon.astro";
       class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6"
     >
       <div class="text-center md:text-left">
-        <h3 class="text-3xl font-bold text-white">
+        <h3
+          class="text-2xl md:text-3xl font-bold text-white"
+          style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
+        >
           Ready to own your piece of paradise?
         </h3>
         <p class="mt-2 text-gray-300 text-sm">
@@ -39,6 +39,16 @@ import WhatsappIcon from "./WhatsappIcon.astro";
     </div>
   </section>
 
+  <!-- Editorial closing line -->
+  <div class="text-center py-8 px-6 border-b border-white/8">
+    <p
+      class="text-2xl md:text-3xl italic text-white/40 leading-snug"
+      style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
+    >
+      La Fortuna awaits.
+    </p>
+  </div>
+
   <!-- Contenido principal -->
   <section
     class="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10"
@@ -59,22 +69,22 @@ import WhatsappIcon from "./WhatsappIcon.astro";
       </h4>
       <ul class="mt-4 space-y-3 text-gray-300 text-sm">
         <li>
-          <a href="/properties" class="hover:text-green-400 transition"
+          <a href="/properties" class="hover:text-[#C9A24E] transition"
             >Top Listings</a
           >
         </li>
         <li>
-          <a href="/#process" class="hover:text-green-400 transition"
+          <a href="/#process" class="hover:text-[#C9A24E] transition"
             >How it works</a
           >
         </li>
         <li>
-          <a href="/#why" class="hover:text-green-400 transition"
+          <a href="/#why" class="hover:text-[#C9A24E] transition"
             >Why buy with us</a
           >
         </li>
         <li>
-          <a href="/#contact" class="hover:text-green-400 transition">Contact</a
+          <a href="/#contact" class="hover:text-[#C9A24E] transition">Contact</a
           >
         </li>
       </ul>
@@ -86,22 +96,22 @@ import WhatsappIcon from "./WhatsappIcon.astro";
       </h4>
       <ul class="mt-4 space-y-3 text-gray-300 text-sm">
         <li>
-          <a href="/properties" class="hover:text-green-400 transition"
+          <a href="/properties" class="hover:text-[#C9A24E] transition"
             >Volcano View</a
           >
         </li>
         <li>
-          <a href="/properties" class="hover:text-green-400 transition"
+          <a href="/properties" class="hover:text-[#C9A24E] transition"
             >Jungle & Privacy</a
           >
         </li>
         <li>
-          <a href="/properties" class="hover:text-green-400 transition"
+          <a href="/properties" class="hover:text-[#C9A24E] transition"
             >Riverside</a
           >
         </li>
         <li>
-          <a href="/properties" class="hover:text-green-400 transition"
+          <a href="/properties" class="hover:text-[#C9A24E] transition"
             >Investment Deals</a
           >
         </li>
@@ -115,14 +125,14 @@ import WhatsappIcon from "./WhatsappIcon.astro";
         <li>
           <a
             href="#"
-            class="hover:text-green-400 transition"
+            class="hover:text-[#C9A24E] transition"
             onclick="event.preventDefault();window.location.href='mailto:'+'terrenoslafortunacr'+'@'+'gmail.com'"
           >
             terrenoslafortunacr<!-- -->@<!-- -->gmail.com
           </a>
         </li>
         <li>
-          <a href="tel:+50689354697" class="hover:text-green-400 transition"
+          <a href="tel:+50689354697" class="hover:text-[#C9A24E] transition"
             >+506 8935 4697</a
           >
         </li>
@@ -152,13 +162,13 @@ import WhatsappIcon from "./WhatsappIcon.astro";
     <div class="text-center text-xs text-gray-400">
       <p>© {year} BuyLandCR. All rights reserved.</p>
       <div class="flex items-center justify-center gap-4 mt-2 text-xs">
-        <a href="/privacy-policy" class="hover:text-green-400 transition"
+        <a href="/privacy-policy" class="hover:text-[#C9A24E] transition"
           >Privacy Policy</a
         >
         <span class="opacity-40">•</span>
-        <a href="/terms" class="hover:text-green-400 transition">Terms</a>
+        <a href="/terms" class="hover:text-[#C9A24E] transition">Terms</a>
         <span class="opacity-40">•</span>
-        <a href="/cookies" class="hover:text-green-400 transition">Cookies</a>
+        <a href="/cookies" class="hover:text-[#C9A24E] transition">Cookies</a>
       </div>
     </div>
   </div>

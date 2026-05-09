@@ -4,12 +4,11 @@ import WhatsappIcon from "./WhatsappIcon.astro";
 ---
 
 <section class="relative h-screen w-full overflow-hidden">
-  <!-- Video Background - YouTube via lite-youtube-embed -->
-  <div class="absolute inset-0 z-0 bg-black">
-    <!-- LCP Image - High Priority -->
+  <!-- Video Background -->
+  <div class="absolute inset-0 z-0 bg-[#0d2218]">
     <img
       src="https://i.ytimg.com/vi/DxbLZ_RPCuo/maxresdefault.jpg"
-      alt="Arenal Volcano Landscape"
+      alt="Arenal Volcano, La Fortuna — Costa Rica"
       fetchpriority="high"
       class="absolute inset-0 w-full h-full object-cover"
     />
@@ -20,307 +19,123 @@ import WhatsappIcon from "./WhatsappIcon.astro";
       class="absolute inset-0 w-full h-full"
       style="background-image: url('https://i.ytimg.com/vi/DxbLZ_RPCuo/maxresdefault.jpg');"
     >
-      <a
-        href="https://youtube.com/watch?v=DxbLZ_RPCuo"
-        class="lty-playbtn"
-        title="Play Video"
-      >
-        <span class="lyt-visually-hidden"
-          >Play Video: Keynote (Google I/O '18)</span
-        >
+      <a href="https://youtube.com/watch?v=DxbLZ_RPCuo" class="lty-playbtn" title="Play Video">
+        <span class="lyt-visually-hidden">Aerial view of Arenal Volcano</span>
       </a>
     </lite-youtube>
 
-    <!-- Gradient overlay for better text readability -->
-    <div
-      class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70 pointer-events-none"
-    >
-    </div>
+    <!-- Editorial gradient — darker at top/bottom, breathes in the middle -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0d2218]/70 via-black/20 to-[#0d2218]/80 pointer-events-none"></div>
+    <!-- Subtle vignette -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.45)_100%)] pointer-events-none"></div>
   </div>
 
   <!-- Content -->
-  <div
-    class="relative z-10 flex h-full items-center justify-center px-4 sm:px-6 lg:px-8 pointer-events-none"
-  >
-    <div class="w-full max-w-6xl text-center pointer-events-auto">
-      <!-- Location Badge -->
-      <div
-        class="mb-4 sm:mb-6 inline-flex items-center gap-2 rounded-full bg-neutral-900/80 backdrop-blur-sm px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm text-white border border-white/20 shadow-xl"
-      >
-        <svg
-          class="w-3 h-3 sm:w-4 sm:h-4 text-accent-gold"
-          fill="currentColor"
-          viewBox="0 0 20 20"
+  <div class="relative z-10 flex h-full items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-5xl text-center">
+
+      <!-- Eyebrow — editorial location line -->
+      <div class="mb-6 sm:mb-8 flex items-center justify-center gap-3">
+        <div class="h-px w-12 bg-[#C9A24E]/60"></div>
+        <span
+          class="text-[#C9A24E] text-xs sm:text-sm font-medium tracking-[0.3em] uppercase"
+          style="font-family: var(--font-sans, Inter, system-ui);"
         >
-          <path
-            fill-rule="evenodd"
-            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-            clip-rule="evenodd"></path>
-        </svg>
-        <span class="font-semibold">La Fortuna, Arenal - Costa Rica</span>
+          La Fortuna · Costa Rica
+        </span>
+        <div class="h-px w-12 bg-[#C9A24E]/60"></div>
       </div>
 
-      <!-- Main Headline - SEO Optimized -->
+      <!-- Main Headline — Cormorant Garamond serif -->
       <h1
-        class="mb-4 sm:mb-6 font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight px-4"
-        style="text-shadow: 0 4px 12px rgba(0,0,0,0.9), 0 2px 6px rgba(0,0,0,1);"
+        class="mb-5 sm:mb-7 font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.05] tracking-tight"
+        style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); text-shadow: 0 2px 20px rgba(0,0,0,0.7);"
       >
         Live Your Best Chapter
         <span
-          class="block text-accent-gold mt-1 sm:mt-2"
-          style="text-shadow: 0 4px 16px rgba(0,0,0,1), 0 2px 8px rgba(0,0,0,1), 0 0 30px rgba(212,175,55,0.2);"
+          class="block italic text-[#C9A24E] mt-2"
+          style="text-shadow: 0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(201,162,78,0.15);"
         >
           In Costa Rica's Paradise
         </span>
       </h1>
 
-      <!-- Subheadline - Value Proposition -->
+      <!-- Subheadline -->
       <p
-        class="mb-6 sm:mb-10 text-base sm:text-xl md:text-2xl lg:text-3xl text-white font-normal max-w-4xl mx-auto leading-relaxed px-4"
-        style="text-shadow: 0 3px 10px rgba(0,0,0,0.9), 0 1px 5px rgba(0,0,0,1);"
+        class="mb-8 sm:mb-12 text-base sm:text-lg md:text-xl text-white/85 font-light max-w-2xl mx-auto leading-relaxed"
+        style="font-family: var(--font-sans, Inter, system-ui); text-shadow: 0 2px 8px rgba(0,0,0,0.7);"
       >
-        Titled land and luxury homes near <strong class="font-bold text-white"
-          >Arenal Volcano</strong
-        > — for those ready to retire in <strong class="font-bold text-white"
-          >nature, safety</strong
-        >, and <strong class="font-bold text-white">year-round sunshine</strong>
+        Titled land and luxury homes near <strong class="font-semibold text-white">Arenal Volcano</strong> — for those ready to retire in <strong class="font-semibold text-white">nature, safety</strong>, and <strong class="font-semibold text-white">year-round sunshine</strong>
       </p>
 
-      <!-- CTA Buttons - Enhanced with vibrant colors and animations -->
-      <div
-        class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4"
-      >
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-14">
         <a
           href="/properties"
-          class="cta-primary group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-400 via-accent-gold to-yellow-500 hover:from-yellow-300 hover:via-yellow-400 hover:to-accent-gold text-neutral-900 px-6 sm:px-8 py-4 sm:py-5 rounded-xl font-bold text-base sm:text-lg shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-yellow-300/50"
+          class="cta-primary group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#C9A24E] hover:bg-[#B8912E] text-[#0d2218] px-7 sm:px-9 py-4 sm:py-4.5 rounded-none font-semibold text-sm sm:text-base tracking-wide shadow-[0_8px_24px_rgba(201,162,78,0.35)] hover:shadow-[0_12px_32px_rgba(201,162,78,0.5)] transition-all duration-300 hover:-translate-y-0.5"
         >
-          <svg
-            class="w-5 h-5 group-hover:rotate-12 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          🏡 See Available Properties
-          <svg
-            class="w-4 h-4 group-hover:translate-x-1 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 5l7 7-7 7"></path>
+          See Available Properties
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </a>
 
         <a
-          href="https://wa.me/50689354697?text=Hello!%20I'm%20interested%20in%20premium%20investment%20opportunities%20in%20La%20Fortuna"
+          href="https://wa.me/50689354697?text=Hello!%20I'm%20interested%20in%20properties%20in%20La%20Fortuna.%20Can%20we%20schedule%20a%20video%20tour?"
           target="_blank"
           rel="noopener noreferrer"
           data-wa-location="hero"
-          class="cta-whatsapp group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 via-green-600 to-emerald-600 hover:from-green-400 hover:via-green-500 hover:to-emerald-500 text-white px-6 sm:px-8 py-4 sm:py-5 rounded-xl font-bold text-base sm:text-lg shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-green-400/50"
+          class="cta-whatsapp group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:border-white/60 px-7 sm:px-9 py-4 sm:py-4.5 rounded-none font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5"
         >
-          <WhatsappIcon
-            className="w-5 h-5 group-hover:rotate-12 transition-transform"
-          />
-          💬 Free Consultation via WhatsApp
+          <WhatsappIcon className="w-4 h-4" />
+          Free Consultation via WhatsApp
         </a>
       </div>
 
-      <!-- Trust Badges - Interactive Pills -->
-      <div
-        class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4"
-      >
-        <button
-          class="trust-pill group flex items-center gap-2 bg-neutral-900/70 hover:bg-neutral-900/90 backdrop-blur-md px-3 sm:px-4 py-2 sm:py-2.5 rounded-full border border-white/20 hover:border-accent-gold/50 text-white text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-105"
-        >
-          <svg
-            class="w-4 h-4 text-green-400"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-              clip-rule="evenodd"></path>
-          </svg>
-          <span>100% Foreign Ownership</span>
-        </button>
-
-        <button
-          class="trust-pill group flex items-center gap-2 bg-neutral-900/70 hover:bg-neutral-900/90 backdrop-blur-md px-3 sm:px-4 py-2 sm:py-2.5 rounded-full border border-white/20 hover:border-accent-gold/50 text-white text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-105"
-        >
-          <svg
-            class="w-4 h-4 text-green-400"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-              clip-rule="evenodd"></path>
-          </svg>
-          <span>Fee Simple Title</span>
-        </button>
-
-        <button
-          class="trust-pill group flex items-center gap-2 bg-neutral-900/70 hover:bg-neutral-900/90 backdrop-blur-md px-3 sm:px-4 py-2 sm:py-2.5 rounded-full border border-white/20 hover:border-accent-gold/50 text-white text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-105"
-        >
-          <svg
-            class="w-4 h-4 text-green-400"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
-            ></path>
-          </svg>
-          <span>Remote Closing Concierge</span>
-        </button>
-
-        <button
-          class="trust-pill group flex items-center gap-2 bg-neutral-900/70 hover:bg-neutral-900/90 backdrop-blur-md px-3 sm:px-4 py-2 sm:py-2.5 rounded-full border border-white/20 hover:border-accent-gold/50 text-white text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-105"
-        >
-          <svg
-            class="w-4 h-4 text-green-400"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-              clip-rule="evenodd"></path>
-          </svg>
-          <span>Bilingual Legal Support</span>
-        </button>
+      <!-- Trust Badges -->
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+        {[
+          { icon: "check", label: "100% Foreign Ownership" },
+          { icon: "shield", label: "Fee Simple Title" },
+          { icon: "phone", label: "Remote Closing" },
+          { icon: "user", label: "Bilingual Legal Support" },
+        ].map((pill) => (
+          <span class="flex items-center gap-2 bg-black/40 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-full border border-white/15 text-white/85 text-xs font-medium">
+            <svg class="w-3.5 h-3.5 text-[#C9A24E]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            {pill.label}
+          </span>
+        ))}
       </div>
     </div>
   </div>
 
   <!-- Scroll Indicator -->
-  <button
-    class="scroll-indicator absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/70 hover:text-white transition-all duration-300 cursor-pointer group pointer-events-auto"
-    onclick="window.location.href='/properties';"
-  >
-    <span class="text-xs sm:text-sm font-medium tracking-wide"
-      >Explore Properties</span
-    >
-    <svg
-      class="w-6 h-6 animate-bounce group-hover:text-accent-gold transition-colors"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/50">
+    <span class="text-xs tracking-[0.25em] uppercase" style="font-family: var(--font-sans);">Scroll</span>
+    <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
     </svg>
-  </button>
+  </div>
 </section>
 
 <style>
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes slide-up {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes pulse-glow {
-    0%,
-    100% {
-      box-shadow:
-        0 0 20px rgba(250, 204, 21, 0.4),
-        0 0 40px rgba(250, 204, 21, 0.2);
-    }
-    50% {
-      box-shadow:
-        0 0 30px rgba(250, 204, 21, 0.6),
-        0 0 60px rgba(250, 204, 21, 0.3);
-    }
-  }
-
-  @keyframes pulse-glow-green {
-    0%,
-    100% {
-      box-shadow:
-        0 0 20px rgba(34, 197, 94, 0.4),
-        0 0 40px rgba(34, 197, 94, 0.2);
-    }
-    50% {
-      box-shadow:
-        0 0 30px rgba(34, 197, 94, 0.6),
-        0 0 60px rgba(34, 197, 94, 0.3);
-    }
-  }
-
-  /* Animations removed for LCP optimization */
-  .cta-primary {
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-
-  .cta-whatsapp {
-    animation: pulse-glow-green 2s ease-in-out infinite;
-    animation-delay: 0.5s;
-  }
-
-  .trust-pill:active {
-    transform: scale(0.95);
-  }
-
-  .scroll-indicator {
-    opacity: 1; /* Was animated, now visible immediately for better UX/LCP */
-  }
-
-  /* Make lite-youtube cover the background */
   lite-youtube {
     max-width: none !important;
     background-size: cover !important;
     background-position: center !important;
   }
+
+  lite-youtube::before,
+  lite-youtube > .lty-playbtn {
+    display: none !important;
+  }
 </style>
 
 <script>
   import "lite-youtube-embed/src/lite-yt-embed.js";
-
-  document.addEventListener("DOMContentLoaded", () => {
-    // Trust pills interaction
-    const pills = document.querySelectorAll(".trust-pill");
-    pills.forEach((pill) => {
-      pill.addEventListener("click", () => {
-        // @ts-ignore
-        pill.style.transform = "scale(0.95)";
-        setTimeout(() => {
-          // @ts-ignore
-          pill.style.transform = "scale(1.05)";
-          setTimeout(() => {
-            // @ts-ignore
-            pill.style.transform = "scale(1)";
-          }, 150);
-        }, 100);
-      });
-    });
-  });
 </script>

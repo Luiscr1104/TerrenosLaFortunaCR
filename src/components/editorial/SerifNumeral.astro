@@ -1,0 +1,25 @@
+---
+interface Props {
+  value: string;
+  size?: "xl" | "2xl" | "3xl";
+  theme?: "light" | "dark";
+}
+
+const { value, size = "2xl", theme = "light" } = Astro.props;
+
+const sizeClass = {
+  xl: "text-5xl md:text-6xl",
+  "2xl": "text-6xl md:text-7xl",
+  "3xl": "text-7xl md:text-8xl",
+}[size];
+
+const colorClass = theme === "dark" ? "text-[#C9A24E]/20" : "text-[#1a4a2e]/10";
+---
+
+<span
+  class={`font-display font-bold leading-none select-none ${sizeClass} ${colorClass}`}
+  style="font-family: var(--font-display); letter-spacing: -0.02em;"
+  aria-hidden="true"
+>
+  {value}
+</span>

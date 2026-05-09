@@ -1,4 +1,6 @@
 ---
+import ChapterMarker from "./editorial/ChapterMarker.astro";
+
 const team = [
   {
     name: "Luis Roberto Zúñiga Sánchez",
@@ -17,29 +19,30 @@ const team = [
 ];
 ---
 
-<section id="team" class="relative py-24 bg-[#F7F6F2] overflow-hidden">
+<section id="team" class="relative py-24 md:py-32 bg-[#F2EBDA] overflow-hidden">
   <div
-    class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(26,74,46,0.06),transparent_60%)] pointer-events-none"
+    class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(26,74,46,0.05),transparent_60%)] pointer-events-none"
   ></div>
 
   <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <!-- Chapter marker -->
+    <div class="mb-2">
+      <ChapterMarker numeral="Ⅱ" label="The Stewards" theme="light" />
+    </div>
+
     <!-- Header -->
     <div class="text-center mb-16">
-      <div
-        class="inline-flex items-center gap-2 bg-[#1a4a2e]/10 text-[#1a4a2e] font-semibold text-sm px-5 py-2 rounded-full border border-[#1a4a2e]/20 mb-5 tracking-wide"
-      >
-        <span class="inline-block h-2 w-2 rounded-full bg-[#1a4a2e]"></span>
-        Your Local Experts
-      </div>
-
       <h2
-        class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-[#0d2218] mb-5 tracking-tight"
+        class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#0d2218] mb-5 tracking-tight leading-tight"
+        style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
       >
-        Meet the Team Behind <span class="text-[#1a4a2e]">BuyLandCR</span>
+        Meet the Team Behind
+        <span class="italic text-[#1a4a2e]"> BuyLandCR</span>
       </h2>
 
       <p
-        class="text-neutral-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
+        class="text-[#2a2520]/65 text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
+        style="font-family: var(--font-sans, Inter, system-ui);"
       >
         Two locals from La Fortuna who know every road, every view, and every
         legal step. When you buy with us, you deal with the owners — directly.
@@ -50,21 +53,21 @@ const team = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
       {
         team.map((member) => (
-          <article class="group bg-white rounded-3xl overflow-hidden shadow-[0_10px_40px_-15px_rgba(0,0,0,0.18)] hover:shadow-[0_20px_50px_-15px_rgba(212,175,55,0.28)] transition-all duration-500 border border-[#1a4a2e]/10">
+          <article class="group bg-white rounded-3xl overflow-hidden shadow-[0_10px_40px_-15px_rgba(0,0,0,0.14)] hover:shadow-[0_20px_50px_-15px_rgba(201,162,78,0.22)] transition-all duration-500 border border-[#0d2218]/6">
             <!-- Gold accent top bar -->
-            <div class="h-1.5 bg-gradient-to-r from-[#D4AF37] via-[#F5E08A] to-[#D4AF37]" />
+            <div class="h-1 bg-gradient-to-r from-[#C9A24E] via-[#E2C988] to-[#C9A24E]" />
 
-            <!-- Photo section with gradient overlay -->
+            <!-- Photo section -->
             <div class="relative h-72 overflow-hidden">
               <img
                 src={member.image}
                 alt={member.name}
-                class="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-700"
+                class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700"
                 loading="lazy"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-[#0d2218]/80 via-[#0d2218]/20 to-transparent" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0d2218]/75 via-[#0d2218]/15 to-transparent" />
               <div class="absolute bottom-4 left-5">
-                <span class="inline-block bg-[#D4AF37] text-[#0d2218] text-[11px] font-bold px-3 py-1.5 rounded-full tracking-wider uppercase">
+                <span class="inline-block bg-[#C9A24E] text-[#0d2218] text-[10px] font-bold px-3 py-1.5 rounded-full tracking-widest uppercase">
                   {member.role}
                 </span>
               </div>
@@ -72,15 +75,18 @@ const team = [
 
             <!-- Content -->
             <div class="p-7">
-              <h3 class="text-xl md:text-2xl font-display font-extrabold text-[#0d2218] mb-2">
+              <h3
+                class="text-xl md:text-2xl font-bold text-[#0d2218] mb-2"
+                style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
+              >
                 {member.name}
               </h3>
-              <p class="text-neutral-500 text-sm leading-relaxed mb-5">
+              <p class="text-[#2a2520]/60 text-sm leading-relaxed mb-5" style="font-family: var(--font-sans, Inter, system-ui);">
                 {member.bio}
               </p>
               <div class="flex flex-wrap gap-2">
                 {member.tags.map((tag) => (
-                  <span class="inline-flex items-center bg-[#1a4a2e]/[0.08] text-[#1a4a2e] border border-[#1a4a2e]/15 px-3 py-1.5 rounded-full text-xs font-semibold">
+                  <span class="inline-flex items-center bg-[#1a4a2e]/[0.07] text-[#1a4a2e] border border-[#1a4a2e]/12 px-3 py-1.5 rounded-full text-xs font-medium" style="font-family: var(--font-sans);">
                     {tag}
                   </span>
                 ))}
@@ -91,21 +97,32 @@ const team = [
       }
     </div>
 
-    <!-- Footer bar -->
-    <div class="mt-10 text-center">
-      <div
-        class="inline-flex flex-wrap items-center justify-center gap-x-5 gap-y-2 bg-white border border-[#1a4a2e]/15 px-6 py-3.5 rounded-2xl shadow-sm"
+    <!-- Pull quote between cards and footer -->
+    <div class="my-12 max-w-2xl mx-auto text-center">
+      <p
+        class="text-2xl md:text-3xl italic text-[#0d2218]/70 leading-relaxed"
+        style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
       >
-        <span class="flex items-center gap-2 text-sm font-medium text-[#0d2218]">
-          <span class="text-[#D4AF37]">📍</span> La Fortuna, Costa Rica
+        "We don't sell land. We hand you the keys to a slower life."
+      </p>
+      <div class="mt-3 h-px w-12 bg-[#C9A24E]/60 mx-auto"></div>
+    </div>
+
+    <!-- Footer bar -->
+    <div class="text-center">
+      <div
+        class="inline-flex flex-wrap items-center justify-center gap-x-5 gap-y-2 bg-white border border-[#0d2218]/8 px-6 py-3.5 rounded-2xl shadow-sm"
+      >
+        <span class="flex items-center gap-2 text-sm font-medium text-[#0d2218]" style="font-family: var(--font-sans);">
+          <span class="text-[#C9A24E]">📍</span> La Fortuna, Costa Rica
         </span>
         <span class="hidden sm:block w-px h-4 bg-neutral-200"></span>
-        <span class="flex items-center gap-2 text-sm font-medium text-[#0d2218]">
-          <span class="text-[#D4AF37]">🕐</span> Mon–Sun, 8am–8pm
+        <span class="flex items-center gap-2 text-sm font-medium text-[#0d2218]" style="font-family: var(--font-sans);">
+          <span class="text-[#C9A24E]">🕐</span> Mon–Sun, 8am–8pm
         </span>
         <span class="hidden sm:block w-px h-4 bg-neutral-200"></span>
-        <span class="flex items-center gap-2 text-sm font-medium text-[#0d2218]">
-          <span class="text-[#D4AF37]">🤝</span> Direct owners, no middlemen
+        <span class="flex items-center gap-2 text-sm font-medium text-[#0d2218]" style="font-family: var(--font-sans);">
+          <span class="text-[#C9A24E]">🤝</span> Direct owners, no middlemen
         </span>
       </div>
     </div>

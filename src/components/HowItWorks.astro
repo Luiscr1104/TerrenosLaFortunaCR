@@ -1,28 +1,30 @@
 ---
+import ChapterMarker from "./editorial/ChapterMarker.astro";
+
 const steps = [
   {
-    num: 1,
+    num: "01",
     icon: "💬",
     title: "Free Consultation",
     description:
       "We learn about your goals, timeline, and budget. You ask us anything. No pressure, no sales pitch.",
   },
   {
-    num: 2,
+    num: "02",
     icon: "📹",
     title: "Virtual Property Tour",
     description:
       "José walks the land with you via live video call. Drone footage, 360° views, every detail you need.",
   },
   {
-    num: 3,
+    num: "03",
     icon: "⚖️",
     title: "Legal & Due Diligence",
     description:
       "Our notary verifies title, boundaries, and zoning. Your funds go to escrow — protected until everything checks out.",
   },
   {
-    num: 4,
+    num: "04",
     icon: "🎉",
     title: "Remote Closing",
     description:
@@ -31,54 +33,68 @@ const steps = [
 ];
 ---
 
-<section class="relative py-20 md:py-28 bg-[#F7F6F2] overflow-hidden">
+<section class="relative py-24 md:py-32 bg-[#F2EBDA] overflow-hidden">
   <div
-    class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(26,74,46,0.04),transparent_55%)] pointer-events-none"
+    class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(26,74,46,0.05),transparent_55%)] pointer-events-none"
   ></div>
 
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative">
+    <!-- Chapter marker -->
+    <div class="mb-2">
+      <ChapterMarker numeral="Ⅴ" label="The Process" theme="light" />
+    </div>
+
     <!-- Header -->
-    <div class="text-center mb-14">
-      <div
-        class="inline-flex items-center gap-2 bg-[#1a4a2e]/10 text-[#1a4a2e] border border-[#1a4a2e]/20 px-4 py-2 rounded-full text-sm font-semibold mb-4"
-      >
-        <span class="inline-block h-2 w-2 rounded-full bg-[#1a4a2e]"></span>
-        Simple Process
-      </div>
+    <div class="text-center mb-16">
       <h2
-        class="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#0d2218] mb-4 tracking-tight"
+        class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#0d2218] mb-4 tracking-tight leading-tight"
+        style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
       >
         How to Buy Land in
-        <span class="text-[#1a4a2e]"> Costa Rica</span> — From Anywhere
+        <span class="italic text-[#1a4a2e]"> Costa Rica</span>
+        <span class="block text-3xl sm:text-4xl md:text-5xl font-normal mt-1">
+          — From Anywhere
+        </span>
       </h2>
-      <p class="text-neutral-600 text-lg max-w-2xl mx-auto">
+      <p class="text-[#2a2520]/70 text-lg max-w-2xl mx-auto" style="font-family: var(--font-sans, Inter, system-ui);">
         Four straightforward steps. No flights needed, no guesswork. We handle
         the complexity so you focus on the excitement.
       </p>
     </div>
 
     <!-- Steps grid -->
-    <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-      <!-- Desktop connector line positioned at center of the step circles (top: 2.5rem = h-20/2) -->
+    <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <!-- Connector line -->
       <div
-        class="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[#D4AF37]/40 via-[#1a4a2e]/60 to-[#D4AF37]/40 z-0"
+        class="hidden lg:block absolute top-[3.5rem] left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[#C9A24E]/20 via-[#1a4a2e]/40 to-[#C9A24E]/20 z-0"
       ></div>
 
       {
         steps.map((step) => (
-          <div class="relative z-10 bg-white rounded-2xl p-7 text-center shadow-[0_4px_24px_rgba(0,0,0,0.07)] border border-[#1a4a2e]/10 hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:border-[#1a4a2e]/20 transition-all duration-300 group">
-            <!-- Step circle -->
-            <div class="w-16 h-16 bg-[#0d2218] text-[#D4AF37] font-black text-xl rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(13,34,24,0.3)] group-hover:scale-105 transition-transform duration-300">
+          <div class="relative z-10 bg-white rounded-2xl px-7 pt-8 pb-7 text-center shadow-[0_4px_24px_rgba(0,0,0,0.05)] border border-[#1a4a2e]/8 hover:shadow-[0_12px_40px_rgba(0,0,0,0.09)] hover:border-[#C9A24E]/30 transition-all duration-500 group">
+
+            <!-- Large serif numeral -->
+            <div
+              class="text-6xl md:text-7xl font-bold text-[#0d2218]/8 leading-none mb-1 select-none group-hover:text-[#C9A24E]/15 transition-colors duration-500"
+              style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
+              aria-hidden="true"
+            >
               {step.num}
             </div>
+
             <!-- Icon -->
-            <div class="text-3xl mb-3">{step.icon}</div>
+            <div class="text-2xl mb-3 -mt-2">{step.icon}</div>
+
             <!-- Title -->
-            <h3 class="font-bold text-[#0d2218] text-base mb-2.5">
+            <h3
+              class="font-semibold text-[#0d2218] text-base mb-2.5 leading-snug"
+              style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
+            >
               {step.title}
             </h3>
+
             <!-- Description -->
-            <p class="text-neutral-500 text-sm leading-relaxed">
+            <p class="text-[#2a2520]/60 text-sm leading-relaxed" style="font-family: var(--font-sans, Inter, system-ui);">
               {step.description}
             </p>
           </div>
@@ -88,11 +104,11 @@ const steps = [
 
     <!-- Timeline note -->
     <div
-      class="bg-white border border-[#D4AF37]/30 rounded-xl p-5 flex items-start gap-4 max-w-2xl mx-auto shadow-sm"
+      class="bg-white border border-[#C9A24E]/20 rounded-xl p-5 flex items-start gap-4 max-w-2xl mx-auto shadow-sm"
     >
-      <span class="text-2xl flex-shrink-0">⏱️</span>
-      <p class="text-sm text-neutral-600 leading-relaxed">
-        <strong class="text-[#0d2218] font-bold"
+      <span class="text-xl flex-shrink-0">⏱️</span>
+      <p class="text-sm text-[#2a2520]/70 leading-relaxed" style="font-family: var(--font-sans, Inter, system-ui);">
+        <strong class="text-[#0d2218] font-semibold"
           >Typical timeline: 30–60 days</strong
         > from first contact to title transfer. Fully manageable remotely — most
         buyers never travel until after closing.

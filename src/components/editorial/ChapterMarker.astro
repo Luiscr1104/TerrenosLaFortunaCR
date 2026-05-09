@@ -1,0 +1,30 @@
+---
+interface Props {
+  numeral: string;
+  label?: string;
+  theme?: "light" | "dark";
+}
+
+const { numeral, label, theme = "light" } = Astro.props;
+
+const isLight = theme === "light";
+const numeralColor = isLight ? "text-[#1a4a2e]" : "text-[#C9A24E]";
+const lineColor = isLight ? "bg-[#1a4a2e]/20" : "bg-[#C9A24E]/30";
+const labelColor = isLight ? "text-[#1a4a2e]/60" : "text-[#C9A24E]/60";
+---
+
+<div class="flex items-center gap-4 mb-6">
+  <div class={`h-px flex-1 max-w-[3rem] ${lineColor}`}></div>
+  <span
+    class={`font-display text-xs tracking-[0.25em] uppercase font-medium ${numeralColor}`}
+    style="font-family: var(--font-display);"
+  >
+    {label ? `Chapter ${numeral}` : `— ${numeral} —`}
+  </span>
+  {label && (
+    <span class={`text-xs tracking-[0.2em] uppercase font-medium ${labelColor}`}>
+      {label}
+    </span>
+  )}
+  <div class={`h-px flex-1 ${lineColor}`}></div>
+</div>

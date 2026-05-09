@@ -1,30 +1,30 @@
 ---
 import WhatsappIcon from "./WhatsappIcon.astro";
+import ChapterMarker from "./editorial/ChapterMarker.astro";
 ---
 
-<section class="relative py-16 md:py-24 lg:py-28 bg-white overflow-hidden">
+<section class="relative py-20 md:py-28 lg:py-32 bg-white overflow-hidden">
   <div
-    class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(26,74,46,0.05),transparent_60%)] pointer-events-none"
+    class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(26,74,46,0.04),transparent_60%)] pointer-events-none"
   ></div>
 
   <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-    <!-- Section Header -->
-    <div class="text-center mb-12 md:mb-16">
-      <div
-        class="inline-flex items-center gap-2 bg-[#1a4a2e]/10 text-[#1a4a2e] border border-[#1a4a2e]/20 px-4 py-2 rounded-full text-sm font-semibold mb-4"
-      >
-        <span class="inline-block w-2 h-2 rounded-full bg-[#1a4a2e]"></span>
-        Your Partners in Costa Rica
-      </div>
+    <!-- Chapter marker -->
+    <div class="mb-2">
+      <ChapterMarker numeral="Ⅳ" label="The Experience" theme="light" />
+    </div>
 
+    <!-- Section Header -->
+    <div class="text-center mb-14 md:mb-16">
       <h2
-        class="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#0d2218] mb-4 tracking-tight"
+        class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#0d2218] mb-4 tracking-tight leading-tight"
+        style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
       >
         Buy With Confidence —
-        <span class="text-[#1a4a2e]"> We Handle Everything</span>
+        <span class="block italic text-[#1a4a2e]">We Handle Everything</span>
       </h2>
 
-      <p class="text-lg text-neutral-600 max-w-3xl mx-auto">
+      <p class="text-lg text-[#2a2520]/65 max-w-3xl mx-auto" style="font-family: var(--font-sans, Inter, system-ui);">
         Buying land in another country can feel overwhelming. We make it simple,
         safe, and personal — so you can focus on imagining your new life in
         paradise.
@@ -33,13 +33,13 @@ import WhatsappIcon from "./WhatsappIcon.astro";
 
     <!-- Main Feature Card -->
     <div
-      class="relative rounded-3xl overflow-hidden shadow-[0_25px_60px_-20px_rgba(0,0,0,0.45)] mb-12 md:mb-14"
+      class="relative rounded-3xl overflow-hidden shadow-[0_25px_60px_-20px_rgba(0,0,0,0.35)] mb-14"
     >
       <div
         class="absolute inset-0 bg-gradient-to-br from-[#1a4a2e] via-[#0f3520] to-[#0d2218]"
       ></div>
       <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.08),transparent_60%)]"
+        class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(201,162,78,0.07),transparent_60%)]"
       ></div>
 
       <div
@@ -47,102 +47,49 @@ import WhatsappIcon from "./WhatsappIcon.astro";
       >
         <!-- Left: Content -->
         <div>
-          <div
-            class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-5"
+          <!-- Pull quote treatment -->
+          <p
+            class="text-2xl md:text-3xl italic leading-snug text-white/90 mb-8 pl-5 border-l-2 border-[#C9A24E]"
+            style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
           >
-            <svg
-              class="w-4 h-4 text-[#D4AF37]"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clip-rule="evenodd"></path>
-            </svg>
-            From First Message to Your Deed
-          </div>
+            "From first message to your deed — we're with you every step of the way."
+          </p>
 
-          <h3
-            class="text-3xl md:text-4xl font-display font-bold mb-5 leading-tight"
-          >
-            We're With You Every Step of the Way
-          </h3>
-
-          <p class="text-lg text-white/85 mb-8 leading-relaxed">
+          <p class="text-base text-white/75 mb-8 leading-relaxed" style="font-family: var(--font-sans, Inter, system-ui);">
             You don't need to fly to Costa Rica, navigate a foreign legal system
             alone, or trust someone you've never met. Luis and José guide you
             through every detail — in plain English, with full transparency.
           </p>
 
           <ul class="space-y-4">
-            <li class="flex items-start gap-3">
-              <svg
-                class="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base text-white/90"
-                >Live video tours — walk the land before you commit</span
-              >
-            </li>
-            <li class="flex items-start gap-3">
-              <svg
-                class="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base text-white/90"
-                >Costa Rican notary verifies every title and boundary</span
-              >
-            </li>
-            <li class="flex items-start gap-3">
-              <svg
-                class="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base text-white/90"
-                >Licensed escrow holds your funds until title transfers to you</span
-              >
-            </li>
-            <li class="flex items-start gap-3">
-              <svg
-                class="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-base text-white/90"
-                >Digital closing — no flights required, no bureaucracy, no stress</span
-              >
-            </li>
+            {[
+              "Live video tours — walk the land before you commit",
+              "Costa Rican notary verifies every title and boundary",
+              "Licensed escrow holds your funds until title transfers to you",
+              "Digital closing — no flights required, no bureaucracy, no stress",
+            ].map((item) => (
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-4 h-4 text-[#C9A24E] flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-white/85" style="font-family: var(--font-sans);">{item}</span>
+              </li>
+            ))}
           </ul>
         </div>
 
         <!-- Right: Video -->
         <div class="relative">
           <div
-            class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5"
+            class="bg-white/8 backdrop-blur-md border border-white/12 rounded-2xl p-5"
           >
             <div class="aspect-video rounded-xl overflow-hidden mb-4 relative">
               <lite-youtube
@@ -154,13 +101,13 @@ import WhatsappIcon from "./WhatsappIcon.astro";
               >
               </lite-youtube>
             </div>
-            <p class="text-white/80 text-center text-sm font-medium">
+            <p class="text-white/70 text-center text-sm font-medium" style="font-family: var(--font-sans);">
               📹 José's latest drone tour — La Fortuna, Costa Rica
             </p>
           </div>
 
           <div
-            class="absolute -bottom-3 -right-3 bg-[#D4AF37] text-[#0d2218] px-5 py-2 rounded-full shadow-xl text-xs font-bold tracking-wide uppercase"
+            class="absolute -bottom-3 -right-3 bg-[#C9A24E] text-[#0d2218] px-5 py-2 rounded-full shadow-xl text-xs font-bold tracking-wide uppercase"
           >
             ✓ Verified & Secure
           </div>
@@ -175,12 +122,12 @@ import WhatsappIcon from "./WhatsappIcon.astro";
         target="_blank"
         rel="noopener noreferrer"
         data-wa-location="why-buy-with-us"
-        class="inline-flex items-center gap-2 bg-[#1a4a2e] hover:bg-[#0d2218] text-white border-2 border-[#D4AF37]/40 hover:border-[#D4AF37] px-8 py-4 rounded-xl font-bold text-lg shadow-[0_8px_24px_rgba(26,74,46,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.35)] transition-all duration-300 hover:-translate-y-0.5"
+        class="inline-flex items-center gap-2.5 bg-[#1a4a2e] hover:bg-[#0d2218] text-white border border-[#C9A24E]/30 hover:border-[#C9A24E]/60 px-8 py-4 rounded-none font-semibold text-base tracking-wide shadow-[0_8px_24px_rgba(26,74,46,0.3)] hover:shadow-[0_0_30px_rgba(201,162,78,0.25)] transition-all duration-300 hover:-translate-y-0.5"
       >
         <WhatsappIcon className="w-5 h-5" />
         Book Your Free Consultation
       </a>
-      <p class="mt-4 text-sm text-neutral-500">
+      <p class="mt-4 text-sm text-[#2a2520]/50" style="font-family: var(--font-sans);">
         Free · No pressure · Response within a few hours
       </p>
     </div>

@@ -5,6 +5,7 @@ import propertiesData from "../data/properties.json";
 import HeroTitle from "./HeroTitle";
 import { getAllProperties } from "@/lib/properties";
 import AnimatedStats from "./AnimatedStats";
+import ChapterMarker from "./editorial/ChapterMarker.astro";
 
 // Filter only featured properties
 const allProperties = getAllProperties();
@@ -13,37 +14,22 @@ const featuredProperties = allProperties.filter((p) => p.featured);
 
 <section
   id="properties"
-  class="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-white to-neutral-50 overflow-hidden"
+  class="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#F2EBDA] overflow-hidden"
 >
   <!-- Decorative elements -->
-  <div
-    class="absolute top-0 right-0 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl"
-  >
-  </div>
-  <div
-    class="absolute bottom-0 left-0 w-96 h-96 bg-secondary-400/5 rounded-full blur-3xl"
-  >
-  </div>
+  <div class="absolute top-0 right-0 w-96 h-96 bg-[#1a4a2e]/4 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#C9A24E]/4 rounded-full blur-3xl"></div>
 
   <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
     <!-- Section Header -->
     <div class="text-center mb-12 md:mb-16 lg:mb-20">
-      <div
-        class="inline-flex items-center gap-2 bg-[#1a4a2e]/10 text-[#1a4a2e] border border-[#1a4a2e]/20 px-4 py-2 rounded-full text-sm font-semibold mb-4"
-      >
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"
-          ></path>
-        </svg>
-        <span>Featured Properties</span>
-      </div>
+      <ChapterMarker numeral="Ⅰ" label="The Properties" theme="light" />
       <HeroTitle client:visible />
 
-      <p class="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto mb-8">
+      <p class="text-lg md:text-xl text-[#2a2520]/65 max-w-3xl mx-auto mb-8" style="font-family: var(--font-sans, Inter, system-ui);">
         Handpicked luxury homes and pristine land in La Fortuna's most desirable
         locations.
-        <span class="font-semibold text-primary-600"
+        <span class="font-semibold text-[#1a4a2e]"
           >Every property personally inspected and verified.</span
         >
       </p>

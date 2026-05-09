@@ -1,4 +1,7 @@
 ---
+import ChapterMarker from "./editorial/ChapterMarker.astro";
+import PullQuote from "./editorial/PullQuote.astro";
+
 const guarantees = [
   {
     title: "100% Legal & Title-Clean",
@@ -62,27 +65,27 @@ const iconPaths: Record<string, string> = {
 };
 ---
 
-<section class="relative py-20 md:py-28 bg-[#0d2218] overflow-hidden">
+<section class="relative py-24 md:py-32 bg-[#0d2218] overflow-hidden">
   <div
-    class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(212,175,55,0.07),transparent_55%)] pointer-events-none"
+    class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(201,162,78,0.06),transparent_55%)] pointer-events-none"
   ></div>
 
   <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <!-- Chapter marker -->
+    <div class="mb-2">
+      <ChapterMarker numeral="Ⅲ" label="The Promise" theme="dark" />
+    </div>
+
     <!-- Header -->
     <div class="text-center mb-14">
-      <div
-        class="inline-flex items-center gap-2 bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30 px-4 py-2 rounded-full text-sm font-semibold mb-4"
-      >
-        <span class="inline-block h-2 w-2 rounded-full bg-[#D4AF37]"></span>
-        Why Buyers Trust Us
-      </div>
       <h2
-        class="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight"
+        class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight leading-tight"
+        style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
       >
         Buying Land Abroad
-        <span class="text-[#D4AF37]"> Shouldn't Be a Leap of Faith</span>
+        <span class="block italic text-[#C9A24E]">Shouldn't Be a Leap of Faith</span>
       </h2>
-      <p class="text-white/60 text-lg max-w-2xl mx-auto">
+      <p class="text-white/55 text-lg max-w-2xl mx-auto" style="font-family: var(--font-sans, Inter, system-ui);">
         Every step of the process is designed to protect you — legally,
         financially, and personally.
       </p>
@@ -92,11 +95,11 @@ const iconPaths: Record<string, string> = {
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
       {
         guarantees.map((item) => (
-          <div class="group flex gap-4 bg-white/[0.05] hover:bg-white/[0.09] border border-white/10 hover:border-[#D4AF37]/30 rounded-2xl p-6 transition-all duration-300">
+          <div class="group flex gap-4 bg-white/[0.04] hover:bg-white/[0.08] border border-white/8 hover:border-[#C9A24E]/25 rounded-2xl p-6 transition-all duration-400">
             <!-- Icon circle -->
-            <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-[#D4AF37]/15 border border-[#D4AF37]/20 flex items-center justify-center group-hover:bg-[#D4AF37]/25 transition-colors duration-300 mt-0.5">
+            <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-[#C9A24E]/10 border border-[#C9A24E]/15 flex items-center justify-center group-hover:bg-[#C9A24E]/20 transition-colors duration-300 mt-0.5">
               <svg
-                class="w-5 h-5 text-[#D4AF37]"
+                class="w-5 h-5 text-[#C9A24E]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -111,10 +114,13 @@ const iconPaths: Record<string, string> = {
             </div>
             <!-- Content -->
             <div>
-              <h3 class="text-white font-bold text-sm mb-1.5 group-hover:text-[#D4AF37] transition-colors duration-200">
+              <h3
+                class="text-white font-semibold text-sm mb-1.5 group-hover:text-[#C9A24E] transition-colors duration-200"
+                style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); font-size: 1rem; font-weight: 600;"
+              >
                 {item.title}
               </h3>
-              <p class="text-white/55 text-sm leading-relaxed">
+              <p class="text-white/50 text-sm leading-relaxed" style="font-family: var(--font-sans, Inter, system-ui);">
                 {item.description}
               </p>
             </div>
@@ -125,15 +131,16 @@ const iconPaths: Record<string, string> = {
 
     <!-- Countries bar -->
     <div
-      class="bg-white/[0.04] border border-white/10 rounded-2xl px-6 py-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-3"
+      class="bg-white/[0.03] border border-white/8 rounded-2xl px-6 py-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-3"
     >
       <span
-        class="text-white/35 text-xs font-semibold uppercase tracking-[0.15em] w-full text-center sm:w-auto"
+        class="text-white/30 text-xs font-medium uppercase tracking-[0.15em] w-full text-center sm:w-auto"
+        style="font-family: var(--font-sans);"
         >Serving buyers from</span
       >
       {
         countries.map((c) => (
-          <span class="text-white/75 text-sm font-semibold hover:text-white transition-colors cursor-default">
+          <span class="text-white/65 text-sm font-medium hover:text-white/90 transition-colors cursor-default" style="font-family: var(--font-sans);">
             {c.flag} {c.name}
           </span>
         ))

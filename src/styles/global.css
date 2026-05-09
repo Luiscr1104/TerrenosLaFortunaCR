@@ -5,6 +5,19 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Editorial Travel — typography */
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Brand color scale */
+  --color-cream: #F2EBDA;
+  --color-cream-deep: #E8DFC8;
+  --color-forest-deep: #0d2218;
+  --color-forest-mid: #1a4a2e;
+  --color-gold-antique: #C9A24E;
+  --color-gold-soft: #E2C988;
+  --color-ink: #2a2520;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

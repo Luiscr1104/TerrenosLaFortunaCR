@@ -1,4 +1,6 @@
 ---
+import ChapterMarker from "./editorial/ChapterMarker.astro";
+
 interface Props {
   image?: string;
   accentGold?: string;
@@ -7,44 +9,30 @@ interface Props {
 
 const {
   image = "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/984f3b88-418c-42e0-8a13-ca8f69ce6900/public",
-  accentGold = "#D4AF37",
+  accentGold = "#C9A24E",
   accentGreen = "#1a4a2e",
 } = Astro.props;
 ---
 
-<section id="contact" class="relative py-20 bg-white overflow-hidden">
-  <!-- Encabezado elegante -->
-  <div class="text-center mb-16 md:mb-20 lg:mb-24">
-    <div
-      class="inline-flex items-center gap-2 bg-[color:var(--gold)]/10 text-[color:var(--gold)] px-4 py-2 rounded-full text-sm font-semibold mb-4"
-      style={`--gold:${accentGold}`}
-    >
-      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-        <path
-          fill-rule="evenodd"
-          d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-          clip-rule="evenodd"></path>
-      </svg>
-      <span>Own a Piece of Paradise</span>
-    </div>
+<section id="contact" class="relative py-20 bg-[#F2EBDA] overflow-hidden">
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(201,162,78,0.06),transparent_60%)] pointer-events-none"></div>
+
+  <!-- Header -->
+  <div class="text-center mb-14 md:mb-16 px-4">
+    <ChapterMarker numeral="Ⅵ" label="Begin the Conversation" theme="light" />
 
     <h2
-      class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-neutral-800 mb-4 md:mb-6 tracking-tight"
+      class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#0d2218] mb-4 md:mb-5 tracking-tight leading-tight"
+      style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
     >
       Find Your
-      <span class="text-neutral-900 font-extrabold">Costa Rica Property</span>
-      <br class="hidden sm:block" />
-      With Expert Guidance
+      <span class="italic text-[#1a4a2e]"> Costa Rica Property</span>
+      <span class="block text-3xl sm:text-4xl font-normal mt-1">With Expert Guidance</span>
     </h2>
 
-    <p class="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto">
+    <p class="text-base md:text-lg text-[#2a2520]/65 max-w-2xl mx-auto" style="font-family: var(--font-sans, Inter, system-ui);">
       Full legal protection and remote purchase available.
-      <span
-        class="font-semibold text-[color:var(--gold)]"
-        style={`--gold:${accentGold}`}
-      >
-        Our team makes it effortless.
-      </span>
+      <span class="font-semibold text-[#1a4a2e]">Our team makes it effortless.</span>
     </p>
   </div>
 
@@ -77,14 +65,15 @@ const {
 
     <!-- Formulario -->
     <div
-      class="rounded-3xl border border-[#F5D77C]/50 bg-white/90 backdrop-blur-sm shadow-[0_14px_40px_-20px_rgba(0,0,0,0.2)] p-8 lg:p-10"
+      class="rounded-3xl border border-[#C9A24E]/20 bg-white shadow-[0_14px_40px_-20px_rgba(0,0,0,0.15)] p-8 lg:p-10"
     >
       <h3
-        class="text-2xl md:text-3xl font-display font-semibold text-neutral-900 mb-3"
+        class="text-2xl md:text-3xl font-bold text-[#0d2218] mb-3"
+        style="font-family: var(--font-display, ‘Cormorant Garamond’, Georgia, serif);"
       >
         Let’s Find Your Dream Property
       </h3>
-      <p class="text-neutral-600 mb-6">
+      <p class="text-[#2a2520]/60 mb-6 italic text-sm" style="font-family: var(--font-display, ‘Cormorant Garamond’, Georgia, serif);">
         Tell us about your vision — we’ll match you with the perfect land or
         home in La Fortuna and guide you through every step.
       </p>
