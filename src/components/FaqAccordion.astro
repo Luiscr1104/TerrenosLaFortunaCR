@@ -1,0 +1,76 @@
+---
+const faqs = [
+  {
+    question: "Can foreigners buy land and homes in La Fortuna?",
+    answer: "Yes. Foreigners have full ownership rights in Costa Rica, including titled land, homes, farms and investment properties. You can purchase under your personal name or through a local corporation. We guide you through each step of the process so everything is clear and properly documented.",
+  },
+  {
+    question: "Is La Fortuna a good area for real-estate investment?",
+    answer: "Absolutely. The region receives international tourism all year thanks to Arenal Volcano, hot springs and adventure activities. Properties with volcano views or natural water sources are highly attractive for vacation rentals and long-term appreciation. The area is consistently one of Costa Rica's strongest real-estate markets.",
+  },
+  {
+    question: "Do you assist clients who live abroad?",
+    answer: "Yes. Most of our investors live in the United States, Canada or Europe. We offer video calls, virtual tours, remote signings and coordination with trusted attorneys, architects and builders so you can invest securely from anywhere in the world.",
+  },
+  {
+    question: "What is the best area in La Fortuna to buy land?",
+    answer: "La Tigra and Chachagua are the most sought-after areas — both within 20 minutes of downtown La Fortuna, with lush surroundings, cool mountain climate and excellent appreciation potential. San Rafael offers lower entry prices for buyers looking for a larger lot. We help you identify the best zone for your specific goals and budget.",
+  },
+  {
+    question: "How long does the buying process take for a foreigner?",
+    answer: "For cash purchases, the process typically takes 4–8 weeks from offer acceptance to closing: 1–2 weeks for due diligence and title search, 1 week for contract preparation, and 2–4 weeks for registration at the National Registry. Remote closings are common and our team coordinates every step.",
+  },
+];
+---
+
+<section class="max-w-4xl mx-auto px-6 py-14 md:py-16" aria-labelledby="faq-heading">
+  <div class="mb-10">
+    <h2 id="faq-heading" class="text-3xl md:text-4xl font-bold text-neutral-900 mb-2">
+      Frequently Asked Questions
+    </h2>
+    <p class="text-neutral-500 text-sm md:text-base">
+      Key information for international buyers interested in La Fortuna real estate.
+    </p>
+  </div>
+
+  <div class="space-y-3">
+    {faqs.map((faq) => (
+      <details class="faq-item border border-neutral-200 rounded-2xl overflow-hidden bg-white">
+        <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none select-none hover:bg-neutral-50/80 transition-colors">
+          <span class="font-semibold text-neutral-900 text-sm md:text-base pr-2">
+            {faq.question}
+          </span>
+          <span class="faq-icon text-[#C9A24E] text-xl leading-none flex-shrink-0 transition-transform duration-300 font-light">
+            +
+          </span>
+        </summary>
+        <div class="faq-body px-6" style="max-height: 0; overflow: hidden; transition: max-height 0.35s ease;">
+          <p class="text-neutral-600 text-sm leading-relaxed pb-5 pt-1">
+            {faq.answer}
+          </p>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<style>
+  details[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+  details[open] > summary {
+    background-color: #fafaf8;
+    border-bottom: 1px solid #f0ece0;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('.faq-item').forEach(details => {
+    const body = details.querySelector<HTMLElement>('.faq-body');
+    if (!body) return;
+
+    details.addEventListener('toggle', () => {
+      body.style.maxHeight = details.open ? `${body.scrollHeight}px` : '0';
+    });
+  });
+</script>
