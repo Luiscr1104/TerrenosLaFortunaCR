@@ -331,8 +331,8 @@ export default function PropertiesListing({ properties }: { properties: Property
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: sortedAll.length === 1 ? '1fr' : 'repeat(3, 1fr)',
-            gap: '1.25rem',
+            gridTemplateColumns: sortedAll.length === 1 ? '1fr' : '1.8fr 1fr 1fr',
+            gap: '1.5rem',
           }}
         >
           {sortedAll.map((property, idx) => {
