@@ -349,10 +349,8 @@ export default function PropertiesListing({ properties }: { properties: Property
                 animate={
                   isMatching
                     ? 'visible'
-                    : { opacity: 0.18, scale: 0.97, y: 0, transition: { duration: 0.3 } } as any
+                    : ({ opacity: 0.18, scale: 0.97, y: 0, transition: { duration: 0.3 } } as any)
                 }
-                whileInView={isMatching ? 'visible' : undefined}
-                viewport={{ once: true, amount: 0.1 }}
                 style={isFeatured ? { gridRow: 'span 2' } : undefined}
                 className={!isMatching ? 'pointer-events-none select-none' : ''}
               >
