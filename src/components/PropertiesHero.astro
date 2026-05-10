@@ -1,197 +1,82 @@
 ---
-// src/components/PropertiesHero.astro
-import type { Property } from '@/lib/properties';
-
-interface Props {
-  heroProperty: Property;
-  thumbnails: Property[];
-}
-
-const { heroProperty, thumbnails } = Astro.props;
-const heroImg = heroProperty.images[0];
+// No props needed — pure text banner
 ---
 
-<section
-  class="relative w-full overflow-hidden bg-[#0d2218]"
-  style="min-height: min(88vh, 700px); margin-top: 5rem;"
-  aria-label="Properties search hero"
->
-  <div
-    class="h-full"
-    style="display: grid; grid-template-columns: 60% 40%; min-height: inherit;"
-  >
-    <!-- Left: Hero image + content -->
-    <div class="relative overflow-hidden">
-      <img
-        src={heroImg}
-        alt={heroProperty.title}
-        fetchpriority="high"
-        loading="eager"
-        width="1200"
-        height="800"
-        class="absolute inset-0 w-full h-full object-cover"
-      />
-      <div class="absolute inset-0 bg-gradient-to-r from-[#0d2218]/85 via-[#0d2218]/50 to-transparent"></div>
+<section class="mt-20 bg-[#0d2218] text-white pt-14 pb-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
-      <div class="relative z-10 flex flex-col justify-end h-full px-8 pb-14 pt-16 max-w-2xl">
+    <p
+      class="text-[#C9A24E]/70 text-xs font-bold uppercase tracking-[0.22em] mb-4 animate-fade-up"
+      style="animation-fill-mode: both; animation-delay: 0ms;"
+    >
+      La Fortuna · Arenal · Costa Rica
+    </p>
 
-        <p
-          class="text-[#C9A24E]/70 text-xs font-semibold uppercase tracking-[0.25em] mb-4 animate-fade-up"
-          style="animation-fill-mode: both; animation-delay: 0ms;"
-        >
-          La Fortuna · Arenal · Costa Rica
-        </p>
+    <h1
+      class="font-bold leading-tight mb-4 animate-fade-up"
+      style="font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.75rem); animation-fill-mode: both; animation-delay: 80ms; view-transition-name: title-properties;"
+    >
+      Land &amp; Luxury Homes<br />
+      <span class="text-[#C9A24E]">for Sale in La Fortuna, Costa Rica</span>
+    </h1>
 
-        <h1
-          class="text-white font-bold leading-[1.05] mb-5 animate-fade-up"
-          style="font-family: var(--font-display); font-size: clamp(2.25rem, 5vw, 4rem); animation-fill-mode: both; animation-delay: 80ms;"
-        >
-          Land & Luxury Homes<br />
-          <span style="color: #C9A24E;">for Sale in La Fortuna</span>
-        </h1>
+    <p
+      class="text-white/65 text-sm md:text-base max-w-xl mb-8 animate-fade-up"
+      style="animation-fill-mode: both; animation-delay: 160ms;"
+    >
+      Volcano-view lots, eco retreats and luxury villas — full legal support for international buyers.
+    </p>
 
-        <p
-          class="text-white/70 text-base leading-relaxed mb-8 max-w-md animate-fade-up"
-          style="animation-fill-mode: both; animation-delay: 160ms;"
-        >
-          Volcano-view lots, eco retreats and luxury villas — full legal support for international buyers.
-        </p>
-
-        <!-- Search bar -->
-        <div
-          class="animate-fade-up"
-          style="animation-fill-mode: both; animation-delay: 240ms;"
-        >
-          <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 max-w-lg">
-            <div class="flex gap-2 mb-3">
-              <input
-                id="hero-search-input"
-                type="text"
-                placeholder="Budget, type, location..."
-                class="flex-1 bg-white/90 text-gray-800 placeholder-gray-500 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[#C9A24E]/60"
-                aria-label="Search properties"
-              />
-              <button
-                id="hero-search-btn"
-                class="bg-[#C9A24E] text-[#0d2218] font-bold px-5 py-2.5 rounded-xl text-sm hover:brightness-110 transition-all whitespace-nowrap"
-              >
-                Search
-              </button>
-            </div>
-            <!-- Quick-filter chips -->
-            <div class="flex flex-wrap gap-2" role="group" aria-label="Quick filters">
-              <button class="hero-chip chip-active" data-key="type" data-value="all">All</button>
-              <button class="hero-chip" data-key="type" data-value="home">🏠 Homes</button>
-              <button class="hero-chip" data-key="type" data-value="land">🌳 Land</button>
-              <button class="hero-chip" data-key="price" data-value="under150">Under $150k</button>
-              <button class="hero-chip" data-key="size" data-value="1to3">1–3 acres</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Right: Parallax thumbnails -->
-    <div class="hidden md:grid overflow-hidden" style="grid-template-rows: 1fr 1fr; gap: 3px;">
-      {thumbnails.slice(0, 2).map((p, i) => (
-        <div class="relative overflow-hidden">
-          <img
-            src={p.images[0]}
-            alt={p.title}
-            width="600"
-            height="400"
-            loading="lazy"
-            data-parallax={i === 0 ? 'up' : 'down'}
-            class="w-full h-full object-cover"
-            style="transform: scale(1.12); will-change: transform;"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0d2218]/70 to-transparent pointer-events-none"></div>
-          {p.price && (
-            <div class="absolute bottom-3 left-3 bg-[#C9A24E] text-[#0d2218] text-xs font-bold px-3 py-1.5 rounded-lg shadow">
-              ${p.price.toLocaleString('en-US')}
-            </div>
-          )}
-          <a
-            href={`/properties/${p.slug}`}
-            class="absolute inset-0"
-            aria-label={`View ${p.title}`}
-          />
-        </div>
-      ))}
+    <!-- Quick-filter chips -->
+    <div
+      class="flex flex-wrap gap-2 animate-fade-up"
+      style="animation-fill-mode: both; animation-delay: 240ms;"
+    >
+      <button
+        class="hero-chip bg-white/10 hover:bg-[#C9A24E] hover:text-[#0d2218] text-white/80 border border-white/20 hover:border-[#C9A24E] px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200"
+        data-key="type" data-value="home"
+      >
+        🏠 Homes
+      </button>
+      <button
+        class="hero-chip bg-white/10 hover:bg-[#C9A24E] hover:text-[#0d2218] text-white/80 border border-white/20 hover:border-[#C9A24E] px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200"
+        data-key="type" data-value="land"
+      >
+        🌳 Land
+      </button>
+      <button
+        class="hero-chip bg-white/10 hover:bg-[#C9A24E] hover:text-[#0d2218] text-white/80 border border-white/20 hover:border-[#C9A24E] px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200"
+        data-key="price" data-value="under150"
+      >
+        Under $150k
+      </button>
+      <button
+        class="hero-chip bg-white/10 hover:bg-[#C9A24E] hover:text-[#0d2218] text-white/80 border border-white/20 hover:border-[#C9A24E] px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200"
+        data-key="size" data-value="over3"
+      >
+        3+ acres
+      </button>
     </div>
   </div>
 </section>
 
-<style>
-  .hero-chip {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.85);
-    border-radius: 9999px;
-    padding: 0.25rem 0.875rem;
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: all 0.15s;
-    font-weight: 500;
-  }
-  .hero-chip:hover,
-  .hero-chip.chip-active {
-    background: #C9A24E;
-    color: #0d2218;
-    border-color: #C9A24E;
-    font-weight: 700;
-  }
-  @media (max-width: 768px) {
-    section { min-height: 72vh !important; }
-    section > div { grid-template-columns: 1fr !important; }
-  }
-</style>
-
 <script>
-  // ── Parallax ────────────────────────────────────────────────────────
-  const parallaxEls = document.querySelectorAll<HTMLImageElement>('[data-parallax]');
-  function updateParallax() {
-    const scrollY = window.scrollY;
-    parallaxEls.forEach(el => {
-      const factor = el.dataset.parallax === 'up' ? -0.06 : 0.05;
-      el.style.transform = `scale(1.12) translateY(${scrollY * factor}px)`;
-    });
-  }
-  window.addEventListener('scroll', updateParallax, { passive: true });
+  document.querySelectorAll<HTMLButtonElement>('.hero-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key   = btn.dataset.key   as string;
+      const value = btn.dataset.value as string;
 
-  // ── Hero chips → URL params + notify PropertiesListing ─────────────
-  const allChips = document.querySelectorAll<HTMLButtonElement>('.hero-chip');
-
-  allChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const key = chip.dataset.key!;
-      const value = chip.dataset.value!;
-
-      // Update active visual state within same key group
-      allChips.forEach(c => { if (c.dataset.key === key) c.classList.remove('chip-active'); });
-      chip.classList.add('chip-active');
-
-      // Sync URL search params
+      // Update URL param
       const params = new URLSearchParams(window.location.search);
-      value === 'all' ? params.delete(key) : params.set(key, value);
-      const qs = params.toString();
-      window.history.replaceState({}, '', qs ? `?${qs}` : window.location.pathname);
+      params.set(key, value);
+      window.history.replaceState({}, '', `?${params.toString()}`);
 
-      // Notify the React PropertiesListing component
-      window.dispatchEvent(
-        new CustomEvent('hero-filter', { detail: Object.fromEntries(params) })
-      );
+      // Notify React listing component
+      window.dispatchEvent(new CustomEvent('hero-filter', { detail: { [key]: value } }));
 
       // Scroll to grid
-      document.getElementById('properties-listing')
-        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const target = document.getElementById('properties-listing');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-  });
-
-  // Search button → just scroll to grid
-  document.getElementById('hero-search-btn')?.addEventListener('click', () => {
-    document.getElementById('properties-listing')
-      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 </script>

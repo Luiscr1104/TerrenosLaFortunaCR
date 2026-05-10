@@ -214,12 +214,13 @@ export default function PropertiesListing({ properties }: { properties: Property
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent<Record<string, string>>).detail;
-      setFilters({
-        type: (detail.type as FilterState['type']) ?? 'all',
-        priceRange: (detail.price as FilterState['priceRange']) ?? 'all',
-        sizeRange: (detail.size as FilterState['sizeRange']) ?? 'all',
-        location: detail.location ?? 'all',
-      });
+      setFilters(prev => ({
+        ...prev,
+        ...(detail.type     && { type:       detail.type      as FilterState['type'] }),
+        ...(detail.price    && { priceRange: detail.price     as FilterState['priceRange'] }),
+        ...(detail.size     && { sizeRange:  detail.size      as FilterState['sizeRange'] }),
+        ...(detail.location && { location:   detail.location }),
+      }));
     };
     window.addEventListener('hero-filter', handler);
     return () => window.removeEventListener('hero-filter', handler);

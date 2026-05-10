@@ -9,13 +9,10 @@ import { getAllProperties } from "@/lib/properties";
 const properties = getAllProperties();
 const siteUrl = "https://www.buylandcr.com";
 
-// Hero: featured property with highest price for left column,
-// next two featured for right thumbnail stack.
-const featured = properties
+// OG image: featured property with highest price
+const heroProperty = properties
   .filter(p => p.featured)
-  .sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
-const heroProperty   = featured[0] ?? properties[0];
-const heroThumbNails = featured.slice(1, 3);
+  .sort((a, b) => (b.price ?? 0) - (a.price ?? 0))[0] ?? properties[0];
 
 // ── Schema: ItemList ──────────────────────────────────────────────────
 const itemListSchema = {
@@ -103,7 +100,6 @@ const breadcrumbSchema = {
   description="Browse volcano-view lots, eco retreats and luxury villas in La Fortuna de San Carlos. Full legal support for foreign buyers. Filter by type, price and size."
   keywords="land for sale La Fortuna Costa Rica, homes for sale Arenal Volcano, invest in Costa Rica real estate foreigners, buy land Costa Rica, La Fortuna property investment"
   image={heroProperty.images[0]}
-  preloadImage={heroProperty.images[0]}
 >
   <!-- Schema blocks (body placement is valid for JSON-LD) -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
@@ -111,7 +107,7 @@ const breadcrumbSchema = {
   <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
   <!-- 1. Hero -->
-  <PropertiesHero heroProperty={heroProperty} thumbnails={heroThumbNails} />
+  <PropertiesHero />
 
   <!-- 2. Filter bar + Bento grid (React, hydrate immediately) -->
   <PropertiesListing client:load properties={properties} />
