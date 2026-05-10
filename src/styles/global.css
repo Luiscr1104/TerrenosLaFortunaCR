@@ -176,3 +176,18 @@
 
 .orb-float-a { animation: float-orb-a 16s ease-in-out infinite; }
 .orb-float-b { animation: float-orb-b 20s ease-in-out infinite; animation-delay: 3s; }
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out forwards;
+}
