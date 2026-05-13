@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import WhatsappIcon from "../components/WhatsappIcon.astro";
 import PaperGrain from "../components/editorial/PaperGrain.astro";
 import StickyConsultationBar from "../components/StickyConsultationBar.astro";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -16,18 +17,22 @@ interface Props {
   propertySchema?: any;
   preloadImage?: string;
   ogType?: "website" | "article";
+  publishDate?: string | Date;
+  noindex?: boolean;
 }
 
 const {
   title = "Retire in La Fortuna Costa Rica | Land & Luxury Homes Near Arenal Volcano",
   description = `Discover your paradise retirement in La Fortuna, Costa Rica. Premium land parcels and turnkey eco-homes near Arenal Volcano. Perfect for expats and investors seeking nature, peace, and adventure. Secure purchases for US, Canadian & European buyers.`,
-  image = "/images/og-image.jpg",
+  image = "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/984f3b88-418c-42e0-8a13-ca8f69ce6900/public",
   lang = "en",
   keywords = "retire in costa rica, la fortuna real estate, buy land costa rica, arenal volcano property, costa rica retirement homes, expat property costa rica, invest in la fortuna, turnkey homes costa rica, eco homes arenal, costa rica land for sale",
   articleSchema = false,
   propertySchema = null,
   preloadImage,
   ogType = "website",
+  publishDate,
+  noindex = false,
 } = Astro.props;
 
 const isProd = import.meta.env.MODE === "production";
@@ -36,9 +41,12 @@ const site =
 const canonicalURL = Astro.site
   ? new URL(Astro.url.pathname, Astro.site).href
   : "";
-const ogImageUrl = Astro.site ? new URL(image, Astro.site).href : image;
+const ogImageUrl = image.startsWith("http") ? image : (Astro.site ? new URL(image, Astro.site).href : image);
+const publishDateISO = publishDate
+  ? (publishDate instanceof Date ? publishDate : new Date(publishDate)).toISOString()
+  : undefined;
 
-const WHATSAPP_NUMBER = "+50689354697";
+const WHATSAPP_NUMBER = "+50684291847";
 const waText = encodeURIComponent(
   `Hi! I'm interested in retiring/investing in La Fortuna. Can we schedule a video tour of your properties?`,
 );
@@ -56,14 +64,6 @@ const jsonLdGraph: any[] = [
     inLanguage: "en",
     publisher: {
       "@id": `${site}/#organization`,
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${site}/en/search?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
     },
   },
   {
@@ -165,22 +165,22 @@ if (propertySchema) {
 if (articleSchema) {
   jsonLdGraph.push({
     "@type": "Article",
+    "@id": `${canonicalURL}#article`,
     headline: title,
     description: description,
     image: ogImageUrl,
+    url: canonicalURL,
+    mainEntityOfPage: { "@id": canonicalURL },
     author: {
-      "@type": "Organization",
-      name: "BuyLandCR",
+      "@type": "Person",
+      name: "Luis Rodrigo",
+      url: `${site}/blog`,
     },
     publisher: {
-      "@type": "Organization",
-      name: "BuyLandCR",
-      logo: {
-        "@type": "ImageObject",
-        url: `${site}/images/logo.png`,
-      },
+      "@id": `${site}/#organization`,
     },
-    datePublished: new Date().toISOString(),
+    datePublished: publishDateISO,
+    dateModified: publishDateISO,
   });
 }
 
@@ -194,6 +194,7 @@ const jsonLd = {
 <html lang={lang} prefix="og: http://ogp.me/ns#">
   <head>
     <meta charset="UTF-8" />
+    <ClientRouter />
     <!-- Preconnect to required origins -->
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -231,7 +232,7 @@ const jsonLd = {
             j.async = true;
             j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
             f.parentNode.insertBefore(j, f);
-          })(window, document, "script", "dataLayer", "GTM-WTNGG5FW");
+          })(window, document, "script", "dataLayer", "GTM-WHP45Q5K");
         </script>
       )
     }
@@ -250,9 +251,9 @@ const jsonLd = {
     <meta name="geo.position" content="10.4678;-84.6431" />
     <meta name="ICBM" content="10.4678, -84.6431" />
 
-    {!isProd && <meta name="robots" content="noindex,nofollow" />}
+    {(!isProd || noindex) && <meta name="robots" content="noindex,nofollow" />}
     {
-      isProd && (
+      isProd && !noindex && (
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
@@ -281,7 +282,6 @@ const jsonLd = {
       content="Luxury properties in La Fortuna, Costa Rica"
     />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="es_CR" />
 
     <!-- Twitter Card - Enhanced -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -309,12 +309,15 @@ const jsonLd = {
   </head>
 
   <body class="min-h-dvh bg-white text-neutral-900 antialiased" style="font-family: var(--font-sans, 'Inter', system-ui, sans-serif);">
+    <!-- Scroll progress bar -->
+    <div id="sp" aria-hidden="true"></div>
+
     <!-- Google Tag Manager (noscript) -->
     {
       isProd && (
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-WTNGG5FW"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-WHP45Q5K"
             height="0"
             width="0"
             style="display:none;visibility:hidden"
@@ -325,8 +328,8 @@ const jsonLd = {
     <!-- End Google Tag Manager (noscript) -->
 
     <PaperGrain />
-    <StickyConsultationBar />
-    <Header />
+    <StickyConsultationBar transition:persist />
+    <Header transition:persist />
     <main id="main-content">
       <slot />
     </main>
@@ -347,21 +350,58 @@ const jsonLd = {
       <span class="sr-only">Contact via WhatsApp</span>
     </a>
 
-    <!-- Scroll reveal -->
+    <!-- Scroll reveal + progress bar -->
     <script is:inline>
-      document.addEventListener("DOMContentLoaded", function() {
-        var io = new IntersectionObserver(
-          function(entries) {
-            entries.forEach(function(e) {
+      document.addEventListener("astro:page-load", function () {
+        // ── Progress bar ──────────────────────────────────────────────────
+        var bar = document.getElementById("sp");
+        function updateBar() {
+          if (!bar) return;
+          var max = document.documentElement.scrollHeight - window.innerHeight;
+          var pct = max > 0 ? Math.min((window.scrollY / max) * 100, 100) : 0;
+          bar.style.width = pct + "%";
+        }
+        window.addEventListener("scroll", updateBar, { passive: true });
+        updateBar();
+
+        // ── Per-element reveal ────────────────────────────────────────────
+        var revealIo = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
               if (e.isIntersecting) {
                 e.target.classList.add("is-visible");
-                io.unobserve(e.target);
+                revealIo.unobserve(e.target);
               }
             });
           },
-          { threshold: 0.1, rootMargin: "0px 0px -32px 0px" }
+          { threshold: 0.08, rootMargin: "0px 0px -48px 0px" }
         );
-        document.querySelectorAll(".reveal").forEach(function(el) { io.observe(el); });
+        document
+          .querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur")
+          .forEach(function (el) { revealIo.observe(el); });
+
+        // ── Section entrance (auto-applied, double rAF avoids flash) ──────
+        var sectionIo = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("s-visible");
+                sectionIo.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.04, rootMargin: "0px 0px -60px 0px" }
+        );
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            document
+              .querySelectorAll("main section:not(#hero-section)")
+              .forEach(function (s) {
+                s.classList.add("s-enter");
+                sectionIo.observe(s);
+              });
+          });
+        });
       });
     </script>
 

@@ -1,0 +1,60 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PropertiesHero from "../components/PropertiesHero.astro";
+import PropertiesListing from "../components/PropertiesListing";
+import RoiCalculator from "../components/RoiCalculator";
+import FaqAccordion from "../components/FaqAccordion.astro";
+import { getAllProperties } from "@/lib/properties";
+
+const allProperties = getAllProperties();
+const properties = allProperties.filter(p => p.type === 'land');
+const siteUrl = "https://www.buylandcr.com";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home",       item: siteUrl },
+    { "@type": "ListItem", position: 2, name: "Properties", item: `${siteUrl}/properties` },
+    { "@type": "ListItem", position: 3, name: "Land",       item: `${siteUrl}/lands` },
+  ],
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Land for sale in La Fortuna, Costa Rica",
+  description: "Titled lots, farms and eco-retreat land near Arenal Volcano, La Fortuna, Costa Rica.",
+  itemListElement: properties.map((p, idx) => ({
+    "@type": "Product",
+    position: idx + 1,
+    name: p.title,
+    url: `${siteUrl}/properties/${p.slug}`,
+    description: p.description ?? `Land for sale in ${p.location}, Costa Rica.`,
+    offers: {
+      "@type": "Offer",
+      price: p.price,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+  })),
+};
+---
+
+<Layout
+  title="Land for Sale in La Fortuna, Costa Rica | BuyLandCR"
+  description="Browse volcano-view lots, farms with natural springs and eco-retreat land near Arenal Volcano. Fully titled, legal support for foreign buyers."
+  keywords="land for sale La Fortuna Costa Rica, buy land Arenal Volcano, lots for sale near Arenal, eco land Costa Rica, invest land La Fortuna foreigners"
+  image={properties[0]?.images[0]}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+
+  <PropertiesHero heroType="land" />
+
+  <PropertiesListing client:load properties={properties} defaultType="land" noFilters />
+
+  <RoiCalculator client:load />
+
+  <FaqAccordion />
+</Layout>

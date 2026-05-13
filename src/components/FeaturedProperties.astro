@@ -1,229 +1,149 @@
 ---
-// src/components/sections/FeaturedProperties.astro
-import PropertyCard from "./PropertyCard.astro";
-import propertiesData from "../data/properties.json";
 import HeroTitle from "./HeroTitle";
 import { getAllProperties } from "@/lib/properties";
 import AnimatedStats from "./AnimatedStats";
 import ChapterMarker from "./editorial/ChapterMarker.astro";
 
-// Filter only featured properties
 const allProperties = getAllProperties();
-const featuredProperties = allProperties.filter((p) => p.featured);
+const homeCount = allProperties.filter((p) => p.type === "home").length;
+const landCount = allProperties.filter((p) => p.type === "land").length;
+
+const categories = [
+  {
+    type: "home",
+    title: "Luxury Homes",
+    subtitle: "Move-in-ready villas near Arenal Volcano",
+    count: homeCount,
+    href: "/homes",
+    image: "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/5cd588c4-a4ad-4d7b-2265-c32b4e859900/public",
+    imageAlt: "Luxury villa in La Fortuna, Costa Rica",
+    eyebrow: "Homes & Villas",
+  },
+  {
+    type: "land",
+    title: "Premium Land",
+    subtitle: "Titled hectares to build your dream from scratch",
+    count: landCount,
+    href: "/lands",
+    image: "/sanrafael.webp",
+    imageAlt: "Pristine land in the San Rafael valley, La Fortuna",
+    eyebrow: "Lots & Parcels",
+  },
+];
 ---
 
 <section
   id="properties"
-  class="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#F2EBDA] overflow-hidden"
+  class="relative py-16 md:py-24 lg:py-32 bg-[#0d2218] overflow-hidden"
 >
-  <!-- Decorative elements -->
-  <div class="absolute top-0 right-0 w-96 h-96 bg-[#1a4a2e]/4 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#C9A24E]/4 rounded-full blur-3xl"></div>
+  <!-- Decorative radial glows -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-[#1a4a2e]/[0.07] rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#C9A24E]/[0.05] rounded-full blur-3xl pointer-events-none"></div>
 
   <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
     <!-- Section Header -->
-    <div class="text-center mb-12 md:mb-16 lg:mb-20">
-      <ChapterMarker numeral="Ⅰ" label="The Properties" theme="light" />
+    <div class="text-center mb-12 md:mb-16 lg:mb-20 reveal">
+      <ChapterMarker numeral="Ⅰ" label="The Properties" theme="dark" />
       <HeroTitle client:visible />
 
-      <p class="text-lg md:text-xl text-[#2a2520]/65 max-w-3xl mx-auto mb-8" style="font-family: var(--font-sans, Inter, system-ui);">
-        Handpicked luxury homes and pristine land in La Fortuna's most desirable
-        locations.
-        <span class="font-semibold text-[#1a4a2e]"
-          >Every property personally inspected and verified.</span
+      <p class="text-lg md:text-xl text-white/55 max-w-3xl mx-auto mb-2" style="font-family: var(--font-sans, Inter, system-ui);">
+        Wake up to Arenal Volcano. Fall asleep to howler monkeys. These are the
+        parcels and homes where that life becomes real.
+        <span class="font-semibold text-[#C9A24E]"
+          >Every property personally inspected and title-verified.</span
         >
       </p>
-
-      <!-- Filter Tabs -->
-      <div class="flex flex-wrap justify-center gap-3 mb-8">
-        <button
-          data-filter="all"
-          class="filter-btn active px-6 py-2.5 rounded-full font-bold transition-all duration-300 bg-neutral-900 text-white shadow-xl border-2 border-neutral-900"
-        >
-          All Properties
-        </button>
-        <button
-          data-filter="home"
-          class="filter-btn px-6 py-2.5 rounded-full font-semibold transition-all duration-300 bg-white text-neutral-900 hover:bg-neutral-100 border-2 border-neutral-300 hover:border-neutral-900 hover:shadow-lg shadow-md"
-        >
-          🏠 Luxury Homes
-        </button>
-        <button
-          data-filter="land"
-          class="filter-btn px-6 py-2.5 rounded-full font-semibold transition-all duration-300 bg-white text-neutral-900 hover:bg-neutral-100 border-2 border-neutral-300 hover:border-neutral-900 hover:shadow-lg shadow-md"
-        >
-          🌳 Premium Land
-        </button>
-      </div>
     </div>
 
-    <!-- Properties Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
-      {
-        featuredProperties.map((property) => (
-          <div class="property-item" data-type={property.type}>
-            <PropertyCard
-              {...property}
-              price={property.price || 0}
-              size={property.size || 0}
-              sizeUnit={property.sizeUnit || "m²"}
-              features={property.features || []}
-              description={property.description || ""}
+    <!-- Category Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto mb-16">
+      {categories.map((cat, i) => (
+        <a
+          href={cat.href}
+          class={`group relative block rounded-3xl overflow-hidden shadow-[0_24px_64px_rgba(0,0,0,0.35)] ring-1 ring-white/10 hover:ring-[#C9A24E]/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_32px_80px_rgba(0,0,0,0.45)] reveal reveal-delay-${i + 1}`}
+          style="aspect-ratio: 4/5;"
+        >
+          <!-- Background photo -->
+          <div class="absolute inset-0 overflow-hidden">
+            <img
+              src={cat.image}
+              alt={cat.imageAlt}
+              class="w-full h-full object-cover object-center transition-transform duration-[1000ms] ease-out group-hover:scale-110"
+              loading="lazy"
+              decoding="async"
             />
           </div>
-        ))
-      }
-    </div>
 
-    <!-- No properties message (hidden by default) -->
-    <div id="no-properties" class="hidden text-center py-12">
-      <div
-        class="inline-flex items-center justify-center w-16 h-16 bg-neutral-100 rounded-full mb-4"
-      >
-        <svg
-          class="w-8 h-8 text-neutral-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-        </svg>
-      </div>
-      <p class="text-lg text-neutral-600">
-        No properties found in this category
-      </p>
-    </div>
+          <!-- Dark gradient overlay — heavier at bottom for text legibility -->
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0d2218]/95 via-[#0d2218]/45 to-[#0d2218]/10 pointer-events-none"></div>
 
-    <!-- View All CTA -->
-    <div class="text-center">
-      <a
-        href="/properties"
-        class="inline-flex items-center gap-2 bg-white border-2 border-[#1a4a2e] text-[#1a4a2e] hover:bg-[#1a4a2e] hover:text-white px-8 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-      >
-        View All Properties
-        <svg
-          class="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-        </svg>
-      </a>
-      <p class="mt-4 text-sm text-neutral-500">
-        Handpicked exclusive properties • Personally inspected and verified
-      </p>
+          <!-- Top badge -->
+          <div class="absolute top-6 left-6">
+            <span
+              class="inline-flex items-center gap-1.5 bg-[#C9A24E]/20 border border-[#C9A24E]/40 text-[#C9A24E] text-[10px] font-semibold tracking-[0.28em] uppercase px-3 py-1.5 rounded-full backdrop-blur-sm"
+              style="font-family: var(--font-sans, Inter, system-ui);"
+            >
+              {cat.eyebrow}
+            </span>
+          </div>
+
+          <!-- Bottom content -->
+          <div class="absolute bottom-0 left-0 right-0 p-8">
+            <!-- Property count -->
+            <div class="flex items-center gap-2 mb-3">
+              <div class="h-px w-5 bg-[#C9A24E]/70"></div>
+              <span
+                class="text-[#C9A24E]/80 text-[11px] font-semibold tracking-[0.22em] uppercase"
+                style="font-family: var(--font-sans, Inter, system-ui);"
+              >
+                {cat.count} {cat.count === 1 ? "Property" : "Properties"} Available
+              </span>
+            </div>
+
+            <!-- Title -->
+            <h3
+              class="text-4xl md:text-5xl font-bold italic text-white leading-tight mb-2 group-hover:text-[#C9A24E] transition-colors duration-300"
+              style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); text-shadow: 0 2px 20px rgba(0,0,0,0.6);"
+            >
+              {cat.title}
+            </h3>
+
+            <!-- Subtitle -->
+            <p
+              class="text-white/60 text-sm mb-6 leading-relaxed"
+              style="font-family: var(--font-sans, Inter, system-ui);"
+            >
+              {cat.subtitle}
+            </p>
+
+            <!-- CTA row -->
+            <div class="flex items-center gap-3 text-[#C9A24E]">
+              <span
+                class="text-sm font-semibold tracking-wide"
+                style="font-family: var(--font-sans, Inter, system-ui);"
+              >
+                Explore Catalog
+              </span>
+              <svg
+                class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </div>
+          </div>
+        </a>
+      ))}
     </div>
 
     <!-- Stats Bar -->
     <AnimatedStats client:visible />
   </div>
 </section>
-
-<script>
-  // Property filtering functionality
-  function setupPropertyFilters() {
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const propertyItems = document.querySelectorAll(".property-item");
-    const noPropertiesMessage = document.getElementById("no-properties");
-
-    filterButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const filterValue = button.getAttribute("data-filter");
-
-        // Update active button
-        filterButtons.forEach((btn) => {
-          btn.classList.remove(
-            "active",
-            "bg-neutral-900",
-            "text-white",
-            "shadow-xl",
-            "font-bold",
-            "border-neutral-900",
-          );
-          btn.classList.add(
-            "bg-white",
-            "text-neutral-900",
-            "border-neutral-300",
-            "shadow-md",
-            "font-semibold",
-          );
-        });
-        button.classList.add(
-          "active",
-          "bg-neutral-900",
-          "text-white",
-          "shadow-xl",
-          "font-bold",
-          "border-neutral-900",
-        );
-        button.classList.remove(
-          "bg-white",
-          "text-neutral-900",
-          "border-neutral-300",
-          "shadow-md",
-          "font-semibold",
-        );
-
-        // Filter properties
-        let visibleCount = 0;
-        propertyItems.forEach((item) => {
-          const element = item as HTMLElement;
-          const itemType = element.getAttribute("data-type");
-
-          if (filterValue === "all" || itemType === filterValue) {
-            element.style.display = "block";
-            // Fade in animation
-            element.style.opacity = "0";
-            element.style.transform = "translateY(20px)";
-            setTimeout(() => {
-              element.style.transition = "all 0.5s ease";
-              element.style.opacity = "1";
-              element.style.transform = "translateY(0)";
-            }, 50);
-            visibleCount++;
-          } else {
-            element.style.display = "none";
-          }
-        });
-
-        // Show/hide no properties message
-        if (noPropertiesMessage) {
-          if (visibleCount === 0) {
-            noPropertiesMessage.classList.remove("hidden");
-          } else {
-            noPropertiesMessage.classList.add("hidden");
-          }
-        }
-      });
-    });
-  }
-
-  // Initialize on page load
-  document.addEventListener("DOMContentLoaded", setupPropertyFilters);
-</script>
-
-<style>
-  .property-item {
-    animation: fadeInUp 0.6s ease-out;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

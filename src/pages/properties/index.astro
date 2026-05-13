@@ -107,54 +107,68 @@ const breadcrumbSchema = {
   <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
   <!-- 1. Hero -->
-  <PropertiesHero />
+  <PropertiesHero heroType="all" />
 
   <!-- 2. Filter bar + Bento grid (React, hydrate immediately) -->
   <PropertiesListing client:load properties={properties} />
 
   <!-- 3. ROI Calculator (React, hydrate when visible) -->
-  <RoiCalculator client:visible />
+  <RoiCalculator client:load />
 
   <!-- 4. Trust / SEO intro -->
-  <section class="max-w-6xl mx-auto px-6 py-10 md:py-14">
-    <div class="grid gap-10 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] items-start">
-      <div class="space-y-5">
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-neutral-900">
-          Buy Property in La Fortuna de San Carlos as a Foreign Investor
-        </h2>
-        <p class="text-neutral-700 leading-relaxed text-sm md:text-base">
-          La Fortuna is one of Costa Rica's strongest real-estate markets thanks to its
-          year-round tourism, lush rainforest and proximity to
-          <strong>Arenal Volcano, the country's most visited landmark</strong>.
-          This constant flow of visitors creates solid demand for vacation rentals,
-          boutique projects and long-term stays.
-        </p>
-        <p class="text-neutral-700 leading-relaxed text-sm md:text-base">
-          As a foreigner, you enjoy the <strong>same ownership rights as Costa Rican citizens</strong>.
-          You can purchase under your personal name or through a local corporation.
-          Our team coordinates due diligence, title verification, purchase contracts
-          and closing so you can invest with confidence from abroad.
-        </p>
-      </div>
+  <section class="relative bg-[#0d2218] py-16 md:py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(201,162,78,0.04),transparent_55%)] pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-10 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] items-start">
+        <div class="space-y-5 reveal">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="h-px w-7 bg-[#C9A24E]/50"></div>
+            <span class="text-[#C9A24E]/70 text-[10px] font-semibold tracking-[0.26em] uppercase" style="font-family: var(--font-sans, Inter, system-ui);">Foreign Investment</span>
+          </div>
+          <h2
+            class="text-2xl md:text-3xl font-bold tracking-tight text-white leading-snug"
+            style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
+          >
+            Buy Property in La Fortuna<br />
+            <span class="italic text-[#C9A24E]">as a Foreign Investor</span>
+          </h2>
+          <p class="text-white/60 leading-relaxed text-sm md:text-base" style="font-family: var(--font-sans, Inter, system-ui);">
+            La Fortuna is one of Costa Rica's strongest real-estate markets thanks to its
+            year-round tourism, lush rainforest and proximity to
+            <strong class="font-semibold text-white/80">Arenal Volcano, the country's most visited landmark</strong>.
+            This constant flow of visitors creates solid demand for vacation rentals,
+            boutique projects and long-term stays.
+          </p>
+          <p class="text-white/60 leading-relaxed text-sm md:text-base" style="font-family: var(--font-sans, Inter, system-ui);">
+            As a foreigner, you enjoy the <strong class="font-semibold text-white/80">same ownership rights as Costa Rican citizens</strong>.
+            You can purchase under your personal name or through a local corporation.
+            Our team coordinates due diligence, title verification, purchase contracts
+            and closing so you can invest with confidence from abroad.
+          </p>
+        </div>
 
-      <aside class="bg-[#F2EBDA] border border-[#E8DFC8] rounded-2xl p-5 md:p-6 space-y-4">
-        <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500">
-          Why investors choose La Fortuna
-        </h3>
-        <ul class="space-y-3 text-sm text-neutral-700">
-          {[
-            "Strong tourism all year — not only high season.",
-            "High demand for vacation rentals and boutique developments.",
-            "Attractive appreciation for volcano-view or water-source land.",
-            "Full legal support in English for international buyers.",
-          ].map(item => (
-            <li class="flex gap-2 items-start">
-              <span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#C9A24E] flex-shrink-0"></span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </aside>
+        <aside class="bg-white/[0.05] border border-[#C9A24E]/20 rounded-2xl p-5 md:p-6 space-y-4 reveal reveal-right reveal-delay-2">
+          <h3
+            class="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A24E]/70"
+            style="font-family: var(--font-sans, Inter, system-ui);"
+          >
+            Why investors choose La Fortuna
+          </h3>
+          <ul class="space-y-3">
+            {[
+              "Strong tourism all year — not only high season.",
+              "High demand for vacation rentals and boutique developments.",
+              "Attractive appreciation for volcano-view or water-source land.",
+              "Full legal support in English for international buyers.",
+            ].map(item => (
+              <li class="flex gap-3 items-start">
+                <span class="mt-[5px] h-1.5 w-1.5 rounded-full bg-[#C9A24E] flex-shrink-0"></span>
+                <span class="text-white/65 text-sm leading-relaxed" style="font-family: var(--font-sans, Inter, system-ui);">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      </div>
     </div>
   </section>
 
@@ -162,27 +176,55 @@ const breadcrumbSchema = {
   <FaqAccordion />
 
   <!-- 6. CTA Band -->
-  <section class="w-full py-12 md:py-16 bg-[#0d2218] text-center text-white relative overflow-hidden">
-    <div
-      class="absolute inset-0 pointer-events-none"
-      style="background: radial-gradient(circle at 20% 50%, rgba(201,162,78,0.07) 0%, transparent 60%), radial-gradient(circle at 80% 50%, rgba(201,162,78,0.05) 0%, transparent 60%);"
-    ></div>
-    <div class="relative z-10 max-w-3xl mx-auto px-6">
-      <h3 class="text-2xl md:text-3xl font-bold mb-3">
-        Looking for something very specific?
+  <section class="relative w-full py-20 md:py-24 overflow-hidden">
+    <!-- Background image -->
+    <div class="absolute inset-0">
+      <img
+        src="/salto.webp"
+        alt="Waterfall in La Fortuna, Costa Rica"
+        class="w-full h-full object-cover object-center"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0d2218]/90 via-[#0d2218]/75 to-[#0d2218]/90 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,162,78,0.08),transparent_65%)] pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <div class="h-px w-8 bg-[#C9A24E]/50"></div>
+        <span class="text-[#C9A24E]/70 text-[10px] font-semibold tracking-[0.28em] uppercase" style="font-family: var(--font-sans, Inter, system-ui);">Personalized Search</span>
+        <div class="h-px w-8 bg-[#C9A24E]/50"></div>
+      </div>
+
+      <h3
+        class="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight"
+        style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
+      >
+        Looking for Something
+        <span class="block italic text-[#C9A24E]">Very Specific?</span>
       </h3>
-      <p class="text-neutral-300 mb-7 text-sm md:text-base leading-relaxed max-w-xl mx-auto">
+
+      <p
+        class="text-white/60 mb-8 text-sm md:text-base leading-relaxed max-w-xl mx-auto"
+        style="font-family: var(--font-sans, Inter, system-ui);"
+      >
         Share your budget, preferred size and whether you want a volcano-view lot,
         a farm with a natural water source or an income-generating rental.
-        We'll send you a personalized shortlist directly to your WhatsApp or email.
+        We'll send you a curated shortlist directly to your WhatsApp.
       </p>
+
       <a
-        href="https://wa.me/50689354697?text=Hi!%20I'm%20looking%20for%20a%20specific%20type%20of%20property%20in%20La%20Fortuna%2C%20Costa%20Rica.%20Please%20help%20me%20find%20land%20or%20a%20home%20that%20matches%20my%20budget%20and%20investment%20goals."
+        href="https://wa.me/50684291847?text=Hi!%20I'm%20looking%20for%20a%20specific%20type%20of%20property%20in%20La%20Fortuna%2C%20Costa%20Rica.%20Please%20help%20me%20find%20land%20or%20a%20home%20that%20matches%20my%20budget%20and%20investment%20goals."
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 bg-[#C9A24E] text-[#0d2218] px-7 py-3.5 rounded-xl font-bold hover:brightness-110 transition-all shadow-lg hover:shadow-xl text-sm md:text-base"
+        class="inline-flex items-center gap-2.5 bg-[#C9A24E] text-[#0d2218] px-8 py-4 font-bold text-xs uppercase tracking-[0.18em] hover:brightness-105 active:brightness-95 transition-all duration-200 shadow-[0_8px_32px_rgba(201,162,78,0.35)] hover:shadow-[0_12px_40px_rgba(201,162,78,0.5)] hover:-translate-y-0.5"
+        style="font-family: var(--font-sans, Inter, system-ui);"
       >
-        Get Personalized Options on WhatsApp
+        <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.332 4.993L2 22l5.083-1.334a9.96 9.96 0 004.928 1.317h.004a9.99 9.99 0 009.99-9.982C22.002 6.666 17.522 2 12.012 2zm0 18.288h-.004a8.27 8.27 0 01-4.22-1.157l-.302-.18-3.138.823.838-3.058-.196-.313a8.28 8.28 0 01-1.27-4.417c.002-4.57 3.725-8.287 8.29-8.287 2.214 0 4.295.863 5.86 2.428a8.26 8.26 0 012.433 5.865c-.003 4.568-3.725 8.286-8.29 8.296z" />
+        </svg>
+        Get Personalized Options
       </a>
     </div>
   </section>

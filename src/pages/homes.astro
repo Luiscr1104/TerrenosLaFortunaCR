@@ -1,0 +1,57 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PropertiesHero from "../components/PropertiesHero.astro";
+import PropertiesListing from "../components/PropertiesListing";
+import FaqAccordion from "../components/FaqAccordion.astro";
+import { getAllProperties } from "@/lib/properties";
+
+const allProperties = getAllProperties();
+const properties = allProperties.filter(p => p.type === 'home');
+const siteUrl = "https://www.buylandcr.com";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home",       item: siteUrl },
+    { "@type": "ListItem", position: 2, name: "Properties", item: `${siteUrl}/properties` },
+    { "@type": "ListItem", position: 3, name: "Homes",      item: `${siteUrl}/homes` },
+  ],
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Homes and villas for sale in La Fortuna, Costa Rica",
+  description: "Luxury homes, eco-villas and turnkey residences for sale near Arenal Volcano, La Fortuna, Costa Rica.",
+  itemListElement: properties.map((p, idx) => ({
+    "@type": "Product",
+    position: idx + 1,
+    name: p.title,
+    url: `${siteUrl}/properties/${p.slug}`,
+    description: p.description ?? `Home for sale in ${p.location}, Costa Rica.`,
+    offers: {
+      "@type": "Offer",
+      price: p.price,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+  })),
+};
+---
+
+<Layout
+  title="Luxury Homes & Villas for Sale in La Fortuna, Costa Rica | BuyLandCR"
+  description="Browse turnkey luxury homes, eco-villas and residences near Arenal Volcano. Pool, mountain views and vacation rental potential. Full legal support for foreign buyers."
+  keywords="homes for sale La Fortuna Costa Rica, luxury villas Arenal Volcano, buy house Costa Rica foreigners, eco villa La Fortuna, vacation home Costa Rica"
+  image={properties[0]?.images[0]}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+
+  <PropertiesHero heroType="home" />
+
+  <PropertiesListing client:load properties={properties} defaultType="home" noFilters />
+
+  <FaqAccordion />
+</Layout>

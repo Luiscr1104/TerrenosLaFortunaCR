@@ -104,7 +104,7 @@ function FeaturedCard({ property }: { property: Property }) {
           ))}
         </ul>
         <a
-          href={`https://wa.me/50689354697?text=Hi!%20I'm%20interested%20in:%20${encodeURIComponent(property.title)}`}
+          href={`https://wa.me/50684291847?text=Hi!%20I'm%20interested%20in:%20${encodeURIComponent(property.title)}`}
           target="_blank"
           rel="noopener noreferrer"
           onClick={e => e.stopPropagation()}
@@ -160,7 +160,7 @@ function SecondaryCard({ property }: { property: Property }) {
           {property.landSize && <span><strong>{property.landSize}</strong> acres</span>}
         </div>
         <a
-          href={`https://wa.me/50689354697?text=Hi!%20I'm%20interested%20in:%20${encodeURIComponent(property.title)}`}
+          href={`https://wa.me/50684291847?text=Hi!%20I'm%20interested%20in:%20${encodeURIComponent(property.title)}`}
           target="_blank"
           rel="noopener noreferrer"
           onClick={e => e.stopPropagation()}
@@ -184,8 +184,22 @@ const cardVariants = {
 };
 
 // ── main component ────────────────────────────────────────────────────────
-export default function PropertiesListing({ properties }: { properties: Property[] }) {
-  const [filters, setFilters] = useState<FilterState>(() => parseFiltersFromURL());
+export default function PropertiesListing({
+  properties,
+  defaultType,
+  noFilters = false,
+}: {
+  properties: Property[];
+  defaultType?: 'all' | 'land' | 'home';
+  noFilters?: boolean;
+}) {
+  const [filters, setFilters] = useState<FilterState>(() => {
+    const fromURL = parseFiltersFromURL();
+    if (defaultType && defaultType !== 'all' && fromURL.type === 'all') {
+      return { ...fromURL, type: defaultType };
+    }
+    return fromURL;
+  });
   const [sort, setSort] = useState<SortOption>('featured');
 
   const locations = useMemo(() => {
@@ -240,7 +254,7 @@ export default function PropertiesListing({ properties }: { properties: Property
   return (
     <section id="properties-listing" className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
       {/* ── Sticky Filter + Sort Bar ───────────────────────────────── */}
-      <div className="sticky top-[4.5rem] z-30 bg-white/90 backdrop-blur-sm border-b border-neutral-100 -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 mb-10 flex flex-wrap items-center gap-2 md:gap-3">
+      {!noFilters && <div className="sticky top-[4.5rem] z-30 bg-white/90 backdrop-blur-sm border-b border-neutral-100 -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 mb-10 flex flex-wrap items-center gap-2 md:gap-3">
         {/* Count + clear */}
         <span className="text-sm font-semibold text-neutral-700 mr-auto whitespace-nowrap">
           {matchCount} {matchCount === 1 ? 'property' : 'properties'}
@@ -255,21 +269,62 @@ export default function PropertiesListing({ properties }: { properties: Property
           )}
         </span>
 
-        {/* Type chips */}
-        {(['all', 'home', 'land'] as const).map(t => (
-          <button
-            key={t}
-            onClick={() => updateFilter('type', t)}
-            aria-pressed={filters.type === t}
-            className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition-all duration-150 ${
-              filters.type === t
-                ? 'bg-[#0d2218] text-[#C9A24E] border-[#0d2218]'
-                : 'bg-white text-neutral-700 border-neutral-300 hover:border-[#0d2218]'
-            }`}
-          >
-            {t === 'all' ? 'All' : t === 'home' ? '🏠 Homes' : '🌳 Land'}
-          </button>
-        ))}
+        {/* Type navigation — links to dedicated pages */}
+        {!defaultType || defaultType === 'all' ? (
+          <>
+            <a
+              href="/properties"
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition-all duration-150 ${
+                filters.type === 'all'
+                  ? 'bg-[#0d2218] text-[#C9A24E] border-[#0d2218]'
+                  : 'bg-white text-neutral-700 border-neutral-300 hover:border-[#0d2218]'
+              }`}
+            >
+              All
+            </a>
+            <a
+              href="/lands"
+              className="px-4 py-1.5 rounded-full text-xs font-semibold border bg-white text-neutral-700 border-neutral-300 hover:border-[#0d2218] transition-all duration-150"
+            >
+              🌳 Land
+            </a>
+            <a
+              href="/homes"
+              className="px-4 py-1.5 rounded-full text-xs font-semibold border bg-white text-neutral-700 border-neutral-300 hover:border-[#0d2218] transition-all duration-150"
+            >
+              🏠 Homes
+            </a>
+          </>
+        ) : (
+          <>
+            <a
+              href="/properties"
+              className="px-4 py-1.5 rounded-full text-xs font-semibold border border-neutral-300 bg-white text-neutral-600 hover:border-[#0d2218] transition-all duration-150"
+            >
+              All
+            </a>
+            <a
+              href="/lands"
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition-all duration-150 ${
+                defaultType === 'land'
+                  ? 'bg-[#0d2218] text-[#C9A24E] border-[#0d2218]'
+                  : 'bg-white text-neutral-700 border-neutral-300 hover:border-[#0d2218]'
+              }`}
+            >
+              🌳 Land
+            </a>
+            <a
+              href="/homes"
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition-all duration-150 ${
+                defaultType === 'home'
+                  ? 'bg-[#0d2218] text-[#C9A24E] border-[#0d2218]'
+                  : 'bg-white text-neutral-700 border-neutral-300 hover:border-[#0d2218]'
+              }`}
+            >
+              🏠 Homes
+            </a>
+          </>
+        )}
 
         {/* Price */}
         <select
@@ -311,7 +366,7 @@ export default function PropertiesListing({ properties }: { properties: Property
         >
           {SORT_OPTS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
         </select>
-      </div>
+      </div>}
 
       {/* ── Empty state ────────────────────────────────────────────── */}
       {matchCount === 0 && (

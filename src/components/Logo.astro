@@ -6,7 +6,7 @@ interface Props {
 
 const { class: className, type = "full" } = Astro.props;
 
-const viewBox = type === "icon" ? "40 30 160 160" : "0 0 860 220";
+const viewBox = type === "icon" ? "40 30 160 160" : "0 20 700 180";
 ---
 
 <svg
@@ -74,20 +74,10 @@ const viewBox = type === "icon" ? "40 30 160 160" : "0 0 860 220";
   <!-- WORDMARK -->
   {
     type === "full" && (
-      <g transform="translate(240,80)">
-        <text class="text" font-size="66">
-          <tspan>Buy</tspan>
-          <tspan class="fill" opacity="0.85">
-            Land
-          </tspan>
-          <tspan>CR</tspan>
+      <g transform="translate(240,110)">
+        <text class="text" font-size="66" dominant-baseline="central">
+          <tspan>Buy</tspan><tspan class="fill" opacity="0.85">Land</tspan><tspan>CR</tspan>
         </text>
-        <text class="sub" font-size="16" y="44">
-          REAL ESTATE • LA FORTUNA
-        </text>
-
-        <!-- underline accent -->
-        <path d="M0 62 H520" class="mark" opacity="0.35" />
       </g>
     )
   }

@@ -1,82 +1,227 @@
 ---
-// No props needed — pure text banner
+interface Props {
+  heroType?: 'all' | 'land' | 'home';
+}
+
+const { heroType = 'all' } = Astro.props;
+
+const config = {
+  all: {
+    eyebrow: 'La Fortuna · Arenal · Costa Rica',
+    headline: 'Land & Luxury Homes',
+    headlineAccent: 'for Sale in La Fortuna',
+    subline: 'Volcano-view lots, eco retreats and turnkey villas — full legal support for international buyers.',
+    image: '/sanrafael.webp',
+    imageAlt: 'San Rafael valley near La Fortuna, Costa Rica',
+  },
+  land: {
+    eyebrow: 'La Fortuna · Arenal · Costa Rica',
+    headline: 'Land for Sale',
+    headlineAccent: 'near Arenal Volcano',
+    subline: 'Volcano-view lots, farms with natural springs and eco retreat land — fully titled, legal support included.',
+    image: 'https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/984f3b88-418c-42e0-8a13-ca8f69ce6900/public',
+    imageAlt: 'Land for sale near La Fortuna, Costa Rica',
+  },
+  home: {
+    eyebrow: 'La Fortuna · Arenal · Costa Rica',
+    headline: 'Luxury Homes & Villas',
+    headlineAccent: 'for Sale in La Fortuna',
+    subline: 'Turnkey residences and eco-retreat properties with pools, mountain views and income potential.',
+    image: 'https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/5cd588c4-a4ad-4d7b-2265-c32b4e859900/public',
+    imageAlt: 'Luxury home with pool for sale in Chachagua, La Fortuna',
+  },
+};
+
+const c = config[heroType];
 ---
 
-<section class="mt-20 bg-[#0d2218] text-white pt-14 pb-10">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+<section class="relative min-h-[62vh] flex flex-col justify-end bg-[#0d2218] overflow-hidden pt-16">
 
-    <p
-      class="text-[#C9A24E]/70 text-xs font-bold uppercase tracking-[0.22em] mb-4 animate-fade-up"
-      style="animation-fill-mode: both; animation-delay: 0ms;"
-    >
-      La Fortuna · Arenal · Costa Rica
-    </p>
+  <div class="absolute inset-0">
+    <img
+      src={c.image}
+      alt={c.imageAlt}
+      class="w-full h-full object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </div>
+
+  <div class="absolute inset-0 bg-gradient-to-t from-[#0d2218] via-[#0d2218]/55 to-[#0d2218]/20 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-[#0d2218]/60 via-transparent to-transparent pointer-events-none"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,transparent_50%,rgba(13,34,24,0.5)_100%)] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-10 md:pb-14">
+
+    <div class="flex items-center gap-3 mb-5 animate-fade-up" style="animation-fill-mode: both; animation-delay: 0ms;">
+      <div class="h-px w-8 bg-[#C9A24E]/60"></div>
+      <span
+        class="text-[#C9A24E]/80 text-[10px] font-semibold uppercase tracking-[0.28em]"
+        style="font-family: var(--font-sans, Inter, system-ui);"
+      >{c.eyebrow}</span>
+    </div>
 
     <h1
-      class="font-bold leading-tight mb-4 animate-fade-up"
-      style="font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.75rem); animation-fill-mode: both; animation-delay: 80ms; view-transition-name: title-properties;"
+      class="font-bold leading-[1.05] tracking-tight mb-4 animate-fade-up"
+      style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); font-size: clamp(2.4rem, 6vw, 4.2rem); animation-fill-mode: both; animation-delay: 80ms;"
     >
-      Land &amp; Luxury Homes<br />
-      <span class="text-[#C9A24E]">for Sale in La Fortuna, Costa Rica</span>
+      <span class="text-white">{c.headline}</span><br />
+      <span class="italic text-[#C9A24E]">{c.headlineAccent}</span>
     </h1>
 
     <p
-      class="text-white/65 text-sm md:text-base max-w-xl mb-8 animate-fade-up"
-      style="animation-fill-mode: both; animation-delay: 160ms;"
+      class="text-white/60 text-sm md:text-base max-w-lg mb-8 leading-relaxed animate-fade-up"
+      style="font-family: var(--font-sans, Inter, system-ui); animation-fill-mode: both; animation-delay: 160ms;"
     >
-      Volcano-view lots, eco retreats and luxury villas — full legal support for international buyers.
+      {c.subline}
     </p>
 
-    <!-- Quick-filter chips -->
+    <!-- Chips: price + size (always), type-switch only on "all" page -->
     <div
       class="flex flex-wrap gap-2 animate-fade-up"
       style="animation-fill-mode: both; animation-delay: 240ms;"
     >
-      <button
-        class="hero-chip bg-white/10 hover:bg-[#C9A24E] hover:text-[#0d2218] text-white/80 border border-white/20 hover:border-[#C9A24E] px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200"
-        data-key="type" data-value="home"
-      >
-        🏠 Homes
-      </button>
-      <button
-        class="hero-chip bg-white/10 hover:bg-[#C9A24E] hover:text-[#0d2218] text-white/80 border border-white/20 hover:border-[#C9A24E] px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200"
-        data-key="type" data-value="land"
-      >
-        🌳 Land
-      </button>
-      <button
-        class="hero-chip bg-white/10 hover:bg-[#C9A24E] hover:text-[#0d2218] text-white/80 border border-white/20 hover:border-[#C9A24E] px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200"
-        data-key="price" data-value="under150"
-      >
-        Under $150k
-      </button>
-      <button
-        class="hero-chip bg-white/10 hover:bg-[#C9A24E] hover:text-[#0d2218] text-white/80 border border-white/20 hover:border-[#C9A24E] px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200"
-        data-key="size" data-value="over3"
-      >
-        3+ acres
-      </button>
+      {heroType !== 'home' && (
+        <a
+          href="/lands"
+          class={`inline-flex items-center gap-2 px-4 py-2 border text-[10px] font-semibold uppercase tracking-[0.18em] transition-all duration-200 ${heroType === 'land' ? 'bg-[#C9A24E] text-[#0d2218] border-[#C9A24E]' : 'border-white/20 bg-white/[0.08] backdrop-blur-sm text-white/75 hover:bg-[#C9A24E] hover:text-[#0d2218] hover:border-[#C9A24E]'}`}
+          style="font-family: var(--font-sans, Inter, system-ui);"
+          aria-current={heroType === 'land' ? 'page' : undefined}
+        >
+          <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+          </svg>
+          Land
+        </a>
+      )}
+
+      {heroType !== 'land' && (
+        <a
+          href="/homes"
+          class={`inline-flex items-center gap-2 px-4 py-2 border text-[10px] font-semibold uppercase tracking-[0.18em] transition-all duration-200 ${heroType === 'home' ? 'bg-[#C9A24E] text-[#0d2218] border-[#C9A24E]' : 'border-white/20 bg-white/[0.08] backdrop-blur-sm text-white/75 hover:bg-[#C9A24E] hover:text-[#0d2218] hover:border-[#C9A24E]'}`}
+          style="font-family: var(--font-sans, Inter, system-ui);"
+          aria-current={heroType === 'home' ? 'page' : undefined}
+        >
+          <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.126 1.126 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+          </svg>
+          Homes
+        </a>
+      )}
+
+      {heroType !== 'all' && (
+        <a
+          href="/properties"
+          class="inline-flex items-center gap-2 px-4 py-2 border border-white/20 bg-white/[0.08] backdrop-blur-sm text-white/75 text-[10px] font-semibold uppercase tracking-[0.18em] hover:bg-white/20 transition-all duration-200"
+          style="font-family: var(--font-sans, Inter, system-ui);"
+        >
+          All properties
+        </a>
+      )}
+
+      {heroType === 'all' && (
+        <>
+          <button
+            class="hero-chip inline-flex items-center gap-2 px-4 py-2 border border-white/20 bg-white/[0.08] backdrop-blur-sm text-white/75 text-[10px] font-semibold uppercase tracking-[0.18em] hover:bg-[#C9A24E] hover:text-[#0d2218] hover:border-[#C9A24E] transition-all duration-200"
+            data-key="price" data-value="under150"
+            style="font-family: var(--font-sans, Inter, system-ui);"
+          >
+            Under $150k
+          </button>
+          <button
+            class="hero-chip inline-flex items-center gap-2 px-4 py-2 border border-white/20 bg-white/[0.08] backdrop-blur-sm text-white/75 text-[10px] font-semibold uppercase tracking-[0.18em] hover:bg-[#C9A24E] hover:text-[#0d2218] hover:border-[#C9A24E] transition-all duration-200"
+            data-key="size" data-value="over3"
+            style="font-family: var(--font-sans, Inter, system-ui);"
+          >
+            3+ acres
+          </button>
+        </>
+      )}
     </div>
   </div>
+
+  <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#0d2218] to-transparent pointer-events-none"></div>
 </section>
 
+<!-- Category Cards — only on the "all" page -->
+{heroType === 'all' && (
+  <section class="bg-[#0d2218] px-4 sm:px-6 pb-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 gap-4 sm:gap-6">
+
+      <a
+        href="/lands"
+        class="group relative overflow-hidden rounded-2xl text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C9A24E]"
+        style="aspect-ratio: 4/3; display: block;"
+        aria-label="Browse Land properties"
+      >
+        <img
+          src="https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/984f3b88-418c-42e0-8a13-ca8f69ce6900/public"
+          alt="Land for sale in La Fortuna, Costa Rica"
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0d2218]/90 via-[#0d2218]/30 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+          <p class="text-[#C9A24E] text-[10px] font-semibold uppercase tracking-[0.22em] mb-1" style="font-family: var(--font-sans, Inter, system-ui);">Browse category</p>
+          <h2 class="text-white font-bold leading-tight" style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); font-size: clamp(1.4rem, 3vw, 2rem);">Land</h2>
+          <p class="text-white/60 text-xs mt-1 hidden sm:block" style="font-family: var(--font-sans, Inter, system-ui);">Lots, farms &amp; eco retreats</p>
+        </div>
+        <div class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center transition-all duration-200 group-hover:bg-[#C9A24E] group-hover:scale-110">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </div>
+      </a>
+
+      <a
+        href="/homes"
+        class="group relative overflow-hidden rounded-2xl text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C9A24E]"
+        style="aspect-ratio: 4/3; display: block;"
+        aria-label="Browse Homes properties"
+      >
+        <img
+          src="https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/5cd588c4-a4ad-4d7b-2265-c32b4e859900/public"
+          alt="Luxury home for sale in Chachagua, La Fortuna"
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0d2218]/90 via-[#0d2218]/30 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+          <p class="text-[#C9A24E] text-[10px] font-semibold uppercase tracking-[0.22em] mb-1" style="font-family: var(--font-sans, Inter, system-ui);">Browse category</p>
+          <h2 class="text-white font-bold leading-tight" style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); font-size: clamp(1.4rem, 3vw, 2rem);">Homes</h2>
+          <p class="text-white/60 text-xs mt-1 hidden sm:block" style="font-family: var(--font-sans, Inter, system-ui);">Villas, retreats &amp; luxury residences</p>
+        </div>
+        <div class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center transition-all duration-200 group-hover:bg-[#C9A24E] group-hover:scale-110">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </div>
+      </a>
+
+    </div>
+  </section>
+)}
+
 <script>
-  document.querySelectorAll<HTMLButtonElement>('.hero-chip').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const key   = btn.dataset.key   as string;
-      const value = btn.dataset.value as string;
+  function initHeroChips() {
+    document.querySelectorAll<HTMLButtonElement>('.hero-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key   = btn.dataset.key   as string;
+        const value = btn.dataset.value as string;
 
-      // Update URL param
-      const params = new URLSearchParams(window.location.search);
-      params.set(key, value);
-      window.history.replaceState({}, '', `?${params.toString()}`);
+        const params = new URLSearchParams(window.location.search);
+        params.set(key, value);
+        window.history.replaceState({}, '', `?${params.toString()}`);
 
-      // Notify React listing component
-      window.dispatchEvent(new CustomEvent('hero-filter', { detail: { [key]: value } }));
+        window.dispatchEvent(new CustomEvent('hero-filter', { detail: { [key]: value } }));
 
-      // Scroll to grid
-      const target = document.getElementById('properties-listing');
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const target = document.getElementById('properties-listing');
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     });
-  });
+  }
+  document.addEventListener('astro:page-load', initHeroChips);
 </script>
