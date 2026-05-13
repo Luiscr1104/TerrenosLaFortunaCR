@@ -1,0 +1,132 @@
+---
+import { MorphoThreeCanvas } from "./MorphoThreeCanvas";
+
+interface Props {
+  image?: string;
+  quote?: string;
+}
+
+const {
+  image = "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/7882183c-a6cf-4aed-54a2-ca8be9241000/public",
+  quote = "The jungle breathes. The volcano watches.",
+} = Astro.props;
+---
+
+<section class="wc-section relative overflow-hidden" aria-label="La Fortuna wildlife and nature">
+
+  <!-- Parallax photo background -->
+  <div class="wc-bg absolute inset-0 will-change-transform" style="transform: scale(1.15);">
+    <img
+      src={image}
+      alt="Aerial view of Arenal Volcano and rainforest, La Fortuna Costa Rica"
+      class="w-full h-full object-cover object-center"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <!-- Cinematic overlays — same palette as VideoSection -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#0d2218]/70 via-[#0d2218]/30 to-[#0d2218]/75 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(13,34,24,0.55)_100%)] pointer-events-none"></div>
+
+  <!-- Three.js morpho butterflies with iridescent Fresnel shader -->
+  <MorphoThreeCanvas client:visible />
+
+  <!-- Content -->
+  <div class="wc-content relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
+
+    <!-- Gold location pill -->
+    <div class="flex items-center gap-3 mb-8 sm:mb-10">
+      <div class="h-px w-10 bg-[#C9A24E]/50"></div>
+      <span
+        class="text-[#C9A24E] text-[10px] sm:text-xs font-medium tracking-[0.38em] uppercase"
+        style="font-family: var(--font-sans, Inter, system-ui);"
+      >La Fortuna · Arenal · Costa Rica</span>
+      <div class="h-px w-10 bg-[#C9A24E]/50"></div>
+    </div>
+
+    <!-- Large italic serif quote -->
+    <blockquote class="max-w-4xl mx-auto mb-6 sm:mb-8">
+      <p
+        class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold italic text-white leading-[1.08] tracking-tight"
+        style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); text-shadow: 0 2px 40px rgba(0,0,0,0.8);"
+      >
+        "{quote}"
+      </p>
+    </blockquote>
+
+    <!-- Gold divider -->
+    <div class="h-px w-16 bg-[#C9A24E]/60 mb-8"></div>
+
+    <!-- Wildlife chips -->
+    <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
+      {["🐒 Howler Monkeys", "🦜 Scarlet Macaws", "🦅 Toucans", "🦋 Blue Morpho", "🌋 Arenal Volcano"].map(item => (
+        <span
+          class="bg-black/40 backdrop-blur-sm border border-white/15 text-white/80 px-4 py-2 rounded-full text-xs sm:text-sm font-medium"
+          style="font-family: var(--font-sans, Inter, system-ui);"
+        >
+          {item}
+        </span>
+      ))}
+    </div>
+
+    <!-- Sub-copy -->
+    <p
+      class="text-white/50 text-sm sm:text-base max-w-lg mx-auto leading-relaxed"
+      style="font-family: var(--font-sans, Inter, system-ui);"
+    >
+      Over 550 species of wildlife. One volcano. Endless green.<br class="hidden sm:block" />
+      Own the land where all of it lives.
+    </p>
+  </div>
+</section>
+
+<style>
+  .wc-section {
+    height: 88vh;
+    min-height: 520px;
+  }
+
+  .wc-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .wc-section.in-view .wc-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wc-content {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Fade-in on scroll enter
+  const section = document.querySelector('.wc-section');
+  if (section) {
+    const io = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { section.classList.add('in-view'); io.disconnect(); } },
+      { threshold: 0.12 }
+    );
+    io.observe(section);
+  }
+
+  // Parallax scroll
+  const bg = document.querySelector('.wc-bg') as HTMLElement | null;
+  const sec = document.querySelector('.wc-section') as HTMLElement | null;
+  if (bg && sec) {
+    window.addEventListener('scroll', () => {
+      const rect = sec.getBoundingClientRect();
+      const progress = 1 - rect.bottom / (window.innerHeight + rect.height);
+      const y = (progress - 0.5) * 60;
+      bg.style.transform = `scale(1.15) translateY(${y}px)`;
+    }, { passive: true });
+  }
+</script>

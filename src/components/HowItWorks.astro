@@ -33,32 +33,32 @@ const steps = [
 ];
 ---
 
-<section class="relative py-24 md:py-32 bg-[#F2EBDA] overflow-hidden">
+<section class="relative py-24 md:py-32 bg-[#0d2218] overflow-hidden">
   <div
-    class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(26,74,46,0.05),transparent_55%)] pointer-events-none"
+    class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(201,162,78,0.04),transparent_55%)] pointer-events-none"
   ></div>
 
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative">
     <!-- Chapter marker -->
     <div class="mb-2">
-      <ChapterMarker numeral="Ⅴ" label="The Process" theme="light" />
+      <ChapterMarker numeral="Ⅴ" label="The Process" theme="dark" />
     </div>
 
     <!-- Header -->
-    <div class="text-center mb-16">
+    <div class="text-center mb-16 reveal">
       <h2
-        class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#0d2218] mb-4 tracking-tight leading-tight"
+        class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight leading-tight"
         style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
       >
         How to Buy Land in
-        <span class="italic text-[#1a4a2e]"> Costa Rica</span>
-        <span class="block text-3xl sm:text-4xl md:text-5xl font-normal mt-1">
+        <span class="italic text-[#C9A24E]"> Costa Rica</span>
+        <span class="block text-3xl sm:text-4xl md:text-5xl font-normal mt-1 text-white/70">
           — From Anywhere
         </span>
       </h2>
-      <p class="text-[#2a2520]/70 text-lg max-w-2xl mx-auto" style="font-family: var(--font-sans, Inter, system-ui);">
-        Four straightforward steps. No flights needed, no guesswork. We handle
-        the complexity so you focus on the excitement.
+      <p class="text-white/55 text-lg max-w-2xl mx-auto" style="font-family: var(--font-sans, Inter, system-ui);">
+        Four steps. No flights, no guesswork. While the toucans go about their morning,
+        we handle every legal and logistical detail so you just show up — and own it.
       </p>
     </div>
 
@@ -71,11 +71,11 @@ const steps = [
 
       {
         steps.map((step, i) => (
-          <div class={`relative z-10 bg-white rounded-2xl px-7 pt-8 pb-7 text-center shadow-[0_4px_24px_rgba(0,0,0,0.05)] border border-[#1a4a2e]/8 hover:shadow-[0_12px_40px_rgba(0,0,0,0.09)] hover:border-[#C9A24E]/30 transition-all duration-500 group reveal reveal-delay-${i + 1}`}>
+          <div class={`relative z-10 bg-white/[0.05] rounded-2xl px-7 pt-8 pb-7 text-center border border-white/10 hover:border-[#C9A24E]/30 hover:bg-white/[0.08] transition-all duration-500 group reveal reveal-delay-${i + 1}`}>
 
             <!-- Large serif numeral -->
             <div
-              class="text-6xl md:text-7xl font-bold text-[#0d2218]/8 leading-none mb-1 select-none group-hover:text-[#C9A24E]/15 transition-colors duration-500"
+              class="text-6xl md:text-7xl font-bold text-white/8 leading-none mb-1 select-none group-hover:text-[#C9A24E]/20 transition-colors duration-500"
               style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
               aria-hidden="true"
             >
@@ -87,14 +87,14 @@ const steps = [
 
             <!-- Title -->
             <h3
-              class="font-semibold text-[#0d2218] text-base mb-2.5 leading-snug"
+              class="font-semibold text-white text-base mb-2.5 leading-snug"
               style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
             >
               {step.title}
             </h3>
 
             <!-- Description -->
-            <p class="text-[#2a2520]/60 text-sm leading-relaxed" style="font-family: var(--font-sans, Inter, system-ui);">
+            <p class="text-white/50 text-sm leading-relaxed" style="font-family: var(--font-sans, Inter, system-ui);">
               {step.description}
             </p>
           </div>
@@ -104,11 +104,11 @@ const steps = [
 
     <!-- Timeline note -->
     <div
-      class="bg-white border border-[#C9A24E]/20 rounded-xl p-5 flex items-start gap-4 max-w-2xl mx-auto shadow-sm"
+      class="bg-white/[0.05] border border-[#C9A24E]/20 rounded-xl p-5 flex items-start gap-4 max-w-2xl mx-auto"
     >
       <span class="text-xl flex-shrink-0">⏱️</span>
-      <p class="text-sm text-[#2a2520]/70 leading-relaxed" style="font-family: var(--font-sans, Inter, system-ui);">
-        <strong class="text-[#0d2218] font-semibold"
+      <p class="text-sm text-white/60 leading-relaxed" style="font-family: var(--font-sans, Inter, system-ui);">
+        <strong class="text-white font-semibold"
           >Typical timeline: 30–60 days</strong
         > from first contact to title transfer. Fully manageable remotely — most
         buyers never travel until after closing.
@@ -116,3 +116,4 @@ const steps = [
     </div>
   </div>
 </section>
+

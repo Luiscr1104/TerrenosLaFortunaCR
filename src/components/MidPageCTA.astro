@@ -2,18 +2,28 @@
 import WhatsappIcon from "./WhatsappIcon.astro";
 ---
 
-<section class="relative overflow-hidden bg-[#0d2218] py-20 md:py-24">
-  <!-- Background: slow-moving radial gradient -->
-  <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute -top-1/2 -left-1/4 w-[70vw] h-[70vw] rounded-full bg-[#1a4a2e]/40 blur-[120px] animate-pulse-slow"></div>
-    <div class="absolute -bottom-1/2 -right-1/4 w-[60vw] h-[60vw] rounded-full bg-[#C9A24E]/8 blur-[100px] animate-pulse-slow-offset"></div>
+<section class="cta-section relative overflow-hidden" aria-label="Book a free consultation">
+  <!-- Parallax nature background — catarata waterfall -->
+  <div class="cta-bg absolute inset-0 will-change-transform" style="transform: scale(1.15);">
+    <img
+      src="/salto.webp"
+      alt=""
+      aria-hidden="true"
+      class="w-full h-full object-cover object-center"
+      loading="lazy"
+      decoding="async"
+    />
   </div>
 
-  <!-- Decorative top + bottom hairlines -->
-  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A24E]/40 to-transparent"></div>
-  <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A24E]/40 to-transparent"></div>
+  <!-- Deep cinematic overlays -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#0d2218]/90 via-[#0a1c12]/80 to-[#0d2218]/90 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,162,78,0.06)_0%,transparent_65%)] pointer-events-none"></div>
 
-  <div class="relative z-10 mx-auto max-w-4xl px-6 text-center">
+  <!-- Decorative top + bottom hairlines -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A24E]/50 to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A24E]/50 to-transparent"></div>
+
+  <div class="relative z-10 mx-auto max-w-4xl px-6 text-center py-24 md:py-32">
     <!-- Eyebrow -->
     <div class="flex items-center justify-center gap-3 mb-6">
       <div class="h-px w-10 bg-[#C9A24E]/50"></div>
@@ -29,7 +39,7 @@ import WhatsappIcon from "./WhatsappIcon.astro";
     <!-- Main headline — large italic serif -->
     <h2
       class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold italic text-white leading-[1.05] tracking-tight mb-6"
-      style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
+      style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); text-shadow: 0 2px 32px rgba(0,0,0,0.6);"
     >
       Your chapter in Costa Rica<br class="hidden sm:block" />
       <span class="text-[#C9A24E]"> begins with one conversation.</span>
@@ -37,7 +47,7 @@ import WhatsappIcon from "./WhatsappIcon.astro";
 
     <!-- Sub-copy -->
     <p
-      class="text-white/55 text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed"
+      class="text-white/65 text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed"
       style="font-family: var(--font-sans, Inter, system-ui);"
     >
       30 minutes. No commitment. We answer everything — legal, financial, and practical — in plain English.
@@ -46,11 +56,11 @@ import WhatsappIcon from "./WhatsappIcon.astro";
     <!-- CTA row -->
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
       <a
-        href="https://wa.me/50689354697?text=Hello!%20I'd%20like%20to%20schedule%20a%20free%20consultation%20about%20buying%20land%20in%20La%20Fortuna."
+        href="https://wa.me/50684291847?text=Hello!%20I'd%20like%20to%20schedule%20a%20free%20consultation%20about%20buying%20land%20in%20La%20Fortuna."
         target="_blank"
         rel="noopener noreferrer"
         data-wa-location="mid-page-cta"
-        class="group inline-flex items-center gap-3 bg-[#C9A24E] hover:bg-[#B8912E] text-[#0d2218] font-semibold text-base px-8 py-4 rounded-none tracking-wide shadow-[0_8px_24px_rgba(201,162,78,0.35)] hover:shadow-[0_12px_32px_rgba(201,162,78,0.55)] transition-all duration-300 hover:-translate-y-0.5"
+        class="group inline-flex items-center gap-3 bg-[#C9A24E] hover:bg-[#B8912E] text-[#0d2218] font-semibold text-base px-8 py-4 rounded-none tracking-wide shadow-[0_8px_24px_rgba(201,162,78,0.4)] hover:shadow-[0_12px_40px_rgba(201,162,78,0.6)] transition-all duration-300 hover:-translate-y-0.5"
       >
         <WhatsappIcon className="w-5 h-5" />
         Book Free Consultation
@@ -61,7 +71,7 @@ import WhatsappIcon from "./WhatsappIcon.astro";
 
       <a
         href="/properties"
-        class="inline-flex items-center gap-2 text-white/70 hover:text-white font-medium text-sm tracking-wide border-b border-white/20 hover:border-white/60 pb-0.5 transition-all duration-200"
+        class="inline-flex items-center gap-2 text-white/70 hover:text-white font-medium text-sm tracking-wide border-b border-white/25 hover:border-white/70 pb-0.5 transition-all duration-200"
         style="font-family: var(--font-sans);"
       >
         Browse Properties First
@@ -69,29 +79,28 @@ import WhatsappIcon from "./WhatsappIcon.astro";
     </div>
 
     <!-- Trust micro-copy -->
-    <p class="mt-6 text-white/30 text-xs tracking-wide" style="font-family: var(--font-sans);">
+    <p class="mt-6 text-white/35 text-xs tracking-wide" style="font-family: var(--font-sans);">
       No pressure · Response within a few hours · Free, always
     </p>
   </div>
 </section>
 
 <style>
-  @keyframes pulse-slow {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 0.9; transform: scale(1.08); }
-  }
-
-  @keyframes pulse-slow-offset {
-    0%, 100% { opacity: 0.5; transform: scale(1.05); }
-    50% { opacity: 0.8; transform: scale(1); }
-  }
-
-  .animate-pulse-slow {
-    animation: pulse-slow 8s ease-in-out infinite;
-  }
-
-  .animate-pulse-slow-offset {
-    animation: pulse-slow-offset 10s ease-in-out infinite;
-    animation-delay: 2s;
+  .cta-section {
+    min-height: 480px;
   }
 </style>
+
+<script>
+  const section = document.querySelector('.cta-section') as HTMLElement | null;
+  const bg = document.querySelector('.cta-bg') as HTMLElement | null;
+
+  if (bg && section) {
+    window.addEventListener('scroll', () => {
+      const rect = section.getBoundingClientRect();
+      const progress = 1 - rect.bottom / (window.innerHeight + rect.height);
+      const y = (progress - 0.5) * 50;
+      bg.style.transform = `scale(1.15) translateY(${y}px)`;
+    }, { passive: true });
+  }
+</script>

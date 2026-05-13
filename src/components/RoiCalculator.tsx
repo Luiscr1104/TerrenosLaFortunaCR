@@ -196,7 +196,7 @@ export default function RoiCalculator() {
             </p>
 
             <a
-              href={`https://wa.me/50689354697?text=${waMsg}`}
+              href={`https://wa.me/50684291847?text=${waMsg}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 bg-[#C9A24E] text-[#0d2218] font-bold px-5 py-3.5 rounded-xl hover:brightness-110 transition-all duration-200 hover:shadow-xl text-sm"

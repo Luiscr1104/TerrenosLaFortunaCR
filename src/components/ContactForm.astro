@@ -8,31 +8,31 @@ interface Props {
 }
 
 const {
-  image = "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/984f3b88-418c-42e0-8a13-ca8f69ce6900/public",
+  image = "/images/catarata.webp",
   accentGold = "#C9A24E",
   accentGreen = "#1a4a2e",
 } = Astro.props;
 ---
 
-<section id="contact" class="relative py-20 bg-[#F2EBDA] overflow-hidden">
+<section id="contact" class="relative py-20 bg-[#0d2218] overflow-hidden">
   <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(201,162,78,0.06),transparent_60%)] pointer-events-none"></div>
 
   <!-- Header -->
   <div class="text-center mb-14 md:mb-16 px-4">
-    <ChapterMarker numeral="Ⅵ" label="Begin the Conversation" theme="light" />
+    <ChapterMarker numeral="Ⅵ" label="Begin the Conversation" theme="dark" />
 
     <h2
-      class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#0d2218] mb-4 md:mb-5 tracking-tight leading-tight"
+      class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 md:mb-5 tracking-tight leading-tight"
       style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
     >
       Find Your
-      <span class="italic text-[#1a4a2e]"> Costa Rica Property</span>
-      <span class="block text-3xl sm:text-4xl font-normal mt-1">With Expert Guidance</span>
+      <span class="italic text-[#C9A24E]"> Costa Rica Property</span>
+      <span class="block text-3xl sm:text-4xl font-normal mt-1 text-white/70">With Expert Guidance</span>
     </h2>
 
-    <p class="text-base md:text-lg text-[#2a2520]/65 max-w-2xl mx-auto" style="font-family: var(--font-sans, Inter, system-ui);">
+    <p class="text-base md:text-lg text-white/55 max-w-2xl mx-auto" style="font-family: var(--font-sans, Inter, system-ui);">
       Full legal protection and remote purchase available.
-      <span class="font-semibold text-[#1a4a2e]">Our team makes it effortless.</span>
+      <span class="font-semibold text-[#C9A24E]">Our team makes it effortless.</span>
     </p>
   </div>
 
@@ -40,40 +40,40 @@ const {
   <div
     class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch"
   >
-    <!-- Imagen -->
+    <!-- Nature photo -->
     <div
-      class="relative rounded-3xl overflow-hidden border border-neutral-200 shadow-[0_14px_40px_-20px_rgba(0,0,0,0.25)]"
+      class="relative rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.2)] min-h-[420px] md:min-h-[520px] lg:min-h-[600px] reveal-left"
     >
       <img
         src={image}
-        alt="Costa Rica luxury property"
-        class="w-full h-[420px] md:h-[520px] lg:h-[600px] object-cover"
+        alt="La Fortuna waterfall, Costa Rica"
+        class="absolute inset-0 w-full h-full object-cover object-center"
         loading="lazy"
+        decoding="async"
       />
-      <div
-        class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"
-      >
-      </div>
-      <div class="absolute bottom-5 left-6">
-        <span
-          class="rounded-full bg-white/90 backdrop-blur px-4 py-1.5 text-sm font-medium text-neutral-800 shadow"
-        >
-          La Fortuna • Costa Rica
-        </span>
+      <!-- Cinematic overlay -->
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0d2218]/80 via-[#0d2218]/20 to-[#0d2218]/10 pointer-events-none"></div>
+      <!-- Bottom text -->
+      <div class="absolute bottom-0 left-0 right-0 p-7">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="h-px w-6 bg-[#C9A24E]/70"></div>
+          <span class="text-[#C9A24E] text-[10px] font-semibold tracking-[0.28em] uppercase" style="font-family: var(--font-sans, Inter, system-ui);">La Fortuna · Costa Rica</span>
+        </div>
+        <p class="text-white text-xl font-bold italic leading-snug" style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Where the jungle<br />meets your future.</p>
       </div>
     </div>
 
     <!-- Formulario -->
     <div
-      class="rounded-3xl border border-[#C9A24E]/20 bg-white shadow-[0_14px_40px_-20px_rgba(0,0,0,0.15)] p-8 lg:p-10"
+      class="rounded-3xl border border-[#C9A24E]/20 bg-white/[0.06] shadow-[0_14px_40px_-20px_rgba(0,0,0,0.4)] p-8 lg:p-10 reveal-right reveal-delay-2"
     >
       <h3
-        class="text-2xl md:text-3xl font-bold text-[#0d2218] mb-3"
+        class="text-2xl md:text-3xl font-bold text-white mb-3"
         style="font-family: var(--font-display, ‘Cormorant Garamond’, Georgia, serif);"
       >
         Let’s Find Your Dream Property
       </h3>
-      <p class="text-[#2a2520]/60 mb-6 italic text-sm" style="font-family: var(--font-display, ‘Cormorant Garamond’, Georgia, serif);">
+      <p class="text-white/50 mb-6 italic text-sm" style="font-family: var(--font-display, ‘Cormorant Garamond’, Georgia, serif);">
         Tell us about your vision — we’ll match you with the perfect land or
         home in La Fortuna and guide you through every step.
       </p>
@@ -93,7 +93,7 @@ const {
           <div>
             <label
               for="firstname"
-              class="block text-xs font-medium text-neutral-600 mb-1.5"
+              class="block text-xs font-medium text-white/55 mb-1.5"
             >
               First name
             </label>
@@ -101,7 +101,7 @@ const {
               id="firstname"
               name="firstname"
               required
-              class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
+              class="w-full rounded-xl border border-white/15 bg-white/10 text-white placeholder-white/30 px-3.5 py-2.5 text-sm outline-none
          focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
               style={`--gold:${accentGold}`}
               placeholder="John"
@@ -110,7 +110,7 @@ const {
           <div>
             <label
               for="lastname"
-              class="block text-xs font-medium text-neutral-600 mb-1.5"
+              class="block text-xs font-medium text-white/55 mb-1.5"
             >
               Last name
             </label>
@@ -118,7 +118,7 @@ const {
               id="lastname"
               name="lastname"
               required
-              class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
+              class="w-full rounded-xl border border-white/15 bg-white/10 text-white placeholder-white/30 px-3.5 py-2.5 text-sm outline-none
          focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
               style={`--gold:${accentGold}`}
               placeholder="Doe"
@@ -130,7 +130,7 @@ const {
           <div>
             <label
               for="email"
-              class="block text-xs font-medium text-neutral-600 mb-1.5"
+              class="block text-xs font-medium text-white/55 mb-1.5"
             >
               Email
             </label>
@@ -139,7 +139,7 @@ const {
               type="email"
               name="email"
               required
-              class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
+              class="w-full rounded-xl border border-white/15 bg-white/10 text-white placeholder-white/30 px-3.5 py-2.5 text-sm outline-none
          focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
               style={`--gold:${accentGold}`}
               placeholder="john@example.com"
@@ -148,17 +148,17 @@ const {
           <div>
             <label
               for="phone"
-              class="block text-xs font-medium text-neutral-600 mb-1.5"
+              class="block text-xs font-medium text-white/55 mb-1.5"
             >
               Phone / WhatsApp
             </label>
             <input
               id="phone"
               name="phone"
-              class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
+              class="w-full rounded-xl border border-white/15 bg-white/10 text-white placeholder-white/30 px-3.5 py-2.5 text-sm outline-none
          focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
               style={`--gold:${accentGold}`}
-              placeholder="+506 8935 4697"
+              placeholder="+506 8429 1847"
             />
           </div>
         </div>
@@ -166,7 +166,7 @@ const {
         <div>
           <label
             for="interest"
-            class="block text-xs font-medium text-neutral-600 mb-1.5"
+            class="block text-xs font-medium text-white/55 mb-1.5"
           >
             Interest
           </label>
@@ -174,7 +174,7 @@ const {
             id="interest"
             name="interest"
             required
-            class="w-full rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm outline-none
+            class="w-full rounded-xl border border-white/15 bg-[#0f2d1a] text-white px-3 py-2.5 text-sm outline-none
        focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
             style={`--gold:${accentGold}`}
           >
@@ -189,7 +189,7 @@ const {
           <div>
             <label
               for="contact_method"
-              class="block text-xs font-medium text-neutral-600 mb-1.5"
+              class="block text-xs font-medium text-white/55 mb-1.5"
             >
               Preferred Contact Method
             </label>
@@ -208,7 +208,7 @@ const {
           <div>
             <label
               for="timeline"
-              class="block text-xs font-medium text-neutral-600 mb-1.5"
+              class="block text-xs font-medium text-white/55 mb-1.5"
             >
               Your Timeline
             </label>
@@ -230,7 +230,7 @@ const {
         <div>
           <label
             for="message"
-            class="block text-xs font-medium text-neutral-600 mb-1.5"
+            class="block text-xs font-medium text-white/55 mb-1.5"
           >
             Message
           </label>
@@ -239,7 +239,7 @@ const {
             name="message"
             rows={4}
             required
-            class="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none
+            class="w-full rounded-xl border border-white/15 bg-white/10 text-white placeholder-white/30 px-3.5 py-2.5 text-sm outline-none
        focus:border-[color:var(--gold)] focus:ring-2 focus:ring-[color:var(--gold)]/25 transition"
             style={`--gold:${accentGold}`}
             placeholder="Tell us about your dream property..."></textarea>
@@ -258,7 +258,7 @@ const {
           </button>
 
           <a
-            href="https://wa.me/50689354697?text=Hola!%20Estoy%20interesado(a)%20en%20propiedades%20en%20La%20Fortuna.%20¿Podr%C3%ADan%20enviarme%20opciones%20y%20m%C3%A1s%20informaci%C3%B3n?"
+            href="https://wa.me/50684291847?text=Hola!%20Estoy%20interesado(a)%20en%20propiedades%20en%20La%20Fortuna.%20¿Podr%C3%ADan%20enviarme%20opciones%20y%20m%C3%A1s%20informaci%C3%B3n?"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex justify-center items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold

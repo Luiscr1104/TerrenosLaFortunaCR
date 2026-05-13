@@ -26,3 +26,10 @@ pnpm-debug.log*
 public/*.mp4
 public/*.mov
 public/*.webm
+.vercel
+
+# Claude Code / AI tooling
+.claude/
+.agents/
+.superpowers/
+skills-lock.json

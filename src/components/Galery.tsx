@@ -4,30 +4,34 @@ import { ParallaxScrollSecond } from "./ui/parallax-scroll-2";
 
 export function ParallaxScrollSecondDemo() {
   return (
-    <section className="relative py-20 bg-white overflow-hidden">
-      {/* Encabezado de la sección */}
+    <section className="relative py-20 bg-[#0d2218] overflow-hidden">
+      {/* Section header */}
       <div className="text-center mb-12 md:mb-16 lg:mb-20 px-4">
-        <div
-          className="inline-flex items-center gap-2 bg-[#16a34a]/10 text-[#16a34a]
-                     px-4 py-2 rounded-full text-sm font-semibold mb-4"
-        >
-          <span className="inline-block h-2 w-2 rounded-full bg-[#16a34a]"></span>
-          <span>Featured Gallery</span>
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <div className="h-px w-10 bg-[#C9A24E]/50" />
+          <span
+            className="text-[#C9A24E] text-xs font-medium tracking-[0.35em] uppercase"
+            style={{ fontFamily: "var(--font-sans, Inter, system-ui)" }}
+          >
+            La Fortuna · Visual Journey
+          </span>
+          <div className="h-px w-10 bg-[#C9A24E]/50" />
         </div>
 
         <h2
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-neutral-900 mb-4 md:mb-6 tracking-tight"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight leading-tight"
+          style={{ fontFamily: "var(--font-display, ‘Cormorant Garamond’, Georgia, serif)" }}
         >
-          Discover{" "}
-          <span className="text-[#16A34A] font-extrabold">
-            La Fortuna’s Beauty
-          </span>
+          The Land Speaks
+          <span className="block italic text-[#C9A24E]">for Itself</span>
         </h2>
 
-        <p className="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto">
-          A curated gallery of Costa Rica’s most breathtaking properties,
-          landscapes, and investment opportunities — where nature meets
-          luxury.
+        <p
+          className="text-lg text-white/55 max-w-2xl mx-auto"
+          style={{ fontFamily: "var(--font-sans, Inter, system-ui)" }}
+        >
+          Every image is a different morning in La Fortuna — properties, landscapes,
+          and the kind of beauty you only understand when you’re living inside it.
         </p>
       </div>
 

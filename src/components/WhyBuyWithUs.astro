@@ -1,142 +1,129 @@
 ---
 import WhatsappIcon from "./WhatsappIcon.astro";
 import ChapterMarker from "./editorial/ChapterMarker.astro";
+
+const steps = [
+  {
+    icon: "🎥",
+    title: "Live Video Tours",
+    desc: "Walk every meter of the land with José before you commit — no flights required.",
+  },
+  {
+    icon: "📜",
+    title: "Notary Verification",
+    desc: "A Costa Rican notary confirms title, boundaries, and liens. Every time.",
+  },
+  {
+    icon: "🔒",
+    title: "Licensed Escrow",
+    desc: "Your funds stay protected until the title is cleanly in your name.",
+  },
+  {
+    icon: "✍️",
+    title: "Digital Closing",
+    desc: "Sign remotely. No bureaucracy, no surprise fees, no stress.",
+  },
+];
 ---
 
-<section class="relative py-20 md:py-28 lg:py-32 bg-white overflow-hidden">
-  <div
-    class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(26,74,46,0.04),transparent_60%)] pointer-events-none"
-  ></div>
+<section class="relative py-20 md:py-28 bg-[#0d2218] overflow-hidden">
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(201,162,78,0.04),transparent_55%)] pointer-events-none"></div>
 
   <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-    <!-- Chapter marker -->
+
     <div class="mb-2">
-      <ChapterMarker numeral="Ⅳ" label="The Experience" theme="light" />
+      <ChapterMarker numeral="Ⅳ" label="The Experience" theme="dark" />
     </div>
 
-    <!-- Section Header -->
+    <!-- Header -->
     <div class="text-center mb-14 md:mb-16">
       <h2
-        class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#0d2218] mb-4 tracking-tight leading-tight"
+        class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-5 tracking-tight leading-tight"
         style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
       >
-        Buy With Confidence —
-        <span class="block italic text-[#1a4a2e]">We Handle Everything</span>
+        Buying Land Abroad
+        <span class="block italic text-[#C9A24E]">Should Feel Safe.</span>
       </h2>
-
-      <p class="text-lg text-[#2a2520]/65 max-w-3xl mx-auto" style="font-family: var(--font-sans, Inter, system-ui);">
-        Buying land in another country can feel overwhelming. We make it simple,
-        safe, and personal — so you can focus on imagining your new life in
-        paradise.
+      <p
+        class="text-lg text-white/55 max-w-2xl mx-auto"
+        style="font-family: var(--font-sans, Inter, system-ui);"
+      >
+        The howler monkeys don't care about your paperwork. We do. Luis and José guide you
+        through every step — in plain English, with full transparency.
       </p>
     </div>
 
-    <!-- Main Feature Card -->
-    <div
-      class="relative rounded-3xl overflow-hidden shadow-[0_25px_60px_-20px_rgba(0,0,0,0.35)] mb-14"
-    >
-      <div
-        class="absolute inset-0 bg-gradient-to-br from-[#1a4a2e] via-[#0f3520] to-[#0d2218]"
-      ></div>
-      <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(201,162,78,0.07),transparent_60%)]"
-      ></div>
+    <!-- Two-column: guarantee cards + drone video -->
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-14">
 
-      <div
-        class="relative z-10 grid md:grid-cols-2 gap-8 md:gap-12 items-center p-8 md:p-12 lg:p-16 text-white"
-      >
-        <!-- Left: Content -->
-        <div>
-          <!-- Pull quote treatment -->
-          <p
-            class="text-2xl md:text-3xl italic leading-snug text-white/90 mb-8 pl-5 border-l-2 border-[#C9A24E]"
-            style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
-          >
-            "From first message to your deed — we're with you every step of the way."
-          </p>
-
-          <p class="text-base text-white/75 mb-8 leading-relaxed" style="font-family: var(--font-sans, Inter, system-ui);">
-            You don't need to fly to Costa Rica, navigate a foreign legal system
-            alone, or trust someone you've never met. Luis and José guide you
-            through every detail — in plain English, with full transparency.
-          </p>
-
-          <ul class="space-y-4">
-            {[
-              "Live video tours — walk the land before you commit",
-              "Costa Rican notary verifies every title and boundary",
-              "Licensed escrow holds your funds until title transfers to you",
-              "Digital closing — no flights required, no bureaucracy, no stress",
-            ].map((item) => (
-              <li class="flex items-start gap-3">
-                <svg
-                  class="w-4 h-4 text-[#C9A24E] flex-shrink-0 mt-0.5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span class="text-sm text-white/85" style="font-family: var(--font-sans);">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <!-- Right: Video -->
-        <div class="relative">
-          <div
-            class="bg-white/8 backdrop-blur-md border border-white/12 rounded-2xl p-5"
-          >
-            <div class="aspect-video rounded-xl overflow-hidden mb-4 relative">
-              <lite-youtube
-                videoid="kHQ4PgCurc8"
-                nocookie
-                params="autoplay=1&mute=1&controls=0&loop=1&playlist=kHQ4PgCurc8&playsinline=1&rel=0"
-                class="absolute inset-0 w-full h-full"
-                style="background-image: url('https://i.ytimg.com/vi/kHQ4PgCurc8/maxresdefault.jpg');"
-              >
-              </lite-youtube>
-            </div>
-            <p class="text-white/70 text-center text-sm font-medium" style="font-family: var(--font-sans);">
-              📹 José's latest drone tour — La Fortuna, Costa Rica
-            </p>
+      <!-- Left: 2×2 guarantee grid -->
+      <div class="grid grid-cols-2 gap-4 reveal-left">
+        {steps.map((s) => (
+          <div class="bg-white/[0.05] rounded-2xl p-6 border border-white/10 hover:border-[#C9A24E]/25 hover:bg-white/[0.08] transition-all duration-300">
+            <div class="text-2xl mb-3">{s.icon}</div>
+            <h3
+              class="text-base font-bold text-white mb-1.5 leading-snug"
+              style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); font-size: 1.05rem;"
+            >{s.title}</h3>
+            <p
+              class="text-xs text-white/50 leading-relaxed"
+              style="font-family: var(--font-sans, Inter, system-ui);"
+            >{s.desc}</p>
           </div>
+        ))}
+      </div>
 
-          <div
-            class="absolute -bottom-3 -right-3 bg-[#C9A24E] text-[#0d2218] px-5 py-2 rounded-full shadow-xl text-xs font-bold tracking-wide uppercase"
-          >
-            ✓ Verified & Secure
+      <!-- Right: nature photo -->
+      <div class="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.18)] min-h-[380px] lg:min-h-[460px] reveal-right reveal-delay-2">
+        <img
+          src="/salto.webp"
+          alt="Waterfall in the La Fortuna rainforest, Costa Rica"
+          class="absolute inset-0 w-full h-full object-cover object-center"
+          loading="lazy"
+          decoding="async"
+        />
+        <!-- Gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0d2218]/80 via-[#0d2218]/20 to-transparent pointer-events-none"></div>
+        <!-- Text overlay at bottom -->
+        <div class="absolute bottom-0 left-0 right-0 p-7">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="h-px w-6 bg-[#C9A24E]/70"></div>
+            <span class="text-[#C9A24E] text-[10px] font-semibold tracking-[0.28em] uppercase" style="font-family: var(--font-sans);">La Fortuna · Costa Rica</span>
           </div>
+          <p class="text-white text-xl md:text-2xl font-bold italic leading-snug" style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); text-shadow: 0 2px 16px rgba(0,0,0,0.6);">"Walk the land before you ever<br />set foot on a plane."</p>
+          <p class="mt-2 text-white/55 text-xs" style="font-family: var(--font-sans);">Live video tours with José — every property, every corner</p>
         </div>
       </div>
+    </div>
+
+    <!-- Pull quote -->
+    <div class="text-center mb-12">
+      <p
+        class="text-2xl md:text-3xl italic text-white/65 max-w-2xl mx-auto leading-relaxed"
+        style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
+      >
+        "Where toucans outnumber traffic lights — let us handle the details so you can just breathe it in."
+      </p>
+      <div class="mt-4 h-px w-12 bg-[#C9A24E]/60 mx-auto"></div>
     </div>
 
     <!-- CTA -->
     <div class="text-center">
       <a
-        href="https://wa.me/50689354697?text=Hello,%20I%20want%20to%20learn%20more%20about%20buying%20property%20in%20La%20Fortuna"
+        href="https://wa.me/50684291847?text=Hello,%20I%20want%20to%20learn%20more%20about%20buying%20property%20in%20La%20Fortuna"
         target="_blank"
         rel="noopener noreferrer"
         data-wa-location="why-buy-with-us"
-        class="inline-flex items-center gap-2.5 bg-[#1a4a2e] hover:bg-[#0d2218] text-white border border-[#C9A24E]/30 hover:border-[#C9A24E]/60 px-8 py-4 rounded-none font-semibold text-base tracking-wide shadow-[0_8px_24px_rgba(26,74,46,0.3)] hover:shadow-[0_0_30px_rgba(201,162,78,0.25)] transition-all duration-300 hover:-translate-y-0.5"
+        class="inline-flex items-center gap-2.5 bg-[#1a4a2e] hover:bg-[#0d2218] text-white border border-[#C9A24E]/30 hover:border-[#C9A24E]/60 px-8 py-4 font-semibold text-base tracking-wide shadow-[0_8px_24px_rgba(26,74,46,0.3)] hover:shadow-[0_0_30px_rgba(201,162,78,0.25)] transition-all duration-300 hover:-translate-y-0.5"
       >
         <WhatsappIcon className="w-5 h-5" />
         Book Your Free Consultation
       </a>
-      <p class="mt-4 text-sm text-[#2a2520]/50" style="font-family: var(--font-sans);">
+      <p class="mt-3 text-sm text-white/35" style="font-family: var(--font-sans);">
         Free · No pressure · Response within a few hours
       </p>
     </div>
+
   </div>
 </section>
 
-<style>
-  lite-youtube::before,
-  lite-youtube > .lty-playbtn {
-    display: none !important;
-  }
-</style>

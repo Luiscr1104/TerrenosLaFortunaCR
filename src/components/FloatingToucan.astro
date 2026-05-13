@@ -1,0 +1,109 @@
+---
+interface Props {
+  variant?: "light" | "dark";
+}
+const { variant = "light" } = Astro.props;
+const op = variant === "dark" ? "0.82" : "0.72";
+---
+
+<div class="toucan-wrap" aria-hidden="true">
+  <svg
+    class="toucan-svg"
+    viewBox="0 0 138 108"
+    xmlns="http://www.w3.org/2000/svg"
+    style={`opacity:${op}`}
+  >
+    <defs>
+      <!-- Keel-billed toucan beak: red tip → orange → yellow → green base -->
+      <linearGradient id="tBeak" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#C62828"/>
+        <stop offset="18%"  stop-color="#E64A19"/>
+        <stop offset="50%"  stop-color="#F9A825"/>
+        <stop offset="100%" stop-color="#558B2F"/>
+      </linearGradient>
+      <!-- Body gradient: very dark green-black like the real bird -->
+      <radialGradient id="tBodyG" cx="40%" cy="35%" r="65%">
+        <stop offset="0%"   stop-color="#1E2E14"/>
+        <stop offset="100%" stop-color="#080f05"/>
+      </radialGradient>
+    </defs>
+
+    <!-- TAIL feathers (rendered first, behind body) -->
+    <path d="M 112,72 L 126,90 Q 121,95 117,89 L 108,76 Z" fill="#0d1a08"/>
+    <path d="M 116,74 L 128,94 Q 122,98 118,91 L 110,78 Z" fill="#162210"/>
+
+    <!-- BODY (large oval, dark) -->
+    <ellipse cx="100" cy="70" rx="26" ry="22" fill="url(#tBodyG)"/>
+
+    <!-- YELLOW THROAT — the keel-billed's vivid lemon-yellow breast -->
+    <path d="M 74,60 C 80,74 88,82 98,86 Q 86,84 78,74 C 76,70 74,64 74,60 Z" fill="#F4F100"/>
+    <!-- Subtle white fade at bottom of yellow patch -->
+    <path d="M 98,86 Q 86,84 78,74 C 84,78 92,84 100,88 Z" fill="#FEFDE4" opacity="0.5"/>
+
+    <!-- HEAD (large round, dark) -->
+    <circle cx="78" cy="50" r="27" fill="url(#tBodyG)"/>
+
+    <!-- BEAK upper mandible (the iconic long colorful bill) -->
+    <path d="M 68,50 L 5,46 Q 1,48 1,54 L 5,58 L 68,56 Z"
+          fill="url(#tBeak)"/>
+    <!-- Beak shine along top edge -->
+    <path d="M 68,50 L 8,46 Q 3,48 4,50 L 68,51.5 Z"
+          fill="white" opacity="0.14"/>
+    <!-- Beak lower mandible (darker, smaller) -->
+    <path d="M 68,56 L 5,58 Q 2,58 3,63 L 9,65 L 68,61 Z"
+          fill="#2E1503"/>
+    <!-- Ridge line between mandibles -->
+    <line x1="5" y1="57" x2="68" y2="55" stroke="#8D1A00" stroke-width="0.7" opacity="0.55"/>
+
+    <!-- EYE RING — bright turquoise-green bare skin -->
+    <circle cx="68" cy="42" r="10" fill="#00BFA5"/>
+    <!-- Eye (dark iris) -->
+    <circle cx="68" cy="42" r="6.5" fill="#080e06"/>
+    <!-- Eye highlight -->
+    <circle cx="65.5" cy="39.5" r="2" fill="white" opacity="0.8"/>
+
+    <!-- FEET (gripping) -->
+    <line x1="88"  y1="88" x2="88"  y2="100" stroke="#1c2e10" stroke-width="2.8" stroke-linecap="round"/>
+    <line x1="102" y1="88" x2="102" y2="100" stroke="#1c2e10" stroke-width="2.8" stroke-linecap="round"/>
+    <!-- Toes front -->
+    <line x1="88"  y1="100" x2="76"  y2="105" stroke="#1c2e10" stroke-width="2" stroke-linecap="round"/>
+    <line x1="88"  y1="100" x2="90"  y2="107" stroke="#1c2e10" stroke-width="2" stroke-linecap="round"/>
+    <line x1="102" y1="100" x2="90"  y2="105" stroke="#1c2e10" stroke-width="2" stroke-linecap="round"/>
+    <line x1="102" y1="100" x2="104" y2="107" stroke="#1c2e10" stroke-width="2" stroke-linecap="round"/>
+    <!-- Toe back -->
+    <line x1="88"  y1="100" x2="98"  y2="106" stroke="#1c2e10" stroke-width="1.6" stroke-linecap="round"/>
+    <line x1="102" y1="100" x2="112" y2="106" stroke="#1c2e10" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<style>
+  .toucan-wrap {
+    position: absolute;
+    top: 14%;
+    right: 6%;
+    width: 88px;
+    pointer-events: none;
+    z-index: 3;
+    animation: toucanbob 5.5s ease-in-out infinite;
+    transform-origin: center bottom;
+  }
+
+  .toucan-svg {
+    display: block;
+    /* subtle shadow so it reads against any background */
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.45))
+            drop-shadow(0 1px 3px rgba(0,0,0,0.35));
+  }
+
+  @keyframes toucanbob {
+    0%   { transform: translateY(0px)  rotate(-2deg); }
+    28%  { transform: translateY(-6px) rotate(1.5deg); }
+    55%  { transform: translateY(-3px) rotate(-0.5deg); }
+    78%  { transform: translateY(-7px) rotate(2deg); }
+    100% { transform: translateY(0px)  rotate(-2deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .toucan-wrap { animation: none !important; }
+  }
+</style>

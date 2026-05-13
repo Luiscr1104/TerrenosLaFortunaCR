@@ -1,41 +1,53 @@
 ---
-import "lite-youtube-embed/src/lite-yt-embed.css";
 import WhatsappIcon from "./WhatsappIcon.astro";
 ---
 
-<section class="relative h-screen w-full overflow-hidden">
-  <!-- Video Background -->
-  <div class="absolute inset-0 z-0 bg-[#0d2218]">
-    <img
-      src="https://i.ytimg.com/vi/DxbLZ_RPCuo/maxresdefault.jpg"
-      alt="Arenal Volcano, La Fortuna — Costa Rica"
-      fetchpriority="high"
-      class="absolute inset-0 w-full h-full object-cover"
-    />
-    <lite-youtube
-      videoid="DxbLZ_RPCuo"
-      nocookie
-      params="autoplay=1&mute=1&controls=0&loop=1&playlist=DxbLZ_RPCuo&playsinline=1&rel=0&enablejsapi=1&iv_load_policy=3"
-      class="absolute inset-0 w-full h-full"
-      style="background-image: url('https://i.ytimg.com/vi/DxbLZ_RPCuo/maxresdefault.jpg');"
-    >
-      <a href="https://youtube.com/watch?v=DxbLZ_RPCuo" class="lty-playbtn" title="Play Video">
-        <span class="lyt-visually-hidden">Aerial view of Arenal Volcano</span>
-      </a>
-    </lite-youtube>
+<section class="relative h-screen w-full overflow-hidden" id="hero-section">
+  <!-- Poster Background — Ken Burns crossfade slideshow -->
+  <div class="absolute inset-0 z-0 bg-[#0d2218] overflow-hidden">
 
-    <!-- Editorial gradient — darker at top/bottom, breathes in the middle -->
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0d2218]/70 via-black/20 to-[#0d2218]/80 pointer-events-none"></div>
-    <!-- Subtle vignette -->
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.45)_100%)] pointer-events-none"></div>
+    <!-- Slide 1: Waterfall -->
+    <div class="hero-slide hero-slide-1">
+      <img
+        src="/images/catarata.webp"
+        alt="La Fortuna waterfall, Costa Rica"
+        fetchpriority="high"
+        loading="eager"
+        class="hero-slide-img hero-kb-1"
+      />
+    </div>
+
+    <!-- Slide 2: Macaw -->
+    <div class="hero-slide hero-slide-2">
+      <img
+        src="/images/Lapa.webp"
+        alt="Scarlet macaw in the Costa Rica jungle"
+        loading="lazy"
+        class="hero-slide-img hero-kb-2"
+      />
+    </div>
+
+    <!-- Slide 3: Frog -->
+    <div class="hero-slide hero-slide-3">
+      <img
+        src="/images/rana.webp"
+        alt="Tree frog in the rainforest near Arenal Volcano"
+        loading="lazy"
+        class="hero-slide-img hero-kb-3"
+      />
+    </div>
+
+    <!-- Cinematic overlays -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0d2218]/60 via-black/10 to-[#0d2218]/85 pointer-events-none" style="z-index:4;"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(0,0,0,0.5)_100%)] pointer-events-none" style="z-index:4;"></div>
   </div>
 
   <!-- Content — parallax wrapper -->
   <div class="relative z-10 flex h-full items-center justify-center px-4 sm:px-6 lg:px-8">
-    <div id="hero-parallax" class="w-full max-w-5xl text-center" style="will-change: transform;">
+    <div id="hero-parallax" class="w-full max-w-5xl text-center" style="will-change:transform;">
 
       <!-- Eyebrow — editorial location line -->
-      <div class="mb-6 sm:mb-8 flex items-center justify-center gap-3">
+      <div class="hero-eyebrow mb-6 sm:mb-8 flex items-center justify-center gap-3">
         <div class="h-px w-12 bg-[#C9A24E]/60"></div>
         <span
           class="text-[#C9A24E] text-xs sm:text-sm font-medium tracking-[0.3em] uppercase"
@@ -46,33 +58,33 @@ import WhatsappIcon from "./WhatsappIcon.astro";
         <div class="h-px w-12 bg-[#C9A24E]/60"></div>
       </div>
 
-      <!-- Main Headline — Cormorant Garamond serif -->
+      <!-- Headline — word-by-word animated rise -->
       <h1
-        class="mb-5 sm:mb-7 font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.05] tracking-tight"
-        style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); text-shadow: 0 2px 20px rgba(0,0,0,0.7);"
+        class="hero-headline mb-5 sm:mb-7 font-bold text-white leading-[1.05] tracking-tight"
+        style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); text-shadow: 0 2px 20px rgba(0,0,0,0.7); font-size: clamp(2.5rem, 8vw, 5.5rem);"
       >
-        Live Your Best Chapter
+        <span class="word" style="--d:0.1s">Live</span>&nbsp;<span class="word" style="--d:0.18s">Your</span>&nbsp;<span class="word" style="--d:0.26s">Best</span>&nbsp;<span class="word" style="--d:0.34s">Chapter</span>
         <span
           class="block italic text-[#C9A24E] mt-2"
           style="text-shadow: 0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(201,162,78,0.15);"
         >
-          In Costa Rica's Paradise
+          <span class="word" style="--d:0.48s">In</span>&nbsp;<span class="word" style="--d:0.56s">Costa</span>&nbsp;<span class="word" style="--d:0.64s">Rica's</span>&nbsp;<span class="word" style="--d:0.72s">Paradise</span>
         </span>
       </h1>
 
       <!-- Subheadline -->
       <p
-        class="mb-8 sm:mb-12 text-base sm:text-lg md:text-xl text-white/85 font-light max-w-2xl mx-auto leading-relaxed"
+        class="hero-sub mb-8 sm:mb-12 text-base sm:text-lg md:text-xl text-white/85 font-light max-w-2xl mx-auto leading-relaxed"
         style="font-family: var(--font-sans, Inter, system-ui); text-shadow: 0 2px 8px rgba(0,0,0,0.7);"
       >
         Titled land and luxury homes near <strong class="font-semibold text-white">Arenal Volcano</strong> — for those ready to retire in <strong class="font-semibold text-white">nature, safety</strong>, and <strong class="font-semibold text-white">year-round sunshine</strong>
       </p>
 
       <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-14">
+      <div class="hero-cta flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-14">
         <a
           href="/properties"
-          class="cta-primary group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#C9A24E] hover:bg-[#B8912E] text-[#0d2218] px-7 sm:px-9 py-4 sm:py-4.5 rounded-none font-semibold text-sm sm:text-base tracking-wide shadow-[0_8px_24px_rgba(201,162,78,0.35)] hover:shadow-[0_12px_32px_rgba(201,162,78,0.5)] transition-all duration-300 hover:-translate-y-0.5"
+          class="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#C9A24E] hover:bg-[#B8912E] text-[#0d2218] px-7 sm:px-9 py-4 rounded-none font-semibold text-sm sm:text-base tracking-wide shadow-[0_8px_24px_rgba(201,162,78,0.35)] hover:shadow-[0_12px_32px_rgba(201,162,78,0.5)] transition-all duration-300 hover:-translate-y-0.5"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -84,11 +96,11 @@ import WhatsappIcon from "./WhatsappIcon.astro";
         </a>
 
         <a
-          href="https://wa.me/50689354697?text=Hello!%20I'm%20interested%20in%20properties%20in%20La%20Fortuna.%20Can%20we%20schedule%20a%20video%20tour?"
+          href="https://wa.me/50684291847?text=Hello!%20I'm%20interested%20in%20properties%20in%20La%20Fortuna.%20Can%20we%20schedule%20a%20video%20tour?"
           target="_blank"
           rel="noopener noreferrer"
           data-wa-location="hero"
-          class="cta-whatsapp group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:border-white/60 px-7 sm:px-9 py-4 sm:py-4.5 rounded-none font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5"
+          class="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:border-white/60 px-7 sm:px-9 py-4 rounded-none font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5"
         >
           <WhatsappIcon className="w-4 h-4" />
           Free Consultation via WhatsApp
@@ -96,18 +108,18 @@ import WhatsappIcon from "./WhatsappIcon.astro";
       </div>
 
       <!-- Trust Badges -->
-      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+      <div class="hero-badges flex flex-wrap items-center justify-center gap-2 sm:gap-3">
         {[
-          { icon: "check", label: "100% Foreign Ownership" },
-          { icon: "shield", label: "Fee Simple Title" },
-          { icon: "phone", label: "Remote Closing" },
-          { icon: "user", label: "Bilingual Legal Support" },
-        ].map((pill) => (
+          "100% Foreign Ownership",
+          "Fee Simple Title",
+          "Remote Closing",
+          "Bilingual Legal Support",
+        ].map((label) => (
           <span class="flex items-center gap-2 bg-black/40 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-full border border-white/15 text-white/85 text-xs font-medium">
             <svg class="w-3.5 h-3.5 text-[#C9A24E]" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
             </svg>
-            {pill.label}
+            {label}
           </span>
         ))}
       </div>
@@ -115,7 +127,7 @@ import WhatsappIcon from "./WhatsappIcon.astro";
   </div>
 
   <!-- Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/50">
+  <div class="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/50">
     <span class="text-xs tracking-[0.25em] uppercase" style="font-family: var(--font-sans);">Scroll</span>
     <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -124,29 +136,122 @@ import WhatsappIcon from "./WhatsappIcon.astro";
 </section>
 
 <style>
-  lite-youtube {
-    max-width: none !important;
-    background-size: cover !important;
-    background-position: center !important;
+  /* ── Ken Burns slideshow ─────────────────────────────────────────────── */
+  /* 3 slides × 9s = 27s total cycle */
+
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+    animation: hero-fade 27s infinite;
+    will-change: opacity;
+  }
+  .hero-slide-1 { animation-delay: 0s; }
+  .hero-slide-2 { animation-delay: 9s; }
+  .hero-slide-3 { animation-delay: 18s; }
+
+  @keyframes hero-fade {
+    0%          { opacity: 0; }
+    4%          { opacity: 1; }   /* fade in over ~1s */
+    33%         { opacity: 1; }   /* hold */
+    37%         { opacity: 0; }   /* fade out over ~1s */
+    38%, 100%   { opacity: 0; }
   }
 
-  lite-youtube::before,
-  lite-youtube > .lty-playbtn {
-    display: none !important;
+  .hero-slide-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    will-change: transform;
+  }
+
+  /* Unique KB direction for each slide */
+  .hero-kb-1 { animation: kb1 27s ease-out infinite; }
+  .hero-kb-2 { animation: kb2 27s ease-out infinite; animation-delay: 9s; }
+  .hero-kb-3 { animation: kb3 27s ease-out infinite; animation-delay: 18s; }
+
+  @keyframes kb1 {
+    0%   { transform: scale(1.0) translate(0%, 0%); }
+    37%  { transform: scale(1.1) translate(-2%, -1.5%); }
+    100% { transform: scale(1.0) translate(0%, 0%); }
+  }
+  @keyframes kb2 {
+    0%   { transform: scale(1.08) translate(1.5%, 1%); }
+    37%  { transform: scale(1.0)  translate(-0.5%, -0.5%); }
+    100% { transform: scale(1.08) translate(1.5%, 1%); }
+  }
+  @keyframes kb3 {
+    0%   { transform: scale(1.0) translate(-1%, 0.5%); }
+    37%  { transform: scale(1.09) translate(1%, -1%); }
+    100% { transform: scale(1.0) translate(-1%, 0.5%); }
+  }
+
+  /* ── Text entrance animations ────────────────────────────────────────── */
+  .hero-headline .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(22px);
+    animation: word-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s) both;
+  }
+
+  @keyframes word-rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    opacity: 0;
+    animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s both;
+  }
+  .hero-sub {
+    opacity: 0;
+    animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both;
+  }
+  .hero-cta {
+    opacity: 0;
+    animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.05s both;
+  }
+  .hero-badges {
+    opacity: 0;
+    animation: fade-up 0.6s ease 1.2s both;
+  }
+  .hero-scroll {
+    opacity: 0;
+    animation: fade-up 0.6s ease 1.5s both;
+  }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slide      { animation: none; opacity: 1; }
+    .hero-slide-2,
+    .hero-slide-3    { opacity: 0; }
+    .hero-slide-img  { animation: none; transform: none; }
+    .hero-headline .word,
+    .hero-eyebrow, .hero-sub, .hero-cta, .hero-badges, .hero-scroll {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
   }
 </style>
 
 <script>
-  import "lite-youtube-embed/src/lite-yt-embed.js";
 
-  // Parallax: hero content moves at 0.35x scroll speed
-  const target = document.getElementById("hero-parallax");
+  // Parallax: hero content moves at 0.3x scroll speed
+  const target = document.getElementById('hero-parallax');
   if (target) {
     let ticking = false;
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          const y = window.scrollY * 0.35;
+          const y = window.scrollY * 0.3;
           target.style.transform = `translateY(${y}px)`;
           ticking = false;
         });

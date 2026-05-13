@@ -37,9 +37,10 @@ const {
 const imageCover =
   images[0] ?? "https://picsum.photos/1920/1080?blur=3";
 const priceLabel = formatPriceUSD(price);
-const pageTitle = `${title} — ${location}`;
+const pageTitle = `${title} — ${location} | BuyLandCR`;
 const pageDesc = description.slice(0, 160);
-const canonical = new URL(Astro.request.url).origin + `/properties/${slug}`;
+const siteBase = Astro.site?.href?.replace(/\/$/, "") ?? "https://www.buylandcr.com";
+const canonical = `${siteBase}/properties/${slug}`;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -49,17 +50,26 @@ const jsonLd = {
   image: images.slice(0, 6),
   brand: { "@type": "Brand", name: "BuyLandCR" },
   offers: price
-    ? { "@type": "Offer", priceCurrency: "USD", price, url: canonical }
+    ? { "@type": "Offer", priceCurrency: "USD", price, url: canonical, availability: "https://schema.org/InStock" }
     : undefined,
   areaServed: location,
+};
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteBase },
+    { "@type": "ListItem", position: 2, name: "Properties", item: `${siteBase}/properties` },
+    { "@type": "ListItem", position: 3, name: title, item: canonical },
+  ],
 };
 const slugChip = `slug-${slug}`;
 ---
 
-<Layout title={pageTitle} description={pageDesc}>
-  <script type="application/ld+json">
-    {JSON.stringify(jsonLd)}
-  </script>
+<Layout title={pageTitle} description={pageDesc} image={imageCover}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
 
   <style>
     :root { --forest:#052E14; --gold:#D4AF37; --gold-soft:#F5D77C; }
@@ -143,7 +153,7 @@ const slugChip = `slug-${slug}`;
 
         <div class="mt-8 flex items-center justify-between">
           <a
-            href={`https://wa.me/50689354697?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20${encodeURIComponent(title)}`}
+            href={`https://wa.me/50684291847?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20${encodeURIComponent(title)}`}
             class="inline-flex items-center gap-2 rounded-full bg-[color:var(--forest)] px-5 py-3 text-white hover:brightness-110"
           >
             Contact US

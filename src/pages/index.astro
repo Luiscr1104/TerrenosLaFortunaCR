@@ -3,95 +3,74 @@ import Hero from "../components/Hero.astro";
 import Layout from "../layouts/Layout.astro";
 import WhyBuyWithUs from "../components/WhyBuyWithUs.astro";
 import FeaturedProperties from "../components/FeaturedProperties.astro";
-import ShowcaseSplit from "../components/ShowcaseSplit.astro";
 import ContactForm from "../components/ContactForm.astro";
-import OurTeam from "../components/OurTeam.astro";
 import TrustGuarantees from "../components/TrustGuarantees.astro";
 import HowItWorks from "../components/HowItWorks.astro";
 import FeaturedBlogs from "../components/FeaturedBlogs.astro";
 import ScrollingBanner from "../components/ScrollingBanner.astro";
 import MidPageCTA from "../components/MidPageCTA.astro";
-import { HeroScrollDemo } from "../components/HeroArenalScroll.jsx";
-import { ParallaxScrollSecondDemo } from "../components/Galery.tsx";
+import VideoSection from "../components/VideoSection.astro";
+import WildlifeCinema from "../components/WildlifeCinema.astro";
+import NatureMosaic from "../components/NatureMosaic.astro";
 ---
 
-<Layout preloadImage="https://i.ytimg.com/vi/DxbLZ_RPCuo/maxresdefault.jpg">
-  <!-- 1. HOOK: Hero Section -->
+<Layout preloadImage="/images/catarata.webp">
+
+  <!-- 1. HOOK: Hero — Ken Burns nature slideshow -->
   <Hero />
 
-  <!-- Cintillo: trust signals marquee on dark -->
+  <!-- Nature + trust signals on dark -->
   <ScrollingBanner theme="dark" speed="normal" />
 
-  <!-- 2. PRODUCT: Immediate Value -->
+  <!-- 2. PRODUCT: Properties -->
   <FeaturedProperties />
 
-  <!-- 2b. UPSELL: Flagship Property -->
-  <ShowcaseSplit
-    offers={[
-      {
-        title: "Your Dream Retreat: Luxury Turnkey Estate Near Arenal Volcano",
-        subtitle:
-          "A beautifully designed 4-bedroom home with panoramic volcano views, resort-style pool, and year-round tropical living — just 16 minutes from La Fortuna's world-famous hot springs. Fully turnkey and move-in ready.",
-        promoTitle: "✨ Luxury Living",
-        promoHighlight: "Turnkey & Move-In Ready",
-        ctaLabel: "View Property Details",
-        ctaHref: "/properties/villa-arenal-luxury-4br",
-        image:
-          "https://imagedelivery.net/Lh5ivcu1Gl9SRBAdYRSP2g/f41525fe-ec6d-4132-0f8f-df340eb94200/public",
-        locationChip: "Arenal, Costa Rica",
-        stats: [
-          { value: "4 / 3", label: "Beds / Baths" },
-          { value: "3,000 m²", label: "Estate Size" },
-          { value: "$715k", label: "Asking Price" },
-        ],
-        accent: "#1a4a2e",
-      },
-    ]}
-  />
+  <!-- 3. NATURE MOMENT: Wildlife Cinema (parallax + floating butterflies) -->
+  <WildlifeCinema />
 
-  <!-- 2c. VISUAL TRANSITION -->
-  <HeroScrollDemo client:visible />
-
-  <!-- 3. TRUST: Meet the Team -->
-  <OurTeam />
-
-  <!-- Cintillo: team & service highlights on light cream -->
+  <!-- Cintillo: property types on cream -->
   <ScrollingBanner theme="light" speed="slow" />
 
-  <!-- 4. SOCIAL PROOF: Guarantees -->
+  <!-- 4. CINEMATIC BREAK: San Rafael valley panoramic with quote -->
+  <VideoSection
+    quote="Every morning begins with the volcano."
+    ctaLabel="Explore Available Properties"
+    ctaHref="/properties"
+  />
+
+  <!-- 5. SOCIAL PROOF: Guarantees -->
   <TrustGuarantees />
 
-  <!-- 5. AUTHORITY: Why Us? -->
+  <!-- 6. AUTHORITY: Why Us? -->
   <WhyBuyWithUs />
 
   <!-- Mid-page conversion CTA -->
   <MidPageCTA />
 
-  <!-- 6. PROCESS: How It Works -->
+  <!-- 7. PROCESS: How It Works -->
   <HowItWorks />
 
-  <!-- Cintillo: property categories marquee on gold -->
+  <!-- 8. NATURE MOSAIC: Full-width bento grid of all nature images -->
+  <NatureMosaic />
+
+  <!-- Cintillo: property categories on gold -->
   <ScrollingBanner theme="gold" speed="normal" items={[
-    "Volcano View Lots",
-    "Jungle & Privacy",
-    "Riverside Parcels",
-    "Turnkey Villas",
-    "Investment Land",
-    "Eco Retreats",
-    "Hot Springs Nearby",
-    "Cloud Forest Edge",
-    "Gated Communities",
-    "Off-Grid Potential",
+    "🌋 Volcano View Lots",
+    "🌿 Jungle & Privacy",
+    "💧 Riverside Parcels",
+    "🏠 Turnkey Villas",
+    "📈 Investment Land",
+    "🌱 Eco Retreats",
+    "♨️ Hot Springs Nearby",
+    "☁️ Cloud Forest Edge",
+    "🔒 Gated Communities",
+    "⚡ Off-Grid Potential",
   ]} />
 
-  <!-- 7. ACTION: Contact Form -->
+  <!-- 9. ACTION: Contact Form -->
   <ContactForm />
 
-  <!-- 8. LIFESTYLE: Visual Gallery -->
-  <div class="mb-32">
-    <ParallaxScrollSecondDemo client:visible />
-  </div>
-
-  <!-- 9. SEO & EDUCATION -->
+  <!-- 10. SEO & EDUCATION -->
   <FeaturedBlogs />
+
 </Layout>

@@ -93,7 +93,7 @@ export async function sendContactEmail({
           If you need immediate assistance, feel free to message us on WhatsApp:
         </p>
 
-        <a href="https://wa.me/50689354697?text=Hi!%20I'm%20interested%20in%20properties%20in%20La%20Fortuna"
+        <a href="https://wa.me/50684291847?text=Hi!%20I'm%20interested%20in%20properties%20in%20La%20Fortuna"
           style="display:inline-block;background-color:#16a34a;color:white;padding:12px 28px;border-radius:8px;font-weight:600;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.15);">
           💬 Contact via WhatsApp
         </a>

@@ -1,0 +1,120 @@
+---
+interface Props {
+  image?: string;
+  imageAlt?: string;
+  quote?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  image = "/sanrafael.webp",
+  imageAlt = "San Rafael valley, La Fortuna de San Carlos, Costa Rica",
+  quote = "Every morning begins with the volcano.",
+  ctaLabel = "Explore Properties",
+  ctaHref = "/properties",
+} = Astro.props;
+---
+
+<section class="vs-section relative overflow-hidden" aria-label="La Fortuna landscape">
+  <!-- Parallax photo background -->
+  <div class="vs-bg absolute inset-0 will-change-transform" style="transform: scale(1.15);">
+    <img
+      src={image}
+      alt={imageAlt}
+      class="w-full h-full object-cover object-center"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+    <!-- Deep cinematic gradient overlays -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0d2218]/75 via-[#0d2218]/30 to-[#0d2218]/75 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(13,34,24,0.6)_100%)] pointer-events-none"></div>
+
+  <!-- Content -->
+  <div class="vs-content relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
+
+    <!-- Gold location pill -->
+    <div class="flex items-center gap-3 mb-8 sm:mb-10">
+      <div class="h-px w-10 bg-[#C9A24E]/50"></div>
+      <span
+        class="text-[#C9A24E] text-[10px] sm:text-xs font-medium tracking-[0.35em] uppercase"
+        style="font-family: var(--font-sans, Inter, system-ui);"
+      >La Fortuna · Arenal · Costa Rica</span>
+      <div class="h-px w-10 bg-[#C9A24E]/50"></div>
+    </div>
+
+    <!-- Large italic serif quote -->
+    <blockquote class="max-w-4xl mx-auto mb-10 sm:mb-12">
+      <p
+        class="vs-quote text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold italic text-white leading-[1.1] tracking-tight"
+        style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); text-shadow: 0 2px 32px rgba(0,0,0,0.75);"
+      >
+        "{quote}"
+      </p>
+    </blockquote>
+
+    <!-- Gold divider -->
+    <div class="h-px w-16 bg-[#C9A24E]/60 mb-10"></div>
+
+    <!-- CTA -->
+    <a
+      href={ctaHref}
+      class="group inline-flex items-center gap-2.5 bg-[#C9A24E] hover:bg-[#B8912E] text-[#0d2218] px-8 sm:px-10 py-4 font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5 shadow-[0_8px_32px_rgba(201,162,78,0.4)] hover:shadow-[0_12px_40px_rgba(201,162,78,0.55)]"
+    >
+      {ctaLabel}
+      <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  .vs-section {
+    height: 88vh;
+    min-height: 520px;
+  }
+
+  /* Fade-in content when section enters view */
+  .vs-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .vs-section.in-view .vs-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vs-content {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const section = document.querySelector('.vs-section') as HTMLElement | null;
+  const bg = document.querySelector('.vs-bg') as HTMLElement | null;
+
+  if (section) {
+    const io = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { section.classList.add('in-view'); io.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    io.observe(section);
+  }
+
+  if (bg && section) {
+    window.addEventListener('scroll', () => {
+      const rect = section.getBoundingClientRect();
+      const progress = 1 - rect.bottom / (window.innerHeight + rect.height);
+      const y = (progress - 0.5) * 60;
+      bg.style.transform = `scale(1.15) translateY(${y}px)`;
+    }, { passive: true });
+  }
+</script>

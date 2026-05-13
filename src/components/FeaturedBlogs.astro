@@ -51,55 +51,54 @@ if (!posts) {
 
 <section
   id="featured-blogs"
-  class="relative py-20 bg-white"
-  style={`--accent:${accent}; --dark:${dark}`}
+  class="relative py-20 bg-[#0d2218] overflow-hidden"
 >
+  <!-- Ambient background orb -->
+  <div class="absolute -top-1/3 -right-1/4 w-[50vw] h-[50vw] rounded-full bg-[#1a4a2e]/40 blur-[100px] pointer-events-none"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(201,162,78,0.03),transparent_55%)] pointer-events-none"></div>
+
   <!-- Header -->
-  <div class="text-center mb-12 md:mb-16">
-    <div
-      class="inline-flex items-center gap-2 bg-[color:var(--accent)]/15 text-[color:var(--dark)]
-             font-semibold text-sm md:text-base px-5 py-2 rounded-full border border-[color:var(--accent)]/40 mb-4 shadow-sm tracking-wide"
-    >
-      <span class="inline-block h-2.5 w-2.5 rounded-full bg-[color:var(--accent)]"></span>
-      Editorial Highlights
+  <div class="relative text-center mb-12 md:mb-16 px-4">
+    <div class="flex items-center justify-center gap-3 mb-6">
+      <div class="h-px w-10 bg-[#C9A24E]/50"></div>
+      <span
+        class="text-[#C9A24E] text-xs font-medium tracking-[0.35em] uppercase"
+        style="font-family: var(--font-sans, Inter, system-ui);"
+      >Read · Learn · Invest</span>
+      <div class="h-px w-10 bg-[#C9A24E]/50"></div>
     </div>
 
     <h2
-      class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-[color:var(--dark)] mb-4 tracking-tight"
+      class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight leading-tight"
+      style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
     >
       {heading}
+      <span class="block italic text-[#C9A24E]">From La Fortuna</span>
     </h2>
-    <p class="text-neutral-800/90 text-base md:text-lg max-w-3xl mx-auto font-medium leading-relaxed">
+    <p class="text-white/50 text-base md:text-lg max-w-3xl mx-auto leading-relaxed" style="font-family: var(--font-sans, Inter, system-ui);">
       {subheading}
     </p>
   </div>
 
   <!-- Grid -->
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {posts.map((post) => (
         <article
-          class="group relative rounded-3xl border border-[color:var(--accent)]/45 bg-white
-                 shadow-[0_10px_35px_-18px_rgba(0,0,0,0.25)]
-                 hover:shadow-[0_18px_45px_-12px_rgba(245,215,124,0.35)]
-                 transition-all duration-500 overflow-hidden"
+          class="group relative rounded-2xl border border-white/8 bg-white/[0.04] hover:bg-white/[0.08] hover:border-[#C9A24E]/25 transition-all duration-500 overflow-hidden"
         >
           <!-- Media -->
           <div class="relative aspect-[16/10] overflow-hidden">
             <img
               src={post.image}
               alt={post.title}
-              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
               loading="lazy"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-black/0 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0d2218]/60 via-black/10 to-transparent"></div>
 
-            <!-- Category badge -->
             {post.category && (
-              <div
-                class="absolute top-3 left-3 rounded-full bg-white/95 text-[color:var(--dark)]
-                       text-xs font-semibold px-3 py-1 shadow"
-              >
+              <div class="absolute top-3 left-3 rounded-full bg-[#C9A24E] text-[#0d2218] text-xs font-bold px-3 py-1">
                 {post.category}
               </div>
             )}
@@ -107,7 +106,7 @@ if (!posts) {
 
           <!-- Content -->
           <div class="p-6">
-            <div class="flex items-center gap-3 text-xs text-neutral-500 mb-2">
+            <div class="flex items-center gap-3 text-xs text-white/35 mb-3" style="font-family: var(--font-sans, Inter, system-ui);">
               <time datetime={post.date}>
                 {new Date(post.date).toLocaleDateString("en-US", {
                   year: "numeric",
@@ -124,36 +123,29 @@ if (!posts) {
             </div>
 
             <h3
-              class="text-xl md:text-[22px] font-display font-extrabold text-[color:var(--dark)]
-                     leading-snug mb-2 group-hover:text-[color:var(--accent)] transition-colors"
+              class="text-lg md:text-xl font-bold text-white leading-snug mb-3 group-hover:text-[#C9A24E] transition-colors duration-200"
+              style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
             >
-              <a href={post.slug} class="focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)]/50 rounded">
+              <a href={post.slug} class="focus:outline-none focus:ring-2 focus:ring-[#C9A24E]/50 rounded">
                 {post.title}
               </a>
             </h3>
 
-            <p class="text-neutral-700 leading-relaxed line-clamp-3 mb-4">
+            <p class="text-white/50 text-sm leading-relaxed line-clamp-3 mb-4" style="font-family: var(--font-sans, Inter, system-ui);">
               {post.excerpt}
             </p>
 
-            <div class="flex items-center justify-between">
-              <a
-                href={post.slug}
-                class="inline-flex items-center gap-2 text-[color:var(--dark)] font-semibold
-                       hover:text-[color:var(--accent)] transition-colors"
-                aria-label={`Read: ${post.title}`}
-              >
-                Read article
-                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z" />
-                </svg>
-              </a>
-
-              <div
-                class="h-2 w-2 rounded-full bg-[color:var(--accent)] shadow-[0_0_14px_rgba(245,215,124,0.7)]"
-                aria-hidden="true"
-              ></div>
-            </div>
+            <a
+              href={post.slug}
+              class="inline-flex items-center gap-2 text-[#C9A24E] text-sm font-medium hover:text-[#E2C988] transition-colors"
+              style="font-family: var(--font-sans);"
+              aria-label={`Read: ${post.title}`}
+            >
+              Read article
+              <svg class="h-4 w-4 group-hover:translate-x-0.5 transition-transform" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z" />
+              </svg>
+            </a>
           </div>
         </article>
       ))}
@@ -163,15 +155,11 @@ if (!posts) {
     <div class="text-center mt-12">
       <a
         href={moreHref}
-        class="inline-flex items-center gap-2 bg-white text-[color:var(--dark)]
-               border-2 border-[color:var(--accent)] px-6 py-3 rounded-xl font-bold
-               shadow-[0_8px_24px_rgba(0,0,0,0.08)]
-               hover:bg-[color:var(--accent)] hover:text-[color:var(--dark)]
-               hover:shadow-[0_0_28px_rgba(245,215,124,0.45)]
-               transition-all"
+        class="inline-flex items-center gap-2 bg-[#C9A24E] hover:bg-[#B8912E] text-[#0d2218] px-8 py-4 font-semibold text-sm tracking-wide shadow-[0_8px_24px_rgba(201,162,78,0.35)] hover:shadow-[0_12px_32px_rgba(201,162,78,0.55)] transition-all duration-300 hover:-translate-y-0.5"
+        style="font-family: var(--font-sans, Inter, system-ui);"
       >
         View more articles
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z" />
         </svg>
       </a>

@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /thank-you
+Disallow: /lp/
 
 User-agent: Google-Extended
 Disallow: /
@@ -7,4 +9,7 @@ Disallow: /
 User-agent: GPTBot
 Disallow: /
 
-Sitemap: https://www.buylandcr.com/sitemap-index.xml
+User-agent: AdsBot-Google
+Allow: /
+
+Sitemap: https://www.buylandcr.com/sitemap.xml

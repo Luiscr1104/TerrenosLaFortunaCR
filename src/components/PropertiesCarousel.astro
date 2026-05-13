@@ -1,0 +1,130 @@
+---
+import { getAllProperties } from "@/lib/properties";
+import ChapterMarker from "./editorial/ChapterMarker.astro";
+
+const properties = getAllProperties();
+---
+
+<section class="relative py-14 md:py-20 bg-[#F2EBDA] overflow-hidden">
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(26,74,46,0.04),transparent_55%)] pointer-events-none"></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <div class="mb-2">
+      <ChapterMarker numeral="Ⅱ" label="The Offerings" theme="light" />
+    </div>
+
+    <div class="flex items-end justify-between mb-8 gap-4">
+      <h2
+        class="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0d2218] tracking-tight leading-tight"
+        style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);"
+      >
+        Every Parcel,
+        <span class="italic text-[#1a4a2e]">A Different Life.</span>
+      </h2>
+      <a
+        href="/properties"
+        class="shrink-0 text-sm font-semibold text-[#1a4a2e] border-b border-[#1a4a2e]/40 hover:border-[#1a4a2e] transition-colors pb-0.5 whitespace-nowrap"
+        style="font-family: var(--font-sans, Inter, system-ui);"
+      >
+        View all →
+      </a>
+    </div>
+
+    <!-- Horizontal scroll on mobile, grid on md+ -->
+    <div class="flex gap-5 overflow-x-auto pb-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0 snap-x snap-mandatory md:snap-none scrollbar-hide">
+      {properties.map((p) => {
+        const price = new Intl.NumberFormat("en-US", {
+          style: "currency", currency: "USD", minimumFractionDigits: 0,
+        }).format(p.price);
+
+        const sizeLabel = p.type === "land" && p.landSize
+          ? `${p.landSize} ${p.landUnit}`
+          : `${p.size.toLocaleString()} ${p.sizeUnit}`;
+
+        const badge = p.type === "home"
+          ? `🏠 ${p.bedrooms} bed · ${p.bathrooms} bath`
+          : "🌳 Land";
+
+        return (
+          <a
+            href={`/properties/${p.slug}`}
+            class="group relative flex-shrink-0 w-72 md:w-auto snap-start bg-white rounded-2xl overflow-hidden border border-[#1a4a2e]/6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+          >
+            <!-- Image -->
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img
+                src={p.images[0]}
+                alt={p.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+
+              <!-- Type badge -->
+              <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-[#0d2218] text-[11px] font-bold px-2.5 py-1 rounded-full shadow-sm">
+                {badge}
+              </span>
+
+              {p.featured && (
+                <span class="absolute top-3 right-3 bg-[#C9A24E] text-[#0d2218] text-[11px] font-bold px-2.5 py-1 rounded-full shadow-sm">
+                  ⭐ Featured
+                </span>
+              )}
+
+              <!-- Price overlay at bottom of image -->
+              <div class="absolute bottom-3 left-3">
+                <span
+                  class="text-white font-bold text-lg leading-none"
+                  style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); text-shadow: 0 1px 6px rgba(0,0,0,0.6);"
+                >
+                  {price}
+                </span>
+              </div>
+            </div>
+
+            <!-- Card body -->
+            <div class="p-4">
+              <!-- Location -->
+              <p class="text-xs text-[#1a4a2e] font-semibold uppercase tracking-wider mb-1.5" style="font-family: var(--font-sans, Inter, system-ui);">
+                📍 {p.location}
+              </p>
+
+              <!-- Title -->
+              <h3
+                class="text-base font-bold text-[#0d2218] leading-snug line-clamp-2 mb-3 group-hover:text-[#1a4a2e] transition-colors"
+                style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif); font-size: 1.05rem;"
+              >
+                {p.title}
+              </h3>
+
+              <!-- Key stat -->
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-[#2a2520]/55 font-medium" style="font-family: var(--font-sans);">
+                  {sizeLabel}
+                </span>
+                <span class="text-xs font-semibold text-[#1a4a2e] flex items-center gap-1 group-hover:gap-2 transition-all" style="font-family: var(--font-sans);">
+                  Details
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>

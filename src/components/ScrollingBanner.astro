@@ -10,14 +10,16 @@ const { theme = "dark", items, speed = "normal" } = Astro.props;
 const defaultDarkItems = [
   "La Fortuna · Costa Rica",
   "Arenal Volcano Views",
+  "🦜 Scarlet Macaws Overhead",
   "Fee Simple Title",
   "100% Legal & Secure",
+  "🐒 Howler Monkeys at Dawn",
   "Remote Closing Available",
   "Bilingual Notary",
+  "🌋 Volcano at Your Doorstep",
   "30–60 Days to Close",
-  "Licensed Escrow Protection",
+  "🦅 Toucans · Blue Morpho · Sloths",
   "Foreign Ownership",
-  "No Flights Required",
 ];
 
 const defaultLightItems = [
@@ -60,14 +62,14 @@ const bg =
     ? "bg-[#0d2218]"
     : theme === "gold"
       ? "bg-[#C9A24E]"
-      : "bg-[#F2EBDA]";
+      : "bg-[#0f2d1a]";
 
 const textColor =
   theme === "dark"
     ? "text-white/70"
     : theme === "gold"
       ? "text-[#0d2218]"
-      : "text-[#1a4a2e]/70";
+      : "text-white/55";
 
 const dotColor =
   theme === "dark"
@@ -81,14 +83,14 @@ const borderTop =
     ? "border-t border-white/8"
     : theme === "gold"
       ? ""
-      : "border-t border-[#1a4a2e]/10";
+      : "border-t border-white/10";
 
 const borderBottom =
   theme === "dark"
     ? "border-b border-white/8"
     : theme === "gold"
       ? ""
-      : "border-b border-[#1a4a2e]/10";
+      : "border-b border-white/10";
 
 // Duplicate items for seamless loop
 const allItems = [...displayItems, ...displayItems];
@@ -102,7 +104,7 @@ const allItems = [...displayItems, ...displayItems];
         ? "bg-gradient-to-r from-[#0d2218] to-transparent"
         : theme === "gold"
           ? "bg-gradient-to-r from-[#C9A24E] to-transparent"
-          : "bg-gradient-to-r from-[#F2EBDA] to-transparent"
+          : "bg-gradient-to-r from-[#0f2d1a] to-transparent"
     }`}
   ></div>
   <div
@@ -111,7 +113,7 @@ const allItems = [...displayItems, ...displayItems];
         ? "bg-gradient-to-l from-[#0d2218] to-transparent"
         : theme === "gold"
           ? "bg-gradient-to-l from-[#C9A24E] to-transparent"
-          : "bg-gradient-to-l from-[#F2EBDA] to-transparent"
+          : "bg-gradient-to-l from-[#0f2d1a] to-transparent"
     }`}
   ></div>
 
